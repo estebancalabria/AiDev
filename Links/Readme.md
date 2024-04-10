@@ -1,22 +1,31 @@
-Large Laguage Models
+#Large Laguage Models
 
-Chat GPT
+##Chat GPT
 	https://chat.openai.com/
 
-Gemini
+##Gemini
 	https://gemini.google.com/app
 
-Claude 3
+##Claude 3
 	https://claude.ai
 
-Perplexity
+##Perplexity
 	https://www.perplexity.ai/
 
-BackBox
+##BackBox
 	https://www.blackbox.ai/
 
-LM Studio
+##LM Studio
 	https://lmstudio.ai/
 
-GPT Hugging Faces
+##GPT Hugging Faces
 	https://gpt.h2o.ai/
+
+
+#Otros
+
+##There Is an AI for That
+https://theresanaiforthat.com/
+
+##SunoAI (Para Hacer musica)
+https://suno.com/
