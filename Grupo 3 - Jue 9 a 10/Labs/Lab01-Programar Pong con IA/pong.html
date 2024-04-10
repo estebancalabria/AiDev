@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="pongCanvas" width="800" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById("pongCanvas");
+        const context = canvas.getContext("2d");
+
+        const ball = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: 10,
+            speedX: 5,
+            speedY: 5,
+        };
+
+        const paddle1 = {
+            x: 10,
+            y: canvas.height / 2 - 50,
+            width: 10,
+            height: 100,
+            speed: 10,
+            score: 0,
+        };
+
+        const paddle2 = {
+            x: canvas.width - 20,
+            y: canvas.height / 2 - 50,
+            width: 10,
+            height: 100,
+            speed: 10,
+            score: 0,
+        };
+
+        function drawBall() {
+            context.beginPath();
+            context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            context.fillStyle = "#000";
+            context.fill();
+            context.closePath();
+        }
+
+        function drawPaddle(paddle) {
+            context.fillStyle = "#000";
+            context.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+        }
+
+        function drawScores() {
+            context.font = "24px Arial";
+            context.fillText(`Player 1: ${paddle1.score}`, 20, 30);
+            context.fillText(`Player 2: ${paddle2.score}`, canvas.width - 160, 30);
+        }
+
+        function update() {
+            ball.x += ball.speedX;
+            ball.y += ball.speedY;
+
+            // Check for collisions with walls
+            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+                ball.speedY *= -1;
+            }
+
+            // Check for collisions with paddles
+            if (ball.x - ball.radius < paddle1.x + paddle1.width && 
+                ball.y > paddle1.y && ball.y < paddle1.y + paddle1.height) {
+                ball.speedX *= -1;
+            }
+
+            if (ball.x + ball.radius > paddle2.x && 
+                ball.y > paddle2.y && ball.y < paddle2.y + paddle2.height) {
+                ball.speedX *= -1;
+            }
+
+            // Check for out of bounds
+            if (ball.x + ball.radius > canvas.width) {
+                paddle1.score++;
+                reset();
+            }
+
+            if (ball.x - ball.radius < 0) {
+                paddle2.score++;
+                reset();
+            }
+        }
+
+        function reset() {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            ball.speedX *= -1;
+            ball.speedY = 5;
+        }
+
+        function draw() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawBall();
+            drawPaddle(paddle1);
+            drawPaddle(paddle2);
+            drawScores();
+        }
+
+        function loop() {
+            update();
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        loop();
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "q" || event.key === "Q") {
+                if (paddle1.y > 0) {
+                    paddle1.y -= paddle1.speed;
+                }
+            } else if (event.key === "a" || event.key === "A") {
+                if (paddle1.y + paddle1.height < canvas.height) {
+                    paddle1.y += paddle1.speed;
+                }
+            } else if (event.key === "ArrowUp") {
+                if (paddle2.y > 0) {
+                    paddle2.y -= paddle2.speed;
+                }
+            } else if (event.key === "ArrowDown") {
+                if (paddle2.y + paddle2.height < canvas.height) {
+                    paddle2.y += paddle2.speed;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
