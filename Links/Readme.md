@@ -25,6 +25,10 @@
 
 ## Github Copilot
 	https://github.com/features/copilot
+ 
+## Amazon CodeWhisperer
+	https://aws.amazon.com/es/codewhisperer/
+ 	https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-toolkit-vscode
 
 
 # Otras Herramientas de Inteligencia Artificial
