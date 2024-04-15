@@ -4,7 +4,7 @@
 
 Aqui puedes encontrar una lista de potentes sugerencias de prompts de ChatGPT que pueden ayudarte a estimular tu creatividad. 💡 Ya seas principiante o profesional experimentado, estas sugerencias pueden ayudarte a pensar fuera de lo convencional y encontrar nuevas soluciones a los problemas. 🚀
 
-La lista está dividida en categorías: [ sugerencias para programadores, estudiantes, expertos en marketing y creadores de contenido ]. Así que, sin importar tu profesión, ¡hay algo aquí para todos! 😊 ¡Vamos a sumergirnos de lleno en estas poderosas sugerencias de prompts de ChatGPT que pueden ayudarte a llevar tu creatividad al siguiente nivel! 🌊
+😊 ¡Vamos a sumergirnos de lleno en estas poderosas sugerencias de prompts de ChatGPT que pueden ayudarte a llevar tu creatividad al siguiente nivel! 🌊
 
 ## Tabla de Contenidos
 
