@@ -43,6 +43,10 @@ https://suno.com/
 ## ¿Los desarrolladores aún necesitan aprender lenguajes de programación en la era de la IA?"
 https://thenextweb.com/news/developers-learn-programming-languages-age-of-ai
 
+# Repositorios Github
+## Patrones de Prompting para Devs (Ingles)
+https://github.com/PickleBoxer/dev-chatgpt-prompts?tab=readme-ov-file#-architecture-diagram-mermaid
+
 # Otros
 Repositorio Github de Enyerbeth Quiroz de Nybble 
 | Su función de reconocimiento de voz en tiempo real que permite a los usuarios hablar en lugar de escribir
