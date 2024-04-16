@@ -52,3 +52,6 @@ Repositorio Github de Enyerbeth Quiroz de Nybble
 | Su función de reconocimiento de voz en tiempo real que permite a los usuarios hablar en lugar de escribir
 https://github.com/Enyer182/speech-to-gpt3
 
+Devika (Competencia de Devin)
+https://github.com/stitionai/devika
+Ver Uso : https://www.youtube.com/watch?v=kw9nTK42bTw
