@@ -321,8 +321,10 @@ Escribe el código Mermaid para un diagrama de relación de entidades para estas
 **Prompt:**
 ```
 Quiero hacer un script que parado en una carpeta tome todos los archivos .java y .xml de esa carpeta y subcarpetas y genere un unico archivo con el contenido de todos los archivos. El archivo de salida se llama proyecto,txt. Quiero que antes de poner el contenido de cada archivo agregue una linea de la forma //\[nombre del archivo\] que diga a que archivo corresponde el contenido que sigue a continuacion
-## Refactorización de código
 ```
+
+## Refactorización de código
+
 <sup>[⬆️ Volver a la tabla de contenidos](#tabla-de-contenidos)</sup>
 
 ### 📣 Refactorizar código
