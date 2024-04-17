@@ -1,0 +1,943 @@
+//pom.xml 
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.4</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>org.indra</groupId>
+	<artifactId>claseTrece</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>clase-trece</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.45.2.0</version>
+			<!--<version>3.36.0</version>-->
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-community-dialects</artifactId>
+			<version>6.5.0.CR1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project> 
+//ClaseTreceApplication.java 
+package org.indra.claseTrece;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ClaseTreceApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(ClaseTreceApplication.class, args);
+	}
+
+}
+ 
+//AccionController.java 
+package org.indra.claseTrece.controllers;
+
+import java.util.*;
+
+import org.indra.claseTrece.models.Accion;
+import org.indra.claseTrece.services.CrudService;
+import org.indra.claseTrece.services.ServiceError;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class AccionController {
+	
+	//Pasamos al Service
+	//List<Accion> acciones = new ArrayList<>();
+	
+	//Inyeccion de dependencias
+	//Yo no instancio esta propiedad
+	@Autowired //Esta propiedad es como modificar el archivo beans.xmll
+	private CrudService<String, Accion> service;
+	
+	public AccionController() {
+		//Pasamos al service
+		/*acciones.add(new Accion() {{
+		  setSimbolo("INDRA");
+		  setNombre("Indra");
+		  setUltimaCotizacion(100.0);
+		}});
+		
+		acciones.add(new Accion() {{
+			  setSimbolo("NVDA");
+			  setNombre("Nvidia Corporation");
+			  setUltimaCotizacion(200.0);
+			}});
+		
+		acciones.add(new Accion() {{
+			  setSimbolo("MCD");
+			  setNombre("MacDonalds");
+			  setUltimaCotizacion(100.0);
+			}});
+		
+		acciones.add(new Accion() {{
+			  setSimbolo("MSFT");
+			  setNombre("Microsoft");
+			  setUltimaCotizacion(400.0);
+			}});*/
+	}
+	
+	
+	@GetMapping("/api/accion")
+	public List<Accion> getAll(){
+		return this.service.readAll();
+		
+		//Pasamos al service
+		//return acciones;
+	}
+	
+	/*@GetMapping("/api/accion/{simbolo}")
+	public Accion get(@PathVariable()String simbolo){
+		Accion accion = this.acciones
+				.stream().filter(a -> a.getSimbolo().equals(simbolo))
+				.findFirst()
+				.orElse( new Accion() {{
+					setSimbolo("NOT-FOUND");
+					setNombre("Accion Desconocida");
+					setUltimaCotizacion(0);
+				}});
+		return accion;
+	}*/
+	
+	//El ResponseEntity me permite manipular los status http
+	@GetMapping("/api/accion/{simbolo}")
+	public ResponseEntity<Accion> get(@PathVariable()String simbolo){
+		try {
+			return ResponseEntity.ok(this.service.readById(simbolo));
+			
+		}catch(ServiceError err) {
+			return new ResponseEntity<Accion>(HttpStatus.NOT_FOUND);
+		}
+		
+		//Pasa al servicio
+		/*Accion accion = this.acciones
+				.stream().filter(a -> a.getSimbolo().equals(simbolo))
+				.findFirst()
+				.orElse( null);
+		if (accion != null) {
+			return ResponseEntity.ok(accion);
+		}
+		return new ResponseEntity<Accion>(HttpStatus.NOT_FOUND);*/
+	}
+	
+	@PostMapping("/api/accion") 
+	public ResponseEntity<String> add(@RequestBody Accion accion){
+		try {
+			this.service.create(accion);
+			return ResponseEntity.ok("Accion agregada satisfactoriamente");
+		} catch (ServiceError err) {
+			return ResponseEntity.badRequest().body(err.getMessage());
+		}
+		
+		//Validar con un servicio etc etc....
+		//-- Que tengan todos los campos
+		/*if ((accion.getSimbolo()==null) || (accion.getSimbolo().trim().length()==0)) {
+			return ResponseEntity.badRequest().body("Falta el simbolo");
+		}
+		
+		if ((accion.getNombre()==null) || (accion.getNombre().trim().length()==0)) {
+			return ResponseEntity.badRequest().body("Falta el nombre");
+		}
+		
+		if (accion.getUltimaCotizacion()<=0) {
+			return ResponseEntity.badRequest().body("Mal la ultima cotizacion");
+		}
+		
+		//-- Que no este repetida la accion
+		//Se animan uds?
+		 if(this.acciones
+	                .stream()
+	                .filter(a -> a.getSimbolo().equals(accion.getSimbolo()))
+	                .findFirst().isPresent()) {
+	             
+	                return ResponseEntity.badRequest().body("La accion ya existe");
+	    }
+		
+		this.acciones.add(accion);
+		return ResponseEntity.ok("Accion agregada satisfactoriamente");*/
+	}
+	
+	@DeleteMapping("/api/accion/{simbolo}")
+	public ResponseEntity<String> delete(@PathVariable() String simbolo){
+		try {
+			this.service.delete(simbolo);
+			return ResponseEntity.ok("Accion eliminada satisfactoriamente");
+		}catch (ServiceError err) {
+			return new ResponseEntity<>(err.getMessage(), HttpStatus.NOT_FOUND);
+		}
+		
+		/*if (this.acciones.removeIf(n -> n.getSimbolo().equals(simbolo))) {
+			 return ResponseEntity.ok("Accion eliminada satisfactoriamente");
+		}
+		return new ResponseEntity<>("Accion no encontrada", HttpStatus.NOT_FOUND);*/
+	}
+	
+	@PutMapping("/api/accion/{simbolo}")
+	public ResponseEntity<String> update(@PathVariable() String simbolo, @RequestBody Accion accion){
+		try {
+			this.service.update(simbolo, accion);
+			return ResponseEntity.ok("Accion Modificada");
+		}catch (ServiceError err) {
+			return new ResponseEntity<>(err.getMessage(),HttpStatus.NOT_FOUND);
+		}
+		
+		/*//recupero la accion con el sibolo
+		//actualizo los datos con el otro parametro
+		Accion accionActual = this.acciones
+				.stream().filter(a -> a.getSimbolo().equals(simbolo))
+				.findFirst()
+				.orElse( null);
+		if (accionActual != null) {
+			//Validar que los datos nuevos esten bien
+			accionActual.setSimbolo(accion.getSimbolo());
+			accionActual.setNombre(accion.getNombre());
+			accionActual.setUltimaCotizacion(accion.getUltimaCotizacion());
+			
+			return ResponseEntity.ok("Accion Modificada");
+		}
+		return new ResponseEntity<>("Accion No Existe",HttpStatus.NOT_FOUND);*/
+	}
+	
+	/*@GetMapping("/api/accion/echo")
+	public Accion echo(@RequestParam() Accion accion) {
+		return accion;
+	}*/
+}
+	
+	
+	
+
+
+	
+
+ 
+//SaludoController.java 
+package org.indra.claseTrece.controllers;
+
+import java.util.*;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class SaludoController {
+	
+	@GetMapping("/saludo/holaMundo")
+	public String holaMundo() {
+		return "Hola mundo";
+	}
+	
+	//http://localhost:5000/saludo/saludarV1?nombre=Jiten
+	@GetMapping("/saludo/saludarV1")
+	public String saludar(@RequestParam("nombre") String nombre) {
+		return "Hola " + nombre;
+	}
+	
+	//http://localhost:5000/saludo/saludarV2?nombre=Jiten
+	@GetMapping("/saludo/saludarV2")
+	public String saludar2(@RequestParam() String nombre) {
+		return "Hola " + nombre;
+	}
+	
+	//http://localhost:5000/saludo/saludarV3?nombre=Jiten
+	//http://localhost:5000/saludo/saludarV3
+	@GetMapping("/saludo/saludarV3")
+	public String saludar3(@RequestParam(required = false) String nombre) {
+		
+		if (nombre != null) {
+			return "Hola " + nombre;
+		}
+		return "Hola desconocido";
+	}
+	
+	//http://localhost:5000/saludo/saludarV4?nombre=Jiten
+	//http://localhost:5000/saludo/saludarV4
+	@GetMapping("/saludo/saludarV4")
+	public String saludar4(@RequestParam() Optional<String> nombre) {
+		return "Hola " + nombre.orElse("desconocido");
+	}
+	
+	//http://localhost:5000/saludo/saludarV5?nombre=Jiten
+	//http://localhost:5000/saludo/saludarV5
+	@GetMapping("/saludo/saludarV5")
+	public String saludar5(@RequestParam(defaultValue = "desconocido") String nombre) {
+		return "Hola " + nombre;
+	}
+	
+	//http://localhost:5000/saludo/saludarV6?nombres=Ruben,Jitten,Orejo
+	@GetMapping("/saludo/saludarV6")
+	public String saludar6(@RequestParam() List<String> nombres) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Hola ");
+		sb.append("<ol>");
+		nombres.forEach(n -> sb.append("<li>" + n + "</li>"));
+		sb.append("</ol>");
+		
+		return sb.toString();
+	}
+	
+	//http://localhost:5000/saludo/saludarV7?nombre=Esteban&apellido=Calabria
+	@GetMapping("/saludo/saludarV7")
+	public String saludar7(@RequestParam() Map<String,String> query) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Mis Parametros ");
+		sb.append("<ul>");
+		query.keySet().forEach(key -> sb.append("<li>" + key + "=" + query.get(key)+ "</li>"));
+		sb.append("</ul>");
+		
+		return sb.toString();
+	}
+	
+	@GetMapping("/saludo/saludarV8/{nombre}")
+	//public String saludar8(@PathVariable() String nombre) {
+	public String saludar8(@PathVariable("nombre") String nombre) {
+		return "Hola " + nombre;
+	}
+	
+}
+ 
+//Accion.java 
+package org.indra.claseTrece.models;
+
+import org.indra.claseTrece.models.annotations.*;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
+
+@Entity
+@Table(name="Accion")
+public class Accion extends ObjetoDeNegocio<String>{
+
+	@Setter
+	@Getter
+	@ValidarRequerido(mensaje = "La accion debe tener simbolo")
+	//@ValidarRequerido("La accion debe tener simbolo") con value
+	@Column(name="simbolo")
+	@Id
+	private String simbolo;
+
+	@Setter
+	@Getter
+	@ValidarRequerido(mensaje = "El nombre de la accion no puede ser vacio")
+	@Column(name="nombre")
+	private String nombre;
+
+	@Setter
+	@Getter
+	@ValidarRango(mensaje = "La ultima cotizacion no puede ser menor a 0", min = 0)
+	@Column(name="cotizacion")
+	private double ultimaCotizacion;
+
+	//Lo comentamos porque lo subimos al objeto de negocio
+	/*public void validar() {
+		if ((this.simbolo == null) || this.simbolo.trim().length() == 0) {
+			throw new Error("La accion debe tener simbolo");
+		}
+
+		if ((this.nombre == null) || this.nombre.trim().length() == 0) {
+			throw new Error("El nombre de la accion no puede ser vacio");
+		}
+
+		if (ultimaCotizacion < 0) {
+			throw new Error("La cotizacion de la accion debe ser un numero positivo");
+		}
+
+	}*/
+	
+	@Override
+	public String getId() {
+		// TODO Auto-generated method stub
+		return this.getSimbolo();
+	}
+	
+	@Override
+	public void setId(String value) {
+		// TODO Auto-generated method stub
+		super.setId(value);
+		this.setSimbolo(value);
+	}
+}
+ 
+//ObjetoDeNegocio.java 
+package org.indra.claseTrece.models;
+
+import java.lang.reflect.Field;
+
+import org.indra.claseTrece.models.annotations.*;
+
+//Layer Supertype
+public abstract class ObjetoDeNegocio<T> {
+
+	private T id;
+
+	public T getId() {
+		return this.id;
+	}
+
+	public void setId(T value) {
+		this.id = value;
+	}
+
+	public void validar() {
+		
+
+		// Recorre los campos que tengan la anotacion @ValidarRequerido
+		// Y se fija que no esten vacios
+		try {
+			for (Field field : this.getClass().getDeclaredFields()) {
+				field.setAccessible(true); //Necesario para leer los campos privados con reflection
+				Object value = field.get(this);
+				
+				if (field.isAnnotationPresent(ValidarRequerido.class)) {
+					ValidarRequerido anotacion = field.getAnnotation(ValidarRequerido.class);
+	
+
+					if (value == null) {
+						throw new Error("Campo null " + field.getName() + ":" + anotacion.mensaje());
+					}
+					
+					if ((value instanceof String) && ((String)value).trim().length()==0) {
+						throw new Error("Campo vacio " + field.getName() + ":" + anotacion.mensaje());
+					}
+				}
+				
+				if (field.isAnnotationPresent(ValidarRango.class)) {
+					ValidarRango rango= field.getAnnotation(ValidarRango.class);
+					
+					if (value instanceof Integer) {
+						if (((Integer)value)<rango.min()) {
+							throw new Error(rango.mensaje());
+						}
+						
+						if (((Integer)value)>rango.max()) {
+							throw new Error(rango.mensaje());
+						}
+
+					}
+					
+					if (value instanceof Double) {
+						if (((Double)value)<rango.min()) {
+							throw new Error(rango.mensaje());
+						}
+						
+						if (((Double)value)>rango.max()) {
+							throw new Error(rango.mensaje());
+						}
+					}
+					
+				}
+			}
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			// un sneaky throws de lombok casero
+			throw new Error(e.getMessage());
+		}
+
+	}
+
+}
+ 
+//ValidarRango.java 
+package org.indra.claseTrece.models.annotations;
+
+import java.lang.annotation.*;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface ValidarRango {
+    String mensaje() default "El atributo está fuera de rango";
+    double min() default Double.MIN_VALUE;
+    double max() default Double.MAX_VALUE;
+}
+ 
+//ValidarRequerido.java 
+package org.indra.claseTrece.models.annotations;
+
+import java.lang.annotation.*;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface ValidarRequerido {
+	String mensaje() default "El atributo es requerido y esta vacio";
+}
+
+//Otra opcion utilizando value
+/*
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface ValidarRequerido {
+	String value() default "El atributo es requerido y esta vacio";
+}
+
+//@ValidarRequerido("La accion debe tener simbolo")
+*/ 
+//AccionRepository.java 
+package org.indra.claseTrece.repositories;
+
+import org.indra.claseTrece.models.Accion;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+//La implementacion de esta interfaz se genera automaticamente
+//JPA se encarga de generar la implementacion de esta clase automaticamente
+@Repository
+public interface AccionRepository extends JpaRepository<Accion, String>{
+
+}
+ 
+//AccionService.java 
+package org.indra.claseTrece.services;
+
+
+//
+//Se animan a refactorizar el servicio uds?
+//
+
+import java.util.ArrayList;
+import java.util.List;
+import org.indra.claseTrece.models.*;
+import org.indra.claseTrece.repositories.AccionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AccionService implements CrudService<String, Accion> {
+
+	@Autowired
+	private AccionRepository repository;
+	
+	//List<Accion> acciones = new ArrayList<>();
+
+	public AccionService() {
+		/*acciones.add(new Accion() {
+			{
+				setSimbolo("INDRA");
+				setNombre("Indra");
+				setUltimaCotizacion(100.0);
+			}
+		});
+
+		acciones.add(new Accion() {
+			{
+				setSimbolo("NVDA");
+				setNombre("Nvidia Corporation");
+				setUltimaCotizacion(200.0);
+			}
+		});
+
+		acciones.add(new Accion() {
+			{
+				setSimbolo("MCD");
+				setNombre("MacDonalds");
+				setUltimaCotizacion(100.0);
+			}
+		});
+
+		acciones.add(new Accion() {
+			{
+				setSimbolo("MSFT");
+				setNombre("Microsoft");
+				setUltimaCotizacion(400.0);
+			}
+		});*/
+	}
+
+	@Override
+	public void create(Accion model) {
+		System.out.println("Create de Accion Service");
+		Accion accion = model;
+		try {
+			accion.validar();
+
+			/*
+			if(this.acciones
+		                .stream()
+		                .filter(a -> a.getSimbolo().equals(accion.getSimbolo()))
+		                .findFirst().isPresent()) {
+		             
+				 throw new ServiceError("La accion ya existe");
+		    }*/
+			
+			if (this.repository.existsById(accion.getSimbolo())){
+				throw new ServiceError("La accion ya existe");
+			}
+			
+			//this.acciones.add(accion);
+			
+			//Para probar arranco con el save
+			this.repository.save(accion);
+		}catch(Error e) {
+			throw new ServiceError(e.getMessage());
+		}
+	}
+
+	@Override
+	public void delete(String id) {
+		// TODO Auto-generated method stub
+		System.out.println("Delete de accion service");
+		try {
+			if (!this.repository.existsById(id)) {
+				throw new ServiceError("Accion no encontrada");
+			}
+			
+			this.repository.deleteById(id);
+			
+		} catch (Exception ex) {
+			throw new ServiceError(ex.getMessage());
+		}
+		
+		/*if (!this.acciones.removeIf(n -> n.getSimbolo().equals(id))) {
+			throw new ServiceError("Accion no encontrada");
+		}*/
+	}
+
+	@Override
+	public void update(String id, Accion model) {
+		// TODO Auto-generated method stub
+		try {	
+			System.out.println("Update de accion service");
+			
+			model.validar();
+			
+			if (!this.repository.existsById(model.getSimbolo())) {
+				throw new ServiceError("Accion no encontrada");
+			}
+			
+			this.repository.save(model);
+			/*Accion accion = model;
+			Accion accionActual = this.acciones
+					.stream().filter(a -> a.getSimbolo().equals(id))
+					.findFirst()
+					.orElse( null);
+			
+			if (accionActual != null) {
+				//Validar que los datos nuevos esten bien
+				accionActual.setSimbolo(accion.getSimbolo());
+				accionActual.setNombre(accion.getNombre());
+				accionActual.setUltimaCotizacion(accion.getUltimaCotizacion());
+				accionActual.validar();
+			}
+			
+			throw new ServiceError("Accion no encontrada");*/
+		} catch(Error e) {
+			throw new ServiceError(e.getMessage());
+		}
+
+	}
+
+	@Override
+	public Accion readById(String id) {
+		// TODO Auto-generated method stub
+		System.out.println("Read by ID de accion service");
+		
+		/*Accion accion = this.acciones
+				.stream().filter(a -> a.getSimbolo().equals(id))
+				.findFirst()
+				.orElse( null);
+		
+		if (accion == null) {
+			throw new ServiceError("No existe la accion de simbolo " + id);
+		}
+		
+		*/
+		
+		Accion accion = this.repository
+				.findById(id)
+				.orElseThrow( () -> (new ServiceError("No existe la accion de simbolo " + id)));
+		
+
+		return accion;
+	}
+
+	@Override
+	public List<Accion> readAll() {
+		// TODO Auto-generated method stub
+		//System.out.println("Read all de accion service");
+		//return this.acciones;
+		try {
+			return this.repository.findAll();
+		}catch(Exception e) {
+			throw new ServiceError(e.getMessage());
+		}
+	}
+
+}
+ 
+//CrudService.java 
+package org.indra.claseTrece.services;
+
+import java.util.List;
+
+public interface CrudService<ID, T> {
+   //Lo completan uds?
+	void create(T model);
+	void delete(ID id);
+	void update(ID id, T model);
+	T readById(ID id);
+	List<T> readAll();
+}
+ 
+//ServiceError.java 
+package org.indra.claseTrece.services;
+
+public class ServiceError extends Error {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public ServiceError(String mensaje) {
+		super(mensaje);
+	}
+}
+ 
+//AccionServiceTest.java 
+package org.indra.claseTrece;
+
+import org.indra.claseTrece.models.Accion;
+import org.indra.claseTrece.repositories.AccionRepository;
+import org.indra.claseTrece.services.AccionService;
+import org.indra.claseTrece.services.CrudService;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import static org.mockito.Mockito.*;
+import static org.testng.Assert.assertEquals;
+
+import java.util.Optional;
+
+@SpringBootTest
+@ExtendWith(MockitoExtension.class)
+public class AccionServiceTest {
+
+	@Mock
+	AccionRepository repository;
+	
+	@Autowired
+	@InjectMocks
+	//CrudService<String, Accion> service;
+S	
+	@Test
+	void testFindById() {
+		when(repository.findById("LTR")).thenReturn(Optional.of(new Accion() {{
+			setSimbolo("LTR");
+			setNombre("Light Transport Industries");
+			setUltimaCotizacion(100);
+		}}));
+		
+		assertEquals("LTR" , service.readById("LTR").getSimbolo());
+		
+	}
+}
+ 
+//AccionTest.java 
+package org.indra.claseTrece;
+
+import static org.testng.Assert.*;
+import org.indra.claseTrece.models.Accion;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+public class AccionTest {
+	
+	@Test
+	public void testValidacionAccion() {
+		
+		//valido Simbolo
+		Accion accion = new Accion();
+		assertThrows(Error.class, ()->{
+			accion.validar();
+		});
+		
+	}
+
+}
+ 
+//ClaseTreceApplicationTests.java 
+package org.indra.claseTrece;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ClaseTreceApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
+ 
+//pom.xml 
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.4</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>org.indra</groupId>
+	<artifactId>claseTrece</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>clase-trece</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.45.2.0</version>
+			<!--<version>3.36.0</version>-->
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.orm</groupId>
+			<artifactId>hibernate-community-dialects</artifactId>
+			<version>6.5.0.CR1</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project> 
