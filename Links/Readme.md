@@ -35,6 +35,11 @@
 ## ChatGPT Exporter
 https://chromewebstore.google.com/detail/chatgpt-exportador-extrae/ilmdofdhpnhffldihboadndccenlnfll?hl=es
 
+# Extensiones de VSCode
+
+## Mintlify Doc Writer for Python, JavaScript, TypeScript, C++, PHP, Java, C#, Ruby & more
+https://marketplace.visualstudio.com/items?itemName=mintlify.document
+
 # Otras Herramientas de Inteligencia Artificial
 
 ## There Is an AI for That
