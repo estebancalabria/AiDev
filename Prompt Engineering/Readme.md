@@ -29,7 +29,7 @@ Sugerencias para programadores
   - [📣 Explicar código](#-explicar-código)
   - [📣 Diagrama de arquitectura (Mermaid)](#-diagrama-de-arquitectura-mermaid)
   - [📣 Diagrama de relación de entidades (Mermaid)](#-diagrama-de-relación-de-entidades-mermaid)
-  - [📣 Crear Script para concatenar archivos del proyecto de uno solo](#-Crear Script para concatenar archivos del proyecto de uno solo)
+  - [📣 Crear Script para concatenar archivos del proyecto de uno solo](#-diagrama-de-relación-de-entidades-mermaid).
 - [Refactorización de código](#refactorización-de-código)
   - [📣 Refactorizar código](#-refactorizar-código)
   - [📣 Modernizar código antiguo](#-modernizar-código-antiguo)
