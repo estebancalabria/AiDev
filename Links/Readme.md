@@ -51,15 +51,12 @@ https://suno.com/
 # Noticias Interesantes
 ## ¿Los desarrolladores aún necesitan aprender lenguajes de programación en la era de la IA?"
 https://thenextweb.com/news/developers-learn-programming-languages-age-of-ai
+## Microsoft’s AI Copilot Is Starting to Automate the Coding Industry
+https://www.bloomberg.com/news/articles/2024-04-17/microsoft-s-ai-copilot-is-starting-to-automate-the-coding-industry
 
 # Repositorios Github
 ## Patrones de Prompting para Devs (Ingles)
 https://github.com/PickleBoxer/dev-chatgpt-prompts?tab=readme-ov-file#-architecture-diagram-mermaid
-
-# Noticias
-
-## Microsoft’s AI Copilot Is Starting to Automate the Coding Industry
-https://www.bloomberg.com/news/articles/2024-04-17/microsoft-s-ai-copilot-is-starting-to-automate-the-coding-industry
 
 # Otros
 Repositorio Github de Enyerbeth Quiroz de Nybble 
