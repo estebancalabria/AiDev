@@ -30,6 +30,10 @@
 	https://aws.amazon.com/es/codewhisperer/
  	https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-toolkit-vscode
 
+# Extensiones de Chrome
+
+## ChatGPT Exporter
+https://chromewebstore.google.com/detail/chatgpt-exportador-extrae/ilmdofdhpnhffldihboadndccenlnfll?hl=es
 
 # Otras Herramientas de Inteligencia Artificial
 
