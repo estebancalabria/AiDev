@@ -29,7 +29,7 @@ Sugerencias para programadores
   - [📣 Explicar código](#-explicar-código)
   - [📣 Diagrama de arquitectura (Mermaid)](#-diagrama-de-arquitectura-mermaid)
   - [📣 Diagrama de relación de entidades (Mermaid)](#-diagrama-de-relación-de-entidades-mermaid)
-  - [📣 Crear Script para concatenar archivos del proyecto de uno solo](#-diagrama-de-relación-de-entidades-mermaid).
+  - [📣 😎 Crear Script para concatenar archivos del proyecto de uno solo](#-diagrama-de-relación-de-entidades-mermaid).
 - [Refactorización de código](#refactorización-de-código)
   - [📣 Refactorizar código](#-refactorizar-código)
   - [📣 Modernizar código antiguo](#-modernizar-código-antiguo)
@@ -321,6 +321,11 @@ Escribe el código Mermaid para un diagrama de relación de entidades para estas
 **Prompt:**
 ```
 Quiero hacer un script que parado en una carpeta tome todos los archivos .java y .xml de esa carpeta y subcarpetas y genere un unico archivo con el contenido de todos los archivos. El archivo de salida se llama proyecto,txt. Quiero que antes de poner el contenido de cada archivo agregue una linea de la forma //\[nombre del archivo\] que diga a que archivo corresponde el contenido que sigue a continuacion
+```
+
+**Prompt V2 (Especifcando que sea cmd y mimificandolo):**
+```
+Quiero hacer un script cmd que parado en una carpeta tome todos los archivos .java y .xml de esa carpeta y subcarpetas y genere un unico archivo con el contenido de todos los archivos. El archivo de salida se llama proyecto,txt. Quiero que antes de poner el contenido de cada archivo agregue una linea de la forma //\[nombre del archivo\] que diga a que archivo corresponde el contenido que sigue a continuacion. Me gustaria que el contenido de cada archivo este en una sola linea mimificado, es decir que el script elimine todos los espacios y los saltos de linea para que el archivo ocupe menos espacio
 ```
 
 ## Refactorización de código
