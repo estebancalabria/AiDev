@@ -64,6 +64,10 @@ https://suno.com/
 ## Patrones de Prompting para Devs (Ingles)
 https://github.com/PickleBoxer/dev-chatgpt-prompts?tab=readme-ov-file#-architecture-diagram-mermaid
 
+# Bibliografia
+## Stuart Russell - Human Compatible_ Artificial Intelligence and the Problem of Control (Gracias Sergio)
+	https://download.library.lol/main/2424000/2e545890d8914cc2e462cb26cac19432/Stuart%20Russell%20-%20Human%20Compatible_%20Artificial%20Intelligence%20and%20the%20Problem%20of%20Control-Viking%20%282019%29.epub
+
 # Otros
 
 Repositorio Github de Enyerbeth Quiroz de Nybble 
@@ -77,3 +81,4 @@ Devika (Competencia de Devin)
 Mermaid Live editor 
 	Sirve para ver diagramas UML y otros escritos en mermaid (https://es.wikipedia.org/wiki/MERMAID)
 	https://mermaid.live/
+
