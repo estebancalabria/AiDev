@@ -30,15 +30,18 @@
 	https://aws.amazon.com/es/codewhisperer/
  	https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-toolkit-vscode
 
-# Extensiones de Chrome
+# 🌐Extensiones de Chrome
 
 ## ChatGPT Exporter
 https://chromewebstore.google.com/detail/chatgpt-exportador-extrae/ilmdofdhpnhffldihboadndccenlnfll?hl=es
 
-# Extensiones de VSCode
+# 🧑‍💻Extensiones de VSCode
 
 ## Mintlify Doc Writer for Python, JavaScript, TypeScript, C++, PHP, Java, C#, Ruby & more
-https://marketplace.visualstudio.com/items?itemName=mintlify.document
+	https://marketplace.visualstudio.com/items?itemName=mintlify.document
+
+ ## Extension para ver mermaid desde VSCode
+ 	https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid
 
 # Otras Herramientas de Inteligencia Artificial
 
@@ -48,21 +51,34 @@ https://theresanaiforthat.com/
 ## SunoAI (Para Hacer musica)
 https://suno.com/
 
-# Noticias Interesantes
+# 📰 Noticias Interesantes
+
 ## ¿Los desarrolladores aún necesitan aprender lenguajes de programación en la era de la IA?"
-https://thenextweb.com/news/developers-learn-programming-languages-age-of-ai
+	https://thenextweb.com/news/developers-learn-programming-languages-age-of-ai
+
 ## Microsoft’s AI Copilot Is Starting to Automate the Coding Industry
-https://www.bloomberg.com/news/articles/2024-04-17/microsoft-s-ai-copilot-is-starting-to-automate-the-coding-industry
+	https://www.bloomberg.com/news/articles/2024-04-17/microsoft-s-ai-copilot-is-starting-to-automate-the-coding-industry
 
 # Repositorios Github
+
 ## Patrones de Prompting para Devs (Ingles)
 https://github.com/PickleBoxer/dev-chatgpt-prompts?tab=readme-ov-file#-architecture-diagram-mermaid
 
+# Bibliografia
+## Stuart Russell - Human Compatible_ Artificial Intelligence and the Problem of Control (Gracias Sergio)
+	https://download.library.lol/main/2424000/2e545890d8914cc2e462cb26cac19432/Stuart%20Russell%20-%20Human%20Compatible_%20Artificial%20Intelligence%20and%20the%20Problem%20of%20Control-Viking%20%282019%29.epub
+
 # Otros
+
 Repositorio Github de Enyerbeth Quiroz de Nybble 
 | Su función de reconocimiento de voz en tiempo real que permite a los usuarios hablar en lugar de escribir
 https://github.com/Enyer182/speech-to-gpt3
 
 Devika (Competencia de Devin)
-https://github.com/stitionai/devika
-Ver Uso : https://www.youtube.com/watch?v=kw9nTK42bTw
+	https://github.com/stitionai/devika
+	Ver Uso : https://www.youtube.com/watch?v=kw9nTK42bTw
+
+Mermaid Live editor 
+	Sirve para ver diagramas UML y otros escritos en mermaid (https://es.wikipedia.org/wiki/MERMAID)
+	https://mermaid.live/
+

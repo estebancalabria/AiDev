@@ -4,6 +4,7 @@
 ## Clase 1 
 ### Completar Formulario 1
 https://forms.gle/f4bJLFGYgLnhDbfQ7
+### Experimentar con otros LLM que no sean ChatGPT
 
 ## Clase 2
 ### Exprerimentar con estos prompts
