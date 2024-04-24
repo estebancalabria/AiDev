@@ -33,7 +33,7 @@ Prueba las funciones de autocompletado y generación de pruebas de Cody.
 ## Codium.ai 🧠 (15 min)
 
 
-Crea un nuevo archivo "factorial_codium.js" con la función factorial. 📂
+Utiliza los archivos de los otros dos Coding Asistants 📂
 Utiliza Codium.ai para generar una suite de pruebas exhaustiva para la función. 🧪
 Revisa el análisis de código y las sugerencias de mejora que proporciona Codium.ai. 📈
 Aplica algunas de las sugerencias de mejora y observa los cambios en el código. �
