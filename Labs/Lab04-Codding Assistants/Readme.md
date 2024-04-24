@@ -3,22 +3,31 @@
 ## Requisitos previos:
 
 Tener instalado un editor de código como Visual Studio Code 💻
-Tener instaladas las extensiones de las herramientas que se van a probar (TabNine, GitHub Copilot, etc.) 📥
+Tener instaladas las extensiones de las herramientas que se van a probar (TabNine, Cody :), Codium  AI.) 📥
 
 ## Inicializar Proyecto 🔴 (5 min)
 
+* Ir a una carpeta en cmd
+* Inicializar un proyecto de node
+
+'''cmd
+  npm init 
+'''
+  
+* Instalar Jest
+'''cmd
+  npm install jest
+'''
+
 ## TabNine 🔴 (15 min)
 
-
-Abre tu editor de código y crea un nuevo archivo llamado "factorial.js". 📂
-Escribe la palabra "function" y observa cómo TabNine intenta autocompletar el código. ⌨️
-Acepta el autocompletado de TabNine para crear una función factorial. 👍
-Prueba la función de chat de TabNine preguntando sobre la complejidad de tiempo. 🕰️
-Introduce un error en la función y utiliza el chat para que te ayude a corregirlo. 🐞
-Prueba a generar comentarios de documentación y casos de prueba. 📝
-
-
-
+* Abre tu editor de código y crea un nuevo archivo llamado "tabnnine.js". 📂
+* Usa TabNine intenta autocompletar el código de una funcion por ejemplo mergeSort. ⌨️
+* Acepta el autocompletado de TabNine para crear una función. 👍
+* Prueba la función de chat de TabNine preguntando sobre la complejidad de tiempo. 🕰️
+* Introduce un error en la función y utiliza el chat para que te ayude a corregirlo. 🐞
+* Prueba a generar comentarios de documentación y casos de prueba. 📝
+* Genera un codigo en la consola con console.log que muestre como funciona la funcion
 
 ## Sourcegraph Cody 🔎 (15 min)
 
