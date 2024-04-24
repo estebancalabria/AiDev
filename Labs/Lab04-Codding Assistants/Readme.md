@@ -10,14 +10,14 @@ Tener instaladas las extensiones de las herramientas que se van a probar (TabNin
 * Ir a una carpeta en cmd
 * Inicializar un proyecto de node
 
-'''cmd
+```cmd
   npm init 
-'''
+```
   
 * Instalar Jest
-'''cmd
+```cmd
   npm install jest
-'''
+```
 
 ## TabNine 🔴 (15 min)
 
