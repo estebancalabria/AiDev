@@ -43,6 +43,11 @@ https://chromewebstore.google.com/detail/chatgpt-exportador-extrae/ilmdofdhpnhff
  ## Extension para ver mermaid desde VSCode
  	https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid
 
+# Herramientas de Ux Interfaz Grafica
+
+## OpenUI Fly (Gracias Ismael)
+https://openui.fly.dev/ai/new  
+
 # Otras Herramientas de Inteligencia Artificial
 
 ## There Is an AI for That
