@@ -21,6 +21,9 @@
 ## GPT Hugging Faces
 	https://gpt.h2o.ai/
 
+## Reka
+	https://www.reka.ai/
+
 # Codding Assistants
 
 ## Github Copilot
