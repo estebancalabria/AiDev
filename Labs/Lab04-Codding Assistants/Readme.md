@@ -1,45 +1,35 @@
-# 👩‍💻 Laboratorio: Evaluando Asistentes de Codificación de IA 🤖
+# 👩‍💻 Laboratorio 4a: Coddign Assistants Wars : Cody vs Tabnine (Codium Desempata) 🤖
 
 ## Requisitos previos:
 
 Tener instalado un editor de código como Visual Studio Code 💻
-Tener instaladas las extensiones de las herramientas que se van a probar (TabNine, GitHub Copilot, etc.) 📥
+Tener instaladas las extensiones de las herramientas que se van a probar (TabNine, Cody :), Codium  AI.) 📥
 
+## Inicializar Proyecto 🔴 (5 min)
 
-## TabNine 🔴
+* Ir a una carpeta en cmd
+* Inicializar un proyecto de node
 
+```cmd
+  npm init 
+```
+  
+* Instalar Jest
+```cmd
+  npm install jest
+```
 
-Abre tu editor de código y crea un nuevo archivo llamado "factorial.js". 📂
-Escribe la palabra "function" y observa cómo TabNine intenta autocompletar el código. ⌨️
-Acepta el autocompletado de TabNine para crear una función factorial. 👍
-Prueba la función de chat de TabNine preguntando sobre la complejidad de tiempo. 🕰️
-Introduce un error en la función y utiliza el chat para que te ayude a corregirlo. 🐞
-Prueba a generar comentarios de documentación y casos de prueba. 📝
+## TabNine 🔴 (15 min)
 
+* Abre tu editor de código y crea un nuevo archivo llamado "tabnnine.js". 📂
+* Usa TabNine intenta autocompletar el código de una funcion por ejemplo mergeSort. ⌨️
+* Acepta el autocompletado de TabNine para crear una función. 👍
+* Prueba la función de chat de TabNine preguntando sobre la complejidad de tiempo. 🕰️
+* Introduce un error en la función y utiliza el chat para que te ayude a corregirlo. 🐞
+* Prueba a generar comentarios de documentación y casos de prueba. 📝
+* Genera un codigo en la consola con console.log que muestre como funciona la funcion
 
-## GitHub Copilot 🚀
-
-
-Crea un nuevo archivo llamado "factorial_copilot.js". 📂
-Escribe "function factorial" y observa cómo Copilot autocompletará el código. ⌨️
-Pide a Copilot que maneje los casos negativos. ❌
-Utiliza la función de chat para preguntar sobre la complejidad de tiempo. 🕰️
-Solicita a Copilot que genere comentarios de documentación JSDoc. 📃
-Utiliza el comando "/test" para generar un archivo de pruebas unitarias. 🧪
-
-
-## Amazon CodeWhisperer 🦖
-
-
-Crea un nuevo archivo "factorial_codewhisperer.js". 📂
-Escribe "function" y observa cómo CodeWhisperer autocompletará una función factorial. ⌨️
-Pide a CodeWhisperer que genere casos de prueba para la función factorial. 🧪
-Intenta hacer que CodeWhisperer genere comentarios de documentación. 📃
-Prueba la función de autocompletado con otra función más compleja, como "merge sort". 📈
-Explora la funcionalidad de "reference log" de CodeWhisperer para ver de dónde proviene el código sugerido. 🔍
-
-
-## Sourcegraph Cody 🔎
+## Sourcegraph Cody 🔎 (15 min)
 
 
 Abre un proyecto o repositorio de código existente en tu editor. 📂
@@ -49,10 +39,11 @@ Prueba las funciones de autocompletado y generación de pruebas de Cody.
 ⌨️🧪
 
 
-## Codium.ai 🧠
+## Codium.ai 🧠 (15 min)
 
 
-Crea un nuevo archivo "factorial_codium.js" con la función factorial. 📂
+Utiliza los archivos de los otros dos Coding Asistants 📂
 Utiliza Codium.ai para generar una suite de pruebas exhaustiva para la función. 🧪
 Revisa el análisis de código y las sugerencias de mejora que proporciona Codium.ai. 📈
-Aplica algunas de las sugerencias de mejora y observa los cambios en el código. 🛠️
+Aplica algunas de las sugerencias de mejora y observa los cambios en el código. �
+�️
