@@ -26,13 +26,13 @@ Vamos a seleccionar la IA para documentar las funciones generada automaticamente
 
 Utiliza el comando `/doc` sobre una función para realizar esta tarea.
 
-### Explicar codigo con IA (/explanin)
+### Explicar codigo con IA (/explan)
 
 Utiliza el comando `/explain` sobre una función para solicitar una explicación detallada de su funcionamiento.
 
 Utilizar tanto el Ctr+i junto con el comando /explain para entender como funciona alguna de las funciones generadas. Probar lo mismo seleccionando el codigo de la funcion y utilizando el Github Copilot chat para ver como toma el contexto a partir del codigo seleccionado
 
-### Probar generar pruebas unitarias
+### Probar generar pruebas unitarias (/test)
 
 Es importante desconfiar del codigo generado con la IA. 
 Con la IA se redefine la forma de utilizar las pruebas unitarias como herramienta
@@ -40,11 +40,11 @@ Utiliza el comando `/test` sobre una función para generar pruebas unitarias aut
 * Probar el comando /test solo que probablemente genere tests por consola
 * Probar el comando /test jest que genere las pruebas unitarias con esa libreria de testing
 
-## Probar arreglar código con errores
+### Probar arreglar código con errores (/fix)
 
 Se pide introducir un error sobre alguna de las funciones anteriorres y utiliza el comando /fix sobre este código para corregir los errores.
 
-## Experimentar con  el GitHub Copilot Chat
+### Experimentar con  el GitHub Copilot Chat
 Interactúa con GitHub Copilot Chat para ver cómo responde a diferentes consultas o instrucciones.
 Verificar que podemos modificarle el contexto con el modificador de contexto @ con:
 * @workspace para consultas del proyecto actual
