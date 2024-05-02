@@ -112,3 +112,8 @@ https://github.com/Enyer182/speech-to-gpt3
 	Sirve para ver diagramas UML y otros escritos en mermaid (https://es.wikipedia.org/wiki/MERMAID)
 	https://mermaid.live/
 
+## AWS Bedrock
+	Modelos de IA en AWS
+	https://aws.amazon.com/es/bedrock
+	https://aws.amazon.com/es/bedrock/titan/
+ 
