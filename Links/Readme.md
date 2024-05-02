@@ -76,6 +76,22 @@ https://github.com/PickleBoxer/dev-chatgpt-prompts?tab=readme-ov-file#-architect
 ## Stuart Russell - Human Compatible_ Artificial Intelligence and the Problem of Control (Gracias Sergio)
 	https://download.library.lol/main/2424000/2e545890d8914cc2e462cb26cac19432/Stuart%20Russell%20-%20Human%20Compatible_%20Artificial%20Intelligence%20and%20the%20Problem%20of%20Control-Viking%20%282019%29.epub
 
+# Papers
+
+## The Transformer Model**
+[Paper: Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf)
+
+## Thinking Like LLMs - The Reversal Curse**
+[Paper: The Reversal Curse: LLMs trained on “A is B” fail to learn “B is A”](https://arxiv.org/pdf/2309.12288.pdf)
+
+## Artificial General Intelligence?**
+[Paper: Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/pdf/2303.12712.pdf)
+
+[Paper: Levels of AGI: Operationalizing Progress on the
+[Paper: Sparks of Artificial General Intelligence: Early experiments with GPT-4](https://arxiv.org/pdf/2303.12712.pdf)
+
+[Paper: Levels of AGI: Operationalizing Progress on the Path to AGI](https://arxiv.org/pdf/2311.02462)
+
 # Otros
 
 Repositorio Github de Enyerbeth Quiroz de Nybble 
