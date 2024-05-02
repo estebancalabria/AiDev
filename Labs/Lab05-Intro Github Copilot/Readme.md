@@ -2,6 +2,16 @@
 
 En este laboratorio, exploraremos las funcionalidades de GitHub Copilot en Visual Studio Code.
 
+## Objetivos ✅
+
+En este laboratorio aprenderemos
+* A Generar codigo con Github Copilot
+* A utlizar la IA para documentar nuestro codigo
+* A explicar como funciona un codigo y arreglarlo con IA de ser necesario
+* A utilizar pruebas unitarias con IA para asegurarnos que nuestro codigo funcione
+* A utilizar el Github Copilot Chat
+* A generar proyectos desde cero en las tecnologias mas utilizadas
+
 ## Pasos 🚀
 
 ### Preparacion del entorno
@@ -51,7 +61,8 @@ Verificar que podemos modificarle el contexto con el modificador de contexto @ c
 * @vscode para consultas sobre el funcionamienteo de Visual Studio Code
 * @terminal para consultas sobre el uso de la terminal y respuestas de comandos
 
-## Extra :  Probar el comando `@workspace /new`**:
+## Extra :  Probar el comando `@workspace /new`👽
+
    Utiliza el comando `@workspace /new` para crear un proyecto, por ejemplo, un proyecto de Node.js con Express.
 
 ## Conclusión 🎉
