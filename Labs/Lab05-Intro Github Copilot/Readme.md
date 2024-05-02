@@ -36,6 +36,9 @@ En este laboratorio, exploraremos las funcionalidades de GitHub Copilot en Visua
 
 5. **Probar generar pruebas unitarias**: Utiliza el comando `/test` sobre una función para generar pruebas unitarias automáticamente.
 
+* Probar el comando /test solo que probablemente genere tests por consola
+* Probar el comando /test jest que genere las pruebas unitarias con esa libreria de testing
+
 6. **Probar arreglar código con errores**:
    ```javascript
    // Código con errores
