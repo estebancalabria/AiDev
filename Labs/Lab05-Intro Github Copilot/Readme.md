@@ -35,7 +35,7 @@ En este laboratorio aprenderemos
 
     Copilot funciona de forma pasiva y nos va haciendo sugerencias a medida que escribimos codigo siempre que utilicemos nombres de funciones significativos. En este caso vamos a escribir la cabecera de la funcion titleCase(str){ y vamos a ver como Copilot hace una sugerencia de codigo en gris. Dicho codigo se llama "ghost code" y lo puedo aceptar con el tabulador [Tab]. En mi caso me genero lo siguiente
 
-'''javascript
+```javascript
 function titleCase(str) {
     const words = str.split(' ');
     const titleCasedWords = words.map(word => {
@@ -46,7 +46,7 @@ function titleCase(str) {
     const titleCasedStr = titleCasedWords.join(' ');
     return titleCasedStr;
 }
-'''
+```
      
 #### Generacion de codigo con comentarios (Comment Assisted Code Generation)
    * Utilizar comentarios para generacion de codigo (Comment Assisted Code Generation)
