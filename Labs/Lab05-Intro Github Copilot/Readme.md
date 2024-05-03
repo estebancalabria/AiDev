@@ -22,11 +22,39 @@ En este laboratorio aprenderemos
 
 ### Probar la generacion de codigo:
 
-   Vamos a utilizar la capacidad de generacion de codigo para generar unas funciones. Vamos a generar una funcion para el mergeSort, una funcion para convertir las claves de un json a minuscula. En general pueden probar generar la funcion que deseen. 
-   Se pide probar
-   * Utilizar generacion de codigo medante el autocompletado a medida que voy escribiendo
+   Vamos a utilizar la capacidad de generacion de codigo para generar unas funciones. 
+   Vamos a probar generar una funciones para por ejemplo: 
+   * Convertir un string a titleCase (la primera con mayuscula, el resto con minuscula)
+   * Un metodo que convierte una fecha de formato yyyy-MM-dd a dd-MM-yyyy
+   * Crear un bloque con tres funciones para calcular promedio, media y mediana en un array
+   * Convertir las claves de un json a minuscula.
+   * Desarrollar el mergeSort
+   Vamos a usar esos ejemplos para probar 4 formas diferentes de generacion de codigo que nos ofrece GithubCopilot.
+
+#### Generacion de codigo pasiva
+
+    Copilot funciona de forma pasiva y nos va haciendo sugerencias a medida que escribimos codigo siempre que utilicemos nombres de funciones significativos. En este caso vamos a escribir la cabecera de la funcion titleCase(str){ y vamos a ver como Copilot hace una sugerencia de codigo en gris. Dicho codigo se llama "ghost code" y lo puedo aceptar con el tabulador [Tab]. En mi caso me genero lo siguiente
+
+'''javascript
+function titleCase(str) {
+    const words = str.split(' ');
+    const titleCasedWords = words.map(word => {
+        const firstLetter = word[0].toUpperCase();
+        const restOfWord = word.slice(1).toLowerCase();
+        return firstLetter + restOfWord;
+    });
+    const titleCasedStr = titleCasedWords.join(' ');
+    return titleCasedStr;
+}
+'''
+     
+#### Generacion de codigo con comentarios (Comment Assisted Code Generation)
    * Utilizar comentarios para generacion de codigo (Comment Assisted Code Generation)
+     
+### Generacion de codigo con el Github Copilot chat Inline (ctrl+i)
    * Utilizar el comando ctrl+i para generacion de codigo
+     
+### Generacion de codigo con el Github Copilot chat
      > Esta opcion es la mas adecuada para generar varias funciones de una o para generar una funcion con subfunciones
    * Utilizar el Github Copilot Chat para generar codigo
       
