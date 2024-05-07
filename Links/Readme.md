@@ -33,6 +33,10 @@
 	https://aws.amazon.com/es/codewhisperer/
  	https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.aws-toolkit-vscode
 
+## Codeium
+	https://codeium.com/
+	https://codeium.com/compare/comparison-copilot-codeium
+
 # 🌐Extensiones de Chrome
 
 ## ChatGPT Exporter
