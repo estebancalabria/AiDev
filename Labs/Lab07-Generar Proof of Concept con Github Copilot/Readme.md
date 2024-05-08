@@ -64,17 +64,56 @@ En este laboratorio, vamos a crear un ExpenseTracker utilizando LiveServer y Nod
 
 ¡Listo para comenzar a construir tu proyecto! Recuerda confiar en Copilot para sugerencias y completar tareas.
 
-### **Construir Navbar con Comentarios HTML y Bootstrap**
-   - Crear una barra de navegación con comentarios HTML y Bootstrap.
+###  Secuencia de Pasos para Construir un Navbar con GitHub Copilot 🚀
 
-### **Agregar Layout Grid con GitHub Copilot Chat**
-   - Implementar un sistema de grid utilizando GitHub Copilot Chat.
+En esta tarea, vamos a construir un Navbar para nuestra aplicación utilizando comentarios guiados por Copilot. Tenemos dos objetivos para esta tarea:
 
-### **Agregar Columnas de Gastos para Cada Mes con Copilot**
-   - Añadir columnas para los gastos de cada mes utilizando GitHub Copilot.
+1. **Generar un Navbar con Comentarios:**
+   - Elimina el contenido genérico del cuerpo del documento.
+   - Agrega un comentario para generar un Navbar utilizando Bootstrap.
+     ```html
+     <!-- Navbar de Bootstrap -->
+     ```
+   - Acepta la sugerencia de Copilot para generar el Navbar.
+   - Verifica el resultado yendo al navegador utilizando Live Server.
 
-### **Agregar Tabs para Gastos y Gráfico con Copilot**
-   - Incluir pestañas para visualizar los gastos y un gráfico generados con GitHub Copilot.
+2. **Modificar el Navbar utilizando Copilot Chat:**
+   - Destaca el código del Navbar en el archivo HTML.
+   - Haz clic en el ícono de chat en el panel izquierdo.
+   - Escribe una solicitud para cambiar el color de fondo del Navbar.
+     ```
+     Cambiar el color de fondo del Navbar a azul primario.
+     ```
+   - Acepta la sugerencia de Copilot y verifica el resultado en el navegador.
+
+### Secuencia de Pasos para Construir el Diseño Principal con GitHub Copilot 🛠️
+
+Esta tarea vamos a ir un paso más allá y comenzaremos a diseñar el diseño principal. Lo haremos utilizando la función de autocompletado de GitHub Copilot.
+
+1. **Generar el Diseño Principal con Autocompletado de Copilot:**
+   - Ubícate debajo del Navbar en el archivo HTML.
+   - Agrega un comentario largo con una descripción detallada de lo que queremos construir, incluyendo una cuadrícula Bootstrap.
+     ```html
+     <!-- Crear una cuadrícula Bootstrap para el diseño principal -->
+     ```
+   - Acepta la sugerencia de Copilot para generar la cuadrícula.
+   - Revisa el código generado y realiza los ajustes necesarios según las necesidades del proyecto.
+
+2. **Realizar Ajustes y Personalizaciones:**
+   - Si es necesario, ajusta el número de filas y columnas según las necesidades del diseño.
+   - Verifica que cada celda de la cuadrícula contenga una etiqueta para el nombre del mes, seguido de dos campos de entrada para ingresos y gastos.
+   - Asegúrate de que los campos de entrada estén etiquetados correctamente y se ajusten al diseño deseado.
+
+### Secuencia de Pasos para  Tabs para Gastos y Gráfico con Copilot 🔄
+
+ En esta tarea, vamos a habilitar el cambio de pestañas entre nuestro formulario y nuestro gráfico que vendrá a continuación. Vamos a aprovechar las capacidades de Copilot para introducir una función de cambio de pestañas. También crearemos un gráfico de muestra utilizando Copilot en index.js. Luego moveremos los datos del formulario a la pestaña del formulario que crearemos. ¡Comencemos!
+
+1. **Crear Pestañas Bootstrap:**
+   - Ubícate debajo de la barra de navegación en el archivo HTML.
+   - Agrega un comentario corto y simple para indicar la creación de dos pestañas Bootstrap, una para datos y otra para gráficos.
+     ```html
+     <!-- Agregar dos pestañas Bootstrap, una para datos y otra para gráficos -->
+     ```
 
 ### **Secuencia de Pasos para Integrar un Gráfico en el ExpenseTracker 📊**
    - Integrar Chart.js para crear el gráfico y mostrarlo en la pestaña correspondiente.
