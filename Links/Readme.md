@@ -24,6 +24,20 @@
 ## Reka
 	https://www.reka.ai/
 
+# Otros
+
+## Anakin Ai
+Repo de aplicaciones de IA donde probar modelos de lenguaje
+https://anakin.ai/
+
+## There is an AI for that
+Repo de todas las aplicaciones de Integencia Artificial por fecha de release
+https://theresanaiforthat.com/
+
+## Lymsys Arena
+Para poder competirllms entre si
+https://arena.lmsys.org/
+
 # Codding Assistants
 
 ## Github Copilot
