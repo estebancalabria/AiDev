@@ -1,8 +1,4 @@
-# Bienvenidos al curso AiDev
-
-# Desarrollador 10X con IA 🚀
-
-# ¡Bienvenidos al curso **Desarrollador 10X con IA**! 💻🧠
+# 🚀¡Bienvenidos al curso **Desarrollador 10X con IA**! 💻🧠
 
 ## ¿Qué es este curso?
 
