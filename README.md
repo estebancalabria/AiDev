@@ -19,8 +19,9 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 
 ## 📰 NOVEDAES 📰
-* 2024-22-05- Salio una capacitacion de github copiot en Microsoft Learn [aqui](https://www.microsoft.com/es-es/cloudskillschallenge/build/registration/2024?ocid=build24_csc_past-email_wwl)
-* 2024-22-05- 🙏Por favor completen el formulario para ver su feedback sobre el uso de la ia [aqui](https://forms.gle/tUbVb8EVjeWT1xDb8). Es muy importante para mi que lo hagan y me ayudarian mucho!
+* 2024-05-23 🔥🔥Pueden obtener github copilot gratis para estudiantes [aqui](https://techcommunity.microsoft.com/t5/educator-developer-blog/step-by-step-setting-up-github-student-and-github-copilot-as-an/ba-p/3736279?WT.mc_id=academic-91025-alfredodeza)
+* 2024-05-23 Salio una capacitacion de github copiot en Microsoft Learn [aqui](https://www.microsoft.com/es-es/cloudskillschallenge/build/registration/2024?ocid=build24_csc_past-email_wwl)
+* 2024-05-22 🙏Por favor completen el formulario para ver su feedback sobre el uso de la ia [aqui](https://forms.gle/tUbVb8EVjeWT1xDb8). Es muy importante para mi que lo hagan y me ayudarian mucho!
 * A Partir de ahora numero por fecha 😋
 * Clase 4 - Completar este formulario 🙏🙏🙏🙏🙏 [aqui](https://forms.gle/xjfkX2tzTp8KNvrWA)
 * Clase 3 - Realizar el Lab 3 con algun proyecto que encuentren tirado.  [Lab3](https://github.com/estebancalabria/AiDev/tree/main/Labs/Lab03-Entender%20un%20proyecto%20con%20un%20LLM)
