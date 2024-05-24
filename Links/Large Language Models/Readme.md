@@ -4,6 +4,7 @@
 * 🧠 ChatGPT
 * 🧠 Gemini
 * 🧠 Claude 3
+* 🧠 Groq
 * 🧠 Blackbox
 * 🧠 Perplexity
 * 🧠 LMStudio
@@ -24,6 +25,10 @@ Gemini (Ex bard) de Google es un sistema de inteligencia artificial que busca me
 ## Claude 3 (Mar-2024)
 Claude 3 de Anthropic es un modelo de lenguaje que se enfoca en la seguridad y la alineación ética en sus respuestas.
 > https://claude.ai
+
+# Groq
+Modelo de Inferencia rapidisimo! una LMU en vez de GPU
+> https://groq.com/
 
 ## BlackBox (Dic-2023)
 BlackBox AI se especializa en soluciones de automatización para empresas, utilizando modelos de lenguaje avanzados.
