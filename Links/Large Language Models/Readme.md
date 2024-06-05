@@ -12,6 +12,7 @@
 * 🧠 Grok
 * 🧠 📖 H2O GPT (Huggin Faces)
 * 🧠 📖 LLama 3
+* 🧠 🥐 Mistral
 
 ## Chat GPT (Nov-2022)
 
@@ -63,3 +64,9 @@ Llama 3 es el nuevo modelo de lenguaje de Meta, disponible en Hugging Face, que 
 >  Sitio Oficial: https://llama.meta.com/llama3/
 >  Repositorio Github: https://github.com/meta-llama/llama3  (Fuente modelo sin entrenar)
 >  LLama 3 en Hugging Faces : https://huggingface.co/blog/llama3
+
+## Mistral (Sept-2023)
+**Open Source**
+Empresa francesa que desarrollo un llm y se destaca por su llm Codestral entrenado especialmente para el desarrollo de codigo
+>  [Sitio Oficial]([https://chat.mistral.ai/](https://mistral.ai/))
+>  [Le Chat](https://chat.mistral.ai/)
