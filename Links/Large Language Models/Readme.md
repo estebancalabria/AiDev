@@ -13,6 +13,7 @@
 * 🧠 📖 H2O GPT (Huggin Faces)
 * 🧠 📖 LLama 3
 * 🧠 🥐 Mistral
+* 🧠 Hugging Face Spaces
 
 ## Chat GPT (Nov-2022)
 
@@ -70,3 +71,7 @@ Llama 3 es el nuevo modelo de lenguaje de Meta, disponible en Hugging Face, que 
 Empresa francesa que desarrollo un llm y se destaca por su llm Codestral entrenado especialmente para el desarrollo de codigo
 >  [Sitio Oficial]([https://chat.mistral.ai/](https://mistral.ai/))
 >  [Le Chat](https://chat.mistral.ai/)
+
+## Hugging Face Spaces
+Para probar varios modelos
+> [Sitio Oficial](https://huggingface.co/spaces)

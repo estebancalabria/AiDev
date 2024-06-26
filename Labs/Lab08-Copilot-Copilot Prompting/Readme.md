@@ -34,7 +34,7 @@ Esto va a funcionar en el puerto 3000, pero no quiero variables hardcodeadas, as
 */
 ```
 
-3. Después del comentario, deja un espacio en blanco y GitHub Copilot debería sugerir automáticamente código relacionado con la configuración de una aplicación Express y las rutas solicitadas.
+3. Despu\és del comentario, deja un espacio en blanco y GitHub Copilot debería sugerir automáticamente código relacionado con la configuración de una aplicación Express y las rutas solicitadas.
 
 4. Sigue las sugerencias de Copilot y completa el código para implementar la API de canciones con las rutas especificadas.
 

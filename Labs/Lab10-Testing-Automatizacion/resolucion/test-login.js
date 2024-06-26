@@ -18,7 +18,7 @@ const { chromium } = require('playwright');
   await browser.close();
 })();
 
-  (async () => {
+(async () => {
   // Caso de inicio de sesión fallido
   const browser = await chromium.launch({headless:false});
   const context = await browser.newContext();

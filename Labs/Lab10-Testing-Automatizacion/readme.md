@@ -5,7 +5,7 @@ En este laboratorio, aprenderemos a configurar un proyecto para realizar pruebas
 ## Paso 1: Configurar el Proyecto
 
 📁 **1.1. Instalar Node.js** 
-Asegúrate de tener Node.js instalado en tu sistema. Puedes descargarlo desde <code>[aquí](https://nodejs.org/)</code>.
+Asegúrate de tener Node.js instalado en tu sistema. Puedes descargarlo desde ```javascript[aquí](https://nodejs.org/)</code>.
 
 📂 **1.2. Crear un Directorio para el Proyecto**
 Crea un nuevo directorio para tu proyecto y navega hasta él en tu terminal.
@@ -88,7 +88,7 @@ module.exports = {
 ## Paso 4: Escribir Pruebas
 
 ✏️ **4.1. Crear Prueba en Jest**
-Crea un directorio <code>__tests__</code> y dentro de él, crea un archivo de prueba llamado <code>login.spec.js</code> con el siguiente contenido:
+Crea un directorio ```javascript__tests__</code> y dentro de él, crea un archivo de prueba llamado ```javascriptlogin.spec.js</code> con el siguiente contenido:
 
 ```
 const { test, expect } = require('@playwright/test');
