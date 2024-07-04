@@ -13,12 +13,7 @@ Utilizar un modelo de lenguaje (LLM) para generar un modelo de datos, una consul
 
 **Prompt para el LLM:**
 ```
-Genera un script SQL para un sistema de gestión de cursos universitarios. 
-Incluye tablas para estudiantes, cursos, inscripciones y requisitos de graduación. 
-Proporciona el código SQL para crear las tablas con sus relaciones.
-Asegúrate de incluir claves primarias y foráneas.
-Usa la sintaxis de SQL Server.
-Devuelve solamente el script.
+Genera un script SQL para un sistema de gestión de cursos universitarios. Incluye tablas para estudiantes, cursos, inscripciones y requisitos de graduación. Proporciona el código SQL para crear las tablas con sus relaciones. Asegúrate de incluir claves primarias y foráneas. Usa la sintaxis de SQL Server.Devuelve solamente el script.
 ```
 
 **Ejemplo de respuesta del LLM:**
