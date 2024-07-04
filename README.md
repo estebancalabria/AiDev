@@ -19,6 +19,8 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 
 ## 📰 NOVEDAES 📰
+* 2024-07-04
+* * Para trabajar con archivos grandes : [myaidrive.com](https://myaidrive.com/)
 * 2024-07-03
 * * Mixture of Agents : https://github.com/togethercomputer/MoA
 * * Fork Mixture of Agents mio : https://github.com/estebancalabria/MoA
