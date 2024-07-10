@@ -26,6 +26,7 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
   * https://brev.dev/
   * https://qwen.readthedocs.io/en/latest/
   * https://github.com/lllyasviel/Fooocus
+  * https://ollama.com/
 * 2024-07-04
 * * Para trabajar con archivos grandes : [myaidrive.com](https://myaidrive.com/)
 * 2024-07-03
