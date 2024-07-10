@@ -1,4 +1,4 @@
-# Laboratorio: Uso de LLM para Modelo de Datos, División SQL y Datos de Prueba
+# Laboratorio: Uso de LLM para Modelo de Datos, SQL y Datos de Prueba
 
 ## Objetivo
 Utilizar un modelo de lenguaje (LLM) para generar un modelo de datos, una consulta SQL que implemente una operación de división, y datos de prueba para verificar la consulta.
@@ -13,11 +13,7 @@ Utilizar un modelo de lenguaje (LLM) para generar un modelo de datos, una consul
 
 **Prompt para el LLM:**
 ```
-Genera un modelo de datos SQL para un sistema de gestión de cursos universitarios. 
-Incluye tablas para estudiantes, cursos, inscripciones y requisitos de graduación. 
-Proporciona el código SQL para crear las tablas con sus relaciones.
-Asegúrate de incluir claves primarias y foráneas.
-Usa la sintaxis de SQL Server.
+Genera un script SQL para un sistema de gestión de cursos universitarios. Incluye tablas para estudiantes, cursos, inscripciones y requisitos de graduación. Proporciona el código SQL para crear las tablas con sus relaciones. Asegúrate de incluir claves primarias y foráneas. Usa la sintaxis de SQL Server.Devuelve solamente el script.
 ```
 
 **Ejemplo de respuesta del LLM:**
@@ -56,12 +52,7 @@ CREATE TABLE RequisitosGraduacion (
 
 **Prompt para el LLM:**
 ```
-Basándote en el modelo de datos para el sistema de gestión de cursos universitarios que acabamos de crear:
-
-Genera una consulta SQL que implemente una operación de división relacional para encontrar todos los estudiantes que han completado todos los cursos requeridos para la graduación.
-
-Usa la sintaxis de SQL Server.
-Proporciona solo la consulta SQL, sin explicaciones adicionales.
+Basándote en el modelo de datos para el sistema de gestión de cursos universitarios que acabamos de crear: Genera una consulta SQL que implemente una operación para encontrar todos los estudiantes que han completado todos los cursos requeridos para la graduación. Usa la sintaxis de SQL Server. Proporciona solo la consulta SQL, sin explicaciones adicionales.
 ```
 
 **Ejemplo de respuesta del LLM:**

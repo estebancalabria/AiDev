@@ -19,6 +19,12 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 
 ## 📰 NOVEDAES 📰
+* 2024-07-04
+* * Para trabajar con archivos grandes : [myaidrive.com](https://myaidrive.com/)
+* 2024-07-03
+* * Mixture of Agents : https://github.com/togethercomputer/MoA
+* * Fork Mixture of Agents mio : https://github.com/estebancalabria/MoA
+* * Together AI : https://www.together.ai/  (Para probae modelos Open Source)
 * 2024-06-13 Herramienta que paso victor : https://myaidrive.com/
 * 2024-05-23 🔥🔥Pueden obtener github copilot gratis para estudiantes [aqui](https://techcommunity.microsoft.com/t5/educator-developer-blog/step-by-step-setting-up-github-student-and-github-copilot-as-an/ba-p/3736279?WT.mc_id=academic-91025-alfredodeza)
 * 2024-05-23 Salio una capacitacion de github copiot en Microsoft Learn [aqui](https://www.microsoft.com/es-es/cloudskillschallenge/build/registration/2024?ocid=build24_csc_past-email_wwl)
