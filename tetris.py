@@ -117,7 +117,7 @@ def juego_terminado(tablero):
 def jugar():
     tablero = [[0 for _ in range(ANCHO_VENTANA // TAMAÑO_BLOQUE)] for _ in range(ALTO_VENTANA // TAMAÑO_BLOQUE)]
     pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
-    x_actual = ANCHO_VENTANA // 2 - len(pieza_actual[0]) * TAMAÑO_BLOQUE // 2
+    x_actual = (ANCHO_VENTANA // TAMAÑO_BLOQUE - len(pieza_actual[0])) // 2 * TAMAÑO_BLOQUE
     y_actual = 0
     velocidad_caida = 10  # Velocidad de caída de la pieza (más lento)
 
@@ -169,7 +169,7 @@ def jugar():
 
             # Crear una nueva pieza
             pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
-            x_actual = ANCHO_VENTANA // 2 - len(pieza_actual[0]) * TAMAÑO_BLOQUE // 2
+            x_actual = (ANCHO_VENTANA // TAMAÑO_BLOQUE - len(pieza_actual[0])) // 2 * TAMAÑO_BLOQUE
             y_actual = 0
 
         # Dibujar la cuadrícula, el tablero y la pieza actual
