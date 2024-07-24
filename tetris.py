@@ -68,8 +68,18 @@ def rotar_pieza(pieza):
     nueva_pieza = list(map(list, zip(*pieza[::-1])))
     return nueva_pieza
 
+# Función para verificar si la pieza ha llegado al fondo
+def pieza_en_fondo(pieza, y):
+    for fila in range(len(pieza) - 1, -1, -1):
+        for col in range(len(pieza[fila])):
+            if pieza[fila][col] != 0:
+                if y + (fila + 1) * TAMAÑO_BLOQUE >= ALTO_VENTANA:
+                    return True
+    return False
+
 # Función principal del juego
 def jugar():
+    tablero = [[0 for _ in range(ANCHO_VENTANA // TAMAÑO_BLOQUE)] for _ in range(ALTO_VENTANA // TAMAÑO_BLOQUE)]
     pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
     x_actual = ANCHO_VENTANA // 2 - len(pieza_actual[0]) * TAMAÑO_BLOQUE // 2
     y_actual = 0
@@ -97,9 +107,27 @@ def jugar():
         # Mover la pieza hacia abajo
         pieza_actual, x_actual, y_actual = mover_pieza(pieza_actual, x_actual, y_actual, 0, 1)
 
-        # Dibujar la cuadrícula y la pieza actual
+        # Verificar si la pieza ha llegado al fondo
+        if pieza_en_fondo(pieza_actual, y_actual):
+            # Agregar la pieza al tablero
+            for fila in range(len(pieza_actual)):
+                for col in range(len(pieza_actual[fila])):
+                    if pieza_actual[fila][col] != 0:
+                        tablero[y_actual // TAMAÑO_BLOQUE + fila][x_actual // TAMAÑO_BLOQUE + col] = pieza_actual[fila][col]
+
+            # Crear una nueva pieza
+            pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
+            x_actual = ANCHO_VENTANA // 2 - len(pieza_actual[0]) * TAMAÑO_BLOQUE // 2
+            y_actual = 0
+
+        # Dibujar la cuadrícula, el tablero y la pieza actual
         ventana.fill(NEGRO)
         dibujar_cuadricula()
+        for fila in range(len(tablero)):
+            for col in range(len(tablero[fila])):
+                if tablero[fila][col] != 0:
+                    pygame.draw.rect(ventana, COLORES[tablero[fila][col] - 1],
+                                     (col * TAMAÑO_BLOQUE, fila * TAMAÑO_BLOQUE, TAMAÑO_BLOQUE, TAMAÑO_BLOQUE))
         dibujar_pieza(pieza_actual, x_actual, y_actual)
         pygame.display.update()
 
