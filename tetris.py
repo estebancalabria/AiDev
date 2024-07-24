@@ -91,13 +91,28 @@ def hay_colision(pieza, x, y, tablero):
                         return True
     return False
 
+# Función para eliminar líneas completas
+def eliminar_lineas(tablero):
+    lineas_eliminadas = 0
+    for fila in range(len(tablero) - 1, -1, -1):
+        linea_completa = True
+        for col in range(len(tablero[fila])):
+            if tablero[fila][col] == 0:
+                linea_completa = False
+                break
+        if linea_completa:
+            lineas_eliminadas += 1
+            del tablero[fila]
+            tablero.insert(0, [0 for _ in range(len(tablero[0]))])
+    return lineas_eliminadas
+
 # Función principal del juego
 def jugar():
     tablero = [[0 for _ in range(ANCHO_VENTANA // TAMAÑO_BLOQUE)] for _ in range(ALTO_VENTANA // TAMAÑO_BLOQUE)]
     pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
     x_actual = ANCHO_VENTANA // 2 - len(pieza_actual[0]) * TAMAÑO_BLOQUE // 2
     y_actual = 0
-    velocidad_caida = 10  # Velocidad de caída de la pieza
+    velocidad_caida = 30  # Velocidad de caída de la pieza (más lento)
 
     reloj = pygame.time.Clock()
     jugando = True
@@ -130,14 +145,15 @@ def jugar():
         nueva_pieza, nueva_x, nueva_y = mover_pieza(pieza_actual, x_actual, y_actual, 0, 1)
         if not hay_colision(nueva_pieza, nueva_x, nueva_y, tablero):
             pieza_actual, x_actual, y_actual = nueva_pieza, nueva_x, nueva_y
-
-        # Verificar si la pieza ha llegado al fondo
-        if pieza_en_fondo(pieza_actual, y_actual) or hay_colision(pieza_actual, x_actual, y_actual, tablero):
+        else:
             # Agregar la pieza al tablero
             for fila in range(len(pieza_actual)):
                 for col in range(len(pieza_actual[fila])):
                     if pieza_actual[fila][col] != 0:
                         tablero[y_actual // TAMAÑO_BLOQUE + fila][x_actual // TAMAÑO_BLOQUE + col] = pieza_actual[fila][col]
+
+            # Eliminar líneas completas
+            lineas_eliminadas = eliminar_lineas(tablero)
 
             # Crear una nueva pieza
             pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
