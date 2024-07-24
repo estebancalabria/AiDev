@@ -6,8 +6,8 @@ En este laboratorio, aprenderemos a configurar y usar Aider, una herramienta de 
 
 ## Links
 
-https://aider.chat/
-https://console.anthropic.com/
+* https://aider.chat/
+* https://console.anthropic.com/
 
 ## Prerrequisitos
 
