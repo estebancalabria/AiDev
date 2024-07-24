@@ -106,13 +106,20 @@ def eliminar_lineas(tablero):
             tablero.insert(0, [0 for _ in range(len(tablero[0]))])
     return lineas_eliminadas
 
+# Función para verificar si el juego ha terminado
+def juego_terminado(tablero):
+    for col in range(len(tablero[0])):
+        if tablero[0][col] != 0:
+            return True
+    return False
+
 # Función principal del juego
 def jugar():
     tablero = [[0 for _ in range(ANCHO_VENTANA // TAMAÑO_BLOQUE)] for _ in range(ALTO_VENTANA // TAMAÑO_BLOQUE)]
     pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
     x_actual = ANCHO_VENTANA // 2 - len(pieza_actual[0]) * TAMAÑO_BLOQUE // 2
     y_actual = 0
-    velocidad_caida = 30  # Velocidad de caída de la pieza (más lento)
+    velocidad_caida = 10  # Velocidad de caída de la pieza (más lento)
 
     reloj = pygame.time.Clock()
     jugando = True
@@ -154,6 +161,11 @@ def jugar():
 
             # Eliminar líneas completas
             lineas_eliminadas = eliminar_lineas(tablero)
+
+            # Verificar si el juego ha terminado
+            if juego_terminado(tablero):
+                jugando = False
+                break
 
             # Crear una nueva pieza
             pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
