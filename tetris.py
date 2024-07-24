@@ -2,7 +2,7 @@ import pygame
 import random
 
 # Configuración de la ventana
-ANCHO_VENTANA = 800
+ANCHO_VENTANA = 360  # Ancho del tablero: 12 celdas
 ALTO_VENTANA = 600
 TAMAÑO_BLOQUE = 30
 
@@ -77,6 +77,20 @@ def pieza_en_fondo(pieza, y):
                     return True
     return False
 
+# Función para verificar colisiones
+def hay_colision(pieza, x, y, tablero):
+    for fila in range(len(pieza)):
+        for col in range(len(pieza[fila])):
+            if pieza[fila][col] != 0:
+                nueva_x = x + col * TAMAÑO_BLOQUE
+                nueva_y = y + fila * TAMAÑO_BLOQUE
+                if nueva_x < 0 or nueva_x >= ANCHO_VENTANA or nueva_y >= ALTO_VENTANA:
+                    return True
+                if nueva_y // TAMAÑO_BLOQUE < len(tablero) and nueva_x // TAMAÑO_BLOQUE < len(tablero[0]):
+                    if tablero[nueva_y // TAMAÑO_BLOQUE][nueva_x // TAMAÑO_BLOQUE] != 0:
+                        return True
+    return False
+
 # Función principal del juego
 def jugar():
     tablero = [[0 for _ in range(ANCHO_VENTANA // TAMAÑO_BLOQUE)] for _ in range(ALTO_VENTANA // TAMAÑO_BLOQUE)]
@@ -96,19 +110,29 @@ def jugar():
                 jugando = False
             elif evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_LEFT:
-                    pieza_actual, x_actual, _ = mover_pieza(pieza_actual, x_actual, y_actual, -1, 0)
+                    nueva_pieza, nueva_x, nueva_y = mover_pieza(pieza_actual, x_actual, y_actual, -1, 0)
+                    if not hay_colision(nueva_pieza, nueva_x, nueva_y, tablero):
+                        pieza_actual, x_actual, y_actual = nueva_pieza, nueva_x, nueva_y
                 elif evento.key == pygame.K_RIGHT:
-                    pieza_actual, x_actual, _ = mover_pieza(pieza_actual, x_actual, y_actual, 1, 0)
+                    nueva_pieza, nueva_x, nueva_y = mover_pieza(pieza_actual, x_actual, y_actual, 1, 0)
+                    if not hay_colision(nueva_pieza, nueva_x, nueva_y, tablero):
+                        pieza_actual, x_actual, y_actual = nueva_pieza, nueva_x, nueva_y
                 elif evento.key == pygame.K_DOWN:
-                    pieza_actual, _, y_actual = mover_pieza(pieza_actual, x_actual, y_actual, 0, 1)
+                    nueva_pieza, nueva_x, nueva_y = mover_pieza(pieza_actual, x_actual, y_actual, 0, 1)
+                    if not hay_colision(nueva_pieza, nueva_x, nueva_y, tablero):
+                        pieza_actual, x_actual, y_actual = nueva_pieza, nueva_x, nueva_y
                 elif evento.key == pygame.K_SPACE:
-                    pieza_actual = rotar_pieza(pieza_actual)
+                    nueva_pieza = rotar_pieza(pieza_actual)
+                    if not hay_colision(nueva_pieza, x_actual, y_actual, tablero):
+                        pieza_actual = nueva_pieza
 
         # Mover la pieza hacia abajo
-        pieza_actual, x_actual, y_actual = mover_pieza(pieza_actual, x_actual, y_actual, 0, 1)
+        nueva_pieza, nueva_x, nueva_y = mover_pieza(pieza_actual, x_actual, y_actual, 0, 1)
+        if not hay_colision(nueva_pieza, nueva_x, nueva_y, tablero):
+            pieza_actual, x_actual, y_actual = nueva_pieza, nueva_x, nueva_y
 
         # Verificar si la pieza ha llegado al fondo
-        if pieza_en_fondo(pieza_actual, y_actual):
+        if pieza_en_fondo(pieza_actual, y_actual) or hay_colision(pieza_actual, x_actual, y_actual, tablero):
             # Agregar la pieza al tablero
             for fila in range(len(pieza_actual)):
                 for col in range(len(pieza_actual[fila])):
