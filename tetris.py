@@ -56,6 +56,18 @@ def dibujar_cuadricula():
             rect = pygame.Rect(x, y, TAMAÑO_BLOQUE, TAMAÑO_BLOQUE)
             pygame.draw.rect(ventana, GRIS, rect, 1)
 
+# Función para mover la pieza
+def mover_pieza(pieza, x, y, dx, dy):
+    nueva_pieza = [[pieza[fila][col] for col in range(len(pieza[fila]))] for fila in range(len(pieza))]
+    nueva_x = x + dx * TAMAÑO_BLOQUE
+    nueva_y = y + dy * TAMAÑO_BLOQUE
+    return nueva_pieza, nueva_x, nueva_y
+
+# Función para rotar la pieza
+def rotar_pieza(pieza):
+    nueva_pieza = list(map(list, zip(*pieza[::-1])))
+    return nueva_pieza
+
 # Función principal del juego
 def jugar():
     pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
@@ -72,9 +84,18 @@ def jugar():
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 jugando = False
+            elif evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_LEFT:
+                    pieza_actual, x_actual, _ = mover_pieza(pieza_actual, x_actual, y_actual, -1, 0)
+                elif evento.key == pygame.K_RIGHT:
+                    pieza_actual, x_actual, _ = mover_pieza(pieza_actual, x_actual, y_actual, 1, 0)
+                elif evento.key == pygame.K_DOWN:
+                    pieza_actual, _, y_actual = mover_pieza(pieza_actual, x_actual, y_actual, 0, 1)
+                elif evento.key == pygame.K_SPACE:
+                    pieza_actual = rotar_pieza(pieza_actual)
 
         # Mover la pieza hacia abajo
-        y_actual += TAMAÑO_BLOQUE
+        pieza_actual, x_actual, y_actual = mover_pieza(pieza_actual, x_actual, y_actual, 0, 1)
 
         # Dibujar la cuadrícula y la pieza actual
         ventana.fill(NEGRO)
