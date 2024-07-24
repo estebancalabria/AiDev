@@ -61,16 +61,20 @@ def jugar():
     pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
     x_actual = ANCHO_VENTANA // 2 - len(pieza_actual[0]) * TAMAÑO_BLOQUE // 2
     y_actual = 0
+    velocidad_caida = 10  # Velocidad de caída de la pieza
 
     reloj = pygame.time.Clock()
     jugando = True
 
     while jugando:
-        reloj.tick(10)  # Limitar la velocidad del juego
+        reloj.tick(velocidad_caida)  # Limitar la velocidad del juego
 
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 jugando = False
+
+        # Mover la pieza hacia abajo
+        y_actual += TAMAÑO_BLOQUE
 
         # Dibujar la cuadrícula y la pieza actual
         ventana.fill(NEGRO)
