@@ -24,6 +24,7 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
    * System Prompt Para Artifacts de Claude : https://www.youtube.com/watch?v=EoswGAcD5YY&t=17s
    * Nuevo Look de Mark Zuckemberg y LLama3 : https://www.youtube.com/watch?v=aVvkUuskmLY&pp=ygUJbGxhbWEgMy4x
    * https://aider.chat/
+   * https://github.com/paul-gauthier/aider
 
 * 2024-07-10
 * * https://websim.ai/
