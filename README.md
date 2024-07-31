@@ -20,6 +20,10 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 ## 📰 NOVEDAES 📰
 
+* 2024-07-31
+  * Consola de comando con IA: https://www.warp.dev/
+  * Github Copilot CLI : https://github.com/cli/cli   
+
 * 2024-07-25
    * System Prompt Para Artifacts de Claude : https://www.youtube.com/watch?v=EoswGAcD5YY&t=17s
    * Nuevo Look de Mark Zuckemberg y LLama3 : https://www.youtube.com/watch?v=aVvkUuskmLY&pp=ygUJbGxhbWEgMy4x
