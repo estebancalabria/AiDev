@@ -21,7 +21,8 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 ## 📰 NOVEDAES 📰
 
 * 2024-08-07
-  * Figma : https://www.figma.com/   
+  * Figma : https://www.figma.com/
+  * Builder.IO : https://builder.io/
 * 2024-07-31
   * Consola de comando con IA: https://www.warp.dev/
   * Github Copilot CLI : https://github.com/cli/cli   
