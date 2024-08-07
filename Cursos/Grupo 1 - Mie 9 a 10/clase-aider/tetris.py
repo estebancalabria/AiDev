@@ -119,7 +119,7 @@ def jugar():
     pieza_actual = FORMAS[random.randint(0, len(FORMAS) - 1)]
     x_actual = (ANCHO_VENTANA // TAMAÑO_BLOQUE - len(pieza_actual[0])) // 2 * TAMAÑO_BLOQUE
     y_actual = 0
-    velocidad_caida = 10  # Velocidad de caída de la pieza (más lento)
+    velocidad_caida = 5  # Velocidad de caída de la pieza (más lento)
 
     reloj = pygame.time.Clock()
     jugando = True
