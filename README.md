@@ -20,6 +20,10 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 ## 📰 NOVEDAES 📰
 
+* 2024-08-14
+  *  LangChain : https://www.langchain.com/
+  *  Chroma : https://www.trychroma.com/
+  *  Documentacion Embbedings de OpenAI : https://platform.openai.com/docs/guides/embeddings
 * 2024-08-07
   * Figma : https://www.figma.com/
   * Builder.IO : https://builder.io/
