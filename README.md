@@ -24,6 +24,8 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
   *  LangChain : https://www.langchain.com/
   *  Chroma : https://www.trychroma.com/
   *  Documentacion Embbedings de OpenAI : https://platform.openai.com/docs/guides/embeddings
+  *  Base de datos vectorial Pinecone : https://www.pinecone.io/
+  *  Baso de datos vectorial Weaviate : https://weaviate.io/
 * 2024-08-07
   * Figma : https://www.figma.com/
   * Builder.IO : https://builder.io/
