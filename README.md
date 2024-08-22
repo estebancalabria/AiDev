@@ -20,6 +20,10 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 ## 📰 NOVEDAES 📰
 
+* 2024-08-22
+  *  LangChain : https://streamlit.io/
+  *  AI Drive : https://myaidrive.com/
+
 * 2024-08-14
   *  LangChain : https://www.langchain.com/
   *  Chroma : https://www.trychroma.com/
