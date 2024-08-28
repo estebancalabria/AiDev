@@ -20,6 +20,8 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 ## 📰 NOVEDAES 📰
 
+* 2024-08-28
+   * Vercell Code ChatBot : https://v0.dev/chat 
 * 2024-08-22
   *  LangChain : https://streamlit.io/
   *  AI Drive : https://myaidrive.com/
