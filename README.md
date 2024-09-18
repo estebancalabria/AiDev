@@ -20,6 +20,9 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 ## 📰 NOVEDAES 📰
 
+* 2024-09-18
+   *  SpellBox : https://spellbox.app/
+
 * 2024-08-28
    * Vercell Code ChatBot : https://v0.dev/chat
    * Copilot Workspace (anotarse en wishlist) : https://githubnext.com/projects/copilot-workspace
