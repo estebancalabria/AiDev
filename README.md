@@ -23,6 +23,7 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 * 2024-09-24
    * Fitten (Codding Assistant mejot que Copilot) : https://code.fittentech.com/en
+   * Canal de YouTube: https://www.youtube.com/@AZisk
  
 * 2024-09-18
    *  SpellBox : https://spellbox.app/
