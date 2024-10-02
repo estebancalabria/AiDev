@@ -20,6 +20,10 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 ## 📰 NOVEDAES 📰
 
+* 2024-10-2
+   * Notebook LM: https://notebooklm.google.com/
+   * Otter : https://otter.ai/
+   * Meet Geek : https://meetgeek.ai/
 
 * 2024-09-24
    * Fitten (Codding Assistant mejot que Copilot) : https://code.fittentech.com/en
