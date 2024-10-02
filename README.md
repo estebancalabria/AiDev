@@ -22,6 +22,7 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 * 2024-10-2
    * Notebook LM: https://notebooklm.google.com/
+   * DiagFlow : https://dialogflow.cloud.google.com/
    * Otter : https://otter.ai/
    * Meet Geek : https://meetgeek.ai/
    * Notta : https://www.notta.ai/es
