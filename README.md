@@ -28,6 +28,7 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
    * Notta : https://www.notta.ai/es
    * Perplexity : https://www.perplexity.ai/
    * You : https://you.com/
+   * Pixtral : https://chat.mistral.ai/chat
 
 * 2024-09-24
    * Fitten (Codding Assistant mejot que Copilot) : https://code.fittentech.com/en
