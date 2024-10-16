@@ -20,6 +20,14 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 ## 📰 NOVEDAES 📰
 
+* 2024-10-16
+   * Promesas : Ingenieros de IA 
+       * Github Copilot Workpace (anotarse en la waitlist) : https://githubnext.com/projects/copilot-workspace
+       * Devin (Pedir Acceso) : https://devin.ai/
+           * Demo de Como funciona : https://www.youtube.com/watch?v=iVbN95ica_k&t=24s 
+       * Devika (Open Source) : https://devikaai.org/
+       * Devon (Open Souce) : https://github.com/entropy-research/Devon
+
 * 2024-10-2
    * Notebook LM: https://notebooklm.google.com/
    * DiagFlow : https://dialogflow.cloud.google.com/
