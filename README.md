@@ -27,6 +27,9 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
            * Demo de Como funciona : https://www.youtube.com/watch?v=iVbN95ica_k&t=24s 
        * Devika (Open Source) : https://devikaai.org/
        * Devon (Open Souce) : https://github.com/entropy-research/Devon
+   * Bolt.new : https://bolt.new/
+   * Text Cortex (alternativa a notebooklm): https://textcortex.com/es
+   * Poppy AI (notebooklm para videos de youtube pero es pago) : https://getpoppy.ai/
 
 * 2024-10-2
    * Notebook LM: https://notebooklm.google.com/
