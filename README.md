@@ -31,6 +31,7 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
    * Bolt.new : https://bolt.new/
    * Text Cortex (alternativa a notebooklm): https://textcortex.com/es
    * Poppy AI (notebooklm para videos de youtube pero es pago) : https://getpoppy.ai/
+   * YesChatAI (Gracias Bianca) : https://www.yeschat.ai/gpts-9t557WJMObQ-Generate-HTML-from-an-image
 
 * 2024-10-2
    * Notebook LM: https://notebooklm.google.com/
