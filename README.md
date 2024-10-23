@@ -20,6 +20,9 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 ## 📰 NOVEDAES 📰
 
+* 2024-10-23
+  * Documentacion Github Copilto Workspace : https://github.com/githubnext/copilot-workspace-user-manual
+
 * 2024-10-16
    * Promesas : Ingenieros de IA 
        * Github Copilot Workpace (anotarse en la waitlist) : https://githubnext.com/projects/copilot-workspace
