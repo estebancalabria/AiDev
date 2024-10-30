@@ -20,6 +20,42 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 ## 📰 NOVEDAES 📰
 
+* 2024-10-23
+  * Documentacion Github Copilto Workspace : https://github.com/githubnext/copilot-workspace-user-manual
+  * Home Copilt Workspace : https://copilot-workspace.githubnext.com/
+  * Claude Computer Use : https://www.anthropic.com/news/3-5-models-and-computer-use
+
+* 2024-10-16
+   * Promesas : Ingenieros de IA 
+       * Github Copilot Workpace (anotarse en la waitlist) : https://githubnext.com/projects/copilot-workspace
+       * Devin (Pedir Acceso) : https://devin.ai/
+           * Demo de Como funciona : https://www.youtube.com/watch?v=iVbN95ica_k&t=24s 
+       * Devika (Open Source) : https://devikaai.org/
+       * Devon (Open Souce) : https://github.com/entropy-research/Devon
+       * Recordemos Aider : https://aider.chat/
+   * Bolt.new : https://bolt.new/
+   * Text Cortex (alternativa a notebooklm): https://textcortex.com/es
+   * Poppy AI (notebooklm para videos de youtube pero es pago) : https://getpoppy.ai/
+   * YesChatAI (Gracias Bianca) : https://www.yeschat.ai/gpts-9t557WJMObQ-Generate-HTML-from-an-image
+
+* 2024-10-2
+   * Notebook LM: https://notebooklm.google.com/
+   * DiagFlow : https://dialogflow.cloud.google.com/
+   * Otter : https://otter.ai/
+   * Meet Geek : https://meetgeek.ai/
+   * Notta : https://www.notta.ai/es
+   * Perplexity : https://www.perplexity.ai/
+   * You : https://you.com/
+   * Pixtral : https://chat.mistral.ai/chat
+
+* 2024-09-24
+   * Fitten (Codding Assistant mejot que Copilot) : https://code.fittentech.com/en
+   * Canal de YouTube: https://www.youtube.com/@AZisk
+ 
+* 2024-09-18
+   *  SpellBox : https://spellbox.app/
+   *  Ollama : https://ollama.com/
+
 * 2024-08-28
    * Vercell Code ChatBot : https://v0.dev/chat
    * Copilot Workspace (anotarse en wishlist) : https://githubnext.com/projects/copilot-workspace
