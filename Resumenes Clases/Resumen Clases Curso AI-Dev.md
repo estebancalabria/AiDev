@@ -89,5 +89,5 @@ Docente : MCT. Esteban Calabria
     * Se vieron dos herramientas de última generación para desarrollar y trabajar con bases de datos  
   * CLASE 25 (24-10) \-Github Copilot Workspace y Cloud Computer USE  
     * Se vio la herramienta recién lanzada de technical preview de Github Copilot Workspace y la nueva funcionalidad de computer Use de cloud y la posibilidad que estas ultimas nos ofrece para optimizar la automatización de pruebas con IA.  
-  * **CLASE 36 (30-10) \- Cierre del Curso y RESUMEN**  
+  * **CLASE 26 (30-10) \- Cierre del Curso y RESUMEN**  
     
