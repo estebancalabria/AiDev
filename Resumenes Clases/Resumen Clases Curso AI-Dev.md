@@ -23,9 +23,9 @@ Docente : MCT. Esteban Calabria
 
     * En la reunión, los participantes compartieron experiencias sobre la aplicación de herramientas de inteligencia artificial en sus proyectos, destacando el uso de CODIUM para generar pruebas unitarias y la importancia del "prompt engineering" para mejorar la interacción con modelos de lenguaje. Se discutieron herramientas como Blackbox y Claude para la generación de interfaces gráficas a partir de imágenes, así como la necesidad de dar contexto adecuado en los prompts para obtener mejores resultados. Además, se mencionaron diversas aplicaciones de la inteligencia artificial en el desarrollo web y la posibilidad de crear prototipos de sitios de manera más eficiente.
 
-  * **CLASE 6 (16-05)-Prompting con Gitthub Copilot**
+  * **CLASE 6 (16-05)-Prompting con Github Copilot**
 
-    * Durante la reunión, se discutieron las actualizaciones recientes en el campo de la inteligencia artificial, incluyendo las conferencias de Google y OpenAI, y las nuevas capacidades de ChatGPT 4.0. Los participantes compartieron sus experiencias con herramientas como Copilot y ChatGPT, destacando sus ventajas y limitaciones en tareas de documentación y programación. Además, se presentaron recursos y plataformas para explorar y probar diferentes modelos de lenguaje, como Anakin y LIMSIS Arena, y se introdujo un patrón de prompting para mejorar el uso de Copilot en programación.
+    * Durante la reunión, se discutieron las actualizaciones recientes en el campo de la inteligencia artificial, incluyendo las conferencias de Google y OpenAI, y las nuevas capacidades de ChatGPT 4.0. Los participantes compartieron sus experiencias con herramientas como Copilot y ChatGPT, destacando sus ventajas y limitaciones en tareas de documentación y programación. Además, se presentaron recursos y plataformas para explorar y probar diferentes modelos de lenguaje, como Anakin y LyMSyS Arena, y se introdujo un patrón de prompting para mejorar el uso de Copilot en programación.
 
   * **CLASE 7 (23-05)-Uso API ChatGPT para desarrollo**
 
