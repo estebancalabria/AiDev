@@ -19,7 +19,7 @@ Docente : MCT. Esteban Calabria
 
     * En la reunión se discutió sobre el uso de modelos de lenguaje grande (LLM) y la arquitectura de transformers, destacando la importancia de la inteligencia artificial en el desarrollo de software. Se compartieron recursos y papers relevantes, así como herramientas como GitHub Copilot y Codium para facilitar la programación y la generación de pruebas unitarias. Además, se realizaron demostraciones prácticas sobre cómo utilizar estas herramientas para mejorar la eficiencia en el desarrollo de código.
 
-  * **CLASE 5 (09-05)- Generacion de UI con IA**
+  * **CLASE 5 (09-05)- Generacion de UI con IA y Unit Test**
 
     * En la reunión, los participantes compartieron experiencias sobre la aplicación de herramientas de inteligencia artificial en sus proyectos, destacando el uso de CODIUM para generar pruebas unitarias y la importancia del "prompt engineering" para mejorar la interacción con modelos de lenguaje. Se discutieron herramientas como Blackbox y Cloud para la generación de interfaces gráficas a partir de imágenes, así como la necesidad de dar contexto adecuado en los prompts para obtener mejores resultados. Además, se mencionaron diversas aplicaciones de la inteligencia artificial en el desarrollo web y la posibilidad de crear prototipos de sitios de manera más eficiente.
 
