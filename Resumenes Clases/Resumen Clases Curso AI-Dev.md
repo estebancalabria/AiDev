@@ -21,7 +21,7 @@ Docente : MCT. Esteban Calabria
 
   * **CLASE 5 (09-05)- Generacion de UI con IA y Unit Test**
 
-    * En la reunión, los participantes compartieron experiencias sobre la aplicación de herramientas de inteligencia artificial en sus proyectos, destacando el uso de CODIUM para generar pruebas unitarias y la importancia del "prompt engineering" para mejorar la interacción con modelos de lenguaje. Se discutieron herramientas como Blackbox y Cloud para la generación de interfaces gráficas a partir de imágenes, así como la necesidad de dar contexto adecuado en los prompts para obtener mejores resultados. Además, se mencionaron diversas aplicaciones de la inteligencia artificial en el desarrollo web y la posibilidad de crear prototipos de sitios de manera más eficiente.
+    * En la reunión, los participantes compartieron experiencias sobre la aplicación de herramientas de inteligencia artificial en sus proyectos, destacando el uso de CODIUM para generar pruebas unitarias y la importancia del "prompt engineering" para mejorar la interacción con modelos de lenguaje. Se discutieron herramientas como Blackbox y Claude para la generación de interfaces gráficas a partir de imágenes, así como la necesidad de dar contexto adecuado en los prompts para obtener mejores resultados. Además, se mencionaron diversas aplicaciones de la inteligencia artificial en el desarrollo web y la posibilidad de crear prototipos de sitios de manera más eficiente.
 
   * **CLASE 6 (16-05)-Prompting con Gitthub Copilot**
 
