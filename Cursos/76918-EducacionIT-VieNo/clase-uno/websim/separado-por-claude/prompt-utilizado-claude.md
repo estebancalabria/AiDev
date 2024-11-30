@@ -1,0 +1,1 @@
+> Te paso un juego del ahorcado programado en html y css. Me parece que archivo quedo demasiado grande y me gustaria que me lo dividas en distintos artefactos para tener un codigo mas mantenible y separadado con coherencia logica

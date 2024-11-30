@@ -1,0 +1,15 @@
+<svg class="hangman-drawing" viewBox="0 0 200 250">
+    <!-- Base -->
+    <line x1="40" y1="230" x2="160" y2="230" stroke="black" stroke-width="4"></line>
+    <line x1="60" y1="230" x2="60" y2="50" stroke="black" stroke-width="4"></line>
+    <line x1="60" y1="50" x2="120" y2="50" stroke="black" stroke-width="4"></line>
+    <line x1="120" y1="50" x2="120" y2="80" stroke="black" stroke-width="4"></line>
+    
+    <!-- Body Parts (initially hidden) -->
+    <circle id="head" cx="120" cy="100" r="20" stroke="black" stroke-width="4" fill="transparent" style="display: none;"></circle>
+    <line id="body" x1="120" y1="120" x2="120" y2="170" stroke="black" stroke-width="4" style="display: none;"></line>
+    <line id="leftArm" x1="120" y1="140" x2="90" y2="160" stroke="black" stroke-width="4" style="display: none;"></line>
+    <line id="rightArm" x1="120" y1="140" x2="150" y2="160" stroke="black" stroke-width="4" style="display: none;"></line>
+    <line id="leftLeg" x1="120" y1="170" x2="90" y2="200" stroke="black" stroke-width="4" style="display: none;"></line>
+    <line id="rightLeg" x1="120" y1="170" x2="150" y2="200" stroke="black" stroke-width="4" style="display: none;"></line>
+</svg>

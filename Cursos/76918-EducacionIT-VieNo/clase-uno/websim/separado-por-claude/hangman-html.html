@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Juego del Ahorcado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div id="startScreen" class="start-screen">
+            <h1>Juego del Ahorcado</h1>
+            <button id="newGameBtn">Nuevo Juego</button>
+        </div>
+
+        <div id="gameContent" class="game-content" style="display:none;">
+            <h1>Juego del Ahorcado</h1>
+
+            <!-- SVG del Ahorcado se insertará aquí -->
+            <div id="hangmanSvg"></div>
+
+            <div id="wordDisplay" class="word-display"></div>
+
+            <div class="game-info">
+                Intentos restantes: <span id="attempts">5</span>
+            </div>
+
+            <div id="keyboard" class="keyboard"></div>
+        </div>
+
+        <div id="resultsScreen" class="results-screen" style="display:none;">
+            <div id="resultEmoji" class="emoji"></div>
+            <div id="resultMessage" class="message"></div>
+            <button id="playAgainBtn">Volver a jugar</button>
+        </div>
+    </div>
+
+    <script src="hangman.js"></script>
+</body>
+</html>
