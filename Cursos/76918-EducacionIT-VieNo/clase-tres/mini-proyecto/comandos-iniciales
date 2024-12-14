@@ -1,0 +1,4 @@
+mkdir api-productos
+cd api-productos
+npm init -y
+npm install express mongoose dotenv 
