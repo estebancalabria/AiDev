@@ -33,7 +33,7 @@ pip install aider-chat
 3. En tu terminal, configura la variable de entorno con tu clave API:
 
 ```
-export ANTHROPIC_API_KEY=tu_clave_api_aquí
+SET ANTHROPIC_API_KEY=tu_clave_api_aquí
 ```
 
 ## Paso 3: Preparación del proyecto
