@@ -20,6 +20,9 @@ Soy Esteban Calabria, Microsoft Certified Trainer (MCT) con años de experiencia
 
 ## 📰 NOVEDAES 📰
 
+* 2025-04-10
+   * Me sorprendio esta herramienta, habra que probarla bien : https://studio.firebase.google.com/
+
 * 2024-10-23
   * Documentacion Github Copilto Workspace : https://github.com/githubnext/copilot-workspace-user-manual
   * Home Copilt Workspace : https://copilot-workspace.githubnext.com/
