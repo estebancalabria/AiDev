@@ -12,7 +12,7 @@
 # Cada producto debe tener un id único. 
 
 from flask import Flask, request, jsonify
-
+cd 
 app = Flask(__name__)
 
 productos = [

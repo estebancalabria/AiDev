@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Pong</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        #game-container {
+            position: relative;
+            width: 800px;
+            height: 500px;
+        }
+        #canvas {
+            background-color: #000;
+            border: 2px solid #fff;
+        }
+        #score {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        #instructions {
+            color: #aaa;
+            font-size: 16px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 5px;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="score">0 - 0</div>
+        <canvas id="canvas" width="800" height="400"></canvas>
+        <div id="message">Presiona ESPACIO para comenzar</div>
+        <div id="instructions">
+            Jugador Izquierdo: Teclas ↑(W) y ↓(S)<br>
+            Jugador Derecho: Teclas ↑ y ↓ del cursor<br>
+            Iniciar juego: ESPACIO
+        </div>
+    </div>
+
+    <script>
+        // Obtener elementos del DOM
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+        const messageElement = document.getElementById('message');
+
+        // Configuración del juego
+        const paddleWidth = 10;
+        const paddleHeight = 80;
+        const ballSize = 10;
+        let ballSpeed = 5;
+        let computerSpeed = 4;
+        let gameActive = false;
+        let waitingForStart = true;
+
+        // Estado del juego
+        let leftScore = 0;
+        let rightScore = 0;
+        const maxScore = 10;
+
+        // Objetos del juego
+        const leftPaddle = {
+            x: 20,
+            y: canvas.height / 2 - paddleHeight / 2,
+            width: paddleWidth,
+            height: paddleHeight,
+            dy: 0
+        };
+
+        const rightPaddle = {
+            x: canvas.width - 20 - paddleWidth,
+            y: canvas.height / 2 - paddleHeight / 2,
+            width: paddleWidth,
+            height: paddleHeight,
+            dy: 0
+        };
+
+        const ball = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            width: ballSize,
+            height: ballSize,
+            dx: 0,
+            dy: 0
+        };
+
+        // Estado de las teclas
+        const keys = {
+            ArrowUp: false,
+            ArrowDown: false,
+            w: false,
+            s: false,
+            space: false
+        };
+
+        // Event listeners para detectar pulsaciones de teclas
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowUp' || e.key === 'ArrowDown' || 
+                e.key === 'w' || e.key === 's' || 
+                e.key === 'W' || e.key === 'S' ||
+                e.key === ' ') {
+                e.preventDefault();
+            }
+            
+            if (e.key === 'ArrowUp') keys.ArrowUp = true;
+            if (e.key === 'ArrowDown') keys.ArrowDown = true;
+            if (e.key === 'w' || e.key === 'W') keys.w = true;
+            if (e.key === 's' || e.key === 'S') keys.s = true;
+            if (e.key === ' ') {
+                keys.space = true;
+                if (waitingForStart) {
+                    startGame();
+                }
+            }
+        });
+
+        document.addEventListener('keyup', e => {
+            if (e.key === 'ArrowUp') keys.ArrowUp = false;
+            if (e.key === 'ArrowDown') keys.ArrowDown = false;
+            if (e.key === 'w' || e.key === 'W') keys.w = false;
+            if (e.key === 's' || e.key === 'S') keys.s = false;
+            if (e.key === ' ') keys.space = false;
+        });
+
+        // Funciones del juego
+        function drawRect(x, y, width, height, color) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, width, height);
+        }
+
+        function drawCircle(x, y, radius, color) {
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function drawNet() {
+            const netWidth = 4;
+            const netHeight = 10;
+            const netCount = canvas.height / (netHeight * 2);
+            
+            for(let i = 0; i < netCount; i++) {
+                drawRect(
+                    canvas.width / 2 - netWidth / 2,
+                    i * netHeight * 2,
+                    netWidth,
+                    netHeight,
+                    '#fff'
+                );
+            }
+        }
+
+        function resetBall() {
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+            ball.dx = 0;
+            ball.dy = 0;
+            waitingForStart = true;
+            messageElement.style.display = 'block';
+            messageElement.textContent = 'Presiona ESPACIO para continuar';
+            gameActive = false;
+        }
+
+        function startGame() {
+            if (!gameActive) {
+                waitingForStart = false;
+                messageElement.style.display = 'none';
+                gameActive = true;
+                
+                // Aleatoriamente cambiar la dirección
+                ball.dx = (Math.random() > 0.5 ? 1 : -1) * ballSpeed;
+                ball.dy = (Math.random() > 0.5 ? 1 : -1) * ballSpeed;
+            }
+        }
+
+        function updateScore() {
+            scoreElement.textContent = `${leftScore} - ${rightScore}`;
+        }
+
+        function checkCollision(ball, paddle) {
+            return (
+                ball.x < paddle.x + paddle.width &&
+                ball.x + ball.width > paddle.x &&
+                ball.y < paddle.y + paddle.height &&
+                ball.y + ball.height > paddle.y
+            );
+        }
+
+        function update() {
+            // Mover paleta izquierda
+            const leftPaddleSpeed = 8;
+            if (keys.w) {
+                leftPaddle.y -= leftPaddleSpeed;
+            }
+            if (keys.s) {
+                leftPaddle.y += leftPaddleSpeed;
+            }
+            
+            // Mover paleta derecha
+            const rightPaddleSpeed = 8;
+            if (keys.ArrowUp) {
+                rightPaddle.y -= rightPaddleSpeed;
+            }
+            if (keys.ArrowDown) {
+                rightPaddle.y += rightPaddleSpeed;
+            }
+            
+            // Limitar las paletas al canvas
+            if (leftPaddle.y < 0) leftPaddle.y = 0;
+            if (leftPaddle.y > canvas.height - leftPaddle.height) {
+                leftPaddle.y = canvas.height - leftPaddle.height;
+            }
+            
+            if (rightPaddle.y < 0) rightPaddle.y = 0;
+            if (rightPaddle.y > canvas.height - rightPaddle.height) {
+                rightPaddle.y = canvas.height - rightPaddle.height;
+            }
+
+            if (gameActive) {
+                // Mover pelota solo si el juego está activo
+                ball.x += ball.dx;
+                ball.y += ball.dy;
+                
+                // Rebote en las paredes superior e inferior
+                if (ball.y < 0 || ball.y > canvas.height - ball.height) {
+                    ball.dy *= -1;
+                }
+                
+                // Colisión con paletas
+                if (
+                    checkCollision(ball, leftPaddle) || 
+                    checkCollision(ball, rightPaddle)
+                ) {
+                    // Cambiar dirección y aumentar velocidad ligeramente
+                    ball.dx *= -1.1;
+                    
+                    // Añadir un poco de aleatoriedad al rebote
+                    const randomFactor = Math.random() * 2 - 1; // Entre -1 y 1
+                    ball.dy = ball.dy + randomFactor;
+                    
+                    // Limitar la velocidad máxima
+                    const maxSpeed = 15;
+                    if (Math.abs(ball.dx) > maxSpeed) {
+                        ball.dx = Math.sign(ball.dx) * maxSpeed;
+                    }
+                    if (Math.abs(ball.dy) > maxSpeed) {
+                        ball.dy = Math.sign(ball.dy) * maxSpeed;
+                    }
+                }
+                
+                // Si la pelota sale por la izquierda o derecha
+                if (ball.x < 0) {
+                    rightScore++;
+                    updateScore();
+                    resetBall();
+                } else if (ball.x > canvas.width) {
+                    leftScore++;
+                    updateScore();
+                    resetBall();
+                }
+                
+                // Comprobar si algún jugador ha ganado
+                if (leftScore >= maxScore || rightScore >= maxScore) {
+                    const winner = leftScore >= maxScore ? "Jugador izquierdo" : "Jugador derecho";
+                    messageElement.style.display = 'block';
+                    messageElement.textContent = `¡El ${winner} ha ganado! Presiona ESPACIO para una nueva partida`;
+                    leftScore = 0;
+                    rightScore = 0;
+                    updateScore();
+                    waitingForStart = true;
+                    gameActive = false;
+                }
+            }
+        }
+
+        function render() {
+            // Limpiar el canvas
+            drawRect(0, 0, canvas.width, canvas.height, '#000');
+            
+            // Dibujar la red
+            drawNet();
+            
+            // Dibujar las paletas
+            drawRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height, '#fff');
+            drawRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height, '#fff');
+            
+            // Dibujar la pelota
+            drawCircle(ball.x + ballSize/2, ball.y + ballSize/2, ballSize/2, '#fff');
+        }
+
+        function gameLoop() {
+            update();
+            render();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Iniciar el juego
+        updateScore();
+        gameLoop();
+    </script>
+</body>
+</html>

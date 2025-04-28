@@ -1,0 +1,1 @@
+Me podes generar un artefacto en html para clonar este formulario de login. Quiero que este centrado, que sea responsive y que repeste la paleta de colores y que sea lo mas paredido que puedas.

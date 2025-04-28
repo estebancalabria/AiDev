@@ -1,0 +1,1 @@
+Los nombres de las variables deben utilizar la notacion PascalCase

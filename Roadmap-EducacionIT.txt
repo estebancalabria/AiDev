@@ -1,0 +1,47 @@
+- Requisitos
+    - Manejar o Estar Familiarizados con estas tecnologias
+       - HTML / JavaScript
+        - React 
+        - Python
+        - SQL
+    - Tener una cuenta de Gmail y de GitHub
+
+- Recursos
+    - https://github.com/estebancalabria/AiDev/
+
+- Analisis
+     - Utilizar la IA para captura de Requerimientos (Entrevistas)
+     - Utilizar la IA para manejar la informacion del Proyecto 
+           -Herramientas y Chatbots especializados ara la parte de requerimientos
+     - Generacion de Diagramas con IA
+
+
+- Diseño
+     - Diseño de Frontend con IA
+     - Scafolding (Armado de la estructura) de un Proyecto con Herramientas de IA
+     - Ingenieros de Software de IA
+         - Devin (El que nos iba dejar sin trabajo a los programadores)
+         - Devika
+         - GitHub Copilot Workpace (en beta/trial) <<<< Pedir permiso para usarla!!
+         - Aider
+
+- Desarrollo
+     - IA para SQL y Base de Datos
+     - Desarrollar con LLM
+     - Codding Assistants
+          - Copilot (y otros ...)
+     - Vide Codding (Desarrollo mediante lenguaje natural)
+     - IDES especializadas para desarrollar con IA (cursor)
+     - Prompt Engineering para Devs
+
+- Pruebas
+     - IA para Pruebas Unitarias
+     - Pruebas de Frontend o Funcionales (Selenium / Playwright / Pupeteer)
+
+- Implementacion
+     - IA para linea de comandos
+ 
+- Transversal a todos
+      - MCP (Model Context Protocol) - Un protocolo para pemitir que los modelos de lenguaje
+        tengan capacidad de accion (manejen el file system, accedan a una API)
+      - Uso de la API para interactuar con un LLM

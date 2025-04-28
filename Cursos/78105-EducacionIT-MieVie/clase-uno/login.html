@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f2ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .profile-icon {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .circle {
+            width: 80px;
+            height: 80px;
+            border: 2px solid #1a75c1;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background-color: #1a75c1;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .avatar::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            background-color: #1a75c1;
+            bottom: -25%;
+            left: 0;
+            border-radius: 0 0 30px 30px;
+        }
+        
+        .input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 12px 40px;
+            border: 2px solid #1a75c1;
+            border-radius: 25px;
+            font-size: 16px;
+            box-sizing: border-box;
+            color: #1a75c1;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1a75c1;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #1a75c1;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 16px;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            color: #1a75c1;
+            font-size: 14px;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox {
+            margin-right: 5px;
+            accent-color: #1a75c1;
+        }
+        
+        .forgot-link {
+            color: #1a75c1;
+            text-decoration: none;
+        }
+        
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1a75c1;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        
+        .login-button:hover {
+            background-color: #1667ad;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="profile-icon">
+            <div class="circle">
+                <div class="avatar"></div>
+            </div>
+        </div>
+        
+        <form>
+            <div class="input-group">
+                <input type="text" class="input-field" placeholder="Username">
+                <span class="input-icon">👤</span>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" class="input-field" placeholder="Password" id="password">
+                <span class="input-icon">🔒</span>
+                <button type="button" class="toggle-password" onclick="togglePassword()">👁️</button>
+            </div>
+            
+            <div class="remember-forgot">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="remember" class="checkbox">
+                    <label for="remember">Remember me</label>
+                </div>
+                <a href="#" class="forgot-link">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+    
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>
