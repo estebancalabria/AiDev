@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Hide scrollbars */
+    background-color: #87CEEB; /* Blue sky */
+    font-family: sans-serif;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+canvas {
+    display: block;
+}
+
+#info {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    display:block;
+    padding: 5px;
+    background-color: rgba(0,0,0,0.2);
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Preguntas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div id="welcome-screen" class="text-center">
+            <h1 class="display-4 mb-4">🎮 Juego de Preguntas 🎮</h1>
+            <div class="card p-4 shadow-sm">
+                <input type="text" id="player-name" class="form-control mb-3" placeholder="Ingresa tu nombre">
+                <h4 class="mb-3">Elige una categoría:</h4>
+                <div id="categories-container" class="row g-3 mb-4">
+                    <!-- Las categorías se cargarán dinámicamente -->
+                </div>
+                <button id="start-game" class="btn btn-primary btn-lg">¡Comenzar Juego!</button>
+            </div>
+        </div>
+
+        <div id="game-screen" class="d-none">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 id="category-title" class="mb-0"></h3>
+                <div class="progress flex-grow-1 mx-3">
+                    <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+                </div>
+                <span id="question-counter" class="badge bg-primary"></span>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 id="question-text" class="card-title mb-4"></h2>
+                    <div id="options-container" class="d-grid gap-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="results-screen" class="d-none text-center">
+            <h2 class="mb-4">¡Juego Terminado!</h2>
+            <div class="card p-4 shadow-sm">
+                <h3 id="player-result" class="mb-3"></h3>
+                <p id="score-text" class="h4 mb-4"></p>
+                <button id="play-again" class="btn btn-primary btn-lg">Jugar de nuevo</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="questions.js"></script>
+    <script src="game.js"></script>
+</body>
+</html> 

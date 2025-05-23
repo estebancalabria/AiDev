@@ -1,0 +1,118 @@
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.option-btn {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+    background: #f8f9fa;
+    border-color: #2193b0;
+}
+
+.option-btn.correct {
+    background: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.option-btn.incorrect {
+    background: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.progress {
+    height: 10px;
+    border-radius: 5px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    transition: width 0.3s ease;
+}
+
+#welcome-screen h1 {
+    color: #2193b0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+}
+
+.form-control:focus {
+    border-color: #2193b0;
+    box-shadow: 0 0 0 0.2rem rgba(33, 147, 176, 0.25);
+}
+
+.category-card {
+    cursor: pointer;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    border-color: #2193b0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.category-card.selected {
+    border-color: #2193b0;
+    background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    color: white;
+}
+
+.category-icon {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+#question-counter {
+    font-size: 1.1rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+#category-title {
+    color: #2193b0;
+    font-weight: 600;
+} 

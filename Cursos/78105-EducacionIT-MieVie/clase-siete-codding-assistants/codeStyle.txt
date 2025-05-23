@@ -1,0 +1,1 @@
+Los nombres de las variables y funciones usan notacion PascalCase (Primera letra en mayuscula)
