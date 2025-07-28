@@ -23,8 +23,6 @@ Creame un solo artefacto que sea el juego pong en html/javascript que el jugador
 * Generamos el flappy bird
    
 ```prompt
-Un juego de salto donde un atomovil va por una carretera van apareciendo obstaculos que hay que saltarlos con la barra espaciadora. El automovil se mueve solo a una velocidad constante. Desarrollar todo el juego en un unico html que contenga todo lo necesario para funcionar. Que se vea moderno y visualmente atractivo.
-```
 Quiero que me generes un artafacto para una vision retro futurista con efectos de particulas del juego flappy birds.
 ```
    
