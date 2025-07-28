@@ -1,11 +1,15 @@
 # Bienvenidos al curso de IA para desarrolladores
 
+---
+  
 # Intro de que vamos a ver en el curso
 
 https://www.instagram.com/p/DJrpLZWgqJr/?img_index=1
 > No olvidar seguir
 
-# Generacion de codigo con un lla
+---   
+   
+# Generacion de codigo con un LLM
 
 * Vimos Claude : https://claude.ai/
 * Vimos la generacion de Artefactos de Claude
@@ -23,6 +27,8 @@ Un juego de salto donde un atomovil va por una carretera van apareciendo obstacu
 ```
 Quiero que me generes un artafacto para una vision retro futurista con efectos de particulas del juego flappy birds.
 ```
+   
+---   
    
 # WebSim
 
