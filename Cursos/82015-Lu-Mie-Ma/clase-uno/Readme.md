@@ -19,6 +19,8 @@ Creame un solo artefacto que sea el juego pong en html/javascript que el jugador
 * Generamos el flappy bird
    
 ```prompt
+Un juego de salto donde un atomovil va por una carretera van apareciendo obstaculos que hay que saltarlos con la barra espaciadora. El automovil se mueve solo a una velocidad constante. Desarrollar todo el juego en un unico html que contenga todo lo necesario para funcionar. Que se vea moderno y visualmente atractivo.
+```
 Quiero que me generes un artafacto para una vision retro futurista con efectos de particulas del juego flappy birds.
 ```
    
@@ -33,3 +35,17 @@ Le pedimos el Tetris
 Tambien:   
 > https://websim.com/@shinymoth1855481/space-shooter/2
 
+# Desarrollo de modelos Open Source
+
+Vamos a probar desarrollar algo con el modelos Open Source hosteado en groq
+> https://groq.com/   
+Probamos los modelos
+* Kimi K2
+* DeepSeek R1
+
+Le pedimos:
+```prompt
+Un juego de salto donde un atomovil va por una carretera van apareciendo obstaculos que hay que saltarlos con la barra espaciadora. El automovil se mueve solo a una velocidad constante. Desarrollar todo el juego en un unico html que contenga todo lo necesario para funcionar. Que se vea moderno y visualmente atractivo.
+```
+
+> LA IA no siempre saca una version sin errores a la primera sino que muchas veces hay que seguir iterando sobre lo generado hasta conseguir una version preliminar sin errores.
