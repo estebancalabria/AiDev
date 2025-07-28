@@ -39,6 +39,9 @@ Le pedimos el Tetris
 Tambien:   
 > https://websim.com/@shinymoth1855481/space-shooter/2
 
+
+---
+    
 # Desarrollo de modelos Open Source
 
 Vamos a probar desarrollar algo con el modelos Open Source hosteado en groq
@@ -53,3 +56,31 @@ Un juego de salto donde un atomovil va por una carretera van apareciendo obstacu
 ```
 
 > LA IA no siempre saca una version sin errores a la primera sino que muchas veces hay que seguir iterando sobre lo generado hasta conseguir una version preliminar sin errores.
+
+---
+
+# Diseño de interfaces con IA
+
+**Con modelos Open Source**
+> https://llamacoder.together.ai/
+Llama coder esta provisto por el motor de modelos de IA together
+> https://www.together.ai/   
+    
+Que es similar a groq en cuanto que te da como usuario la posibilidad de probar distintos modelos open source.
+Ellos hicieron la herramienta llamacoder que te permite usar los modelos open source entre ellos el modelo llama3 de la familia llama (los modelos de Meta de Mark Zuckemberg)
+
+```prompt
+Una calculadora
+```
+o
+```prompt
+fue el prompt que empezaste vos:
+Un tablero comando scrum con los graficos más comunes (burn down chart, etc) donde se vea un Khanban board donde se puedan generar y mover de lugar las tareas del sprint
+```
+
+
+Genera el resultado en REACT
+* https://llamacoder.together.ai/share/v2/QaLjUwOGZXtfMEXW
+* https://llamacoder.together.ai/share/v2/AU20epBmqXgDw7qF
+* https://llamacoder.together.ai/share/v2/hbq03fGy3WVxq1kw
+* https://llamacoder.together.ai/share/v2/nz0V-CvY8Nk2RTwp
