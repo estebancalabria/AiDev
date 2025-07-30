@@ -168,8 +168,33 @@ Para utilizar los modelos de lenguaje que se subieron a Hugging face localmente 
 * Ollama (aplicacion de consola) : https://ollama.com/
 
 Pero tambien hay modelos que puedo probar online dentro del Hugging Faces en la parte de Spaces
-> https://huggingface.co/spaces    
-Por ejemplo podemos probar el modelo flux
+> https://huggingface.co/spaces     
+Por ejemplo podemos probar el modelo flux      
 > https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev
+
+Los modelos tambien los podemos descargar y utilizar desde python
+```python
+!pip install -q transformers
+```
+El codigo:
+```python
+# ✅ Instalamos transformers (de Hugging Face)
+!pip install -q transformers
+
+# ✅ Importamos pipeline desde Hugging Face
+from transformers import pipeline
+
+# ✅ Cargamos el modelo distilgpt2, que es liviano y funciona bien
+generator = pipeline("text-generation", model="distilgpt2")
+
+# ✅ Prompt base
+prompt = "La inteligencia artificial cambiará el mundo porque"
+
+# ✅ Generamos texto
+result = generator(prompt, max_length=50, num_return_sequences=1)
+
+# ✅ Mostramos la salida generada
+print(result[0]["generated_text"])
+```
 
 
