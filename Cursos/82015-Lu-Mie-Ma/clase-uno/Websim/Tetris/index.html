@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid">
+        <div class="game-area">
+             <h1>TETRIS</h1>
+            <canvas id="board"></canvas>
+        </div>
+        <div class="side-panel">
+            <div id="game-over" class="hidden">
+                <h2>GAME OVER</h2>
+                <button id="play-again-button">Play Again</button>
+            </div>
+            <div>
+                <h2>SCORE</h2>
+                <p id="score">0</p>
+            </div>
+            <div>
+                <h2>NEXT</h2>
+                <canvas id="next"></canvas>
+            </div>
+            <button id="play-button">Play</button>
+            <div class="controls">
+                <h3>Controls</h3>
+                <p><strong>Left/Right:</strong> Move</p>
+                <p><strong>Down:</strong> Soft Drop</p>
+                <p><strong>Up:</strong> Rotate</p>
+                <p><strong>Space:</strong> Hard Drop</p>
+            </div>
+        </div>
+    </div>
+    <script type="importmap">
+    {
+        "imports": {
+            "board": "./board.js",
+            "piece": "./piece.js",
+            "constants": "./constants.js"
+        }
+    }
+    </script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>

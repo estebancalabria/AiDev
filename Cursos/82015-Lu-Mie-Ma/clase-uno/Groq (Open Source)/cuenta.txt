@@ -1,0 +1,49 @@
+classDiagram
+    %% Clases principales
+    class Banco {
+        -String nombre
+        -List~Cliente~ clientes
+        -List~Cuenta~ cuentas
+        +agregarCliente(Cliente cliente)
+        +abrirCuenta(Cuenta cuenta)
+        +buscarCuenta(String numero): Cuenta
+        +procesarTransaccion(Transaccion t)
+    }
+
+    class Cliente {
+        -String nombre
+        -String dni
+        -String direccion
+        -List~Cuenta~ cuentas
+        +agregarCuenta(Cuenta cuenta)
+        +getNombre(): String
+        +getCuentas(): List~Cuenta~
+    }
+
+    %% Clase base
+    class Cuenta {
+        -String numero
+        -double saldo
+        -Cliente titular
+        +depositar(double monto)
+        +retirar(double monto): bool
+        +transferir(double monto, Cuenta destino): bool
+        +getSaldo(): double
+    }
+
+    %% Subclases
+    class CuentaCorriente {
+        -double limiteDescubierto
+        +retirar(double monto): bool
+    }
+
+    class CajaAhorro {
+        +calcularInteres(double tasaAnual): double
+    }
+
+    %% Relaciones
+    Banco --> "1..*" Cuenta : administra >
+    Cliente --> "1..*" Cuenta : posee >
+    Cuenta --> "1" Cliente : titular >
+    Cuenta <|-- CuentaCorriente
+    Cuenta <|-- CajaAhorro

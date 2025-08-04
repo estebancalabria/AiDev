@@ -1,0 +1,6 @@
+---
+description: 
+globs: *.js
+alwaysApply: false
+---
+Cada funcion tiene que estar comenda con jsdoc y cada 5 lineas de codigo tiene que haber un comentario

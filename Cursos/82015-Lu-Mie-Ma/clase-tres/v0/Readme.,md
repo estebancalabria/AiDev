@@ -1,0 +1,7 @@
+# Prompt 1 (mejorado n ChatGpt)
+
+Desarrolla una aplicación web de administración de proyectos que presente un diseño limpio y minimalista, centrado en la usabilidad. La interfaz debe incluir las siguientes funcionalidades: 1. Capacidad para crear, editar y eliminar tanto páginas como subpáginas, facilitando la organización del contenido. 2. Implementación de bloques editables que permitan incluir texto, listas, encabezados y checklists, proporcionando flexibilidad en la presentación de la información. 3. Opción para agregar etiquetas y propiedades personalizadas a cada página, tales como estado, prioridad y responsable, para una mejor gestión de los proyectos. 4. Visualización de las páginas en dos formatos: una vista de lista y un tablero tipo Kanban, permitiendo a los usuarios elegir su método preferido de organización. 5. Funcionalidades de filtrado y ordenación de páginas basadas en etiquetas, fechas o propiedades, mejorando la accesibilidad a la información. 6. Herramienta de búsqueda que permita localizar contenido dentro de todas las páginas de manera eficiente. 7. Implementación de un sistema de guardado automático de cambios, asegurando que la información no se pierda. 8. Navegación lateral colapsable que refleje la jerarquía de páginas, optimizando el espacio en pantalla. 
+
+# Prompt 2 (correcciones)
+
+No puedo volver al hombe donde se muesta la lista y e algunas paginas faltan scroll cosa que no l veo los botones de abajo y no puedo llegar a ellos sin hacer zoom out. 

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Flappy - Retrofuturista</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #0a0a0a, #1a0033, #000066);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+        canvas {
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 30px #00ffff, inset 0 0 20px rgba(0, 255, 255, 0.1);
+            background: radial-gradient(circle at center, #001122, #000011);
+        }
+        .ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            font-size: 20px;
+            z-index: 100;
+        }
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff0080;
+            text-align: center;
+            font-size: 24px;
+            text-shadow: 0 0 20px #ff0080;
+            z-index: 100;
+            display: none;
+        }
+        .instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00ffff;
+            text-align: center;
+            font-size: 14px;
+            text-shadow: 0 0 10px #00ffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="ui">
+        <div>SCORE: <span id="score">0</span></div>
+        <div>BEST: <span id="best">0</span></div>
+    </div>
+    
+    <div class="game-over" id="gameOver">
+        <div>SYSTEM FAILURE</div>
+        <div style="font-size: 18px; margin-top: 10px;">Press SPACE to restart</div>
+    </div>
+    
+    <div class="instructions">
+        Press SPACE or CLICK to fly • Avoid the energy barriers
+    </div>
+    
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Game variables
+        let gameRunning = false;
+        let score = 0;
+        let bestScore = 0;
+        
+        // Bird properties
+        const bird = {
+            x: 100,
+            y: canvas.height / 2,
+            velocity: 0,
+            size: 20,
+            jumpPower: -8,
+            gravity: 0.5
+        };
+        
+        // Pipes array
+        const pipes = [];
+        const pipeWidth = 60;
+        const pipeGap = 180;
+        let pipeTimer = 0;
+        
+        // Particles system
+        const particles = [];
+        const trailParticles = [];
+        
+        // Colors
+        const colors = {
+            bird: '#00ffff',
+            pipe: '#ff0080',
+            particle: '#ffff00',
+            trail: '#00ff80'
+        };
+        
+        class Particle {
+            constructor(x, y, vx, vy, color, life = 60) {
+                this.x = x;
+                this.y = y;
+                this.vx = vx;
+                this.vy = vy;
+                this.color = color;
+                this.life = life;
+                this.maxLife = life;
+                this.size = Math.random() * 3 + 1;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life--;
+                this.vy += 0.1; // gravity
+                this.vx *= 0.98; // air resistance
+            }
+            
+            draw() {
+                const alpha = this.life / this.maxLife;
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+        
+        function createExplosion(x, y) {
+            for (let i = 0; i < 15; i++) {
+                const angle = (Math.PI * 2 * i) / 15;
+                const speed = Math.random() * 5 + 2;
+                particles.push(new Particle(
+                    x, y,
+                    Math.cos(angle) * speed,
+                    Math.sin(angle) * speed,
+                    colors.particle,
+                    40
+                ));
+            }
+        }
+        
+        function createTrailParticle() {
+            trailParticles.push(new Particle(
+                bird.x + Math.random() * 10 - 5,
+                bird.y + Math.random() * 10 - 5,
+                Math.random() * 2 - 1,
+                Math.random() * 2 - 1,
+                colors.trail,
+                30
+            ));
+        }
+        
+        function drawBird() {
+            ctx.save();
+            ctx.translate(bird.x, bird.y);
+            
+            // Bird glow
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = colors.bird;
+            
+            // Bird body (hexagonal for cyber look)
+            ctx.fillStyle = colors.bird;
+            ctx.beginPath();
+            for (let i = 0; i < 6; i++) {
+                const angle = (Math.PI * 2 * i) / 6;
+                const x = Math.cos(angle) * bird.size;
+                const y = Math.sin(angle) * bird.size;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            ctx.fill();
+            
+            // Bird center
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(0, 0, bird.size * 0.3, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.restore();
+        }
+        
+        function drawPipe(pipe) {
+            ctx.save();
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = colors.pipe;
+            
+            // Gradient for pipes
+            const gradient = ctx.createLinearGradient(pipe.x, 0, pipe.x + pipeWidth, 0);
+            gradient.addColorStop(0, colors.pipe);
+            gradient.addColorStop(0.5, '#ff4499');
+            gradient.addColorStop(1, colors.pipe);
+            
+            ctx.fillStyle = gradient;
+            
+            // Top pipe
+            ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
+            
+            // Bottom pipe
+            ctx.fillRect(pipe.x, pipe.bottom, pipeWidth, canvas.height - pipe.bottom);
+            
+            // Pipe caps with neon effect
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(pipe.x - 5, pipe.top - 10, pipeWidth + 10, 20);
+            ctx.fillRect(pipe.x - 5, pipe.bottom - 10, pipeWidth + 10, 20);
+            
+            ctx.restore();
+        }
+        
+        function drawBackground() {
+            // Animated grid
+            ctx.strokeStyle = 'rgba(0, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+            
+            const time = Date.now() * 0.001;
+            const gridSize = 50;
+            
+            for (let x = 0; x < canvas.width; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x + Math.sin(time + x * 0.01) * 5, 0);
+                ctx.lineTo(x + Math.sin(time + x * 0.01) * 5, canvas.height);
+                ctx.stroke();
+            }
+            
+            for (let y = 0; y < canvas.height; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y + Math.cos(time + y * 0.01) * 5);
+                ctx.lineTo(canvas.width, y + Math.cos(time + y * 0.01) * 5);
+                ctx.stroke();
+            }
+        }
+        
+        function updateBird() {
+            bird.velocity += bird.gravity;
+            bird.y += bird.velocity;
+            
+            // Create trail particles
+            if (Math.random() < 0.3) createTrailParticle();
+        }
+        
+        function updatePipes() {
+            pipeTimer++;
+            
+            if (pipeTimer > 120) {
+                const pipeHeight = Math.random() * (canvas.height - pipeGap - 100) + 50;
+                pipes.push({
+                    x: canvas.width,
+                    top: pipeHeight,
+                    bottom: pipeHeight + pipeGap,
+                    passed: false
+                });
+                pipeTimer = 0;
+            }
+            
+            for (let i = pipes.length - 1; i >= 0; i--) {
+                pipes[i].x -= 3;
+                
+                // Score when passing pipe
+                if (!pipes[i].passed && pipes[i].x + pipeWidth < bird.x) {
+                    pipes[i].passed = true;
+                    score++;
+                    document.getElementById('score').textContent = score;
+                    createExplosion(pipes[i].x + pipeWidth/2, pipes[i].top + pipeGap/2);
+                }
+                
+                // Remove off-screen pipes
+                if (pipes[i].x + pipeWidth < 0) {
+                    pipes.splice(i, 1);
+                }
+            }
+        }
+        
+        function checkCollisions() {
+            // Ground and ceiling
+            if (bird.y - bird.size < 0 || bird.y + bird.size > canvas.height) {
+                return true;
+            }
+            
+            // Pipes
+            for (const pipe of pipes) {
+                if (bird.x + bird.size > pipe.x && 
+                    bird.x - bird.size < pipe.x + pipeWidth) {
+                    if (bird.y - bird.size < pipe.top || 
+                        bird.y + bird.size > pipe.bottom) {
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
+        function updateParticles() {
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                if (particles[i].life <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+            
+            for (let i = trailParticles.length - 1; i >= 0; i--) {
+                trailParticles[i].update();
+                if (trailParticles[i].life <= 0) {
+                    trailParticles.splice(i, 1);
+                }
+            }
+        }
+        
+        function drawParticles() {
+            particles.forEach(particle => particle.draw());
+            trailParticles.forEach(particle => particle.draw());
+        }
+        
+        function gameOver() {
+            gameRunning = false;
+            createExplosion(bird.x, bird.y);
+            
+            if (score > bestScore) {
+                bestScore = score;
+                document.getElementById('best').textContent = bestScore;
+            }
+            
+            document.getElementById('gameOver').style.display = 'block';
+        }
+        
+        function resetGame() {
+            bird.y = canvas.height / 2;
+            bird.velocity = 0;
+            pipes.length = 0;
+            particles.length = 0;
+            trailParticles.length = 0;
+            pipeTimer = 0;
+            score = 0;
+            document.getElementById('score').textContent = score;
+            document.getElementById('gameOver').style.display = 'none';
+            gameRunning = true;
+        }
+        
+        function gameLoop() {
+            // Clear canvas
+            ctx.fillStyle = 'rgba(0, 17, 34, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            drawBackground();
+            
+            if (gameRunning) {
+                updateBird();
+                updatePipes();
+                
+                if (checkCollisions()) {
+                    gameOver();
+                }
+            }
+            
+            updateParticles();
+            
+            // Draw everything
+            pipes.forEach(drawPipe);
+            drawBird();
+            drawParticles();
+            
+            requestAnimationFrame(gameLoop);
+        }
+        
+        // Controls
+        function jump() {
+            if (gameRunning) {
+                bird.velocity = bird.jumpPower;
+                createExplosion(bird.x - 20, bird.y);
+            } else {
+                resetGame();
+            }
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                jump();
+            }
+        });
+        
+        canvas.addEventListener('click', jump);
+        
+        // Start game
+        gameLoop();
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+{
+  "paises": [
+    {
+      "codigo": "AR",
+      "nombre": "Argentina",
+      "continente": "América del Sur",
+      "capital": "Buenos Aires"
+    },
+    {
+      "codigo": "BR",
+      "nombre": "Brasil",
+      "continente": "América del Sur",
+      "capital": "Brasília"
+    },
+    {
+      "codigo": "CL",
+      "nombre": "Chile",
+      "continente": "América del Sur",
+      "capital": "Santiago"
+    },
+    {
+      "codigo": "CO",
+      "nombre": "Colombia",
+      "continente": "América del Sur",
+      "capital": "Bogotá"
+    },
+    {
+      "codigo": "PE",
+      "nombre": "Perú",
+      "continente": "América del Sur",
+      "capital": "Lima"
+    },
+    {
+      "codigo": "UY",
+      "nombre": "Uruguay",
+      "continente": "América del Sur",
+      "capital": "Montevideo"
+    },
+    {
+      "codigo": "PY",
+      "nombre": "Paraguay",
+      "continente": "América del Sur",
+      "capital": "Asunción"
+    },
+    {
+      "codigo": "EC",
+      "nombre": "Ecuador",
+      "continente": "América del Sur",
+      "capital": "Quito"
+    },
+    {
+      "codigo": "VE",
+      "nombre": "Venezuela",
+      "continente": "América del Sur",
+      "capital": "Caracas"
+    },
+    {
+      "codigo": "BO",
+      "nombre": "Bolivia",
+      "continente": "América del Sur",
+      "capital": "Sucre"
+    },
+    {
+      "codigo": "MX",
+      "nombre": "México",
+      "continente": "América del Norte",
+      "capital": "Ciudad de México"
+    },
+    {
+      "codigo": "US",
+      "nombre": "Estados Unidos",
+      "continente": "América del Norte",
+      "capital": "Washington D.C."
+    },
+    {
+      "codigo": "CA",
+      "nombre": "Canadá",
+      "continente": "América del Norte",
+      "capital": "Ottawa"
+    },
+    {
+      "codigo": "ES",
+      "nombre": "España",
+      "continente": "Europa",
+      "capital": "Madrid"
+    },
+    {
+      "codigo": "FR",
+      "nombre": "Francia",
+      "continente": "Europa",
+      "capital": "París"
+    },
+    {
+      "codigo": "IT",
+      "nombre": "Italia",
+      "continente": "Europa",
+      "capital": "Roma"
+    },
+    {
+      "codigo": "DE",
+      "nombre": "Alemania",
+      "continente": "Europa",
+      "capital": "Berlín"
+    },
+    {
+      "codigo": "GB",
+      "nombre": "Reino Unido",
+      "continente": "Europa",
+      "capital": "Londres"
+    },
+    {
+      "codigo": "PT",
+      "nombre": "Portugal",
+      "continente": "Europa",
+      "capital": "Lisboa"
+    },
+    {
+      "codigo": "NL",
+      "nombre": "Países Bajos",
+      "continente": "Europa",
+      "capital": "Ámsterdam"
+    },
+    {
+      "codigo": "JP",
+      "nombre": "Japón",
+      "continente": "Asia",
+      "capital": "Tokio"
+    },
+    {
+      "codigo": "CN",
+      "nombre": "China",
+      "continente": "Asia",
+      "capital": "Pekín"
+    },
+    {
+      "codigo": "IN",
+      "nombre": "India",
+      "continente": "Asia",
+      "capital": "Nueva Delhi"
+    },
+    {
+      "codigo": "KR",
+      "nombre": "Corea del Sur",
+      "continente": "Asia",
+      "capital": "Seúl"
+    },
+    {
+      "codigo": "TH",
+      "nombre": "Tailandia",
+      "continente": "Asia",
+      "capital": "Bangkok"
+    },
+    {
+      "codigo": "AU",
+      "nombre": "Australia",
+      "continente": "Oceanía",
+      "capital": "Canberra"
+    },
+    {
+      "codigo": "NZ",
+      "nombre": "Nueva Zelanda",
+      "continente": "Oceanía",
+      "capital": "Wellington"
+    },
+    {
+      "codigo": "ZA",
+      "nombre": "Sudáfrica",
+      "continente": "África",
+      "capital": "Ciudad del Cabo"
+    },
+    {
+      "codigo": "EG",
+      "nombre": "Egipto",
+      "continente": "África",
+      "capital": "El Cairo"
+    },
+    {
+      "codigo": "NG",
+      "nombre": "Nigeria",
+      "continente": "África",
+      "capital": "Abuja"
+    }
+  ]
+}

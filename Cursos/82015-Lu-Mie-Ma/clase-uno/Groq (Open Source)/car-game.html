@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atomóvil Saltarín</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #gameCanvas {
+            background: #87CEEB;
+        }
+
+        #score {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #gameOver {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #gameOver h2 {
+            color: #333;
+            margin: 0 0 20px 0;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: transform 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.7;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+        }
+
+        .cloud1 {
+            width: 100px;
+            height: 40px;
+            animation: float 20s infinite;
+        }
+
+        .cloud1::before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+
+        .cloud1::after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 10px;
+        }
+
+        @keyframes float {
+            from {
+                left: -100px;
+            }
+            to {
+                left: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="score">Puntos: 0</div>
+        <div id="gameOver">
+            <h2>¡Juego Terminado!</h2>
+            <p>Puntuación Final: <span id="finalScore">0</span></p>
+            <button onclick="restartGame()">Jugar de Nuevo</button>
+        </div>
+        <div class="cloud cloud1"></div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+        const gameOverScreen = document.getElementById('gameOver');
+        const finalScoreElement = document.getElementById('finalScore');
+
+        // Configurar tamaño del canvas
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        // Variables del juego
+        let gameRunning = false;
+        let score = 0;
+        let groundHeight = 50;
+        let car = {
+            x: 100,
+            y: canvas.height - groundHeight - 50,
+            width: 60,
+            height: 100,
+            velocityY: 0,
+            isJumping: false,
+            color: '#FF6B6B'
+        };
+
+        let obstacles = [];
+        let obstacleWidth = 40;
+        let obstacleHeight = 40;
+        let obstacleGap = 200;
+        let obstacleSpeed = 5;
+
+        // Físicas
+        let gravity = 0.8;
+        let jumpForce = -15;
+
+        // Partículas
+        let particles = [];
+
+        // Event listeners
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
+
+        function handleKeyDown(e) {
+            if (e.code === 'Space' && !car.isJumping) {
+                car.velocityY = jumpForce;
+                car.isJumping = true;
+                createJumpParticles();
+            }
+        }
+
+        function handleKeyUp(e) {
+            // No acción necesaria al levantar la tecla
+        }
+
+        function createJumpParticles() {
+            for (let i = 0; i < 10; i++) {
+                particles.push({
+                    x: car.x + car.width / 2,
+                    y: car.y + car.height,
+                    vx: (Math.random() - 0.5) * 5,
+                    vy: (Math.random() - 2) * 5,
+                    radius: Math.random() * 3,
+                    life: 1
+                });
+            }
+        }
+
+        function createObstacle() {
+            obstacles.push({
+                x: canvas.width,
+                y: car.y,
+                width: obstacleWidth,
+                height: obstacleHeight
+            });
+        }
+
+        function updateObstacles() {
+            obstacles.forEach(obstacle => {
+                obstacle.x -= obstacleSpeed;
+                
+                // Detectar colisión
+                if (checkCollision(car, obstacle)) {
+                    gameOver();
+                }
+
+                if (obstacle.x + obstacleWidth < 0) {
+                    obstacles.shift();
+                    score += 10;
+                    scoreElement.textContent = `Puntos: ${score}`;
+                }
+            });
+        }
+
+        function checkCollision(rect1, rect2) {
+            return rect1.x < rect2.x + rect2.width &&
+                   rect1.x + rect1.width > rect2.x &&
+                   rect1.y < rect2.y + rect2.height &&
+                   rect1.y + rect1.height > rect2.y;
+        }
+
+        function updateCar() {
+            if (car.isJumping) {
+                car.velocityY += gravity;
+                car.y += car.velocityY;
+
+                if (car.y >= canvas.height - groundHeight - car.height) {
+                    car.y = canvas.height - groundHeight - car.height;
+                    car.velocityY = 0;
+                    car.isJumping = false;
+                }
+            }
+        }
+
+        function updateParticles() {
+            particles = particles.filter(particle => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                particle.vy += 0.1;
+                particle.life -= 0.01;
+
+                return particle.life > 0;
+            });
+        }
+
+        function drawCar() {
+            ctx.fillStyle = car.color;
+            ctx.fillRect(car.x, car.y, car.width, car.height/2);
+            
+            // Capó
+            ctx.fillStyle = '#FF5252';
+            ctx.fillRect(car.x, car.y, car.width, car.height/2);
+            
+            // Ruedas
+            ctx.fillStyle = '#333';
+            ctx.beginPath();
+            ctx.arc(car.x + 15, car.y + car.height - 15, 10, 0, Math.PI * 2);
+            ctx.arc(car.x + car.width - 15, car.y + car.height - 15, 10, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        function drawObstacles() {
+            obstacles.forEach(obstacle => {
+                ctx.fillStyle = '#8B4513';
+                ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+                
+                // Detalles
+                ctx.fillStyle = '#A0522D';
+                ctx.fillRect(obstacle.x + 5, obstacle.y + 5, obstacle.width - 10, obstacle.height - 10);
+            });
+        }
+
+        function drawGround() {
+            ctx.fillStyle = '#228B22';
+            ctx.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
+            
+            // Líneas de la carretera
+            ctx.strokeStyle = '#FFF';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height - groundHeight);
+            ctx.lineTo(canvas.width, canvas.height - groundHeight);
+            ctx.stroke();
+        }
+
+        function drawParticles() {
+            particles.forEach(particle => {
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#FFF';
+                ctx.fill();
+            });
+        }
+
+        function gameOver() {
+            gameRunning = false;
+            gameOverScreen.style.display = 'block';
+            finalScoreElement.textContent = score;
+        }
+
+        function restartGame() {
+            gameRunning = true;
+            score = 0;
+            obstacles = [];
+            particles = [];
+            car.y = canvas.height - groundHeight - car.height;
+            car.velocityY = 0;
+            car.isJumping = false;
+            gameOverScreen.style.display = 'none';
+            scoreElement.textContent = `Puntos: ${score}`;
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (gameRunning) {
+                updateCar();
+                updateObstacles();
+                updateParticles();
+            }
+
+            drawGround();
+            drawObstacles();
+            drawCar();
+            drawParticles();
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Iniciar el juego
+        function startGame() {
+            gameRunning = true;
+            gameLoop();
+            
+            // Generar obstáculos
+            setInterval(() => {
+                if (gameRunning) {
+                    createObstacle();
+                }
+            }, 1500);
+        }
+
+        // Inicializar el juego
+        startGame();
+    </script>
+</body>
+</html>

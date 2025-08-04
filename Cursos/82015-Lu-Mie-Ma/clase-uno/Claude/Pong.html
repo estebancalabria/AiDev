@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong Moderno</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+        
+        #gameContainer {
+            position: relative;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            box-shadow: 0 0 30px #00ffff, inset 0 0 30px rgba(0, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        canvas {
+            display: block;
+            background: transparent;
+        }
+        
+        #score {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00ffff;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00ffff;
+            z-index: 10;
+        }
+        
+        #controls {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #00ffff;
+            font-size: 12px;
+            text-align: center;
+            opacity: 0.7;
+        }
+        
+        .glow {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 30px #00ffff, inset 0 0 30px rgba(0, 255, 255, 0.1); }
+            to { box-shadow: 0 0 50px #00ffff, inset 0 0 50px rgba(0, 255, 255, 0.2); }
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer" class="glow">
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+        <div id="score">0 - 0</div>
+        <div id="controls">
+            Jugador Izquierdo: A (arriba) Z (abajo) | Jugador Derecho: ↑ ↓
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+
+        // Variables del juego
+        const game = {
+            width: canvas.width,
+            height: canvas.height,
+            paused: false
+        };
+
+        // Pelota
+        const ball = {
+            x: game.width / 2,
+            y: game.height / 2,
+            dx: 5,
+            dy: 3,
+            radius: 8,
+            speed: 5,
+            trail: []
+        };
+
+        // Jugadores
+        const leftPaddle = {
+            x: 20,
+            y: game.height / 2 - 40,
+            width: 10,
+            height: 80,
+            dy: 0,
+            speed: 6
+        };
+
+        const rightPaddle = {
+            x: game.width - 30,
+            y: game.height / 2 - 40,
+            width: 10,
+            height: 80,
+            dy: 0,
+            speed: 6
+        };
+
+        // Puntuación
+        let leftScore = 0;
+        let rightScore = 0;
+
+        // Partículas
+        const particles = [];
+
+        // Sistema de partículas
+        class Particle {
+            constructor(x, y, dx, dy, color, life) {
+                this.x = x;
+                this.y = y;
+                this.dx = dx;
+                this.dy = dy;
+                this.color = color;
+                this.life = life;
+                this.maxLife = life;
+                this.size = Math.random() * 3 + 1;
+            }
+
+            update() {
+                this.x += this.dx;
+                this.y += this.dy;
+                this.dx *= 0.98;
+                this.dy *= 0.98;
+                this.life--;
+                this.size *= 0.99;
+            }
+
+            draw() {
+                const alpha = this.life / this.maxLife;
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Crear partículas
+        function createParticles(x, y, color, count = 10) {
+            for (let i = 0; i < count; i++) {
+                const angle = (Math.PI * 2 / count) * i;
+                const speed = Math.random() * 4 + 2;
+                const dx = Math.cos(angle) * speed;
+                const dy = Math.sin(angle) * speed;
+                particles.push(new Particle(x, y, dx, dy, color, 30));
+            }
+        }
+
+        // Controles
+        const keys = {};
+        
+        document.addEventListener('keydown', (e) => {
+            keys[e.key.toLowerCase()] = true;
+        });
+        
+        document.addEventListener('keyup', (e) => {
+            keys[e.key.toLowerCase()] = false;
+        });
+
+        // Actualizar jugadores
+        function updatePaddles() {
+            // Jugador izquierdo (A y Z)
+            if (keys['a'] && leftPaddle.y > 0) {
+                leftPaddle.y -= leftPaddle.speed;
+            }
+            if (keys['z'] && leftPaddle.y < game.height - leftPaddle.height) {
+                leftPaddle.y += leftPaddle.speed;
+            }
+
+            // Jugador derecho (flechas)
+            if (keys['arrowup'] && rightPaddle.y > 0) {
+                rightPaddle.y -= rightPaddle.speed;
+            }
+            if (keys['arrowdown'] && rightPaddle.y < game.height - rightPaddle.height) {
+                rightPaddle.y += rightPaddle.speed;
+            }
+        }
+
+        // Actualizar pelota
+        function updateBall() {
+            // Agregar posición actual al rastro
+            ball.trail.push({ x: ball.x, y: ball.y });
+            if (ball.trail.length > 15) {
+                ball.trail.shift();
+            }
+
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+            // Colisión con bordes superior e inferior
+            if (ball.y <= ball.radius || ball.y >= game.height - ball.radius) {
+                ball.dy = -ball.dy;
+                createParticles(ball.x, ball.y, '#00ffff', 8);
+            }
+
+            // Colisión con paleta izquierda
+            if (ball.x - ball.radius <= leftPaddle.x + leftPaddle.width &&
+                ball.y >= leftPaddle.y &&
+                ball.y <= leftPaddle.y + leftPaddle.height &&
+                ball.dx < 0) {
+                
+                ball.dx = -ball.dx;
+                const hitPos = (ball.y - leftPaddle.y) / leftPaddle.height;
+                ball.dy = (hitPos - 0.5) * 10;
+                createParticles(ball.x, ball.y, '#ff00ff', 12);
+            }
+
+            // Colisión con paleta derecha
+            if (ball.x + ball.radius >= rightPaddle.x &&
+                ball.y >= rightPaddle.y &&
+                ball.y <= rightPaddle.y + rightPaddle.height &&
+                ball.dx > 0) {
+                
+                ball.dx = -ball.dx;
+                const hitPos = (ball.y - rightPaddle.y) / rightPaddle.height;
+                ball.dy = (hitPos - 0.5) * 10;
+                createParticles(ball.x, ball.y, '#ff00ff', 12);
+            }
+
+            // Gol
+            if (ball.x < 0) {
+                rightScore++;
+                resetBall();
+                createParticles(game.width / 2, game.height / 2, '#00ff00', 20);
+            } else if (ball.x > game.width) {
+                leftScore++;
+                resetBall();
+                createParticles(game.width / 2, game.height / 2, '#00ff00', 20);
+            }
+        }
+
+        // Reiniciar pelota
+        function resetBall() {
+            ball.x = game.width / 2;
+            ball.y = game.height / 2;
+            ball.dx = (Math.random() > 0.5 ? 1 : -1) * ball.speed;
+            ball.dy = (Math.random() - 0.5) * 6;
+            ball.trail = [];
+            updateScore();
+        }
+
+        // Actualizar puntuación
+        function updateScore() {
+            scoreElement.textContent = `${leftScore} - ${rightScore}`;
+        }
+
+        // Dibujar elementos
+        function draw() {
+            // Limpiar canvas con efecto de desvanecimiento
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, game.width, game.height);
+
+            // Línea central
+            ctx.strokeStyle = '#00ffff';
+            ctx.setLineDash([10, 10]);
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(game.width / 2, 0);
+            ctx.lineTo(game.width / 2, game.height);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Dibujar rastro de la pelota
+            ctx.shadowBlur = 0;
+            for (let i = 0; i < ball.trail.length; i++) {
+                const alpha = i / ball.trail.length * 0.5;
+                const size = (i / ball.trail.length) * ball.radius;
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.fillStyle = '#00ffff';
+                ctx.beginPath();
+                ctx.arc(ball.trail[i].x, ball.trail[i].y, size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+
+            // Pelota
+            ctx.save();
+            ctx.fillStyle = '#00ffff';
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = '#00ffff';
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            // Paletas con efecto de brillo
+            ctx.save();
+            ctx.fillStyle = '#ff00ff';
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = '#ff00ff';
+            ctx.fillRect(leftPaddle.x, leftPaddle.y, leftPaddle.width, leftPaddle.height);
+            ctx.fillRect(rightPaddle.x, rightPaddle.y, rightPaddle.width, rightPaddle.height);
+            ctx.restore();
+
+            // Actualizar y dibujar partículas
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const particle = particles[i];
+                particle.update();
+                particle.draw();
+                
+                if (particle.life <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+
+        // Bucle principal del juego
+        function gameLoop() {
+            updatePaddles();
+            updateBall();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        // Inicializar juego
+        resetBall();
+        gameLoop();
+    </script>
+</body>
+</html>

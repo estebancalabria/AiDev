@@ -1,0 +1,92 @@
+body {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    font-family: 'Press Start 2P', monospace; /* A classic game font */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 20px;
+    background-image: 
+        linear-gradient(rgba(26, 26, 46, 0.95), rgba(26, 26, 46, 0.95)),
+        url(background.png);
+    background-size: cover;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #FF00FF; /* Bright magenta for titles */
+    text-shadow: 0 0 5px #FF00FF, 0 0 10px #FF00FF, 0 0 15px #00FFFF;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+canvas {
+    border: 3px solid #00FFFF; /* Cyan border */
+    box-shadow: 0 0 15px #00FFFF;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 200px;
+}
+
+.side-panel > div {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #FF00FF;
+    text-align: center;
+}
+
+#score {
+    font-size: 2em;
+    color: #FFF;
+    margin: 0;
+}
+
+button {
+    background-color: #FF00FF;
+    color: #FFF;
+    border: none;
+    padding: 15px;
+    font-family: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #FF00FF;
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: #FFF;
+    color: #FF00FF;
+    box-shadow: 0 0 15px #FFF;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#game-over {
+    border-color: #FF3333;
+}
+#game-over h2 {
+    color: #FF3333;
+    text-shadow: 0 0 10px #FF3333;
+}
+

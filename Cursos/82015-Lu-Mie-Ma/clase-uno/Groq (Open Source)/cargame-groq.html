@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automóvil Saltarín</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #87CEEB;
+            font-family: Arial, sans-serif;
+        }
+
+        #gameContainer {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            background: #2c3e50;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        #road {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            background: #333;
+            border-top: 2px solid #666;
+        }
+
+        .car {
+            position: absolute;
+            bottom: 20px;
+            left: 50px;
+            width: 60px;
+            height: 40px;
+            background: #e74c3c;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .car::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: #2c3e50;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .wheel {
+            position: absolute;
+            bottom: -8px;
+            width: 16px;
+            height: 16px;
+            background: #34495e;
+            border-radius: 50%;
+        }
+
+        .wheel.front {
+            right: 8px;
+        }
+
+        .wheel.back {
+            left: 8px;
+        }
+
+        .obstacle {
+            position: absolute;
+            bottom: 20px;
+            width: 40px;
+            height: 40px;
+            background: #d63031;
+            border-radius: 5px;
+            animation: moveObstacle 3s linear infinite;
+        }
+
+        @keyframes moveObstacle {
+            from { transform: translateX(800px); }
+            to { transform: translateX(-40px); }
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 20px;
+        }
+
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            display: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #e74c3c;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #c0392b;
+        }
+
+        #startScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        #startScreen h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        #startBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        #startBtn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="startScreen">
+            <h1>Automóvil Saltarín</h1>
+            <p>Presiona la barra espaciadora para saltar</p>
+            <button id="startBtn">Iniciar Juego</button>
+        </div>
+        <div id="gameOver">
+            <h2>Game Over</h2>
+            <p>Puntuación: <span id="finalScore">0</span></p>
+            <button onclick="restartGame()">Reiniciar</button>
+        </div>
+        <div id="score">Puntuación: 0</div>
+        <div id="road"></div>
+        <div class="car">
+            <div class="wheel front"></div>
+            <div class="wheel back"></div>
+        </div>
+    </div>
+
+    <script>
+        const car = document.querySelector('.car');
+        let isJumping = false;
+        let score = 0;
+        let gameStarted = false;
+        let obstacles = [];
+
+        function startGame() {
+            document.getElementById('startScreen').style.display = 'none';
+            gameStarted = true;
+            generateObstacles();
+            updateScore();
+        }
+
+        function generateObstacles() {
+            const obstacle = document.createElement('div');
+            obstacle.className = 'obstacle';
+            document.getElementById('gameContainer').appendChild(obstacle);
+            obstacles.push({
+                element: obstacle,
+                position: 800
+            });
+
+            if (gameStarted) {
+                setTimeout(generateObstacles, 2000);
+            }
+        }
+
+        function updateGame() {
+            if (!gameStarted) return;
+
+            obstacles.forEach((obstacle, index) => {
+                obstacle.position -= 5;
+                obstacle.element.style.transform = `translateX(${obstacle.position}px)`;
+
+                // Detectar colisión
+                const carRect = car.getBoundingClientRect();
+                const obstacleRect = obstacle.element.getBoundingClientRect();
+
+                if (
+                    obstacle.position > 50 &&
+                    obstacle.position < 350 &&
+                    !isJumping
+                ) {
+                    gameOver();
+                }
+
+                if (obstacle.position < -40) {
+                    obstacle.element.remove();
+                    obstacles.splice(index, 1);
+                }
+            });
+
+            requestAnimationFrame(updateGame);
+        }
+
+        function jump() {
+            if (!isJumping && gameStarted) {
+                isJumping = true;
+                car.style.transform = 'translateY(-100px)';
+                setTimeout(() => {
+                    car.style.transform = 'translateY(0)';
+                    isJumping = false;
+                }, 500);
+            }
+        }
+
+        function updateScore() {
+            score++;
+            document.getElementById('score').textContent = `Puntuación: ${score}`;
+            setTimeout(updateScore, 100);
+        }
+
+        function gameOver() {
+            gameStarted = false;
+            document.getElementById('gameOver').style.display = 'block';
+            document.getElementById('finalScore').textContent = score;
+        }
+
+        function restartGame() {
+            location.reload();
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                jump();
+            }
+        });
+
+        document.getElementById('startBtn').addEventListener('click', startGame);
+        updateGame();
+    </script>
+</body>
+</html>

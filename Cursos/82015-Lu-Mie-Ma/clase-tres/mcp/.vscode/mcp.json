@@ -1,0 +1,16 @@
+{
+    "servers": {
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "C:\\Cursos\\AiDev\\Cursos\\82015-Lu-Mie-Ma\\clase-tres\\mcp"
+            ]
+        },
+        "puppeteer": {
+            "command": "npx",
+            "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+          }   
+    }
+}

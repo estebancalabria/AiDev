@@ -1,0 +1,144 @@
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    overflow: hidden;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.categoria-btn {
+    font-weight: 600;
+    padding: 8px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#barra-progreso {
+    transition: width 0.3s ease;
+}
+
+.opcion-btn {
+    text-align: left;
+    padding: 15px;
+    font-size: 1.1em;
+    border: 2px solid #dee2e6;
+}
+
+.opcion-btn:hover {
+    background-color: #f8f9fa;
+}
+
+.opcion-btn.correcta {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.opcion-btn.incorrecta {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.opcion-btn.seleccionada {
+    border-width: 3px;
+    border-color: #007bff;
+}
+
+#pantalla-resultado .card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+#puntaje-final {
+    font-size: 2.5em;
+    color: #007bff;
+    font-weight: bold;
+}
+
+#mensaje-final {
+    font-size: 1.2em;
+    color: #6c757d;
+}
+
+.categorias-container {
+    height: calc(100vh - 200px);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+}
+
+.categorias-container .card {
+    height: 100%;
+    max-height: 120px;
+    margin: 0;
+}
+
+.container {
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    min-height: calc(100vh - 200px);
+    margin-bottom: 4rem;
+}
+
+#banner-juego {
+    width: 100vw;
+    min-width: 100vw;
+    margin: 0;
+    padding: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    background: linear-gradient(90deg, #e1008d 0%, #ffb347 70%, #fff 100%);
+    border-radius: 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+#titulo-juego {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    padding: 30px 40px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border-radius: 0;
+    position: relative;
+    letter-spacing: 1px;
+    z-index: 1;
+}
+
+#banner-juego svg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 80px;
+    pointer-events: none;
+} 
