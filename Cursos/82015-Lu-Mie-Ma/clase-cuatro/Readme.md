@@ -46,3 +46,24 @@ Design: Inter/Roboto fonts, card-based ticket layout, drag-and-drop kanban colum
 
 Application is in spanish
 ```
+
+## Herranietas de IA para Analisis de Sistemas
+
+### Workflow de trabajo
+
+1. Capturo la transcripcion de las minutas de reunion
+2. Junto toda la documentacion de un proyecto
+3. Utilizo ... (Spoiler alert) para organizar toda la documentacion y utilizar un LLM para hacer consultas
+
+### Analisis de Requerimientos : Minutas de Reuniones
+
+Herramientas para grabar reuniones y generar Minutas:
+* https://tactiq.io/es
+* https://meetgeek.ai/es
+* https://www.notta.ai/es
+* https://otter.ai/
+* https://tldv.io/es/
+
+Estas herramientas tienen dos modos de funcionamiento
+* Cargar el video o el audio de la minuta de reunion para transcribirlo y generar notas
+* Tomar notas directamente de la reunion desde Meet, Webex, Zoom, Teams (lo trae en forma nativa), etc
