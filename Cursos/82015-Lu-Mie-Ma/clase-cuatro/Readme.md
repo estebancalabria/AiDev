@@ -53,7 +53,7 @@ Application is in spanish
 
 1. Capturo la transcripcion de las minutas de reunion
 2. Junto toda la documentacion de un proyecto
-3. Utilizo ... (Spoiler alert) para organizar toda la documentacion y utilizar un LLM para hacer consultas
+3. Utilizo NotebookLM para organizar toda la documentacion y utilizar un LLM para hacer consultas
 
 ### Analisis de Requerimientos : Minutas de Reuniones
 
@@ -67,3 +67,17 @@ Herramientas para grabar reuniones y generar Minutas:
 Estas herramientas tienen dos modos de funcionamiento
 * Cargar el video o el audio de la minuta de reunion para transcribirlo y generar notas
 * Tomar notas directamente de la reunion desde Meet, Webex, Zoom, Teams (lo trae en forma nativa), etc
+
+### NotebookLM
+
+Es comoo un chatgpt (en realidad usa los modelos de google) donde le podes cargar un monton de documentacion como contexto armando "notebooks" sobre una tematica
+
+> https://notebooklm.google.com/
+
+Una vez cargada la documetnacion puedo:
+* Generar notas
+* Pedir Resumenes
+* Hacer preguntas concretas
+* Generar mapas de mente
+* FRUTILLA DEL POSTRE : Puede generar un podcast sobre la documentacion donde dos personas explican toda la documentacion hablando como si fuera un programa de radio!
+        * En settings... output language.. le puedo cambiar el idioma 
