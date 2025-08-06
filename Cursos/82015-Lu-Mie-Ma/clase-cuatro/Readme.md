@@ -47,6 +47,8 @@ Design: Inter/Roboto fonts, card-based ticket layout, drag-and-drop kanban colum
 Application is in spanish
 ```
 
+---
+
 ## Herranietas de IA para Analisis de Sistemas
 
 ### Workflow de trabajo
@@ -81,3 +83,22 @@ Una vez cargada la documetnacion puedo:
 * Generar mapas de mente
 * FRUTILLA DEL POSTRE : Puede generar un podcast sobre la documentacion donde dos personas explican toda la documentacion hablando como si fuera un programa de radio!
         * En settings... output language.. le puedo cambiar el idioma 
+
+---
+
+## Herramientas para el disenio
+
+### DiagramGPT
+
+PAra hacer diagras con IA:
+> https://www.eraser.io/diagramgpt
+
+Ejemplos prompt
+
+```
+Genérame un diagrama cloud para AWS de una aplicación del estilo de Netflix, que sea escalable y respete todas las buenas prácticas de system design
+```
+
+### Mermaid
+
+(ver la clase que viene si no llegamos)
