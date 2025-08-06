@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}Kanban Board - Project Management{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h3 mb-0">Kanban Board</h1>
+            <p class="text-muted">Drag and drop tickets to update their status</p>
+        </div>
+    </div>
+
+    <!-- Kanban Board -->
+    <div class="row g-4">
+        <!-- To Do Column -->
+        <div class="col-md-4">
+            <div class="kanban-column">
+                <div class="kanban-header d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0 d-flex align-items-center">
+                        <i class="fas fa-circle text-warning me-2"></i>
+                        To Do
+                        <span class="badge bg-secondary ms-2">{{ todo_tickets|length }}</span>
+                    </h5>
+                </div>
+                <div class="kanban-cards" id="todo-cards" data-status="To Do">
+                    {% for ticket in todo_tickets %}
+                    <div class="ticket-card" data-ticket-id="{{ ticket.id }}">
+                        <div class="card shadow-sm border-0 mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="card-title mb-0">{{ ticket.title }}</h6>
+                                    <span class="badge priority-badge priority-{{ ticket.priority.lower() }}">
+                                        {{ ticket.priority }}
+                                    </span>
+                                </div>
+                                <p class="card-text text-muted small mb-3">{{ ticket.description[:100] }}{% if ticket.description|length > 100 %}...{% endif %}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    {% if ticket.assignee_id and users[ticket.assignee_id] %}
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-sm bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2">
+                                            {{ users[ticket.assignee_id].name[0] }}
+                                        </div>
+                                        <small class="text-muted">{{ users[ticket.assignee_id].name }}</small>
+                                    </div>
+                                    {% else %}
+                                    <small class="text-muted">Unassigned</small>
+                                    {% endif %}
+                                    <small class="text-muted">{{ ticket.created_at.strftime('%m/%d') }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- In Progress Column -->
+        <div class="col-md-4">
+            <div class="kanban-column">
+                <div class="kanban-header d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0 d-flex align-items-center">
+                        <i class="fas fa-circle text-info me-2"></i>
+                        In Progress
+                        <span class="badge bg-secondary ms-2">{{ in_progress_tickets|length }}</span>
+                    </h5>
+                </div>
+                <div class="kanban-cards" id="in-progress-cards" data-status="In Progress">
+                    {% for ticket in in_progress_tickets %}
+                    <div class="ticket-card" data-ticket-id="{{ ticket.id }}">
+                        <div class="card shadow-sm border-0 mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="card-title mb-0">{{ ticket.title }}</h6>
+                                    <span class="badge priority-badge priority-{{ ticket.priority.lower() }}">
+                                        {{ ticket.priority }}
+                                    </span>
+                                </div>
+                                <p class="card-text text-muted small mb-3">{{ ticket.description[:100] }}{% if ticket.description|length > 100 %}...{% endif %}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    {% if ticket.assignee_id and users[ticket.assignee_id] %}
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-sm bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2">
+                                            {{ users[ticket.assignee_id].name[0] }}
+                                        </div>
+                                        <small class="text-muted">{{ users[ticket.assignee_id].name }}</small>
+                                    </div>
+                                    {% else %}
+                                    <small class="text-muted">Unassigned</small>
+                                    {% endif %}
+                                    <small class="text-muted">{{ ticket.created_at.strftime('%m/%d') }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Done Column -->
+        <div class="col-md-4">
+            <div class="kanban-column">
+                <div class="kanban-header d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0 d-flex align-items-center">
+                        <i class="fas fa-circle text-success me-2"></i>
+                        Done
+                        <span class="badge bg-secondary ms-2">{{ done_tickets|length }}</span>
+                    </h5>
+                </div>
+                <div class="kanban-cards" id="done-cards" data-status="Done">
+                    {% for ticket in done_tickets %}
+                    <div class="ticket-card" data-ticket-id="{{ ticket.id }}">
+                        <div class="card shadow-sm border-0 mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="card-title mb-0">{{ ticket.title }}</h6>
+                                    <span class="badge priority-badge priority-{{ ticket.priority.lower() }}">
+                                        {{ ticket.priority }}
+                                    </span>
+                                </div>
+                                <p class="card-text text-muted small mb-3">{{ ticket.description[:100] }}{% if ticket.description|length > 100 %}...{% endif %}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    {% if ticket.assignee_id and users[ticket.assignee_id] %}
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-sm bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2">
+                                            {{ users[ticket.assignee_id].name[0] }}
+                                        </div>
+                                        <small class="text-muted">{{ users[ticket.assignee_id].name }}</small>
+                                    </div>
+                                    {% else %}
+                                    <small class="text-muted">Unassigned</small>
+                                    {% endif %}
+                                    <small class="text-muted">{{ ticket.created_at.strftime('%m/%d') }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/board.js') }}"></script>
+{% endblock %}

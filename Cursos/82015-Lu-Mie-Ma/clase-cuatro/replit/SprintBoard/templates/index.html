@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Project Management{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="h3 mb-4">Welcome to ProjectBoard</h1>
+            <p class="text-muted mb-4">Manage your projects efficiently with our Jira-inspired interface.</p>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                            <h5 class="card-title">Dashboard</h5>
+                            <p class="card-text">View project metrics and team progress</p>
+                            <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Go to Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-columns fa-3x text-success mb-3"></i>
+                            <h5 class="card-title">Kanban Board</h5>
+                            <p class="card-text">Visualize and manage your workflow</p>
+                            <a href="{{ url_for('board') }}" class="btn btn-success">View Board</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-ticket-alt fa-3x text-warning mb-3"></i>
+                            <h5 class="card-title">Tickets</h5>
+                            <p class="card-text">Create and manage project tickets</p>
+                            <a href="{{ url_for('tickets_list') }}" class="btn btn-warning">Manage Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Project Management{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h3 mb-0">Project Dashboard</h1>
+            <p class="text-muted">Overview of your project metrics and recent activity</p>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-3">
+            <div class="card stats-card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="stats-icon bg-primary bg-opacity-10 rounded-circle p-3 me-3">
+                            <i class="fas fa-ticket-alt text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">{{ stats.total_tickets }}</h3>
+                            <p class="text-muted mb-0 small">Total Tickets</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stats-card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="stats-icon bg-warning bg-opacity-10 rounded-circle p-3 me-3">
+                            <i class="fas fa-clock text-warning"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">{{ stats.todo_count }}</h3>
+                            <p class="text-muted mb-0 small">To Do</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stats-card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="stats-icon bg-info bg-opacity-10 rounded-circle p-3 me-3">
+                            <i class="fas fa-play text-info"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">{{ stats.in_progress_count }}</h3>
+                            <p class="text-muted mb-0 small">In Progress</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card stats-card border-0 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div class="stats-icon bg-success bg-opacity-10 rounded-circle p-3 me-3">
+                            <i class="fas fa-check text-success"></i>
+                        </div>
+                        <div>
+                            <h3 class="mb-0">{{ stats.done_count }}</h3>
+                            <p class="text-muted mb-0 small">Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Overview -->
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-transparent border-0">
+                    <h5 class="mb-0">Completion Rate</h5>
+                </div>
+                <div class="card-body">
+                    <div class="progress-container">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Overall Progress</span>
+                            <span class="fw-semibold">{{ stats.completion_rate }}%</span>
+                        </div>
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-success" role="progressbar" 
+                                 style="width: {{ stats.completion_rate }}%" 
+                                 aria-valuenow="{{ stats.completion_rate }}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-transparent border-0">
+                    <h5 class="mb-0">Quick Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('tickets_list') }}" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Create New Ticket
+                        </a>
+                        <a href="{{ url_for('board') }}" class="btn btn-outline-primary">
+                            <i class="fas fa-columns me-2"></i>View Kanban Board
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Tickets -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-transparent border-0 d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Recent Tickets</h5>
+                    <a href="{{ url_for('tickets_list') }}" class="btn btn-sm btn-outline-primary">View All</a>
+                </div>
+                <div class="card-body p-0">
+                    {% if recent_tickets %}
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="border-0">Ticket</th>
+                                        <th class="border-0">Status</th>
+                                        <th class="border-0">Priority</th>
+                                        <th class="border-0">Assignee</th>
+                                        <th class="border-0">Updated</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for ticket in recent_tickets %}
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <div class="fw-semibold">{{ ticket.title }}</div>
+                                                <small class="text-muted">{{ ticket.description[:50] }}{% if ticket.description|length > 50 %}...{% endif %}</small>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="badge status-badge status-{{ ticket.status.lower().replace(' ', '-') }}">
+                                                {{ ticket.status }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="badge priority-badge priority-{{ ticket.priority.lower() }}">
+                                                {{ ticket.priority }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {% if ticket.assignee_id and users[ticket.assignee_id] %}
+                                                <div class="d-flex align-items-center">
+                                                    <div class="avatar-sm bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-2">
+                                                        {{ users[ticket.assignee_id].name[0] }}
+                                                    </div>
+                                                    {{ users[ticket.assignee_id].name }}
+                                                </div>
+                                            {% else %}
+                                                <span class="text-muted">Unassigned</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="text-muted">
+                                            {{ ticket.updated_at.strftime('%m/%d %H:%M') }}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-ticket-alt fa-3x text-muted mb-3"></i>
+                            <h5 class="text-muted">No tickets found</h5>
+                            <p class="text-muted">Create your first ticket to get started</p>
+                            <a href="{{ url_for('tickets_list') }}" class="btn btn-primary">Create Ticket</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
