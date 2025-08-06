@@ -9,6 +9,7 @@ Plan para hoy ver:
 ## TIP 
 * Con cualquier herramienta conviene mejorar los prompts con ChatGPT para obtener mejores resultados (o el mejorador de prompt incluidos en la herramienta)
 * Conviene poner los prompts en ingles
+* IMPROTANTE: En herramientas como Replt tomarse el tiempo para iterar el plan antes de generar la aplicacion
 
 ## Replit
 
