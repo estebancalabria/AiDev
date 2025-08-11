@@ -27,6 +27,7 @@ Codding Assistants para elegir:
 * Tabnine
 * Cody
 * Continue : Permite vincular el codding assistant con un LLM Local
+* Quodo (para pruebas unitarias)
 
 ### Github Copilot : Generacion de Codigo
 
@@ -198,6 +199,30 @@ app.listen(3000, () => {
 * **Corregir o hacer mas robusta una funcion** (comando /fix) : Se puede habilitar seleccionando la funcion que quiero mejorar o corregir. Por defecto me hace sugerencias y yo le puedo pedir mejoras especificas al chat inline
 * **Documentar codigo existente** (comando /doc) : Se puede documentar tanto en el chat inline como en el chat convencional
 * **Explicar codigo existente** (comando /explain)
+* **Generacion de Pruebas unitarias** : aunque mejor la extension que vamos a ver a continuacion
+
+### Pruebas unitarias con IA : Extension Quodo
+
+Pasos :
+1. Instalar Quodo
+2. Crear un proyecto de nodejs e instalar jest
+```cmd
+npm init -y
+npm install jest --save-dev
+```
+3. Crear un archivo con funcione javascript
+4. Crear las pruebas unitarias con Quodo en un archivo aparte
+5. En el package.json cambiar la parte de test
+```json
+  "scripts": {
+    "test": "jest"
+  },
+```
+5. Ejecutar pruenas generados por quodo
+```
+npm test
+```
+7. 
 
 ## Editores con IA
 
