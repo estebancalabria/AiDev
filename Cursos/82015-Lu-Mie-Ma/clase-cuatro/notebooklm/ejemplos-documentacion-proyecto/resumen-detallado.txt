@@ -1,0 +1,81 @@
+# Resumen de la Clase: Inteligencia Artificial y Productividad – Machine Learning y Uso de IA en Google Sheets
+
+---
+
+## 1. Introducción a Machine Learning (ML)
+
+- Se explicó el concepto básico de ML: algoritmos que aprenden a partir de datos, a diferencia de algoritmos convencionales con pasos predefinidos.
+- Se discutió la utilidad de ML para analizar grandes cantidades de datos y tomar decisiones.
+- Se mencionaron tres tipos de problemas típicos en ML:
+  - Clasificación: categorizar datos (ejemplo, predecir si un pasajero del Titanic sobrevivió).
+  - Regresión: predecir valores continuos o en series temporales.
+  - Detección de anomalías: identificar datos fuera de parámetros normales.
+- Se enfatizó la importancia de preparar los datos (obtener, limpiar, etiquetar) para entrenar modelos eficientes.
+
+---
+
+## 2. Proyecto práctico con Dataset del Titanic
+
+- Se utilizó Kaggle para descargar el dataset del Titanic en formato CSV.
+- Se importaron los datos en Google Sheets para análisis y preparación.
+- Se diferenciaron las columnas en:
+  - Label: lo que se desea predecir (columna "Survive").
+  - Features: datos usados para la predicción (edad, sexo, clase, tarifa, etc.).
+  - Datos irrelevantes que se descartaron (Passenger ID, nombre, ticket, cabina).
+- Se destacó que la selección de features puede variar según el criterio del analista.
+
+---
+
+## 3. Uso de la extensión SimpleML4Sheets para ML en Google Sheets
+
+- Se instaló y configuró la extensión para ejecutar modelos de ML directamente en Google Sheets.
+- Se explicó cómo separar datos en conjuntos de entrenamiento y prueba (30 primeros registros para prueba).
+- Se entrenó un modelo de clasificación para predecir la supervivencia en el Titanic.
+- Se corrigieron problemas de formatos de datos para evitar errores (edad y tarifa convertidas a formato numérico).
+- El modelo mostró resultados muy precisos en la predicción de los datos de prueba.
+- Se exploró la función avanzada para entender la importancia relativa de cada feature, destacando que el sexo fue la variable con mayor influencia, seguida por la tarifa y edad.
+- Hubo discusión sobre los diferentes algoritmos disponibles (gradient boost, random forest, decision tree) y su uso según tipo de problema.
+
+---
+
+## 4. Introducción a problemas de regresión con ejemplo simple
+
+- Se creó un proyecto sencillo para predecir ventas futuras en base a datos lineales.
+- Se configuraron fechas y valores en Google Sheets con formato adecuado.
+- Se utilizó la extensión para realizar predicciones de ventas futuras (regresión).
+- Se enfrentaron problemas relacionados con formatos de número y fechas debido a configuración regional.
+- Se observó la importancia de tener suficientes datos para mejorar la precisión de la predicción.
+
+---
+
+## 5. Uso de inteligencia artificial en Google Sheets con ChatGPT y extensiones
+
+- Se mostró la integración de IA directamente en Google Sheets a través de la herramienta "Gemini", que aún no está disponible para todos.
+- Se presentó la extensión "SheetGPT" para Google Sheets que permite insertar funciones basadas en IA con prompts personalizados.
+- Se mostró cómo generar listas automáticas (ejemplo: países de Latinoamérica) y complementar datos (como capitales) utilizando funciones GPT dentro de la hoja.
+- Se explicó la importancia de transformar resultados generados en valores estáticos para evitar recálculos constantes.
+- Se probó la función para generación de imágenes basada en IA dentro de Google Sheets, ajustando el tamaño de las celdas para mejor visualización.
+- Se comparó brevemente con Microsoft Excel, donde está disponible Copilot para funciones IA integradas.
+
+---
+
+## 6. Feedback y conclusiones generales
+
+- Se alentó a los estudiantes a considerar carreras en ciencia e ingeniería de datos, destacando su futuro prometedor.
+- Se destacaron las posibilidades prácticas de ML y IA para diversos campos, como ventas y análisis de datos.
+- Se resaltó que aunque estas herramientas facilitan el trabajo, el conocimiento del proceso y la experimentación con datos es fundamental para un análisis exitoso.
+- Se valoró positivamente la clase y las herramientas presentadas, con buena participación y entusiasmo de los alumnos.
+- Se anunció que en la próxima clase se cerrarán los temas pendientes y se iniciará un nuevo bloque sobre integración de IA en hojas de cálculo.
+
+---
+
+# Notas adicionales
+
+- Se proporcionaron links y recursos para instalación y práctica individual.
+- Se recomendó el uso de dos monitores para mejor experiencia en cursos online.
+- Se consignaron tips para el uso adecuado de formatos y configuración regional en Google Sheets para evitar errores en modelos.
+- Se incentivó la experimentación con diferentes features y labels para entender mejor el impacto de cada variable en la predicción.
+
+---
+
+**Fin del resumen.**
