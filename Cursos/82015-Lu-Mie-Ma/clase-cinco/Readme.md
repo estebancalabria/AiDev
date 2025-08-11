@@ -20,4 +20,17 @@ Features:
 * Sincronizacion con Gihub (te crea un repo para cada proyecto)
   
 
-## Ides con IA 
+## Codding Assistants
+
+Codding Assistants para elegir:
+* Github Copilot : Ahora es gratuito. Es la que mejor funcionan los MCP
+* Tabnine
+* Cody
+* Continue : Permite vincular el codding assistant con un LLM Local
+
+## Editores con IA
+
+Editores:
+* VScode : El clasico que le podemos incorporar IA por medio de extensiones
+* Cursor (https://cursor.com/) : Ya tae incoporada la IA en forma nativa y permite tener una base de conocimiento mayor sobre el proyecto
+* Windsurf (https://windsurf.com/download) : Alternativa popular a Cursor
