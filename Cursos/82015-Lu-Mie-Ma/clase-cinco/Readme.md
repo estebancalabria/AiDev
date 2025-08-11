@@ -188,6 +188,16 @@ app.listen(3000, () => {
 });
 
 ```
+* Generar un proyecto nuevo (pueden ser varios archivos) con el comanto @workspace new desde el github copilot chat
+```chat
+@workspace new agregar una api en nodejs y express que devuelva el clima
+```
+
+### Github Copilot : Otros features
+
+* **Corregir o hacer mas robusta una funcion** (comando /fix) : Se puede habilitar seleccionando la funcion que quiero mejorar o corregir. Por defecto me hace sugerencias y yo le puedo pedir mejoras especificas al chat inline
+* **Documentar codigo existente** (comando /doc) : Se puede documentar tanto en el chat inline como en el chat convencional
+* **Explicar codigo existente** (comando /explain)
 
 ## Editores con IA
 
