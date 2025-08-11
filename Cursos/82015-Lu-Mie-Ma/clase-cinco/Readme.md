@@ -28,6 +28,167 @@ Codding Assistants para elegir:
 * Cody
 * Continue : Permite vincular el codding assistant con un LLM Local
 
+### Github Copilot : Generacion de Codigo
+
+Casos de Generacion de Codigo
+* Generacion de Codigo Pasiva
+```javascript
+
+// Caso 1 : Generacion de codigo pasiva
+//          Solo escribo el nombre de la funcion y el copilot completa lo que sigue
+function titleCase(str){
+  return str.toLowerCase().split(' ').map(function(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }).join(' ');
+}
+```
+* Generacion de Codigo Basada en Comentario
+```javascript
+// Caso 2 : Generacion de codigo a partir de comentarios
+// Quiero una funcion que convierta una fecha de formato yyyy-MM-dd
+// a formato dd-MM-yyyy
+function convertDateFormat(dateString) {
+  const [year, month, day] = dateString.split('-');
+  return `${day}-${month}-${year}`;
+}
+```
+* Generacion de codigo con el chat Inine (ctrl+I)
+```javascript
+
+//Caso 3 : Utilizacion del chat Inline (ctrl+I)
+// Funcion que calcula el desvio estandar de un array de numeros
+function calcularDesvioEstandar(arr) {
+    const n = arr.length;
+    if (n === 0) return 0;
+    const media = arr.reduce((a, b) => a + b, 0) / n;
+    const sumaCuadrados = arr.reduce((acc, val) => acc + Math.pow(val - media, 2), 0);
+    return Math.sqrt(sumaCuadrados / n);
+}
+```
+* Generacion de codigo en el chat de Copilot (ctrl+shift+I)
+```javascript
+
+
+//Caso 4 : Utilizacion del github copilot chat (ctrl+shift+i)
+// Función que convierte todas las claves de un objeto JSON a minúsculas
+function convertirClavesAMinuscula(obj) {
+    if (obj === null || typeof obj !== 'object' || Array.isArray(obj)) {
+        return obj;
+    }
+    
+    const resultado = {};
+    
+    for (const clave in obj) {
+        if (obj.hasOwnProperty(clave)) {
+            const claveMinuscula = clave.toLowerCase();
+            const valor = obj[clave];
+            
+            // Recursivamente convertir objetos anidados
+            if (typeof valor === 'object' && valor !== null && !Array.isArray(valor)) {
+                resultado[claveMinuscula] = convertirClavesAMinuscula(valor);
+            } else if (Array.isArray(valor)) {
+                // Si es un array, procesar cada elemento
+                resultado[claveMinuscula] = valor.map(item => 
+                    typeof item === 'object' && item !== null && !Array.isArray(item) 
+                        ? convertirClavesAMinuscula(item) 
+                        : item
+                );
+            } else {
+                resultado[claveMinuscula] = valor;
+            }
+        }
+    }
+    
+    return resultado;
+}
+
+// Ejemplo de uso:
+/*
+const objetoOriginal = {
+    "NOMBRE": "Juan",
+    "EDAD": 25,
+    "DIRECCION": {
+        "CALLE": "Av. Corrientes",
+        "NUMERO": 123,
+        "CIUDAD": "Buenos Aires"
+    },
+    "HOBBIES": [
+        { "TIPO": "Deportes", "NOMBRE": "Fútbol" },
+        { "TIPO": "Música", "NOMBRE": "Guitarra" }
+    ]
+};
+
+const objetoConvertido = convertirClavesAMinuscula(objetoOriginal);
+console.log(objetoConvertido);
+*/
+```
+    
+* Generacion de todo un archivo : **High Level Goal**
+Primero en un archivo poner las intrucciones de alto nivel como un comentario al principio del archivo
+```javascript
+/*
+High Level Goal
+Generar una api con nodejs y express que pemita manejar una todo list
+Los endpoints que manejamos son:
+    - GET /todos: Obtener la lista de todos
+    - POST /todos: Crear un nuevo todo
+    - PUT /todos/:id: Actualizar un todo existente
+    - DELETE /todos/:id: Eliminar un todo
+Debe soportar cors y debe guardar los datos en memoria y tener datos de ejemplo
+*/
+```
+Luego la IA se va a basar en ese comentario para generar el codigo
+```javascript
+
+const express = require('express');
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+let todos = [
+    { id: 1, task: "Estudiar Node.js", completed: false },
+    { id: 2, task: "Hacer la compra", completed: true },
+    { id: 3, task: "Limpiar la casa", completed: false }
+];
+
+app.get('/todos', (req, res) => {
+    res.json(todos);
+});
+
+app.post('/todos', (req, res) => {
+    const newTodo = {
+        id: todos.length + 1,
+        task: req.body.task,
+        completed: false
+    };
+    todos.push(newTodo);
+    res.status(201).json(newTodo);
+});
+
+app.put('/todos/:id', (req, res) => {
+    const todo = todos.find(t => t.id === parseInt(req.params.id));
+    if (!todo) return res.status(404).send('Todo no encontrado');
+
+    todo.task = req.body.task;
+    todo.completed = req.body.completed;
+    res.json(todo);
+});
+
+app.delete('/todos/:id', (req, res) => {
+    const todoIndex = todos.findIndex(t => t.id === parseInt(req.params.id));
+    if (todoIndex === -1) return res.status(404).send('Todo no encontrado');
+
+    todos.splice(todoIndex, 1);
+    res.status(204).send();
+});
+
+app.listen(3000, () => {
+    console.log('Servidor corriendo en http://localhost:3000');
+});
+
+```
+
 ## Editores con IA
 
 Editores:
