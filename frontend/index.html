@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Commerce Store</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="bg-gray-100">
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-bold text-gray-900">E-Commerce Store</h1>
+      <button id="cart-button" class="relative bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+        Cart (<span id="cart-count">0</span>)
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div id="products-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Products will be loaded here -->
+    </div>
+  </main>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex justify-center items-center">
+    <div class="bg-white rounded-lg p-6 w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-4">Shopping Cart</h2>
+      <div id="cart-items" class="space-y-4 mb-4">
+        <!-- Cart items will be loaded here -->
+      </div>
+      <div class="flex justify-between items-center mb-4">
+        <span class="text-lg font-bold">Total: $<span id="cart-total">0.00</span></span>
+      </div>
+      <div class="flex justify-end space-x-2">
+        <button id="close-cart" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400">Close</button>
+        <button id="clear-cart" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">Clear Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
