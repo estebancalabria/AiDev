@@ -7,9 +7,11 @@
 
 - ### Cursor
 
-Utilizamos el Ctrl+L y el Ctrl+K
+Utilizamos el Ctrl+L y el Ctrl+K     
 Prompt Utilizado
-> Crear un e-commerce. En dos carpetas server y frontend. Que el frontend este en html/css. Que el backend sea una api rest con nodejs. Que el disenio sea moderno en tainwind importado de un CDN.
+```prompt
+Crear un e-commerce. En dos carpetas server y frontend. Que el frontend este en html/css. Que el backend sea una api rest con nodejs. Que el disenio sea moderno en tainwind importado de un CDN.
+```
 
 ## Ingenieros de Software con IA
 
