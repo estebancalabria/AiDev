@@ -44,7 +44,34 @@ Y queda
 
 > https://claude.ai/public/artifacts/b90849ee-44d8-4c95-962a-b051b94e34f6
 
-## Ejecutar modelos de Lenguaje Offline
+## Ejecutar modelos de Lenguaje Open Source Offline
 
 * https://ollama.com/
+* https://lmstudio.ai/
 
+> Podemos ejecutar modelos de lenguaje Open Source
+
+Comparto el gratuito de gpt profe: GPT-OSS (OpenAI Open-Source Series)
+Otros modelos de lenguaje OS son la familia Llama
+
+## Siempre modelo de lenguaje en segundo lugar
+
+> https://mistral.ai/
+
+## Evaluar modelo de lenguaje para programar (o cualquier tarea)
+
+> https://lmarena.ai/l
+
+A la hora de elegir que modelo utilizar para programar me puedo consultar esta pagina y ver como viene el Leaderboar
+
+## Herramienta para desarrollar interfaces Graficas
+
+https://llamacoder.together.ai/
+
+* Genera interfaces graficas en REACT
+* Utiliza modelos Open Source
+* 
+
+## Para la clase que viene
+
+> Rodrigo : Profe, podemos ver un ejemplo, de como pasarle un requerimiento?, y como seria el flujo del uso de todas las herramientas mencionadas?
