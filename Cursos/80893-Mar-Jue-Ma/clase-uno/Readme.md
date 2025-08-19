@@ -70,7 +70,7 @@ https://llamacoder.together.ai/
 
 * Genera interfaces graficas en REACT
 * Utiliza modelos Open Source
-* 
+* Tiene previsuacion
 
 ## Para la clase que viene
 
