@@ -1,0 +1,227 @@
+[
+  {
+    "id": 1,
+    "name": "Laptop Gaming Pro",
+    "price": 1299.99,
+    "description": "Laptop de alto rendimiento para gaming y trabajo profesional con RTX 4060, 16GB RAM, 512GB SSD",
+    "image": "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 15
+  },
+  {
+    "id": 2,
+    "name": "Smartphone Ultra",
+    "price": 899.99,
+    "description": "Smartphone de última generación con cámara profesional de 108MP, 8GB RAM, 256GB almacenamiento",
+    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 25
+  },
+  {
+    "id": 3,
+    "name": "Auriculares Wireless",
+    "price": 199.99,
+    "description": "Auriculares bluetooth con cancelación de ruido activa, 30h de batería, sonido premium",
+    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 30
+  },
+  {
+    "id": 4,
+    "name": "Reloj Inteligente",
+    "price": 299.99,
+    "description": "Smartwatch con monitor de salud, GPS, notificaciones y resistencia al agua IP68",
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 20
+  },
+  {
+    "id": 5,
+    "name": "Cámara DSLR",
+    "price": 799.99,
+    "description": "Cámara réflex digital para fotografía profesional, 24MP, grabación 4K, kit completo",
+    "image": "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 12
+  },
+  {
+    "id": 6,
+    "name": "Tablet Pro",
+    "price": 649.99,
+    "description": "Tablet de 10 pulgadas perfecta para trabajo y entretenimiento, 128GB, WiFi + 4G",
+    "image": "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 18
+  },
+  {
+    "id": 7,
+    "name": "Teclado Mecánico RGB",
+    "price": 149.99,
+    "description": "Teclado gaming mecánico con switches Cherry MX, iluminación RGB personalizable, teclas anti-ghosting",
+    "image": "https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 35
+  },
+  {
+    "id": 8,
+    "name": "Mouse Gaming",
+    "price": 89.99,
+    "description": "Mouse gaming de alta precisión, 25,600 DPI, 7 botones programables, RGB personalizable",
+    "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a4b?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 40
+  },
+  {
+    "id": 9,
+    "name": "Monitor 4K",
+    "price": 449.99,
+    "description": "Monitor gaming de 27 pulgadas, resolución 4K, 144Hz, 1ms, HDR, FreeSync",
+    "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 22
+  },
+  {
+    "id": 10,
+    "name": "Altavoces Bluetooth",
+    "price": 129.99,
+    "description": "Altavoces portátiles con sonido 360°, 20h de batería, resistencia al agua IPX7",
+    "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 28
+  },
+  {
+    "id": 11,
+    "name": "Webcam HD",
+    "price": 79.99,
+    "description": "Webcam Full HD 1080p, autofocus, micrófono integrado, perfecta para streaming y videollamadas",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 45
+  },
+  {
+    "id": 12,
+    "name": "Disco Duro Externo",
+    "price": 89.99,
+    "description": "Disco duro externo de 2TB, USB 3.0, compatible con PC y Mac, respaldo automático",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 33
+  },
+  {
+    "id": 13,
+    "name": "Router WiFi 6",
+    "price": 159.99,
+    "description": "Router WiFi 6 de doble banda, hasta 3.2Gbps, cobertura amplia, control parental",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 19
+  },
+  {
+    "id": 14,
+    "name": "Cargador Inalámbrico",
+    "price": 49.99,
+    "description": "Cargador inalámbrico de 15W, compatible con iPhone y Android, LED indicador",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 50
+  },
+  {
+    "id": 15,
+    "name": "Lámpara LED Inteligente",
+    "price": 39.99,
+    "description": "Lámpara LED inteligente, control por app, 16 millones de colores, programable",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 60
+  },
+  {
+    "id": 16,
+    "name": "Impresora 3D",
+    "price": 299.99,
+    "description": "Impresora 3D FDM, área de impresión 220x220x250mm, resolución 0.1mm, WiFi",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 8
+  },
+  {
+    "id": 17,
+    "name": "Drone con Cámara",
+    "price": 199.99,
+    "description": "Drone con cámara HD, control por app, 20min de vuelo, estabilización de imagen",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 15
+  },
+  {
+    "id": 18,
+    "name": "Consola de Videojuegos",
+    "price": 499.99,
+    "description": "Consola de nueva generación, 1TB SSD, 4K HDR, control inalámbrico incluido",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 10
+  },
+  {
+    "id": 19,
+    "name": "Proyector Portátil",
+    "price": 349.99,
+    "description": "Proyector portátil Full HD, 3000 lúmenes, WiFi, Bluetooth, batería integrada",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 12
+  },
+  {
+    "id": 20,
+    "name": "Sistema de Sonido",
+    "price": 199.99,
+    "description": "Sistema de sonido 2.1, subwoofer de 6.5 pulgadas, 100W RMS, entrada auxiliar y Bluetooth",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 25
+  },
+  {
+    "id": 21,
+    "name": "Teclado Inalámbrico",
+    "price": 69.99,
+    "description": "Teclado inalámbrico slim, conexión Bluetooth, batería recargable, diseño ergonómico",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 38
+  },
+  {
+    "id": 22,
+    "name": "Mouse Inalámbrico",
+    "price": 39.99,
+    "description": "Mouse inalámbrico ergonómico, 1200 DPI, 6 meses de batería, receptor USB",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 55
+  },
+  {
+    "id": 23,
+    "name": "Adaptador WiFi USB",
+    "price": 24.99,
+    "description": "Adaptador WiFi USB 3.0, doble banda, hasta 1200Mbps, compatible con Windows y Mac",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 70
+  },
+  {
+    "id": 24,
+    "name": "Hub USB-C",
+    "price": 34.99,
+    "description": "Hub USB-C con 7 puertos, HDMI 4K, SD/TF card reader, Ethernet, alimentación",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 42
+  },
+  {
+    "id": 25,
+    "name": "Cable HDMI Premium",
+    "price": 19.99,
+    "description": "Cable HDMI 2.1 de alta velocidad, soporte 4K 120Hz, HDR, eARC, 2 metros",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "category": "Electronics",
+    "stock": 80
+  }
+] 

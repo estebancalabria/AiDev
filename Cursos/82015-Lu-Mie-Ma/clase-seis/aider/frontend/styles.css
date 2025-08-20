@@ -1,0 +1,32 @@
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.filter-btn.active {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.product-card {
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+}
+
+.cart-item {
+    transition: opacity 0.3s;
+}
+
+.quantity-btn {
+    transition: background-color 0.2s;
+}
+
+.quantity-btn:hover {
+    background-color: #e5e7eb;
+}
+
+#cart-modal, #checkout-modal {
+    transition: opacity 0.3s;
+}
