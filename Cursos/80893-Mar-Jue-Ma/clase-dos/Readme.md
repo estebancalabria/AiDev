@@ -44,4 +44,7 @@ chat_completion = client.chat.completions.create(
 print(chat_completion.choices[0].message.content)
 ```
 
-8.  
+
+## Ejercicio
+
+> Desafio : Desaroollar un juego tipo elije tu propia aventura donde la  historia y las opciones la propone el modelo de lenguaje
