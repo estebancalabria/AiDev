@@ -32,9 +32,12 @@ Vamos a utilizar a modo de prueba los siguiens MCP
 * FileSystem (https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem)
 
 Para usarlo en Vscode
-1.Requisito previo tener Node JS instalado : https://nodejs.org/en
+1. Requisito previo tener Node JS instalado : https://nodejs.org/en
 2. Instalar el Github Copilot
 3. A nivel de proyecto: crea un archivo .vscode/mcp.json con la configuración del servidor.
+4. O bien...A nivel de usuario (global): ejecutá el comando MCP: Open User Configuration y añadí allí tu configuración para que esté disponible en todos los proyectos. 
+Visual Studio Code
+   
 ```json
 {
     "servers": {
@@ -56,7 +59,12 @@ Para usarlo en Vscode
     }
 }
 ```
-4. Cada MCP esta configurado por un JSON
-5. Instalamos los mcp de la pagina de arriba
+5. Cada MCP esta configurado por un JSON
+6. Fijate arrba del json que diga "running" cada MCP
+7. Instalamos los mcp de la pagina de arriba
+8. Ejemlo de uso en el chat de copilot
+```prompt
+Podes utilizar pupeter para buscarme en mercadolibre cables utp y usar el mcp fylesystem para generarme un archivo con el resultado de la busqueda
+```
 
 > Tambien lo podemos usar desde Claude Desktop
