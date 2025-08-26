@@ -58,3 +58,5 @@ Para usarlo en Vscode
 ```
 4. Cada MCP esta configurado por un JSON
 5. Instalamos los mcp de la pagina de arriba
+
+> Tambien lo podemos usar desde Claude Desktop
