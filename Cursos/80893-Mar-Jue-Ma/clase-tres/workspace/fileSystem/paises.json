@@ -1,0 +1,22 @@
+[
+  {"nombre": "Argentina", "codigo": "AR"},
+  {"nombre": "Bolivia", "codigo": "BO"},
+  {"nombre": "Brasil", "codigo": "BR"},
+  {"nombre": "Chile", "codigo": "CL"},
+  {"nombre": "Colombia", "codigo": "CO"},
+  {"nombre": "Costa Rica", "codigo": "CR"},
+  {"nombre": "Cuba", "codigo": "CU"},
+  {"nombre": "Ecuador", "codigo": "EC"},
+  {"nombre": "El Salvador", "codigo": "SV"},
+  {"nombre": "Guatemala", "codigo": "GT"},
+  {"nombre": "Honduras", "codigo": "HN"},
+  {"nombre": "México", "codigo": "MX"},
+  {"nombre": "Nicaragua", "codigo": "NI"},
+  {"nombre": "Panamá", "codigo": "PA"},
+  {"nombre": "Paraguay", "codigo": "PY"},
+  {"nombre": "Perú", "codigo": "PE"},
+  {"nombre": "Puerto Rico", "codigo": "PR"},
+  {"nombre": "República Dominicana", "codigo": "DO"},
+  {"nombre": "Uruguay", "codigo": "UY"},
+  {"nombre": "Venezuela", "codigo": "VE"}
+]
