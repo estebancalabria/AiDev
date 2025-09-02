@@ -137,3 +137,267 @@ sequenceDiagram
 
 ```
 
+Claude soporta Mermaid con sus artefactos de forma nativa. Se le puede pedir algo como\\
+Prompt para Claude:
+```
+Haceme un artefacto con el diagrama de clases mermaid para un videoclub. Que sea completo, profesional y listo para una aplicacion del mundo real. Solo la parte del modelo.
+```
+    
+y va a generarar algo asi directamente como artefacto:
+     
+```
+classDiagram
+    class Cliente {
+        -Long id
+        -String nombre
+        -String apellido
+        -String dni
+        -String telefono
+        -String email
+        -String direccion
+        -LocalDate fechaNacimiento
+        -LocalDateTime fechaRegistro
+        -EstadoCliente estado
+        -BigDecimal saldoPendiente
+        +registrarCliente()
+        +actualizarDatos()
+        +suspenderCliente()
+        +calcularMultas()
+        +obtenerHistorialAlquileres()
+    }
+
+    class Pelicula {
+        -Long id
+        -String titulo
+        -String director
+        -Integer añoEstreno
+        -Integer duracionMinutos
+        -String sinopsis
+        -ClasificacionEdad clasificacion
+        -String paisOrigen
+        -String idioma
+        -LocalDateTime fechaRegistro
+        +buscarPorTitulo()
+        +buscarPorDirector()
+        +buscarPorGenero()
+        +obtenerCopias()
+    }
+
+    class Copia {
+        -Long id
+        -String codigoBarras
+        -EstadoCopia estado
+        -FormatoCopia formato
+        -LocalDate fechaAdquisicion
+        -BigDecimal precioCompra
+        -String ubicacionFisica
+        -Integer vecesAlquilada
+        +marcarDisponible()
+        +marcarAlquilada()
+        +marcarDañada()
+        +calcularDepreciacion()
+    }
+
+    class Alquiler {
+        -Long id
+        -LocalDateTime fechaAlquiler
+        -LocalDateTime fechaVencimiento
+        -LocalDateTime fechaDevolucion
+        -BigDecimal precio
+        -EstadoAlquiler estado
+        -String observaciones
+        +calcularMulta()
+        +procesarDevolucion()
+        +extenderAlquiler()
+        +generarRecibo()
+    }
+
+    class Empleado {
+        -Long id
+        -String nombre
+        -String apellido
+        -String dni
+        -String telefono
+        -String email
+        -LocalDate fechaIngreso
+        -BigDecimal salario
+        -TipoEmpleado tipo
+        -String turno
+        -Boolean activo
+        +procesarAlquiler()
+        +procesarDevolucion()
+        +registrarCliente()
+        +generarReporte()
+    }
+
+    class Sucursal {
+        -Long id
+        -String nombre
+        -String direccion
+        -String telefono
+        -String email
+        -String horarioAtencion
+        -Boolean activa
+        -Integer capacidadCopias
+        +obtenerInventario()
+        +transferirCopia()
+        +generarReporteVentas()
+    }
+
+    class Genero {
+        -Long id
+        -String nombre
+        -String descripcion
+        +obtenerPeliculas()
+    }
+
+    class Proveedor {
+        -Long id
+        -String nombre
+        -String contacto
+        -String telefono
+        -String email
+        -String direccion
+        -Boolean activo
+        +obtenerCatalogo()
+        +procesarPedido()
+    }
+
+    class PedidoCopia {
+        -Long id
+        -LocalDateTime fechaPedido
+        -LocalDateTime fechaEntrega
+        -Integer cantidad
+        -BigDecimal precioTotal
+        -EstadoPedido estado
+        +confirmarPedido()
+        +procesarEntrega()
+        +cancelarPedido()
+    }
+
+    class Multa {
+        -Long id
+        -BigDecimal monto
+        -String concepto
+        -LocalDateTime fechaGeneracion
+        -LocalDateTime fechaPago
+        -EstadoMulta estado
+        -String metodoPago
+        +procesarPago()
+        +aplicarDescuento()
+    }
+
+    class Pago {
+        -Long id
+        -BigDecimal monto
+        -LocalDateTime fecha
+        -MetodoPago metodo
+        -String numeroTransaccion
+        -String observaciones
+        +procesarPago()
+        +generarComprobante()
+        +anularPago()
+    }
+
+    class Reserva {
+        -Long id
+        -LocalDateTime fechaReserva
+        -LocalDateTime fechaVencimiento
+        -EstadoReserva estado
+        -String observaciones
+        +confirmarReserva()
+        +cancelarReserva()
+        +convertirAAlquiler()
+    }
+
+    Cliente "1" --> "0..*" Alquiler
+    Cliente "1" --> "0..*" Multa
+    Cliente "1" --> "0..*" Pago
+    Cliente "1" --> "0..*" Reserva
+    
+    Pelicula "1" --> "0..*" Copia
+    Pelicula "*" --> "*" Genero
+    
+    Copia "1" --> "0..*" Alquiler
+    Copia "1" --> "0..*" Reserva
+    
+    Alquiler "1" --> "0..*" Multa
+    Alquiler "*" --> "1" Empleado
+    
+    Empleado "*" --> "1" Sucursal
+    Copia "*" --> "1" Sucursal
+    
+    Proveedor "1" --> "0..*" PedidoCopia
+    PedidoCopia "*" --> "1" Pelicula
+    PedidoCopia "*" --> "1" Sucursal
+    
+    Pago "*" --> "1" Alquiler
+    Pago "*" --> "1" Multa
+    Reserva "*" --> "1" Empleado
+```
+
+## OTra herramienta para digramas arquitectura
+
+Structurizr
+
+> https://structurizr.com/
+
+Use este prompt en chatgpt
+
+```
+Generarme un diagrama de ejemplo de una arquitectura para utilizar con struturizr. Dame el texto en el lenguaje DSL de la herramienta
+```
+
+Me genero esto
+
+```
+workspace "Ejemplo Arquitectura Web" {
+
+    model {
+        user = person "Usuario" {
+            description "Un usuario que accede a la aplicación desde un navegador web."
+        }
+
+        webApp = softwareSystem "Aplicación Web" {
+            description "Sistema de reservas online."
+
+            frontend = container "Frontend" {
+                technology "React"
+                description "Interfaz web para que los usuarios gestionen sus reservas."
+            }
+
+            backend = container "Backend API" {
+                technology "Spring Boot"
+                description "Expone una API REST para manejar lógica de negocio."
+            }
+
+            database = container "Base de Datos" {
+                technology "PostgreSQL"
+                description "Almacena información de usuarios, reservas y pagos."
+            }
+
+            user -> frontend "Usa" "HTTPS"
+            frontend -> backend "Consume API" "JSON/HTTPS"
+            backend -> database "Lee y escribe datos" "JDBC"
+        }
+    }
+
+    views {
+        systemContext webApp {
+            include *
+            autolayout lr
+            title "Diagrama de Contexto"
+        }
+
+        container webApp {
+            include *
+            autolayout lr
+            title "Diagrama de Contenedores"
+        }
+
+        theme default
+    }
+}
+
+```
+
