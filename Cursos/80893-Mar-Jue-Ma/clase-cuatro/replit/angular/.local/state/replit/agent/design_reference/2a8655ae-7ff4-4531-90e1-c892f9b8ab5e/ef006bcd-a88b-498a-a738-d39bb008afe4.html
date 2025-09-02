@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrum Dashboard - Task Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    popover: {
+                        DEFAULT: "var(--popover)",
+                        foreground: "var(--popover-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    destructive: {
+                        DEFAULT: "var(--destructive)",
+                        foreground: "var(--destructive-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                }
+            },
+            fontFamily: {
+                sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
+            }
+        },
+    };
+    </script>
+    <style>
+        :root {
+            --background: hsl(210 20% 98%);
+            --foreground: hsl(224 71% 4%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(224 71% 4%);
+            --popover: hsl(0 0% 100%);
+            --popover-foreground: hsl(224 71% 4%);
+            --primary: hsl(217 91% 60%);
+            --primary-foreground: hsl(0 0% 98%);
+            --secondary: hsl(210 40% 94%);
+            --secondary-foreground: hsl(222 84% 5%);
+            --muted: hsl(210 40% 96%);
+            --muted-foreground: hsl(215 16% 47%);
+            --accent: hsl(210 40% 94%);
+            --accent-foreground: hsl(222 84% 5%);
+            --destructive: hsl(0 84% 60%);
+            --destructive-foreground: hsl(0 0% 98%);
+            --border: hsl(214 32% 91%);
+            --input: hsl(214 32% 91%);
+            --ring: hsl(217 91% 60%);
+            --radius: 8px;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+
+        .dark {
+            --background: hsl(224 71% 4%);
+            --foreground: hsl(213 31% 91%);
+            --card: hsl(224 71% 4%);
+            --card-foreground: hsl(213 31% 91%);
+            --popover: hsl(224 71% 4%);
+            --popover-foreground: hsl(213 31% 91%);
+            --primary: hsl(217 91% 60%);
+            --primary-foreground: hsl(222 84% 5%);
+            --secondary: hsl(222 84% 5%);
+            --secondary-foreground: hsl(213 31% 91%);
+            --muted: hsl(223 47% 11%);
+            --muted-foreground: hsl(215 16% 57%);
+            --accent: hsl(216 34% 17%);
+            --accent-foreground: hsl(210 40% 98%);
+            --destructive: hsl(0 63% 31%);
+            --destructive-foreground: hsl(210 40% 98%);
+            --border: hsl(216 34% 17%);
+            --input: hsl(216 34% 17%);
+            --ring: hsl(217 91% 60%);
+        }
+
+        * {
+            border-color: var(--border);
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: var(--font-sans);
+        }
+
+        .kanban-card {
+            transition: all 0.2s ease;
+        }
+
+        .kanban-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .kanban-column {
+            min-height: 500px;
+        }
+
+        .dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+
+        .drag-over {
+            background-color: hsl(217 91% 95%);
+            border: 2px dashed hsl(217 91% 60%);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-background text-foreground">
+    <!-- @COMPONENT: MainApp -->
+    <div class="min-h-screen bg-background">
+        <!-- @COMPONENT: TopNavigation -->
+        <header class="bg-card border-b border-border sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-tasks text-primary text-xl"></i>
+                            <h1 class="text-xl font-bold text-foreground">Scrum Dashboard</h1>
+                        </div>
+                        
+                        <!-- Navigation Tabs -->
+                        <nav class="hidden md:flex space-x-1 ml-8">
+                            <button data-tab="kanban" class="tab-button active px-4 py-2 rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground">
+                                <i class="fas fa-columns mr-2"></i>Kanban Board
+                            </button>
+                            <button data-tab="backlog" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-accent">
+                                <i class="fas fa-list mr-2"></i>Product Backlog
+                            </button>
+                            <button data-tab="sprints" class="tab-button px-4 py-2 rounded-md text-sm font-medium transition-colors text-muted-foreground hover:text-foreground hover:bg-accent">
+                                <i class="fas fa-calendar-alt mr-2"></i>Sprint Management
+                            </button>
+                        </nav>
+                    </div>
+                    
+                    <div class="flex items-center space-x-3">
+                        <!-- Sprint Selector -->
+                        <select class="px-3 py-2 border border-border rounded-md bg-card text-foreground text-sm focus:ring-2 focus:ring-ring">
+                            <option data-mock="true">Sprint 1 - Active</option>
+                            <option data-mock="true">Sprint 2 - Planning</option>
+                            <option data-mock="true">All Sprints</option>
+                        </select>
+                        
+                        <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md text-sm font-medium transition-colors">
+                            <i class="fas fa-plus mr-2"></i>New Task
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- @END_COMPONENT: TopNavigation -->
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <!-- @COMPONENT: KanbanView -->
+            <div id="kanban-view" class="tab-content">
+                <!-- Sprint Info Header -->
+                <div class="bg-card rounded-lg border border-border p-6 mb-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between">
+                        <div>
+                            <h2 class="text-2xl font-bold text-foreground" data-bind="currentSprint.name">Sprint 1 - User Authentication</h2>
+                            <p class="text-muted-foreground mt-1" data-bind="currentSprint.description">Focus on implementing secure user login and registration system</p>
+                            <div class="flex items-center space-x-4 mt-3 text-sm text-muted-foreground">
+                                <span><i class="fas fa-calendar mr-1"></i>Dec 1 - Dec 15, 2024</span>
+                                <span><i class="fas fa-clock mr-1"></i>14 days remaining</span>
+                                <span><i class="fas fa-tasks mr-1"></i>8 tasks total</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 md:mt-0 flex items-center space-x-2">
+                            <div class="bg-accent px-3 py-1 rounded-full text-xs font-medium text-accent-foreground">
+                                Active
+                            </div>
+                            <button class="text-muted-foreground hover:text-foreground">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kanban Board -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- To Do Column -->
+                    <!-- @COMPONENT: KanbanColumn [columnId="todo", title="To Do", tasks=todoTasks] -->
+                    <div class="kanban-column bg-card rounded-lg border border-border p-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-gray-400"></div>
+                                <h3 class="font-semibold text-foreground">To Do</h3>
+                                <span class="bg-muted text-muted-foreground px-2 py-1 rounded-full text-xs font-medium">3</span>
+                            </div>
+                            <button class="text-muted-foreground hover:text-foreground text-sm">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-3" data-drop-zone="todo">
+                            <!-- @MAP: todoTasks.map(task => ( -->
+                            <!-- @COMPONENT: TaskCard [task=task, draggable=true] -->
+                            <div class="kanban-card bg-background border border-border rounded-lg p-4 cursor-move hover:shadow-md transition-all" draggable="true" data-task-id="1" data-mock="true">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-medium text-foreground text-sm">Implement user registration form</h4>
+                                    <button class="text-muted-foreground hover:text-foreground text-xs">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                                <p class="text-muted-foreground text-xs mb-3">Create responsive registration form with validation and password strength indicator</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-medium">High</span>
+                                        <span class="text-muted-foreground text-xs">3 days</span>
+                                    </div>
+                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
+                                        JD
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kanban-card bg-background border border-border rounded-lg p-4 cursor-move hover:shadow-md transition-all" draggable="true" data-task-id="2" data-mock="true">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-medium text-foreground text-sm">Setup password reset functionality</h4>
+                                    <button class="text-muted-foreground hover:text-foreground text-xs">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                                <p class="text-muted-foreground text-xs mb-3">Email-based password reset with secure token generation</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-medium">Medium</span>
+                                        <span class="text-muted-foreground text-xs">2 days</span>
+                                    </div>
+                                    <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
+                                        SM
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kanban-card bg-background border border-border rounded-lg p-4 cursor-move hover:shadow-md transition-all" draggable="true" data-task-id="3" data-mock="true">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-medium text-foreground text-sm">Add social media login options</h4>
+                                    <button class="text-muted-foreground hover:text-foreground text-xs">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                                <p class="text-muted-foreground text-xs mb-3">Integration with Google and GitHub OAuth</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Low</span>
+                                        <span class="text-muted-foreground text-xs">4 days</span>
+                                    </div>
+                                    <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
+                                        MR
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+                    <!-- @END_COMPONENT: KanbanColumn -->
+
+                    <!-- In Progress Column -->
+                    <!-- @COMPONENT: KanbanColumn [columnId="inprogress", title="In Progress", tasks=inProgressTasks] -->
+                    <div class="kanban-column bg-card rounded-lg border border-border p-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-blue-400"></div>
+                                <h3 class="font-semibold text-foreground">In Progress</h3>
+                                <span class="bg-muted text-muted-foreground px-2 py-1 rounded-full text-xs font-medium">2</span>
+                            </div>
+                            <button class="text-muted-foreground hover:text-foreground text-sm">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-3" data-drop-zone="inprogress">
+                            <!-- @MAP: inProgressTasks.map(task => ( -->
+                            <div class="kanban-card bg-background border border-border rounded-lg p-4 cursor-move hover:shadow-md transition-all" draggable="true" data-task-id="4" data-mock="true">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-medium text-foreground text-sm">Create login API endpoints</h4>
+                                    <button class="text-muted-foreground hover:text-foreground text-xs">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                                <p class="text-muted-foreground text-xs mb-3">Backend API for authentication with JWT tokens</p>
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-medium">High</span>
+                                        <span class="text-muted-foreground text-xs">1 day left</span>
+                                    </div>
+                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
+                                        JD
+                                    </div>
+                                </div>
+                                <div class="w-full bg-muted rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                                <span class="text-xs text-muted-foreground mt-1">75% complete</span>
+                            </div>
+
+                            <div class="kanban-card bg-background border border-border rounded-lg p-4 cursor-move hover:shadow-md transition-all" draggable="true" data-task-id="5" data-mock="true">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-medium text-foreground text-sm">Design login page UI</h4>
+                                    <button class="text-muted-foreground hover:text-foreground text-xs">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                                <p class="text-muted-foreground text-xs mb-3">Modern and responsive login interface design</p>
+                                <div class="flex items-center justify-between mb-2">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-medium">Medium</span>
+                                        <span class="text-muted-foreground text-xs">2 days left</span>
+                                    </div>
+                                    <div class="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
+                                        AL
+                                    </div>
+                                </div>
+                                <div class="w-full bg-muted rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+                                </div>
+                                <span class="text-xs text-muted-foreground mt-1">45% complete</span>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+                    <!-- @END_COMPONENT: KanbanColumn -->
+
+                    <!-- Done Column -->
+                    <!-- @COMPONENT: KanbanColumn [columnId="done", title="Done", tasks=doneTasks] -->
+                    <div class="kanban-column bg-card rounded-lg border border-border p-4">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-2">
+                                <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                                <h3 class="font-semibold text-foreground">Done</h3>
+                                <span class="bg-muted text-muted-foreground px-2 py-1 rounded-full text-xs font-medium">3</span>
+                            </div>
+                            <button class="text-muted-foreground hover:text-foreground text-sm">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-3" data-drop-zone="done">
+                            <!-- @MAP: doneTasks.map(task => ( -->
+                            <div class="kanban-card bg-background border border-border rounded-lg p-4 opacity-75" data-task-id="6" data-mock="true">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-medium text-foreground text-sm line-through">Setup database schema</h4>
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                </div>
+                                <p class="text-muted-foreground text-xs mb-3">User table with authentication fields</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Completed</span>
+                                        <span class="text-muted-foreground text-xs">Dec 3</span>
+                                    </div>
+                                    <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
+                                        SM
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kanban-card bg-background border border-border rounded-lg p-4 opacity-75" data-task-id="7" data-mock="true">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-medium text-foreground text-sm line-through">Research authentication libraries</h4>
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                </div>
+                                <p class="text-muted-foreground text-xs mb-3">Evaluate bcrypt, JWT, and Passport.js options</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Completed</span>
+                                        <span class="text-muted-foreground text-xs">Dec 1</span>
+                                    </div>
+                                    <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
+                                        MR
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="kanban-card bg-background border border-border rounded-lg p-4 opacity-75" data-task-id="8" data-mock="true">
+                                <div class="flex items-start justify-between mb-2">
+                                    <h4 class="font-medium text-foreground text-sm line-through">Project setup and dependencies</h4>
+                                    <i class="fas fa-check-circle text-green-500"></i>
+                                </div>
+                                <p class="text-muted-foreground text-xs mb-3">Initialize project with Angular and Node.js setup</p>
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Completed</span>
+                                        <span class="text-muted-foreground text-xs">Nov 30</span>
+                                    </div>
+                                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-xs font-medium">
+                                        JD
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- @END_MAP )) -->
+                        </div>
+                    </div>
+                    <!-- @END_COMPONENT: KanbanColumn -->
+                </div>
+            </div>
+            <!-- @END_COMPONENT: KanbanView -->
+
+            <!-- @COMPONENT: BacklogView -->
+            <div id="backlog-view" class="tab-content hidden">
+                <div class="bg-card rounded-lg border border-border p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-2xl font-bold text-foreground">Product Backlog</h2>
+                            <p class="text-muted-foreground mt-1">All tasks waiting to be assigned to sprints</p>
+                        </div>
+                        <div class="mt-4 md:mt-0 flex items-center space-x-3">
+                            <select class="px-3 py-2 border border-border rounded-md bg-card text-foreground text-sm">
+                                <option>All Priorities</option>
+                                <option>High Priority</option>
+                                <option>Medium Priority</option>
+                                <option>Low Priority</option>
+                            </select>
+                            <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md text-sm font-medium">
+                                <i class="fas fa-plus mr-2"></i>New Task
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Backlog Items -->
+                    <div class="space-y-3" data-mock="true">
+                        <!-- @MAP: backlogTasks.map(task => ( -->
+                        <div class="bg-background border border-border rounded-lg p-4 hover:shadow-sm transition-all">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-3 mb-2">
+                                        <h4 class="font-medium text-foreground">Implement notification system</h4>
+                                        <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs font-medium">High</span>
+                                        <span class="bg-muted text-muted-foreground px-2 py-1 rounded text-xs">5 story points</span>
+                                    </div>
+                                    <p class="text-muted-foreground text-sm mb-3">Real-time notifications for task updates and team activities</p>
+                                    <div class="flex items-center space-x-4 text-xs text-muted-foreground">
+                                        <span><i class="fas fa-user mr-1"></i>Unassigned</span>
+                                        <span><i class="fas fa-calendar mr-1"></i>No sprint</span>
+                                        <span><i class="fas fa-clock mr-1"></i>Created Nov 28</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="text-muted-foreground hover:text-foreground text-sm px-3 py-1 hover:bg-accent rounded">
+                                        Assign to Sprint
+                                    </button>
+                                    <button class="text-muted-foreground hover:text-foreground">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-background border border-border rounded-lg p-4 hover:shadow-sm transition-all">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-3 mb-2">
+                                        <h4 class="font-medium text-foreground">Add file upload functionality</h4>
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-medium">Medium</span>
+                                        <span class="bg-muted text-muted-foreground px-2 py-1 rounded text-xs">3 story points</span>
+                                    </div>
+                                    <p class="text-muted-foreground text-sm mb-3">Allow users to upload and attach files to tasks</p>
+                                    <div class="flex items-center space-x-4 text-xs text-muted-foreground">
+                                        <span><i class="fas fa-user mr-1"></i>Unassigned</span>
+                                        <span><i class="fas fa-calendar mr-1"></i>No sprint</span>
+                                        <span><i class="fas fa-clock mr-1"></i>Created Nov 25</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="text-muted-foreground hover:text-foreground text-sm px-3 py-1 hover:bg-accent rounded">
+                                        Assign to Sprint
+                                    </button>
+                                    <button class="text-muted-foreground hover:text-foreground">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-background border border-border rounded-lg p-4 hover:shadow-sm transition-all">
+                            <div class="flex items-start justify-between">
+                                <div class="flex-1">
+                                    <div class="flex items-center space-x-3 mb-2">
+                                        <h4 class="font-medium text-foreground">Create admin dashboard</h4>
+                                        <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Low</span>
+                                        <span class="bg-muted text-muted-foreground px-2 py-1 rounded text-xs">8 story points</span>
+                                    </div>
+                                    <p class="text-muted-foreground text-sm mb-3">Administrative interface for managing users and system settings</p>
+                                    <div class="flex items-center space-x-4 text-xs text-muted-foreground">
+                                        <span><i class="fas fa-user mr-1"></i>Unassigned</span>
+                                        <span><i class="fas fa-calendar mr-1"></i>No sprint</span>
+                                        <span><i class="fas fa-clock mr-1"></i>Created Nov 22</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="text-muted-foreground hover:text-foreground text-sm px-3 py-1 hover:bg-accent rounded">
+                                        Assign to Sprint
+                                    </button>
+                                    <button class="text-muted-foreground hover:text-foreground">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- @END_MAP )) -->
+                    </div>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: BacklogView -->
+
+            <!-- @COMPONENT: SprintManagementView -->
+            <div id="sprints-view" class="tab-content hidden">
+                <div class="bg-card rounded-lg border border-border p-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-2xl font-bold text-foreground">Sprint Management</h2>
+                            <p class="text-muted-foreground mt-1">Create and manage development sprints</p>
+                        </div>
+                        <button class="mt-4 md:mt-0 bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md text-sm font-medium">
+                            <i class="fas fa-plus mr-2"></i>Create Sprint
+                        </button>
+                    </div>
+
+                    <!-- Sprint Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-mock="true">
+                        <!-- @MAP: sprints.map(sprint => ( -->
+                        <!-- Active Sprint -->
+                        <div class="bg-background border-2 border-primary rounded-lg p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-semibold text-foreground text-lg">Sprint 1</h3>
+                                    <span class="bg-primary text-primary-foreground px-2 py-1 rounded text-xs font-medium">Active</span>
+                                </div>
+                                <button class="text-muted-foreground hover:text-foreground">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                            <p class="text-muted-foreground text-sm mb-4">User Authentication System</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">Duration:</span>
+                                    <span class="text-foreground">Dec 1 - Dec 15</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">Tasks:</span>
+                                    <span class="text-foreground">8 total</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">Progress:</span>
+                                    <span class="text-foreground">62%</span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-muted rounded-full h-2 mt-4">
+                                <div class="bg-primary h-2 rounded-full" style="width: 62%"></div>
+                            </div>
+                            <div class="flex items-center space-x-2 mt-4">
+                                <button class="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground px-3 py-2 rounded text-sm font-medium">
+                                    View Sprint
+                                </button>
+                                <button class="text-muted-foreground hover:text-foreground px-3 py-2 rounded text-sm">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Planning Sprint -->
+                        <div class="bg-background border border-border rounded-lg p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-semibold text-foreground text-lg">Sprint 2</h3>
+                                    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs font-medium">Planning</span>
+                                </div>
+                                <button class="text-muted-foreground hover:text-foreground">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                            <p class="text-muted-foreground text-sm mb-4">Dashboard and Analytics</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">Duration:</span>
+                                    <span class="text-foreground">Dec 16 - Dec 30</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">Tasks:</span>
+                                    <span class="text-foreground">0 assigned</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">Status:</span>
+                                    <span class="text-foreground">Not started</span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-muted rounded-full h-2 mt-4">
+                                <div class="bg-yellow-400 h-2 rounded-full" style="width: 0%"></div>
+                            </div>
+                            <div class="flex items-center space-x-2 mt-4">
+                                <button class="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground px-3 py-2 rounded text-sm font-medium">
+                                    Plan Sprint
+                                </button>
+                                <button class="text-muted-foreground hover:text-foreground px-3 py-2 rounded text-sm">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Completed Sprint -->
+                        <div class="bg-background border border-border rounded-lg p-6 opacity-75">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-semibold text-foreground text-lg">Sprint 0</h3>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">Completed</span>
+                                </div>
+                                <button class="text-muted-foreground hover:text-foreground">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                            </div>
+                            <p class="text-muted-foreground text-sm mb-4">Project Setup and Planning</p>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">Duration:</span>
+                                    <span class="text-foreground">Nov 15 - Nov 30</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">Tasks:</span>
+                                    <span class="text-foreground">5 completed</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-muted-foreground">Completion:</span>
+                                    <span class="text-foreground">100%</span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-muted rounded-full h-2 mt-4">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="flex items-center space-x-2 mt-4">
+                                <button class="flex-1 bg-muted text-muted-foreground px-3 py-2 rounded text-sm font-medium">
+                                    View Results
+                                </button>
+                                <button class="text-muted-foreground hover:text-foreground px-3 py-2 rounded text-sm">
+                                    Archive
+                                </button>
+                            </div>
+                        </div>
+                        <!-- @END_MAP )) -->
+                    </div>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: SprintManagementView -->
+        </main>
+    </div>
+    <!-- @END_COMPONENT: MainApp -->
+
+    <!-- @COMPONENT: TaskModal [show=false, task=null, onSave=handleTaskSave] -->
+    <div id="task-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-card rounded-lg border border-border w-full max-w-2xl max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-foreground">Create New Task</h3>
+                    <button class="text-muted-foreground hover:text-foreground">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-foreground mb-2">Task Title</label>
+                        <input type="text" class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:ring-2 focus:ring-ring" placeholder="Enter task title" data-implementation="Required field with validation">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-foreground mb-2">Description</label>
+                        <textarea rows="3" class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:ring-2 focus:ring-ring" placeholder="Describe the task"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Priority</label>
+                            <select class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:ring-2 focus:ring-ring">
+                                <option>High</option>
+                                <option>Medium</option>
+                                <option>Low</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Story Points</label>
+                            <select class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:ring-2 focus:ring-ring">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>5</option>
+                                <option>8</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Assignee</label>
+                            <select class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:ring-2 focus:ring-ring">
+                                <option>Unassigned</option>
+                                <option>John Doe</option>
+                                <option>Sarah Miller</option>
+                                <option>Mike Rodriguez</option>
+                                <option>Anna Lee</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Sprint</label>
+                            <select class="w-full px-3 py-2 border border-border rounded-md bg-background text-foreground focus:ring-2 focus:ring-ring">
+                                <option>Backlog</option>
+                                <option>Sprint 1 - Active</option>
+                                <option>Sprint 2 - Planning</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-3 pt-4">
+                        <button type="button" class="px-4 py-2 text-muted-foreground hover:text-foreground border border-border rounded-md">
+                            Cancel
+                        </button>
+                        <button type="submit" class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-md font-medium" data-event="click:handleTaskSave">
+                            Create Task
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: TaskModal -->
+
+    <script>
+        // TODO: Implement actual React components and state management
+        // This is mock JavaScript for demonstration purposes only
+        
+        (function() {
+            // Tab switching functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-primary', 'text-primary-foreground');
+                        btn.classList.add('text-muted-foreground', 'hover:text-foreground', 'hover:bg-accent');
+                    });
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active', 'bg-primary', 'text-primary-foreground');
+                    button.classList.remove('text-muted-foreground', 'hover:text-foreground', 'hover:bg-accent');
+                    
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    // Show selected tab content
+                    const targetContent = document.getElementById(`${tabId}-view`);
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+                });
+            });
+            
+            // Basic drag and drop simulation
+            const kanbanCards = document.querySelectorAll('.kanban-card[draggable="true"]');
+            const dropZones = document.querySelectorAll('[data-drop-zone]');
+            
+            let draggedElement = null;
+            
+            kanbanCards.forEach(card => {
+                card.addEventListener('dragstart', (e) => {
+                    draggedElement = e.target;
+                    e.target.classList.add('dragging');
+                });
+                
+                card.addEventListener('dragend', (e) => {
+                    e.target.classList.remove('dragging');
+                    draggedElement = null;
+                });
+            });
+            
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    zone.classList.add('drag-over');
+                });
+                
+                zone.addEventListener('dragleave', (e) => {
+                    zone.classList.remove('drag-over');
+                });
+                
+                zone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    zone.classList.remove('drag-over');
+                    
+                    if (draggedElement) {
+                        zone.appendChild(draggedElement);
+                        // TODO: Update task status in state management
+                        console.log(`Task moved to ${zone.getAttribute('data-drop-zone')}`);
+                    }
+                });
+            });
+            
+            // Modal functionality
+            const modal = document.getElementById('task-modal');
+            const newTaskButtons = document.querySelectorAll('button:contains("New Task")');
+            
+            // TODO: Implement proper modal opening/closing
+            // TODO: Implement form validation and submission
+            // TODO: Implement CRUD operations with localStorage
+            // TODO: Implement sprint management functionality
+            // TODO: Implement task filtering and search
+            
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(222 84% 5%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(222 84% 5%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(222 84% 5%);
+  --primary: hsl(217 91% 60%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(210 40% 96%);
+  --secondary-foreground: hsl(222 84% 5%);
+  --muted: hsl(210 40% 96%);
+  --muted-foreground: hsl(215 16% 47%);
+  --accent: hsl(210 40% 96%);
+  --accent-foreground: hsl(222 84% 5%);
+  --destructive: hsl(0 85% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(214 32% 91%);
+  --input: hsl(214 32% 91%);
+  --ring: hsl(217 91% 60%);
+  --radius: 8px;
+  --font-sans: Inter, system-ui, sans-serif;
+}
+
+.dark {
+  --background: hsl(222 84% 5%);
+  --foreground: hsl(210 40% 96%);
+  --card: hsl(222 84% 10%);
+  --card-foreground: hsl(210 40% 96%);
+  --popover: hsl(222 84% 5%);
+  --popover-foreground: hsl(210 40% 96%);
+  --primary: hsl(217 91% 60%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(222 84% 15%);
+  --secondary-foreground: hsl(210 40% 96%);
+  --muted: hsl(222 84% 15%);
+  --muted-foreground: hsl(215 16% 65%);
+  --accent: hsl(222 84% 15%);
+  --accent-foreground: hsl(210 40% 96%);
+  --destructive: hsl(0 85% 60%);
+  --destructive-foreground: hsl(0 0% 100%);
+  --border: hsl(222 84% 20%);
+  --input: hsl(222 84% 20%);
+  --ring: hsl(217 91% 60%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+.task-completed {
+  background: linear-gradient(135deg, hsl(142 76% 96%) 0%, hsl(142 76% 94%) 100%);
+}
+
+.dark .task-completed {
+  background: linear-gradient(135deg, hsl(142 76% 10%) 0%, hsl(142 76% 8%) 100%);
+}
+
+.priority-high { 
+  border-left: 4px solid hsl(0 85% 60%); 
+}
+
+.priority-medium { 
+  border-left: 4px solid hsl(38 92% 50%); 
+}
+
+.priority-low { 
+  border-left: 4px solid hsl(142 76% 36%); 
+}

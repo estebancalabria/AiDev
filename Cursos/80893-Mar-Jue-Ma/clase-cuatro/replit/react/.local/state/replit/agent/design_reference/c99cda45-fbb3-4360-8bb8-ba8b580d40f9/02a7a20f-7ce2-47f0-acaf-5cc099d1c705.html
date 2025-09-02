@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Gestor de Tareas Minimalista</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)",
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    popover: {
+                        DEFAULT: "var(--popover)",
+                        foreground: "var(--popover-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    destructive: {
+                        DEFAULT: "var(--destructive)",
+                        foreground: "var(--destructive-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                }
+            },
+            fontFamily: {
+                sans: ["Inter", "system-ui", "sans-serif"],
+            }
+        }
+    };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<style>
+:root {
+    --background: hsl(0 0% 100%);
+    --foreground: hsl(222 84% 5%);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(222 84% 5%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(222 84% 5%);
+    --primary: hsl(217 91% 60%);
+    --primary-foreground: hsl(0 0% 100%);
+    --secondary: hsl(210 40% 96%);
+    --secondary-foreground: hsl(222 84% 5%);
+    --muted: hsl(210 40% 96%);
+    --muted-foreground: hsl(215 16% 47%);
+    --accent: hsl(210 40% 96%);
+    --accent-foreground: hsl(222 84% 5%);
+    --destructive: hsl(0 85% 60%);
+    --destructive-foreground: hsl(0 0% 100%);
+    --border: hsl(214 32% 91%);
+    --input: hsl(214 32% 91%);
+    --ring: hsl(217 91% 60%);
+    --radius: 8px;
+}
+
+.task-completed {
+    background: linear-gradient(135deg, hsl(142 76% 96%) 0%, hsl(142 76% 94%) 100%);
+}
+
+.priority-high { border-left: 4px solid hsl(0 85% 60%); }
+.priority-medium { border-left: 4px solid hsl(38 92% 50%); }
+.priority-low { border-left: 4px solid hsl(142 76% 36%); }
+</style>
+
+<body class="bg-background text-foreground font-sans">
+    <!-- @COMPONENT: App [main application container] -->
+    <div class="min-h-screen bg-gradient-to-br from-background via-muted/30 to-background">
+        <!-- Header -->
+        <!-- @COMPONENT: Header [app title and stats] -->
+        <header class="sticky top-0 z-10 bg-background/80 backdrop-blur-md border-b border-border">
+            <div class="max-w-2xl mx-auto px-4 py-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                            <i class="fas fa-tasks text-primary-foreground text-lg"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-semibold text-foreground">TaskFlow</h1>
+                            <p class="text-sm text-muted-foreground">Gestor de tareas minimalista</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-foreground" data-bind="completedTasks">3 de 7</p>
+                        <p class="text-xs text-muted-foreground">completadas</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- @END_COMPONENT: Header -->
+
+        <main class="max-w-2xl mx-auto px-4 py-8">
+            <!-- Task Creation Form -->
+            <!-- @COMPONENT: TaskForm [form for creating new tasks] -->
+            <div class="bg-card rounded-xl shadow-sm border border-border p-6 mb-8">
+                <h2 class="text-lg font-medium text-card-foreground mb-4">Nueva Tarea</h2>
+                
+                <!-- @STATE: newTask: {title: string, description: string, priority: string, sprint: string} -->
+                <form data-event="submit:handleTaskCreate" data-implementation="Should validate and create new task">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Título de la tarea</label>
+                            <input 
+                                type="text" 
+                                data-bind="newTask.title"
+                                placeholder="Ej: Revisar documentación de API"
+                                class="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
+                                required
+                            />
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-foreground mb-2">Descripción (opcional)</label>
+                            <textarea 
+                                data-bind="newTask.description"
+                                placeholder="Detalles adicionales de la tarea..."
+                                rows="2"
+                                class="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all resize-none"
+                            ></textarea>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-foreground mb-2">Prioridad</label>
+                                <select 
+                                    data-bind="newTask.priority"
+                                    class="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
+                                >
+                                    <option value="low">Baja</option>
+                                    <option value="medium" selected>Media</option>
+                                    <option value="high">Alta</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-foreground mb-2">Sprint</label>
+                                <select 
+                                    data-bind="newTask.sprint"
+                                    class="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
+                                >
+                                    <option value="backlog">Backlog</option>
+                                    <option value="sprint-1" selected>Sprint 1</option>
+                                    <option value="sprint-2">Sprint 2</option>
+                                    <option value="sprint-3">Sprint 3</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button 
+                            type="submit"
+                            class="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg font-medium hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-all"
+                        >
+                            <i class="fas fa-plus mr-2"></i>
+                            Agregar Tarea
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- @END_COMPONENT: TaskForm -->
+            
+            <!-- Filter Controls -->
+            <!-- @COMPONENT: TaskFilters [filter buttons for task status and sprint] -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-6">
+                <div class="flex-1">
+                    <p class="text-sm font-medium text-foreground mb-2">Filtrar por estado</p>
+                    <div class="flex bg-muted rounded-lg p-1">
+                        <button 
+                            data-event="click:setFilter('all')"
+                            class="flex-1 px-3 py-2 text-sm font-medium rounded-md bg-background text-foreground shadow-sm transition-all"
+                        >
+                            Todas <span class="ml-1 px-1.5 py-0.5 bg-muted text-muted-foreground rounded text-xs" data-bind="allCount">7</span>
+                        </button>
+                        <button 
+                            data-event="click:setFilter('active')"
+                            class="flex-1 px-3 py-2 text-sm font-medium rounded-md text-muted-foreground hover:text-foreground transition-all"
+                        >
+                            Activas <span class="ml-1 px-1.5 py-0.5 bg-muted-foreground/20 rounded text-xs" data-bind="activeCount">4</span>
+                        </button>
+                        <button 
+                            data-event="click:setFilter('completed')"
+                            class="flex-1 px-3 py-2 text-sm font-medium rounded-md text-muted-foreground hover:text-foreground transition-all"
+                        >
+                            Completadas <span class="ml-1 px-1.5 py-0.5 bg-muted-foreground/20 rounded text-xs" data-bind="completedCount">3</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="sm:w-48">
+                    <p class="text-sm font-medium text-foreground mb-2">Sprint</p>
+                    <select 
+                        data-event="change:filterBySprint"
+                        class="w-full px-3 py-2 border border-input rounded-lg bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
+                    >
+                        <option value="all">Todos los sprints</option>
+                        <option value="backlog">Backlog</option>
+                        <option value="sprint-1">Sprint 1</option>
+                        <option value="sprint-2">Sprint 2</option>
+                        <option value="sprint-3">Sprint 3</option>
+                    </select>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: TaskFilters -->
+            
+            <!-- Task List -->
+            <!-- @COMPONENT: TaskList [main list of tasks] -->
+            <div class="space-y-3">
+                <!-- @MAP: filteredTasks.map(task => ( -->
+                
+                <!-- Active Task Example -->
+                <div class="bg-card rounded-xl shadow-sm border border-border p-4 hover:shadow-md transition-all duration-200 priority-high" data-mock="true">
+                    <div class="flex items-start gap-4">
+                        <button 
+                            data-event="click:toggleTaskComplete(task.id)"
+                            data-implementation="Should toggle task completion status"
+                            class="flex-shrink-0 w-5 h-5 rounded-full border-2 border-muted-foreground/40 hover:border-primary transition-colors mt-0.5 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        ></button>
+                        
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-sm font-medium text-foreground" data-bind="task.title">
+                                    Implementar autenticación de usuarios
+                                </h3>
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-destructive/10 text-destructive text-xs font-medium rounded-md">Alta</span>
+                                    <span class="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded-md">Sprint 1</span>
+                                </div>
+                            </div>
+                            
+                            <p class="text-sm text-muted-foreground mb-3" data-bind="task.description">
+                                Configurar JWT, middleware de autenticación y rutas protegidas
+                            </p>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                                    <span data-bind="task.createdAt">Hace 2 horas</span>
+                                    <span data-bind="task.dueDate">Vence: 2 días</span>
+                                </div>
+                                
+                                <div class="flex items-center gap-2">
+                                    <button 
+                                        data-event="click:editTask(task.id)"
+                                        data-implementation="Should open edit modal"
+                                        class="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all"
+                                        title="Editar tarea"
+                                    >
+                                        <i class="fas fa-edit text-xs"></i>
+                                    </button>
+                                    <button 
+                                        data-event="click:deleteTask(task.id)"
+                                        data-implementation="Should confirm and delete task"
+                                        class="p-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-all"
+                                        title="Eliminar tarea"
+                                    >
+                                        <i class="fas fa-trash text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Completed Task Example -->
+                <div class="bg-card task-completed rounded-xl shadow-sm border border-border p-4 hover:shadow-md transition-all duration-200 priority-medium" data-mock="true">
+                    <div class="flex items-start gap-4">
+                        <button 
+                            data-event="click:toggleTaskComplete(task.id)"
+                            class="flex-shrink-0 w-5 h-5 rounded-full bg-primary border-2 border-primary hover:bg-primary/80 transition-colors mt-0.5 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        >
+                            <i class="fas fa-check text-primary-foreground text-xs"></i>
+                        </button>
+                        
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-sm font-medium text-muted-foreground line-through" data-bind="task.title">
+                                    Configurar base de datos MongoDB
+                                </h3>
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-orange-100 text-orange-600 text-xs font-medium rounded-md">Media</span>
+                                    <span class="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded-md">Sprint 1</span>
+                                </div>
+                            </div>
+                            
+                            <p class="text-sm text-muted-foreground/80 line-through mb-3" data-bind="task.description">
+                                Configurar conexión, esquemas y modelos principales
+                            </p>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                                    <span data-bind="task.completedAt">Completada hace 1 hora</span>
+                                    <span class="text-emerald-600 font-medium">✓ Completada</span>
+                                </div>
+                                
+                                <div class="flex items-center gap-2">
+                                    <button 
+                                        data-event="click:editTask(task.id)"
+                                        class="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all"
+                                        title="Editar tarea"
+                                    >
+                                        <i class="fas fa-edit text-xs"></i>
+                                    </button>
+                                    <button 
+                                        data-event="click:deleteTask(task.id)"
+                                        class="p-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-all"
+                                        title="Eliminar tarea"
+                                    >
+                                        <i class="fas fa-trash text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Another Active Task -->
+                <div class="bg-card rounded-xl shadow-sm border border-border p-4 hover:shadow-md transition-all duration-200 priority-low" data-mock="true">
+                    <div class="flex items-start gap-4">
+                        <button 
+                            data-event="click:toggleTaskComplete(task.id)"
+                            class="flex-shrink-0 w-5 h-5 rounded-full border-2 border-muted-foreground/40 hover:border-primary transition-colors mt-0.5 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        ></button>
+                        
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-sm font-medium text-foreground" data-bind="task.title">
+                                    Optimizar consultas SQL
+                                </h3>
+                                <div class="flex items-center gap-2">
+                                    <span class="px-2 py-1 bg-emerald-100 text-emerald-600 text-xs font-medium rounded-md">Baja</span>
+                                    <span class="px-2 py-1 bg-muted text-muted-foreground text-xs font-medium rounded-md">Backlog</span>
+                                </div>
+                            </div>
+                            
+                            <p class="text-sm text-muted-foreground mb-3" data-bind="task.description">
+                                Revisar y optimizar consultas lentas en el dashboard
+                            </p>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-4 text-xs text-muted-foreground">
+                                    <span data-bind="task.createdAt">Hace 1 día</span>
+                                </div>
+                                
+                                <div class="flex items-center gap-2">
+                                    <button 
+                                        data-event="click:editTask(task.id)"
+                                        class="p-1.5 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-all"
+                                        title="Editar tarea"
+                                    >
+                                        <i class="fas fa-edit text-xs"></i>
+                                    </button>
+                                    <button 
+                                        data-event="click:deleteTask(task.id)"
+                                        class="p-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-all"
+                                        title="Eliminar tarea"
+                                    >
+                                        <i class="fas fa-trash text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- @END_MAP )) -->
+                
+                <!-- Empty State (shown when no tasks match filter) -->
+                <!-- @STATE: showEmptyState:boolean -->
+                <div class="text-center py-12 hidden" data-bind="showEmptyState">
+                    <div class="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clipboard-list text-2xl text-muted-foreground"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-foreground mb-2">No hay tareas</h3>
+                    <p class="text-sm text-muted-foreground">Crea tu primera tarea para comenzar</p>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: TaskList -->
+            
+            <!-- Progress Summary -->
+            <!-- @COMPONENT: ProgressSummary [summary stats and progress] -->
+            <div class="mt-12 bg-card rounded-xl shadow-sm border border-border p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-medium text-card-foreground">Progreso del Sprint</h3>
+                    <span class="text-sm text-muted-foreground" data-bind="currentSprint">Sprint 1</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-muted-foreground">Progreso general</span>
+                        <span class="font-medium text-foreground" data-bind="progressPercentage">43%</span>
+                    </div>
+                    
+                    <div class="w-full bg-muted rounded-full h-2">
+                        <div class="bg-primary h-2 rounded-full transition-all duration-300" style="width: 43%" data-bind="progressWidth"></div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-4 pt-2">
+                        <div class="text-center">
+                            <p class="text-lg font-semibold text-foreground" data-bind="totalTasks">7</p>
+                            <p class="text-xs text-muted-foreground">Total</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-lg font-semibold text-primary" data-bind="activeTasks">4</p>
+                            <p class="text-xs text-muted-foreground">Activas</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-lg font-semibold text-emerald-600" data-bind="completedTasks">3</p>
+                            <p class="text-xs text-muted-foreground">Completadas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: ProgressSummary -->
+        </main>
+        
+        <!-- Footer -->
+        <footer class="max-w-2xl mx-auto px-4 py-8 text-center">
+            <p class="text-sm text-muted-foreground">
+                TaskFlow - Gestión de tareas simple y eficiente
+            </p>
+        </footer>
+    </div>
+    <!-- @END_COMPONENT: App -->
+
+    <script>
+        // TODO: Implement full React-based state management and localStorage persistence
+        // This is just a visual mockup - real implementation would use React hooks and context
+        
+        (function() {
+            'use strict';
+            
+            // Mock data for visual demonstration only
+            const mockTasks = [
+                {
+                    id: 1,
+                    title: 'Implementar autenticación de usuarios',
+                    description: 'Configurar JWT, middleware de autenticación y rutas protegidas',
+                    priority: 'high',
+                    sprint: 'sprint-1',
+                    completed: false,
+                    createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000) // 2 hours ago
+                },
+                {
+                    id: 2,
+                    title: 'Configurar base de datos MongoDB',
+                    description: 'Configurar conexión, esquemas y modelos principales',
+                    priority: 'medium',
+                    sprint: 'sprint-1',
+                    completed: true,
+                    completedAt: new Date(Date.now() - 60 * 60 * 1000) // 1 hour ago
+                },
+                {
+                    id: 3,
+                    title: 'Optimizar consultas SQL',
+                    description: 'Revisar y optimizar consultas lentas en el dashboard',
+                    priority: 'low',
+                    sprint: 'backlog',
+                    completed: false,
+                    createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000) // 1 day ago
+                }
+            ];
+            
+            // TODO: Replace with actual React state management
+            let currentFilter = 'all';
+            let currentSprintFilter = 'all';
+            
+            // Simple visual interactions for the mockup
+            document.addEventListener('DOMContentLoaded', function() {
+                // Task completion toggle demo
+                const checkboxes = document.querySelectorAll('[data-event*="toggleTaskComplete"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const taskContainer = this.closest('.bg-card');
+                        const isCompleted = this.innerHTML.includes('fa-check');
+                        
+                        if (isCompleted) {
+                            // Mark as incomplete
+                            this.innerHTML = '';
+                            this.classList.remove('bg-primary', 'border-primary');
+                            this.classList.add('border-muted-foreground/40');
+                            taskContainer.classList.remove('task-completed');
+                            
+                            // Remove strikethrough
+                            const title = taskContainer.querySelector('h3');
+                            const desc = taskContainer.querySelector('p');
+                            title.classList.remove('line-through', 'text-muted-foreground');
+                            title.classList.add('text-foreground');
+                            desc.classList.remove('line-through', 'text-muted-foreground/80');
+                            desc.classList.add('text-muted-foreground');
+                            
+                        } else {
+                            // Mark as completed
+                            this.innerHTML = '<i class="fas fa-check text-primary-foreground text-xs"></i>';
+                            this.classList.add('bg-primary', 'border-primary');
+                            this.classList.remove('border-muted-foreground/40');
+                            taskContainer.classList.add('task-completed');
+                            
+                            // Add strikethrough
+                            const title = taskContainer.querySelector('h3');
+                            const desc = taskContainer.querySelector('p');
+                            title.classList.add('line-through', 'text-muted-foreground');
+                            title.classList.remove('text-foreground');
+                            desc.classList.add('line-through', 'text-muted-foreground/80');
+                            desc.classList.remove('text-muted-foreground');
+                        }
+                    });
+                });
+                
+                // Filter button interactions
+                const filterButtons = document.querySelectorAll('[data-event*="setFilter"]');
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Remove active state from all buttons
+                        filterButtons.forEach(btn => {
+                            btn.classList.remove('bg-background', 'text-foreground', 'shadow-sm');
+                            btn.classList.add('text-muted-foreground');
+                        });
+                        
+                        // Add active state to clicked button
+                        this.classList.add('bg-background', 'text-foreground', 'shadow-sm');
+                        this.classList.remove('text-muted-foreground');
+                    });
+                });
+                
+                // Form validation demo
+                const form = document.querySelector('form[data-event*="handleTaskCreate"]');
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        const titleInput = this.querySelector('input[data-bind*="title"]');
+                        
+                        if (!titleInput.value.trim()) {
+                            titleInput.focus();
+                            titleInput.classList.add('border-destructive', 'focus:ring-destructive');
+                            setTimeout(() => {
+                                titleInput.classList.remove('border-destructive', 'focus:ring-destructive');
+                            }, 3000);
+                            return;
+                        }
+                        
+                        // Success feedback
+                        const button = this.querySelector('button[type="submit"]');
+                        const originalText = button.innerHTML;
+                        button.innerHTML = '<i class="fas fa-check mr-2"></i>¡Tarea creada!';
+                        button.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+                        
+                        setTimeout(() => {
+                            button.innerHTML = originalText;
+                            button.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+                            this.reset();
+                        }, 2000);
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
