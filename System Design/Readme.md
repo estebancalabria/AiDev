@@ -1,8 +1,8 @@
-\## IA para System Design (Disenio de Sistemaas)
+# IA para System Design (Disenio de Sistemaas)
 
 
 
-\### Diagram GPT
+## Diagram GPT
 
 
 
@@ -30,11 +30,11 @@ Ver imagen en diagramgpt/
 
 
 
-\* Permite importar diagramas de otras herramientas como Draw.io o lucidchart
+* Permite importar diagramas de otras herramientas como Draw.io o lucidchart
 
-\* Permite subir los diagramas a github
+* Permite subir los diagramas a github
 
-\* Permite exprotar los diagramas como imagen
+* Permite exprotar los diagramas como imagen
 
 
 
