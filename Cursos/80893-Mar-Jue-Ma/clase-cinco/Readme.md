@@ -6,6 +6,12 @@ Similar a Replit : https://lovable.dev/
    
 * Genera muy buenas interfaces de pantalla ademas del scaffolding
 * Admite proyectos con base de datos con Supabase
+         * https://supabase.com/
+* Genera codigo en react
+* Se puede generar un repo en github con el proyecto para descargar archivos
+* La version gratuita no me permite editar para descargar tengo que pasar por github
+* Hacer sin login
+   
 
 Para generar el prompt utilize ChatGPT y le puse
 
@@ -66,5 +72,30 @@ Quiero que generes un **MVP de un sistema de turnos online**, multipropósito y 
 
 > MVP : Minimum Viable Producto
 
- 
+
+## IA para System Design (Disenio de Sistemaas)
+
+### Diagram GPT
+
+Herramienta para digramar y generar la arquitectura de la aplicacion
+
+> https://www.eraser.io/diagramgpt
+
+Prompt utilizado (mas pro si lo pasaramos por chaatgpt)
+
+```
+Generame un diagraama de arquitectrua para una aplicacion tipo netflix que voy a hacer deploy en Azure
+```
+
+Ver imagen en diagramgpt/
+
+* Permite importar diagramas de otras herramientas como Draw.io o lucidchart
+* Permite subir los diagramas a github
+* Permite exprotar los diagramas como imagen
+
+
+### Lenguaje general para hacer diagramas
+
+Mermaid
+
 
