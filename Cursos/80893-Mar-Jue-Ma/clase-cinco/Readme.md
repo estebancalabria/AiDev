@@ -97,5 +97,43 @@ Ver imagen en diagramgpt/
 ### Lenguaje general para hacer diagramas
 
 Mermaid
+> https://mermaid.live/
 
+ChatGPT y cualquier llm (en especial Claude) saben generar diagramas mermaid...
+
+Por ejemplo a ChatGPT le puedo decir
+
+```
+Generame un diagrama de secuenca en mermaid que muestre en detalle la autenticacion oauth
+```
+
+y me va  a generar algo como lo siquitente
+
+```mermaid
+sequenceDiagram
+    participant Usuario
+    participant Cliente as Aplicación Cliente
+    participant Navegador
+    participant ServidorAutorizacion as Servidor de Autorización
+    participant ServidorRecursos as Servidor de Recursos
+
+    Usuario->>Navegador: Accede a la aplicación
+    Navegador->>Cliente: Solicita acceso a un recurso protegido
+    Cliente->>Navegador: Redirige al Servidor de Autorización<br/>con client_id, scope, redirect_uri
+
+    Navegador->>ServidorAutorizacion: Solicitud de autorización
+    ServidorAutorizacion->>Usuario: Pide credenciales y consentimiento
+    Usuario->>ServidorAutorizacion: Ingresa credenciales y otorga permisos
+
+    ServidorAutorizacion->>Navegador: Redirige a redirect_uri<br/>con código de autorización
+    Navegador->>Cliente: Entrega el código de autorización
+
+    Cliente->>ServidorAutorizacion: Intercambia código por Access Token<br/>(+ Client Secret)
+    ServidorAutorizacion->>Cliente: Devuelve Access Token (+ opcional Refresh Token)
+
+    Cliente->>ServidorRecursos: Solicita recurso con Access Token
+    ServidorRecursos->>Cliente: Devuelve recurso protegido
+    Cliente->>Usuario: Muestra los datos autorizados
+
+```
 
