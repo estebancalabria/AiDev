@@ -64,4 +64,7 @@ Quiero que generes un **MVP de un sistema de turnos online**, multipropósito y 
 
 ```
 
+> MVP : Minimum Viable Producto
+
+ 
 
