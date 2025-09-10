@@ -14,6 +14,10 @@ Vibe Coding : https://www.instagram.com/p/DJ-cav5ObK3/?img_index=14
 * Claude Code : https://www.anthropic.com/claude-code
 * ChatGPT : https://chatgpt.com/
 * Mistral : https://mistral.ai/
+* Groq : https://groq.com/
+* Los chinos (open Source)
+ * DeepSeek : https://chat.deepseek.com/
+ * Qwen : https://chat.qwen.ai/
 
 - ### Primer Artefacto generado con Claude
 
@@ -60,4 +64,22 @@ Luego con las votaciones se arma un ranking en:
 
 > https://lmarena.ai/leaderboard
 
+## Herramienta para generar Interfaces Graficas
 
+> https://llamacoder.together.ai/
+
+Promocionado por 
+
+> https://www.together.ai/
+
+```
+Una app que muestre un calendario y permita crear eventos en el calendario
+```
+Hice:
+> https://llamacoder.together.ai/share/v2/b2DuFIuSaUPsoVSY
+
+o sino un login
+> https://llamacoder.together.ai/share/v2/JEB_tRC4eFdgjjSw
+
+Mis estudiantes hicieron:
+* https://llamacoder.together.ai/share/v2/aDkBWPHUdJFmhXpn
