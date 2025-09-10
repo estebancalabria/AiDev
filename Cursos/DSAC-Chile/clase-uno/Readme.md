@@ -2,9 +2,9 @@
  
 ## Roadmap del Curso
 
-Ver Presentacion de : https://www.instagram.com/p/DJrpLZWgqJr/?img_index=1
-MCP : https://www.instagram.com/p/DI0LLJAuUno/?img_index=1
-Vibe Coding : https://www.instagram.com/p/DJ-cav5ObK3/?img_index=14
+* Ver Presentacion de : https://www.instagram.com/p/DJrpLZWgqJr/?img_index=1     
+* MCP : https://www.instagram.com/p/DI0LLJAuUno/?img_index=1    
+* Vibe Coding : https://www.instagram.com/p/DJ-cav5ObK3/?img_index=14    
 
 ---
 
