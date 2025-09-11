@@ -143,4 +143,38 @@ La gran mayoria de las aplicaciones de IA que fueron creciedo exponencialmente c
 
 ## Ejemplo Black Mirror de uso de API Key : La pc que se programa a si misma
 
+```python
+from groq import Groq
 
+prompt = "Programar en python un codigo que te muestre los numeros primos del 1 a un millon. Devolver directamente el codigo en python sin acotar nada mas en texto sin markdown"
+
+client = Groq(api_key=api_key)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": prompt,
+        }
+    ],
+    model="openai/gpt-oss-20b",
+    stream=False,
+)
+
+codigo_python = chat_completion.choices[0].message.content
+
+##Borrar del la variable los caracteres ```python y ``` para poder ejecutar el codigo
+codigo_python = codigo_python.replace("```python", "")
+codigo_python = codigo_python.replace("```", "")
+
+
+exec(codigo_python)
+
+```
+
+## Modelos Open Source
+
+Los modelos Open source se suben a (es como el github pero de modelos open source):
+> https://huggingface.co/     
+Lo interesante de aca es ver los spaces:     
+> https://huggingface.co/spaces
