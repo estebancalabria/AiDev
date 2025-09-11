@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character to Figurine AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <h1>Character to Figurine AI</h1>
+                <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+            </div>
+            <p>Transform your character into a realistic 1/7 scale PVC figurine</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <div class="upload-icon">📸</div>
+                        <h3>Upload Character Image</h3>
+                        <p>Drag and drop an image or click to browse</p>
+                        <input type="file" id="fileInput" accept="image/*" hidden>
+                    </div>
+                </div>
+            </div>
+
+            <div class="options-section" id="optionsSection" style="display: none;">
+                <h3>Figurine Settings</h3>
+                <div class="options-grid">
+                    <div class="option-group">
+                        <label for="backgroundSelect">Background Setting:</label>
+                        <select id="backgroundSelect">
+                            <option value="desk">Wooden Desk</option>
+                            <option value="bookshelf">Bookshelf</option>
+                            <option value="rock">Natural Rock</option>
+                            <option value="display">Display Cabinet</option>
+                            <option value="shelf">Simple Shelf</option>
+                            <option value="custom">Custom (describe below)</option>
+                        </select>
+                    </div>
+                    <div class="option-group">
+                        <label for="customStyle">Custom Art Style & Background:</label>
+                        <textarea id="customStyle" placeholder="Describe the art style and background you want (e.g., 'anime style figurine on a cherry blossom themed base with pink petals')"></textarea>
+                    </div>
+                    <div class="option-group">
+                        <label for="poseAdjust">Allow Pose Adjustment:</label>
+                        <input type="checkbox" id="poseAdjust" checked>
+                    </div>
+                </div>
+                <button id="generateBtn" class="generate-btn">Generate Figurine</button>
+            </div>
+
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="image-comparison">
+                    <div class="image-container">
+                        <h4>Original Character</h4>
+                        <img id="originalImage" alt="Original character">
+                    </div>
+                    <div class="image-container">
+                        <h4>PVC Figurine</h4>
+                        <div class="figurine-container">
+                            <img id="figurineImage" alt="Generated figurine">
+                            <div class="loading-spinner" id="loadingSpinner">
+                                <div class="spinner"></div>
+                                <p>Creating your figurine...</p>
+                            </div>
+                            <div class="error-message" id="errorMessage" style="display: none;">
+                                <div class="error-icon">⚠️</div>
+                                <p>Daily generation limit exceeded. Please try again tomorrow!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button id="downloadBtn" class="download-btn">Download Figurine</button>
+                    <button id="newImageBtn" class="secondary-btn">Upload New Image</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Space Shooter - 1942 Retro Style</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+            color: #ffffff;
+        }
+        
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #startScreen {
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+        
+        #gameTitle {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: pulse 2s infinite;
+        }
+        
+        #startButton {
+            font-size: 1.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+        }
+        
+        #startButton:hover {
+            transform: scale(1.1);
+        }
+        
+        #gameCanvas {
+            display: none;
+            border: 2px solid #ffd93d;
+            box-shadow: 0 0 20px rgba(255, 217, 61, 0.5);
+        }
+        
+        #score {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            color: #ffd93d;
+            display: none;
+        }
+        
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #ff6b6b;
+        }
+        
+        .explosion {
+            position: absolute;
+            font-size: 2rem;
+            animation: explode 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <!-- Start Screen -->
+        <div id="startScreen">
+            <h1 id="gameTitle">🚀 EMOJI SPACE SHOOTER 🎯</h1>
+            <button id="startButton" onclick="startGame()">NUEVO JUEGO</button>
+        </div>
+        
+        <!-- Game Canvas -->
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div id="score">PUNTOS: <span id="scoreValue">0</span></div>
+        
+        <!-- Game Over Screen -->
+        <div id="gameOver">
+            <h2>💥 GAME OVER 💥</h2>
+            <p>Puntos finales: <span id="finalScore">0</span></p>
+            <button onclick="resetGame()">Jugar de nuevo</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const startScreen = document.getElementById('startScreen');
+        
+        let player = {
+            x: canvas.width / 2 - 15,
+            y: canvas.height - 40,
+            width: 30,
+            height: 30,
+            emoji: '😎',
+            speed: 5
+        };
+        
+        let enemies = [];
+        let bullets = [];
+        let score = 0;
+        let gameRunning = false;
+        let keys = {};
+        
+        // Game initialization
+        function startGame() {
+            startScreen.style.display = 'none';
+            canvas.style.display = 'block';
+            document.getElementById('score').style.display = 'block';
+            gameRunning = true;
+            gameLoop();
+        }
+        
+        // Game loop
+        function gameLoop() {
+            if (!gameRunning) return;
+            
+            update();
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+        
+        // Update game state
+        function update() {
+            // Player movement
+            if (keys['ArrowLeft'] && player.x > 0) player.x -= player.speed;
+            if (keys['ArrowRight'] && player.x < canvas.width - player.width) player.x += player.speed;
+            if (keys['ArrowUp'] && player.y > 0) player.y -= player.speed;
+            if (keys['ArrowDown'] && player.y < canvas.height - player.height) player.y += player.speed;
+            
+            // Spawn enemies
+            if (Math.random() < 0.02) {
+                enemies.push({
+                    x: Math.random() * (canvas.width - 30),
+                    y: -30,
+                    width: 30,
+                    height: 30,
+                    emoji: ['👾', '👹', '👻', '🤖'][Math.floor(Math.random() * 4)],
+                    speed: 2
+                });
+            }
+            
+            // Update enemies
+            enemies.forEach(enemy => {
+                enemy.y += enemy.speed;
+            });
+            
+            // Remove off-screen enemies
+            enemies = enemies.filter(enemy => enemy.y < canvas.height + 30);
+            
+            // Update bullets
+            bullets.forEach(bullet => {
+                bullet.y -= bullet.speed;
+            });
+            
+            // Remove off-screen bullets
+            bullets = bullets.filter(bullet => bullet.y > -10);
+            
+            // Check collisions
+            checkCollisions();
+            
+            // Check game over
+            enemies.forEach(enemy => {
+                if (enemy.y > canvas.height - 30) {
+                    gameOver();
+                }
+            });
+        }
+        
+        // Draw everything
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw player
+            ctx.font = '30px Arial';
+            ctx.fillText(player.emoji, player.x, player.y + 20);
+            
+            // Draw enemies
+            enemies.forEach(enemy => {
+                ctx.fillText(enemy.emoji, enemy.x, enemy.y + 20);
+            });
+            
+            // Draw bullets
+            bullets.forEach(bullet => {
+                ctx.fillText(bullet.emoji, bullet.x, bullet.y);
+            });
+            
+            // Update score
+            document.getElementById('scoreValue').textContent = score;
+        }
+        
+        // Check collisions
+        function checkCollisions() {
+            bullets.forEach((bullet, bulletIndex) => {
+                enemies.forEach((enemy, enemyIndex) => {
+                    if (checkCollision(bullet, enemy)) {
+                        // Create explosion effect
+                        createExplosion(enemy.x, enemy.y);
+                        
+                        // Remove both bullet and enemy
+                        bullets.splice(bulletIndex, 1);
+                        enemies.splice(enemyIndex, 1);
+                        score += 10;
+                    }
+                });
+            });
+        }
+        
+        // Collision detection
+        function checkCollision(obj1, obj2) {
+            return obj1.x < obj2.x + obj2.width &&
+                   obj1.x + obj1.width > obj2.x &&
+                   obj1.y < obj2.y + obj2.height &&
+                   obj1.y + obj1.height > obj2.y;
+        }
+        
+        // Create explosion effect
+        function createExplosion(x, y) {
+            const explosion = document.createElement('div');
+            explosion.className = 'explosion';
+            explosion.style.left = x + 'px';
+            explosion.style.top = y + 'px';
+            explosion.textContent = '💥';
+            document.getElementById('gameContainer').appendChild(explosion);
+            
+            setTimeout(() => explosion.remove(), 500);
+        }
+        
+        // Game over
+        function gameOver() {
+            gameRunning = false;
+            document.getElementById('gameOver').style.display = 'block';
+            document.getElementById('finalScore').textContent = score;
+        }
+        
+        // Reset game
+        function resetGame() {
+            enemies = [];
+            bullets = [];
+            score = 0;
+            player.x = canvas.width / 2 - 15;
+            player.y = canvas.height - 40;
+            document.getElementById('gameOver').style.display = 'none';
+            gameRunning = true;
+            gameLoop();
+        }
+        
+        // Event listeners
+        document.addEventListener('keydown', (e) => {
+            keys[e.key] = true;
+            
+            // Shoot on spacebar
+            if (e.key === ' ' && gameRunning) {
+                bullets.push({
+                    x: player.x + 12,
+                    y: player.y - 10,
+                    width: 10,
+                    height: 10,
+                    emoji: '💥',
+                    speed: 7
+                });
+            }
+        });
+        
+        document.addEventListener('keyup', (e) => {
+            keys[e.key] = false;
+        });
+    </script>
+</body>
+</html>
+
