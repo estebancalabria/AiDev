@@ -16,8 +16,8 @@
 * Mistral : https://mistral.ai/
 * Groq : https://groq.com/
 * Los chinos (open Source)
- * DeepSeek : https://chat.deepseek.com/
- * Qwen : https://chat.qwen.ai/
+    * DeepSeek : https://chat.deepseek.com/
+    * Qwen : https://chat.qwen.ai/
 
 - ### Primer Artefacto generado con Claude
 
@@ -83,3 +83,64 @@ o sino un login
 
 Mis estudiantes hicieron:
 * https://llamacoder.together.ai/share/v2/aDkBWPHUdJFmhXpn
+
+---
+
+## Programar utilizando la API Key
+
+Vamos en programar en python utilizando google Colab
+> https://colab.google/
+
+* Los LLM tienen dos Web una para el usuario final y otra para el desarrollador
+    * Por ejemplo ChatGPT (Es pago)
+        * Para usuario Final : https://chatgpt.com/
+        * Para el Desarrollador : https://platform.openai.com/docs/overview
+    * Por ejemplo con Groq (Es Gratis)
+        * Para el usuario Final : https://groq.com/
+        * Para el Desarrollador : https://console.groq.com/home
+
+1. Primero sacamos una API key de : https://console.groq.com/keys
+> Guardar la api key en un lugar seguro una vez generada no se vuelve  a mostrar
+
+2. Creamos un google colam nuevo en :  https://colab.google/
+     
+3. Copiamos el codigo para hacer una llama a groq de : https://console.groq.com/docs/overview
+    
+4. Instalamos en el google colab a la libreria groq
+     
+```python
+!pip install groq
+```
+   
+5. Ejecutamos la parte de llamar al LLM desde python
+```python
+from groq import Groq
+
+api_key = input("Ingrese su Api Key de Groq")
+prompt = input("Ingrese su prompt")
+
+client = Groq(api_key=api_key)
+
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": prompt,
+        }
+    ],
+    model="openai/gpt-oss-20b",
+    stream=False,
+)
+
+print(chat_completion.choices[0].message.content)
+```
+
+## Aplicacion que usan Api key
+
+> https://theresanaiforthat.com/
+
+La gran mayoria de las aplicaciones de IA que fueron creciedo exponencialmente con el tiepo se dieron gracias a poder utilizar la API de algun servicio de IA como chatgpt que resuelve la complejidad de no tener que entrenar un modelo de IA desde cero. Incluso van a ver que muchas paginas utilizan modelos open source de lo que vamos a hablar en un instante...
+
+## Ejemplo Black Mirror de uso de API Key : La pc que se programa a si misma
+
+
