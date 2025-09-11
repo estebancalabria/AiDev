@@ -13,12 +13,12 @@
 
 ## Herramientas para documentar proyectos
 
-* Extesion VSCode CodeWiz : https://marketplace.visualstudio.com/items?itemName=CodeViz.codeviz
+* Extesion VSCode CodeWiz : https://marketplace.visualstudio.com/items?itemName=CodeViz.codeviz      
       * Funciona con proyectos locales en tu propia pc
-* DeepWiki
-      * Genera toda la documentacion de un repositorio de github
-      * Funciona con proyectos que estan en github
-      * Cambio https://github.com/estebancalabria/turnos-flexi por https://deepwiki.com/estebancalabria/turnos-flexi
+* DeepWiki      
+      * Genera toda la documentacion de un repositorio de github    
+      * Funciona con proyectos que estan en github   
+      * Cambio https://github.com/estebancalabria/turnos-flexi por    https://deepwiki.com/estebancalabria/turnos-flexi
 
 ##  Coddign Assistants
 
