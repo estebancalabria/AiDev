@@ -70,3 +70,20 @@ Podes generarme un json con los paises de latam y sus capitales ordenados alfabe
 
 9. Ahora vamos a usar el mcp de pupeteer : https://github.com/modelcontextprotocol/servers-archived/tree/main/src/puppeteer
     
+10. El mcp.json ahora queda:
+
+```json
+    "servers": {
+        ...
+        "puppeteer": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-puppeteer"
+            ]
+        }
+    }
+```
+
+11. 
+    
