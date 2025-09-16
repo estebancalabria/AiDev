@@ -32,6 +32,8 @@ Similar a la anterior pero es opensource, puedo modificar los fuentes y adptarla
 Es procolo para agregarle un "plugin" a un llm para que pueda interactuar con herramientas externas (ej: filesystem, base de datos, interactue con GIT). Este protocolo fue propuesto por la gente de Anthropic (los creadores de Claude) y rapidamente esta siendo adoptado como protocolo entandar por el resto de los proveedores/
 
 * https://modelcontextprotocol.io/
+* https://code.visualstudio.com/mcp
+* https://nearform.com/digital-community/supercharging-playwright-testing/ (Gracias Robinson!)
      
 Para usarlo lo puedo usar desde:
 * Claude Dektop : https://claude.ai/download
@@ -39,6 +41,8 @@ Para usarlo lo puedo usar desde:
 
 Requisitos:
 * Tener Instalado nodejs : https://nodejs.org/en
+
+## MCP en VSCode
 
 Pasos a Seguir
 1. Abrir el Visual Studio Code
@@ -85,5 +89,40 @@ Podes generarme un json con los paises de latam y sus capitales ordenados alfabe
     }
 ```
 
-11. 
+11. En el chat utilice el siguiente prompt
+
+```
+Podes buscarme en Amazon monitores con el mcp de pupeteer y luego creame un archivo don el mcp de filesystem monitores.json con el nombre y el precio de tres monitores
+```
+
+---
     
+## IA para requerimientos de Softwar
+
+### Herramientas para transcribir Reuniones Online y Grabaciones
+
+Cuando uno tiene una entrevista con un cliente donde se hablan de los requerimentos ya sea online o presencial grabada. Esta bueno usar la IA para convertir esa reunion en un documento con los requerimientos funcionale de la application
+
+* Herrarmientas para Reuniones Online : https://www.instagram.com/p/DBzb-kHxqae/?img_index=1
+* Tactic : https://tactiq.io/es
+
+### Recopilacion de Informacion
+
+* Transcripciones de las reuniones
+* Documentacion Funcional
+* Documentos de analisis y disenio
+
+## Noteboolm
+
+> https://notebooklm.google.com/?pli=1
+
+Con la informacion del recopilado genero un notebool que sera como un Gemini pero con el contexto precargad de toda la documentacion. Libera un poco al analista funiconal de tener que andar respondiendo todas las dudas y se puede usar como chartbot
+
+Features:
+* Carga documentos, videos (que pueden estar en youtube)
+* Generar un podcast entretenido donde dos personas explican todos los doscumentos
+* Genera un Video con una explicacion
+* Generar mapas de mente
+* LA respuesta del llm la podes guardar como nota que a su vez podes luego convertir en fuente.
+
+Puntaje : 10 / 10 
