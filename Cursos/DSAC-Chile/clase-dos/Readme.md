@@ -126,3 +126,23 @@ Features:
 * LA respuesta del llm la podes guardar como nota que a su vez podes luego convertir en fuente.
 
 Puntaje : 10 / 10 
+
+---
+
+## Vide Coding
+
+Teoria : https://www.instagram.com/p/DJ-cav5ObK3/?img_index=1
+
+Desarrollar una app mediante lenguaje natural sin tirar ninguna linea de codigo.
+Para ello podesmos utilizar una IDE llamada  Cursor
+
+> https://cursor.com/
+
+Como funciona Cursor : 
+
+> https://www.youtube.com/shorts/ATcFq2ajjUI
+
+Para probar use este prompt 
+```
+Generame el scaffolding de un proyecto de un juego n 3d tipo un shooter en javascript con threejs
+```
