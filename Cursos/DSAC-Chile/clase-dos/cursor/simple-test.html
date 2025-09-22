@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Simple - Shooter 3D</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            z-index: 100;
+            font-size: 18px;
+        }
+        
+        #crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-radius: 50%;
+            z-index: 100;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="ui">
+            <div>Puntuación: <span id="score">0</span></div>
+            <div>Vidas: <span id="lives">3</span></div>
+        </div>
+        <div id="crosshair"></div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r158/three.min.js"></script>
+    <script>
+        console.log('Iniciando test simple...');
+        
+        // Verificar que Three.js se cargó
+        if (typeof THREE === 'undefined') {
+            console.error('Three.js no se cargó');
+            document.body.innerHTML = '<div style="color: white; text-align: center; margin-top: 50px;">Error: Three.js no se cargó correctamente</div>';
+        } else {
+            console.log('Three.js cargado correctamente, versión:', THREE.REVISION);
+            
+            try {
+                // Crear escena básica
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ antialias: true });
+                
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setClearColor(0x000011);
+                renderer.shadowMap.enabled = true;
+                renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                document.getElementById('gameContainer').appendChild(renderer.domElement);
+                
+                // Crear suelo
+                const groundGeometry = new THREE.PlaneGeometry(100, 100);
+                const groundMaterial = new THREE.MeshLambertMaterial({ color: 0x2d5016 });
+                const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+                ground.rotation.x = -Math.PI / 2;
+                ground.receiveShadow = true;
+                scene.add(ground);
+                
+                // Crear cubo de prueba
+                const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
+                const cubeMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+                const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+                cube.position.set(0, 0.5, -5);
+                cube.castShadow = true;
+                scene.add(cube);
+                
+                // Configurar cámara
+                camera.position.set(0, 1.6, 0);
+                
+                // Iluminación
+                const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
+                scene.add(ambientLight);
+                
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+                directionalLight.position.set(10, 10, 5);
+                directionalLight.castShadow = true;
+                scene.add(directionalLight);
+                
+                // Animar
+                function animate() {
+                    requestAnimationFrame(animate);
+                    cube.rotation.y += 0.01;
+                    renderer.render(scene, camera);
+                }
+                
+                animate();
+                
+                // Controles básicos
+                const keys = { w: false, a: false, s: false, d: false };
+                
+                document.addEventListener('keydown', (e) => {
+                    switch(e.code) {
+                        case 'KeyW': keys.w = true; break;
+                        case 'KeyA': keys.a = true; break;
+                        case 'KeyS': keys.s = true; break;
+                        case 'KeyD': keys.d = true; break;
+                    }
+                });
+                
+                document.addEventListener('keyup', (e) => {
+                    switch(e.code) {
+                        case 'KeyW': keys.w = false; break;
+                        case 'KeyA': keys.a = false; break;
+                        case 'KeyS': keys.s = false; break;
+                        case 'KeyD': keys.d = false; break;
+                    }
+                });
+                
+                // Movimiento de cámara
+                let mouseX = 0, mouseY = 0;
+                document.addEventListener('mousemove', (e) => {
+                    mouseX += e.movementX * 0.002;
+                    mouseY -= e.movementY * 0.002;
+                    mouseY = Math.max(-Math.PI/2, Math.min(Math.PI/2, mouseY));
+                    
+                    camera.rotation.y = mouseX;
+                    camera.rotation.x = mouseY;
+                });
+                
+                // Click para activar pointer lock
+                document.addEventListener('click', () => {
+                    document.body.requestPointerLock();
+                });
+                
+                console.log('Test simple completado exitosamente');
+                
+            } catch (error) {
+                console.error('Error en el test simple:', error);
+                document.body.innerHTML = '<div style="color: white; text-align: center; margin-top: 50px;">Error: ' + error.message + '</div>';
+            }
+        }
+    </script>
+</body>
+</html>

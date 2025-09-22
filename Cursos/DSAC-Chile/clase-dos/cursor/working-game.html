@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooter 3D - Versión Funcional</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            z-index: 100;
+            font-size: 18px;
+        }
+        
+        #crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-radius: 50%;
+            z-index: 100;
+            pointer-events: none;
+        }
+        
+        #instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            z-index: 100;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="ui">
+            <div>Puntuación: <span id="score">0</span></div>
+            <div>Vidas: <span id="lives">3</span></div>
+            <div>Nivel: <span id="level">1</span></div>
+        </div>
+        
+        <div id="crosshair"></div>
+        
+        <div id="instructions">
+            WASD - Mover | Mouse - Mirar | Click - Disparar | R - Recargar
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r158/three.min.js"></script>
+    <script>
+        // Verificar Three.js
+        if (typeof THREE === 'undefined') {
+            document.body.innerHTML = '<div style="color: white; text-align: center; margin-top: 50px;">Error: Three.js no se cargó correctamente</div>';
+        } else {
+            console.log('Three.js cargado correctamente');
+            
+            // Clase Game simplificada
+            class SimpleGame {
+                constructor() {
+                    this.scene = new THREE.Scene();
+                    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                    this.renderer = new THREE.WebGLRenderer({ antialias: true });
+                    this.clock = new THREE.Clock();
+                    
+                    this.score = 0;
+                    this.lives = 3;
+                    this.level = 1;
+                    this.gameState = 'playing';
+                    
+                    this.enemies = [];
+                    this.bullets = [];
+                    this.keys = { w: false, a: false, s: false, d: false };
+                    this.mouseX = 0;
+                    this.mouseY = 0;
+                    this.isPointerLocked = false;
+                    
+                    this.init();
+                }
+                
+                init() {
+                    // Configurar renderer
+                    this.renderer.setSize(window.innerWidth, window.innerHeight);
+                    this.renderer.setClearColor(0x000011);
+                    this.renderer.shadowMap.enabled = true;
+                    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                    document.getElementById('gameContainer').appendChild(this.renderer.domElement);
+                    
+                    // Crear escena
+                    this.createScene();
+                    
+                    // Configurar cámara
+                    this.camera.position.set(0, 1.6, 0);
+                    
+                    // Event listeners
+                    this.setupEventListeners();
+                    
+                    // Iniciar bucle de juego
+                    this.animate();
+                    
+                    // Iniciar generación de enemigos
+                    this.startEnemySpawn();
+                }
+                
+                createScene() {
+                    // Suelo
+                    const groundGeometry = new THREE.PlaneGeometry(100, 100);
+                    const groundMaterial = new THREE.MeshLambertMaterial({ color: 0x2d5016 });
+                    const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+                    ground.rotation.x = -Math.PI / 2;
+                    ground.receiveShadow = true;
+                    this.scene.add(ground);
+                    
+                    // Iluminación
+                    const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
+                    this.scene.add(ambientLight);
+                    
+                    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+                    directionalLight.position.set(10, 10, 5);
+                    directionalLight.castShadow = true;
+                    this.scene.add(directionalLight);
+                    
+                    // Crear algunos obstáculos
+                    for (let i = 0; i < 5; i++) {
+                        const boxGeometry = new THREE.BoxGeometry(2, 2, 2);
+                        const boxMaterial = new THREE.MeshLambertMaterial({ color: 0x666666 });
+                        const box = new THREE.Mesh(boxGeometry, boxMaterial);
+                        box.position.set(
+                            (Math.random() - 0.5) * 40,
+                            1,
+                            (Math.random() - 0.5) * 40
+                        );
+                        box.castShadow = true;
+                        this.scene.add(box);
+                    }
+                }
+                
+                setupEventListeners() {
+                    // Teclado
+                    document.addEventListener('keydown', (e) => this.handleKeyDown(e));
+                    document.addEventListener('keyup', (e) => this.handleKeyUp(e));
+                    
+                    // Mouse
+                    document.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+                    document.addEventListener('click', (e) => this.handleClick(e));
+                    
+                    // Pointer Lock
+                    document.addEventListener('pointerlockchange', () => this.onPointerLockChange());
+                    
+                    // Resize
+                    window.addEventListener('resize', () => this.onWindowResize());
+                }
+                
+                handleKeyDown(event) {
+                    switch(event.code) {
+                        case 'KeyW': this.keys.w = true; break;
+                        case 'KeyA': this.keys.a = true; break;
+                        case 'KeyS': this.keys.s = true; break;
+                        case 'KeyD': this.keys.d = true; break;
+                        case 'Space': event.preventDefault(); break;
+                        case 'KeyR': this.reload(); break;
+                    }
+                }
+                
+                handleKeyUp(event) {
+                    switch(event.code) {
+                        case 'KeyW': this.keys.w = false; break;
+                        case 'KeyA': this.keys.a = false; break;
+                        case 'KeyS': this.keys.s = false; break;
+                        case 'KeyD': this.keys.d = false; break;
+                    }
+                }
+                
+                handleMouseMove(event) {
+                    if (!this.isPointerLocked) return;
+                    
+                    const sensitivity = 0.002;
+                    this.mouseX -= event.movementX * sensitivity;
+                    this.mouseY -= event.movementY * sensitivity;
+                    this.mouseY = Math.max(-Math.PI/2, Math.min(Math.PI/2, this.mouseY));
+                    
+                    this.camera.rotation.y = this.mouseX;
+                    this.camera.rotation.x = this.mouseY;
+                }
+                
+                handleClick(event) {
+                    if (this.isPointerLocked) {
+                        this.shoot();
+                    } else {
+                        document.body.requestPointerLock();
+                    }
+                }
+                
+                onPointerLockChange() {
+                    this.isPointerLocked = document.pointerLockElement === document.body;
+                }
+                
+                onWindowResize() {
+                    this.camera.aspect = window.innerWidth / window.innerHeight;
+                    this.camera.updateProjectionMatrix();
+                    this.renderer.setSize(window.innerWidth, window.innerHeight);
+                }
+                
+                shoot() {
+                    // Crear bala
+                    const bulletGeometry = new THREE.SphereGeometry(0.05, 8, 8);
+                    const bulletMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+                    const bullet = new THREE.Mesh(bulletGeometry, bulletMaterial);
+                    
+                    bullet.position.copy(this.camera.position);
+                    bullet.userData = {
+                        direction: new THREE.Vector3(),
+                        speed: 50,
+                        life: 3,
+                        startTime: Date.now() / 1000
+                    };
+                    
+                    this.camera.getWorldDirection(bullet.userData.direction);
+                    this.scene.add(bullet);
+                    this.bullets.push(bullet);
+                }
+                
+                reload() {
+                    console.log('Recargando...');
+                }
+                
+                startEnemySpawn() {
+                    setInterval(() => {
+                        if (this.gameState === 'playing') {
+                            this.spawnEnemy();
+                        }
+                    }, 3000);
+                }
+                
+                spawnEnemy() {
+                    const enemyGeometry = new THREE.ConeGeometry(0.5, 1.5, 8);
+                    const enemyMaterial = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+                    const enemy = new THREE.Mesh(enemyGeometry, enemyMaterial);
+                    
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = 15 + Math.random() * 10;
+                    enemy.position.set(
+                        Math.cos(angle) * distance,
+                        0.75,
+                        Math.sin(angle) * distance
+                    );
+                    
+                    enemy.castShadow = true;
+                    enemy.userData = { health: 2, speed: 2 };
+                    this.scene.add(enemy);
+                    this.enemies.push(enemy);
+                }
+                
+                update() {
+                    if (this.gameState !== 'playing') return;
+                    
+                    const deltaTime = this.clock.getDelta();
+                    
+                    // Movimiento del jugador
+                    this.handleMovement(deltaTime);
+                    
+                    // Actualizar enemigos
+                    this.updateEnemies(deltaTime);
+                    
+                    // Actualizar balas
+                    this.updateBullets(deltaTime);
+                    
+                    // Verificar colisiones
+                    this.checkCollisions();
+                    
+                    // Actualizar UI
+                    this.updateUI();
+                }
+                
+                handleMovement(deltaTime) {
+                    const moveSpeed = 5 * deltaTime;
+                    const direction = new THREE.Vector3();
+                    
+                    const cameraDirection = new THREE.Vector3();
+                    this.camera.getWorldDirection(cameraDirection);
+                    cameraDirection.y = 0;
+                    cameraDirection.normalize();
+                    
+                    const right = new THREE.Vector3();
+                    right.crossVectors(cameraDirection, new THREE.Vector3(0, 1, 0));
+                    
+                    if (this.keys.w) direction.add(cameraDirection);
+                    if (this.keys.s) direction.sub(cameraDirection);
+                    if (this.keys.a) direction.sub(right);
+                    if (this.keys.d) direction.add(right);
+                    
+                    if (direction.length() > 0) {
+                        direction.normalize();
+                        this.camera.position.add(direction.multiplyScalar(moveSpeed));
+                    }
+                }
+                
+                updateEnemies(deltaTime) {
+                    this.enemies.forEach((enemy, index) => {
+                        // Mover hacia el jugador
+                        const direction = new THREE.Vector3();
+                        direction.subVectors(this.camera.position, enemy.position);
+                        direction.y = 0;
+                        direction.normalize();
+                        
+                        enemy.position.add(direction.multiplyScalar(enemy.userData.speed * deltaTime));
+                        enemy.lookAt(this.camera.position.x, enemy.position.y, this.camera.position.z);
+                        
+                        // Verificar colisión con jugador
+                        if (enemy.position.distanceTo(this.camera.position) < 2) {
+                            this.lives--;
+                            this.scene.remove(enemy);
+                            this.enemies.splice(index, 1);
+                        }
+                    });
+                }
+                
+                updateBullets(deltaTime) {
+                    this.bullets.forEach((bullet, index) => {
+                        const bulletData = bullet.userData;
+                        const currentTime = Date.now() / 1000;
+                        
+                        bullet.position.add(
+                            bulletData.direction.clone().multiplyScalar(bulletData.speed * deltaTime)
+                        );
+                        
+                        if (currentTime - bulletData.startTime > bulletData.life) {
+                            this.scene.remove(bullet);
+                            this.bullets.splice(index, 1);
+                        }
+                    });
+                }
+                
+                checkCollisions() {
+                    this.bullets.forEach((bullet, bulletIndex) => {
+                        this.enemies.forEach((enemy, enemyIndex) => {
+                            if (bullet.position.distanceTo(enemy.position) < 1) {
+                                enemy.userData.health--;
+                                this.scene.remove(bullet);
+                                this.bullets.splice(bulletIndex, 1);
+                                
+                                if (enemy.userData.health <= 0) {
+                                    this.score += 10;
+                                    this.scene.remove(enemy);
+                                    this.enemies.splice(enemyIndex, 1);
+                                }
+                            }
+                        });
+                    });
+                }
+                
+                updateUI() {
+                    document.getElementById('score').textContent = this.score;
+                    document.getElementById('lives').textContent = this.lives;
+                    document.getElementById('level').textContent = this.level;
+                    
+                    if (this.lives <= 0) {
+                        this.gameState = 'gameOver';
+                        alert('¡Juego Terminado! Puntuación: ' + this.score);
+                    }
+                }
+                
+                animate() {
+                    requestAnimationFrame(() => this.animate());
+                    this.update();
+                    this.renderer.render(this.scene, this.camera);
+                }
+            }
+            
+            // Inicializar juego
+            try {
+                const game = new SimpleGame();
+                console.log('Juego inicializado correctamente');
+            } catch (error) {
+                console.error('Error al inicializar el juego:', error);
+                document.body.innerHTML = '<div style="color: white; text-align: center; margin-top: 50px;">Error: ' + error.message + '</div>';
+            }
+        }
+    </script>
+</body>
+</html>

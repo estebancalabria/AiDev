@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Shooter 3D</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: white;
+            font-family: monospace;
+        }
+        .log { margin: 5px 0; }
+        .error { color: #ff0000; }
+        .success { color: #00ff00; }
+        .warning { color: #ffff00; }
+    </style>
+</head>
+<body>
+    <h1>Debug - Shooter 3D</h1>
+    <div id="logs"></div>
+    
+    <script>
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `log ${type}`;
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            document.getElementById('logs').appendChild(div);
+            console.log(message);
+        }
+        
+        log('Iniciando diagnóstico...', 'info');
+        
+        // Verificar Three.js
+        if (typeof THREE === 'undefined') {
+            log('ERROR: Three.js no está disponible', 'error');
+        } else {
+            log(`SUCCESS: Three.js cargado, versión ${THREE.REVISION}`, 'success');
+        }
+        
+        // Verificar elementos DOM
+        const gameContainer = document.getElementById('gameContainer');
+        if (!gameContainer) {
+            log('ERROR: Elemento gameContainer no encontrado', 'error');
+        } else {
+            log('SUCCESS: Elemento gameContainer encontrado', 'success');
+        }
+        
+        // Verificar archivos JS
+        const scripts = [
+            'js/Game.js',
+            'js/Player.js', 
+            'js/Enemy.js',
+            'js/Weapon.js',
+            'js/Scene.js',
+            'js/Input.js',
+            'js/UI.js',
+            'js/main.js'
+        ];
+        
+        scripts.forEach(script => {
+            fetch(script)
+                .then(response => {
+                    if (response.ok) {
+                        log(`SUCCESS: ${script} cargado correctamente`, 'success');
+                    } else {
+                        log(`ERROR: ${script} no se pudo cargar (${response.status})`, 'error');
+                    }
+                })
+                .catch(error => {
+                    log(`ERROR: ${script} - ${error.message}`, 'error');
+                });
+        });
+        
+        // Verificar WebGL
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        if (!gl) {
+            log('ERROR: WebGL no está disponible en este navegador', 'error');
+        } else {
+            log('SUCCESS: WebGL está disponible', 'success');
+        }
+        
+        // Verificar pointer lock
+        if ('pointerLockElement' in document) {
+            log('SUCCESS: Pointer Lock API está disponible', 'success');
+        } else {
+            log('WARNING: Pointer Lock API no está disponible', 'warning');
+        }
+        
+        // Verificar tamaño de ventana
+        log(`INFO: Tamaño de ventana: ${window.innerWidth}x${window.innerHeight}`, 'info');
+        
+        // Verificar user agent
+        log(`INFO: User Agent: ${navigator.userAgent}`, 'info');
+        
+        log('Diagnóstico completado', 'info');
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shooter 3D - Three.js</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            z-index: 100;
+            font-size: 18px;
+        }
+        
+        #crosshair {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid white;
+            border-radius: 50%;
+            z-index: 100;
+            pointer-events: none;
+        }
+        
+        #instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            z-index: 100;
+            font-size: 14px;
+        }
+        
+        #gameOver {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            z-index: 200;
+            display: none;
+        }
+        
+        #restartBtn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        
+        #restartBtn:hover {
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="ui">
+            <div>Puntuación: <span id="score">0</span></div>
+            <div>Vidas: <span id="lives">3</span></div>
+            <div>Nivel: <span id="level">1</span></div>
+        </div>
+        
+        <div id="crosshair"></div>
+        
+        <div id="instructions">
+            WASD - Mover | Mouse - Mirar | Click - Disparar | R - Recargar
+        </div>
+        
+        <div id="gameOver">
+            <h2>¡Juego Terminado!</h2>
+            <p>Puntuación Final: <span id="finalScore">0</span></p>
+            <button id="restartBtn">Reiniciar Juego</button>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+    <script>
+        // Verificar que Three.js se cargó antes de continuar
+        if (typeof THREE === 'undefined') {
+            console.error('Three.js no se cargó correctamente');
+            // Intentar con otro CDN
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js';
+            script.onload = function() {
+                console.log('Three.js cargado desde CDN alternativo');
+                initializeGame();
+            };
+            script.onerror = function() {
+                document.body.innerHTML = '<div style="color: white; text-align: center; margin-top: 50px; font-size: 24px;">Error: No se pudo cargar Three.js. Verifica tu conexión a internet.</div>';
+            };
+            document.head.appendChild(script);
+        } else {
+            console.log('Three.js cargado correctamente, versión:', THREE.REVISION);
+            initializeGame();
+        }
+        
+        function initializeGame() {
+            // El juego se inicializará desde main.js
+        }
+    </script>
+    <script src="js/Game.js"></script>
+    <script src="js/Player.js"></script>
+    <script src="js/Enemy.js"></script>
+    <script src="js/Weapon.js"></script>
+    <script src="js/Scene.js"></script>
+    <script src="js/Input.js"></script>
+    <script src="js/UI.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

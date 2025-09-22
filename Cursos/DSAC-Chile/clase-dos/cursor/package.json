@@ -1,0 +1,20 @@
+{
+  "name": "shooter-3d-game",
+  "version": "1.0.0",
+  "description": "Juego shooter 3D desarrollado con Three.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx http-server . -p 8080 -o",
+    "dev": "npx http-server . -p 8080 -o --cors",
+    "build": "echo 'Build completed'"
+  },
+  "keywords": ["threejs", "3d", "game", "shooter", "javascript"],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.158.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
