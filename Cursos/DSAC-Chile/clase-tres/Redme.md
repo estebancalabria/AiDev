@@ -93,3 +93,46 @@ sequenceDiagram
     Cliente-->>Usuario: Muestra recurso
 
 ```
+
+Claude ya tiene previsualizacion de Mermaid en sus artefactos...
+> https://claude.ai/public/artifacts/e8dd1a50-581c-429e-a3e8-d3a3e44f4ad6
+
+Puntaje : 10/10
+ 
+### Struturizr
+
+> https://structurizr.com/    
+Tutorial
+> https://docs.structurizr.com/dsl/tutorial
+
+Prompt Utilizado
+```
+Generame con el DSL de struturizr un diagrama donde se vea la arquitectura real del sistema de un banco
+```
+
+Puntaje : ??/10 (Demaasiados intentos con ChatGPT para que genere un diagrama viable)
+
+
+### CodeViz
+
+Herramienta para documetar visualmente proyectos existentes...
+* Es una extension de VSCode
+* Abrimos un proyecto existente y podemos visualizarlo como Diagrama
+
+Puntaje 8/10
+
+## Herramientas para Aplicaciones Interactivas
+
+### WebSim
+
+> https://websim.com/
+
+prompt
+
+```
+Generame un juego estilo Flappy Birds
+```
+(Resultado subido al github)
+
+Puntaje : 7 / 10 
+
