@@ -57,6 +57,39 @@ Caracteristicas :
   
 Puntaje : 9 / 10
 
-## Disenio por IA....
+## IA para System Design
 
+### Diagram GPT
 
+Para no solo hacer diagramas sino que la IA me genere el diagrama pensando la solucion
+> https://www.eraser.io/diagramgpt
+
+Puntaje : 7/10
+
+### Mermaid
+
+Mermaid es un lenguaje estandarizado para realizar Graficos a partir de texto
+
+> https://mermaid.live/
+
+Por ejemplo generamos este diagrama en ChatGPT
+
+```mermaid
+sequenceDiagram
+    participant Usuario
+    participant Cliente as Aplicación Cliente
+    participant AuthServer as Servidor de Autorización
+    participant ResourceServer as Servidor de Recursos
+
+    Usuario->>Cliente: Solicita acceder a recurso protegido
+    Cliente->>AuthServer: Redirige al usuario (Authorization Request)
+    AuthServer->>Usuario: Pide credenciales y consentimiento
+    Usuario->>AuthServer: Ingresa credenciales y autoriza
+    AuthServer-->>Cliente: Devuelve Authorization Code (via redirect)
+    Cliente->>AuthServer: Intercambia Authorization Code por Access Token
+    AuthServer-->>Cliente: Devuelve Access Token (y Refresh Token opcional)
+    Cliente->>ResourceServer: Solicita recurso con Access Token
+    ResourceServer-->>Cliente: Retorna recurso protegido
+    Cliente-->>Usuario: Muestra recurso
+
+```
