@@ -77,10 +77,82 @@ Las tareas las tengo en memoria en un json
 - #### Patrones de uso de Github Copilot : Generacion de archivo de reglas
 
 * Generas un archivo rules.txt donde definis los estandares de codigicacion
+   * https://code.visualstudio.com/docs/copilot/customization/custom-instructions
 * En la ide cursor ya viene preparada para que vos le pongas el archivo cursorrules.txt
       * https://github.com/PatrickJS/awesome-cursorrules/tree/main/rules/medusa-cursorrules
 
 Mas info de uso de Github Copilot : https://learn.microsoft.com/es-es/training/modules/introduction-to-github-copilot/
+
+## Pruebas Unitaris con IA
+
+Extension Quodo
+> https://marketplace.visualstudio.com/items?itemName=Codium.codium
+
+Requerimiento para probarlo tener instalado nodejs
+
+Generar un proyecto de Nodejs
+```
+npm init -y
+```
+
+Instalar la libreria jest para pruebas unitarias
+```
+npm install --save-dev jest
+```
+
+El package.json me queda asi:
+```json
+{
+  "name": "pruebas-qodo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^30.1.3"
+  }
+}
+
+```
+
+Y luego generar pruebas unitarias con la extension Qodo
+Puntaje : 6/10 (Porque es muy lenta)
+
+## Base de datos con IA
+
+> https://database.build/
+
+* Es de la gente de Supabase
+
+PAsos:
+
+1. Generar un esquema de una base de datos
+```prompt
+Generar el esquema de una base de datos para un foro de internet con comentarios. 
+```
+
+2. Pedir un cambio masivo del esquema de la base de datos
+
+3. Generar datos de prueba
+
+4. Vlidar las forms normales
+
+5. Ejecutar consultas SQL
+
+6. Definir consultas SQL en lenguaje natural
+
+7. Preguntarle sobre mejoras a la base de datos
+
+Puntaje : 8 / 10
+
+## Otra herrramienta de Bases de datos
+
+https://defog.ai/
 
 ### VER
 
