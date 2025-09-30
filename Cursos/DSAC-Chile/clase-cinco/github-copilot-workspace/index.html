@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mi Lista de Tareas</h1>
+        </header>
+        
+        <div class="todo-form">
+            <input type="text" id="todoInput" placeholder="Agregar nueva tarea..." maxlength="100">
+            <button id="addBtn">Agregar</button>
+        </div>
+        
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="active">Activas</button>
+            <button class="filter-btn" data-filter="completed">Completadas</button>
+        </div>
+        
+        <ul id="todoList" class="todo-list">
+            <!-- Las tareas se agregarán aquí dinámicamente -->
+        </ul>
+        
+        <div class="todo-stats">
+            <span id="todoCount">0 tareas restantes</span>
+            <button id="clearCompleted">Limpiar completadas</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

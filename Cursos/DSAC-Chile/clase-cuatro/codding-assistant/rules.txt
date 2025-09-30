@@ -1,0 +1,1 @@
+* Los nombres de las variables y los metodos siguen la notacion kebbab (con guiones bajos)
