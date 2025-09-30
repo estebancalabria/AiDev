@@ -88,9 +88,19 @@ Github Copilot viene en varios sabores
 Podes crearme en html javascript y css una aplicacion para manejar una todo list
 ```
 
+Puntaje : 10 / 10
+
 ## Githuc copilot Terminal 
 
 Pasos
-1) npm install -g @githubnext/github-copilot-cli
-2) github-copilot-cli --version
-3) 
+1) npm install -g @github/copilot
+2) copilot
+
+---
+
+## Vibe Coding
+
+Con Cursor!
+
+
+
