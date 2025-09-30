@@ -28,10 +28,11 @@ Ingenieros de Software
 * Devika (El devin Open Source)
 * Aider (Lo conectas por api key a cualquier llm)
 * Github copilot Workspace
-* Pagos :(
+* Pagos de linea de comando :(
   * Claude Code (https://claude.com/product/claude-code) : Es una herramienta Paga
   * Gemini Code (https://codeassist.google/?hl=es)
   * Codex de OpenAI (https://openai.com/es-419/index/introducing-codex/)
+  * Github Copilot Terminal 
 
 ## Aider
 
@@ -68,4 +69,28 @@ No me puedo loguear. Podes agregar hardcodeado en el codigo el usuario root@root
 
 Puntaje : 5/10 (Porque te gasta rapido todos los tokens, tacanio)
 
-# Github copilot Workspace
+## Github copilot Workspace
+
+Aclarcion
+Github Copilot viene en varios sabores
+* Github Copilot (para lide VSCode)
+* Github Copilot Workspace (para usarlo detro de github (con subscripcion, ahora es pago))
+* Github Copilot Terminal
+  
+
+### Con un proyecto nuevo
+
+1) Crear un repo nuevo
+2) Inicializar el branch localmente (copiar las instrucciones de github)
+3) En modo agente arriba poner el siguiente prompt
+
+```
+Podes crearme en html javascript y css una aplicacion para manejar una todo list
+```
+
+## Githuc copilot Terminal 
+
+Pasos
+1) npm install -g @githubnext/github-copilot-cli
+2) github-copilot-cli --version
+3) 
