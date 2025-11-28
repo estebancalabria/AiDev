@@ -1,0 +1,1 @@
+* https://github.com/SebastienDegodez/copilot-instructions

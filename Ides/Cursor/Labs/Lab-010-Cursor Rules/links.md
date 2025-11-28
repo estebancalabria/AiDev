@@ -1,0 +1,1 @@
+* https://cursor.com/es/docs/context/rules
