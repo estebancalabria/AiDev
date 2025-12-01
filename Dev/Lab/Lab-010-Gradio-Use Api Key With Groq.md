@@ -80,11 +80,5 @@ print(response.choices[0].message.content)
 
 ---
 
-## Paso 5: Iniciar una celda nueva
-
-1. Haz clic en el botón **+ Código** en la barra de herramientas de Colab para crear una **nueva celda vacía**.
-2. Pega el código final (del Paso 6) en esa celda.
-3. Ejecuta la celda para usar la API de Groq con tus propios valores.
-
 ¡Listo! Ahora puedes experimentar con modelos ultrarrápidos de Groq directamente desde Colab.
 
