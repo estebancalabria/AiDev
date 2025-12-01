@@ -1,0 +1,84 @@
+# Laboratorio: Ejecutar código Python generado por Groq (sin SDK oficial, usando `openai` + `exec`)
+
+Este laboratorio usa el cliente **OpenAI compatible** (no el SDK `groq`) para conectarse a Groq, solicitar código Python y **ejecutarlo directamente** con `exec()`.
+
+> ⚠️ **Advertencia**: Ejecutar código generado por IA es riesgoso. Solo hazlo en entornos aislados como Colab.
+
+---
+
+## Paso 1: Abrir Google Colab
+
+1. Ve a [https://colab.research.google.com/](https://colab.research.google.com/)
+2. Haz clic en **Nuevo notebook**.
+
+---
+
+## Paso 2: Instalar la biblioteca `openai` (opcional)
+
+Ejecuta esta celda:
+
+```
+!pip install openai
+```
+
+---
+
+## Paso 3: Crear la celda principal
+
+Crea una nueva celda de código y pega lo siguiente:
+
+```python
+from openai import OpenAI
+
+# Pedir la API key y el prompt al usuario
+api_key = input("Ingrese su GROQ_API_KEY: ")
+prompt = input("Ingrese su solicitud (ej: 'Decime como contar de 1 a 10 en python'): ")
+
+# Configurar cliente compatible con Groq
+client = OpenAI(
+    api_key=api_key,
+    base_url="https://api.groq.com/openai/v1"
+)
+
+# Llamar al modelo
+chat_completion = client.chat.completions.create(
+    messages=[
+        {
+            "role": "user",
+            "content": prompt + ". Responder SOLO con código Python, sin explicaciones ni texto adicional."
+        }
+    ],
+    model="llama-3.3-70b-versatile",
+    stream=False,
+)
+
+# Extraer y limpiar el código
+codigo = chat_completion.choices[0].message.content.strip()
+codigo = codigo.replace("```python", "").replace("```", "").strip()
+
+# Mostrar el código recibido
+print("\n Código recibido:\n")
+print(codigo)
+print("\n" + "="*50)
+print("Ejecutando código...\n")
+
+# Ejecutar el código
+exec(codigo)
+</code>
+
+```
+---
+
+## Paso 4:  Iniciar una celda nueva
+
+1. Haz clic en el botón **+ Código** en Colab para crear una **nueva celda vacía**.
+2. Pega el **código final** (del Paso 4) en esa celda.
+3. Ejecuta la celda.
+4. Ingresa tu **API Key de Groq** cuando se te pida.
+5. Ingresa tu **prompt** (por ejemplo: *"Decime como contar de 1 a 10 en python"*).
+6. Observa cómo el modelo genera y ejecuta el código automáticamente.
+
+> ✅ Funciona con cualquier solicitud que produzca código Python válido.
+
+¡Listo! Ahora generas y ejecutas código Python con un modelo de Groq, todo desde Colab, sin SDK oficial.
+'''
