@@ -1,0 +1,66 @@
+Capacitación Legacy a Microservicios Modernos con IA: GitHub Copilot, Cursor y LLMs en acción
+Wed, Nov 26, 2025
+
+Summary:
+
+La capacitación se centró en la transición de un enfoque de desarrollo tradicional a uno basado en microservicios modernos, utilizando herramientas como GitHub Copilot, Cursor y modelos de lenguaje. Se introdujo el Model Context Protocol, que permite a los modelos de lenguaje interactuar con sistemas de archivos y bases de datos, y se alentó a los participantes a practicar la migración a microservicios mediante Visual Studio Code y Cursor. Durante la sesión, se creó un proyecto de prueba para ilustrar estos conceptos, y se discutieron los requisitos necesarios, como la instalación de Node.js.
+
+Se abordaron dudas sobre el acceso a bases de datos y se aseguró que todos los participantes tuvieran los recursos necesarios para la práctica. Se presentó el Cloud Desktop y su integración con servidores MSP, destacando la capacidad de crear y manipular archivos. Se realizaron ejemplos prácticos, como la creación de un archivo JSON, y se discutió la importancia de otorgar permisos adecuados para el uso de los servidores. Además, se exploraron diferentes configuraciones de servidores MSP y se realizaron pruebas en vivo, fomentando un ambiente de aprendizaje colaborativo.
+
+La capacitación también incluyó el uso de herramientas como Puppeteer para realizar pruebas automatizadas y búsquedas en Google, así como la importancia de la seguridad al utilizar servidores MSP. Se discutió la necesidad de familiarizarse con la documentación y recursos de MSP, y se presentó la herramienta Cursor como una opción valiosa para proyectos grandes. La sesión concluyó con un enfoque en la accesibilidad y la implementación de tecnologías emergentes en el desarrollo de software, destacando la colaboración entre Microsoft y otras entidades para mejorar la eficiencia en la generación de código.
+
+
+Chapters & Topics:
+
+Capacitación sobre el Model Context Protocol y Migración a Microservicios
+Javier Torres introdujo el tema del Model Context Protocol, explicando su relevancia para optimizar el uso de GitHub Copilot y Cursor. Se mencionaron ejemplos de cómo este protocolo permite a los modelos de lenguaje interactuar con el sistema de archivos y realizar consultas a bases de datos, lo que amplía sus capacidades. Pablo Piedrahita también participó en la discusión, enfatizando la importancia de estos conceptos para la migración a microservicios.
+
+Discusión sobre la base de datos para práctica
+Alex Pérez solicitó información sobre una base de datos para practicar que fue mencionada en la clase anterior. Formador Dos explicó que se refería a la base de datos de la suite y que se utilizará la del sistema ARM para la migración de PHP a Angular y Spring Boot. Javier Torres ofreció ayuda a Alex para acceder a la información necesaria.
+* Migración de bases de datos de PHP a Angular y Spring Boot.
+
+Capacitación sobre Microservicios y Node.js
+Formador Dos enfatizó la necesidad de tener Node.js instalado para utilizar servidores MSP, que son esenciales para el desarrollo. Se presentó el ejemplo de File System, que permite al modelo de lenguaje realizar diversas operaciones en el sistema de archivos, como leer y mover archivos. Además, se mencionó que el modelo de lenguaje podría requerir permisos para ejecutar ciertas funciones.
+* Instalación y configuración de Node.js como requisito para el uso de MSP.
+* Uso de servidores MSP y su configuración en Visual Studio Code.
+
+Capacitación sobre el uso de MSP y herramientas de desarrollo
+Formador Dos detalló el uso de Cloud Desktop y servidores MSP, enfatizando la importancia de configurarlos correctamente para acceder a recursos locales. Se abordaron las funcionalidades de lectura y escritura de archivos, así como la creación de un archivo de ejemplo, países.json, utilizando el servidor de File System.
+
+Capacitación sobre MSP y herramientas de automatización
+Daniel Muñoz explicó cómo configurar diferentes servidores MSP y la importancia de Papetir para la automatización de pruebas. Se realizaron pruebas en tiempo real, donde los participantes compartieron sus experiencias y errores. La interacción fue positiva, con varios asistentes confirmando que las configuraciones funcionaron correctamente.
+* Automatización de pruebas utilizando el MSP de Papetir.
+
+Uso de Puppeteer para Automatización de Pruebas
+Formador Dos demostró el uso de Puppeteer para buscar información sobre el Model Context Protocol en Google, enfatizando que la herramienta puede automatizar pruebas en aplicaciones web. Daniel Muñoz mencionó que Puppeteer no depende de la tecnología subyacente, ya que se centra en el HTML que se presenta en el navegador. Formador Dos aclaró que, aunque se puede especificar el uso de Puppeteer, a menudo la herramienta puede identificarlo por sí misma.
+* Importancia del Model Context Protocol en el desarrollo de software.
+
+Capacitación sobre el uso de MSP en Visual Studio Code y Cursor
+Formador Dos explicó cómo utilizar Microsoft MSP en Visual Studio Code, mencionando la importancia de conocer los servidores disponibles para resolver funcionalidades. Además, se introdujo la herramienta Cursor, que es especialmente útil para proyectos grandes, y se comparó su rendimiento con Visual Studio Code en proyectos de menor tamaño.
+
+Capacitación en Microservicios Modernos con IA
+Formador Dos explicó cómo configurar y habilitar herramientas en Cursor, enfrentando errores comunes y ajustando configuraciones en MSP servers. Los participantes, como Miguel, Angelo y Javier, interactuaron y confirmaron su comprensión del proceso. Se enfatizó la importancia de la seguridad al utilizar servidores de fuentes no confiables.
+
+Capacitación sobre el uso de MSP y herramientas de IA
+Formador Dos y Angelo Valderrama abordaron el uso de MSP y la importancia de elegir fuentes confiables para evitar usos malintencionados. Se presentó la nueva anotación TOM para simplificar la generación de JSON y se discutió la integración de decoradores en .NET para facilitar el acceso a funciones mediante lenguaje natural.
+
+
+Action Items:
+
+* Javier Torres asumirá la responsabilidad de compartir la pantalla y guiar la sesión de capacitación.
+* Brian Bohórquez compartirá la credencial de acceso a la base de datos con Alex Pérez.
+* Daniel Muñoz instalará Node.js en su computadora para que los servidores MSP funcionen correctamente.
+* Formador Dos creará un archivo msp.json en la carpeta del proyecto para configurar el servidor MSP.
+* Formador Dos habilitará el servidor MSP de File System en Visual Studio Code.
+
+
+Key Questions:
+
+* ¿Qué tipo de permisos se requieren para que los servidores MSP funcionen correctamente?
+* ¿Qué pasos se deben seguir para instalar Node.js en la computadora?
+* ¿Cómo se puede utilizar el MSP de File System para crear archivos?
+
+
+Notepad:
+
+* No notes

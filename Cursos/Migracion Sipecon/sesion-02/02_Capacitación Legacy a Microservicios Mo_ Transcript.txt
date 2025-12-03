@@ -1,0 +1,464 @@
+Capacitación Legacy a Microservicios Modernos con IA: GitHub Copilot, Cursor y LLMs en acción
+Wed, Nov 26, 2025
+
+1:45 - Formador Dos
+Hola, Miguel. Hola, Pablo.
+
+1:49 - Unidentified Speaker
+¿Cómo están?
+
+1:51 - Formador Dos
+Hola, buenas noches.
+
+1:54 - Formador Dos#+#Pablo Piedrahita
+Hola, buenas noches.
+
+1:56 - Unidentified Speaker
+Buenas noches.
+
+1:58 - Formador Dos
+Buenas noches a todos.
+
+2:02 - Javier Torres
+Hola, buenas noches.
+
+2:05 - Unidentified Speaker
+Buenas noches.
+
+2:07 - Formador Dos
+¿Cómo están todos?
+
+2:11 - Javier Torres
+Hola, Miguel. Hola, Javier.
+
+2:15 - Formador Dos
+Hola, Pablo. Hola, Cristhian. ¿Cómo va, Brian? ¿Cómo va, Alex?
+
+2:25 - Formador Dos#+#Javier Torres
+¿Cómo andan todos?
+
+2:28 - Javier Torres
+Bienvenidos. Hoy vamos a trabajar un poquito. ... ...
+
+3:03 - Javier Torres
+Si usan... Si usan, por ejemplo, Gidgacopilot. Eso sí, ¿no? Sí. Bueno. Les falta... Les falta una patita a Gidgacopilot o a Kurtel con el exterior. Bueno, hoy vamos a arrancar con eso.
+
+3:27 - Formador Dos
+¿Cómo andan? ¿Cómo andan todos? ¿Bien? Ahí se van sumando.
+
+3:34 - Formador Dos#+#Javier Torres
+Yo voy a asumir.
+
+3:38 - Formador Dos
+Daniel todavía no vino, ¿no? Voy a empezar a compartir pantalla.
+
+3:47 - Unidentified Speaker
+Sí, aquí estoy. Hola, Daniel, ¿cómo estás?
+
+3:53 - Daniel Muñoz#+#Formador Dos
+No te veía. Sí, todo bien.
+
+3:59 - Unidentified Speaker
+Perfecto.
+
+3:59 - Daniel Muñoz#+#Formador Dos
+Oye, estuve... ¿Me pudieron ayudar con la máquina virtual? Sí, sí, estuve...
+
+4:06 - Formador Dos
+estuve chusmeando, armando un poco el entorno en la virtual, estuve instalando el Angelo, ¿no?, de JTS, el .NET, estuve haciendo algunos cambios, estuve mirando un poquito, chusmeando con la máquina virtual y desde el soporte me... Me estuvieron dando una mano. Primero no me pude conectar, me dieron una mano. Así que todo bien por ahora. Bueno, genial. Bueno, ¿se ve mi pantalla? ¿Ven mi pantalla ahí? Hoy vamos a empezar a trabajar un poquitito con la migración, pero antes, Creo que es indispensable, fundamental, hablar del modo del context protocol, ¿no? Que algo estuve hablando la semana pasada, pero ya sea utilizando Cursor o utilizando GitHub Copilot en Visual Studio Code, sin el modo del context protocol, le falta algo para poder hacer cosas, ¿no? Si bien el modo agente, Pueden modificar archivos existentes, ¿no? Se quedan cortos los modelos de lenguaje a la hora de tener que interactuar con el mundo exterior, ¿no? Y el model context protocol es ese estándar que se definió, lo definió la gente de Antropic. ¿Conocen el Antropic Cloud? ¿Cuántos utilizan Cloud para programar? Que es uno de los mejores, ¿no? ¿Lo conocen Cloud? Por supuesto. Claro que sí. De hecho, lástima que la versión gratuita es un poco amarreta. O sea, programar siempre estuvo catalogado como uno de los mejores. De hecho, con el GitHub Copilot uno puede elegir el modelo, ¿no? Y casi siempre elijo Cloud. Es uno de los que me sonen, digamos. Es uno de los que mejores siempre funciona, digamos. Vamos a arrancar estudiando un poco qué es este Model Context Protocol, ¿no? ¿Para qué le sirve? Yo creo que la clase pasada les pasé esta dirección, ¿no? Que hablaba del Model Context Protocol. No sé qué me da. Me la abrió en, perdón, me la abrió en. También les había mostrado acá en la parte de community, ¿no?
+
+6:53 - Formador Dos#+#Javier Torres
+Ejemplos de cosas que se pueden hacer con el módulo de protocol. Por ejemplo, darle un modelo de lenguaje. No, sample server.
+
+7:02 - Formador Dos
+Darle a un modelo de lenguaje la posibilidad de interactuar con el file system. Este creo yo que es un obligado, ¿no? Poder hacer que el modelo de lenguaje lea al disco rígido, genere archivos más allá de lo que puede hacer el asistente de Copilot. Me viene buenísimo. Poder interactuar con Git para poder hacer commits y demás a partir directamente desde el asistente, ¿no? Poder utilizar, conectarse a cualquier base de datos. En este caso, no necesitamos tener el Management Studio abierto, sino le podemos pasar la consulta o es decir, al modelo de lenguaje que haga una consulta en la base de datos y, no sé, use la respuesta para resolver tal o cual problema, ¿no? Bueno, acá tenemos un montón. Este de papetir lo uso, me encanta, que es para navegar por internet, ¿no? Entonces, la idea de hoy, para que después podamos hacer el tema de migraciones, entender que los servidores MSP, cómo utilizarlos, tanto en Visual Studio Code como en Cursor, ¿no? Y podemos usarlo para algo que tenga que ver con la migración, ¿no? Así, ese es el plan de la clase. ¿Qué les parece ese plan? ¿Bien? A ver esas reacciones. Ah, bien ahí, bien ahí. Acá, bien ahí, Daniel. Bien ahí, Angelo. Bien, bien, Ricardo, bien. Vamos, vamos bien. Bueno, yo voy a crear una carpeta como si fuera un proyecto nuevo, ¿no? Y la vamos a, la vamos a, vamos a hacer una carpeta de prueba. Y vamos a hacer un MSP, le voy a llamar a la carpeta. Voy a hacer un proyecto para Visual Studio Code y un proyecto para, Cursor, ¿no? Vamos a ver los dos cómo funciona. Mcpbscode. La verdad que el funcionamiento es similar, ¿no? La forma de configurarlo es similar. Todo esto, todo esto que vamos a hacer antes de la clase, estuve armando un pequeño laboratorio acá en mi GitHub. Este es un GitHub de lo que está relacionado con desarrollo con inteligencia artificial, no tanto orientado a migración, sino en general. Ay, cuando lo copio en el chat, me lo abre en el Edge. Bueno, ahí tengo una serie de pasos de lo que vamos a ir haciendo. Si se pierden o si fuera de la clase los quieren tener, Ahí como referencia, ¿sí? Vamos a mostrarle. Creo que es bastante importante conocer el tema del MSP, sobre todo si usas el GitHub Copilot para programar. Te falta una pata, ¿no? Para que el modelo de lenguaje sea realmente Además, si los servidores MSP que hay no te alcanzan, una vez que los usaste y entendiste cómo funciona, podés crear vos tu propio servidor MSP, ¿sí? Bueno, ¿me siguen conmigo? ¿Tienen ganas de hacerlo conmigo? Vaya, vamos a ir abriendo el Visual Studio Code, ¿les parece? En una carpeta cualquiera. Bien. Obviamente, este Visual Studio Code tenemos que tener la extensión de GitHub, que creo que la tienen, ¿no? Pues una redundancia, lo que voy a decir, la extensión de el GitHub Copilot instalada, ¿no? Bien. Bueno, cuéntenme, ¿van a mirarme solamente o lo van a hacer conmigo? A ver.
+
+11:28 - Unidentified Speaker
+Escribame. Hola, hola, hola, ¿me escuchan?
+
+11:54 - Formador Dos
+Sí, sí, se escucha.
+
+11:56 - Unidentified Speaker
+Ah, perfecto.
+
+11:57 - Formador Dos
+No, les decía, les preguntaba, ¿quién no? Ahí está, Daniel va, esa, Daniel lo va a hacer conmigo, ¿qué más lo va a hacer conmigo? Bien ahí, eh, Alex.
+
+12:07 - Alex Perez#+#Formador Dos
+Bien, perfecto. Buenas noches. ¿Me escucha? Buenas noches. Sí, se te escucha perfecto. Ay, buenas noches. Eh, perdón que me interrumpa.
+
+12:15 - Alex Perez
+Eh, la clase pasada, usted dijo que tenía la, usted tenía una base, ¿correcto? Donde podíamos practicar. Eh, yo no la No sé, no sé por dónde la compartió. ¿Una base de datos?
+
+12:28 - Formador Dos
+¿Una qué? ¿Una...? ¿Un GitHub? No, no, no. ¿A qué te referías con...? Usted tenía una base, correcto. Una base para practicar.
+
+12:37 - Alex Perez
+¿Una base de datos? No, no sé a qué me...
+
+12:41 - Alex Perez#+#Formador Dos
+¿A qué me...?
+
+12:42 - Formador Dos
+¿A qué me habré referido? Creo que es la base de datos de la suite.
+
+12:49 - Javier Torres
+No sé si, Brian, le puedes compartir a Alex. Claro, yo...
+
+12:55 - Brian Bohórquez#+#Formador Dos
+Si es esa, sí la conoce.
+
+12:58 - Brian Bohórquez
+Igual ya le pasó la credencial.
+
+13:00 - Formador Dos
+Claro, cuando usemos base de datos, vamos a usar la del sistema ARM, que es el que, en definitiva, se quiere emigrar, ¿no?, de PHP a Angular para frontend y Spring Boot para backend, ¿sí? Esa sería la base de datos que vamos a estar utilizando. Hoy, de hecho, vamos a hacer algún caseo de uso utilizando MSP de alguna migración, una partecita de alguna migración, por ejemplo. Bueno, bien, ahí pudieron abrir el Visual Studio Code.
+
+13:43 - Unidentified Speaker
+Bien.
+
+13:43 - Formador Dos
+Los servidores MSP, cuando, ah, un requisito, un requisito, esto sí no no puedo dejar de de mencionarlo. Eh para que este los MSP funcionen, ¿No? Cualquiera, ¿No? Tenemos que tener Node.js instalado en la en la computadora, ¿Sí? Los servidores MSP se desarrollan en Node, ¿No? Así que eh sí o sí tenemos que tener Node.js Si alguno de ustedes escribe no de menos menos version y no le tira nada, o sea, le tira comando no reconocido, ¿lo tienen instalado?
+
+14:27 - Unidentified Speaker
+Sí, lo tengo instalado.
+
+14:29 - Formador Dos
+Si no lo tienen instalado, bueno, lo van a, lo descargan de, lo instalan. Creo yo que si ustedes desarrollan más, independientemente de si desarrollan o no con para algo en el día a día, uno le toca trabajar con Node, ¿no? Así que, nada, cualquiera es una versión de las últimas. Si no lo tienen instalado, ¿alguno se lo tienen que instalar o lo tienen todo instalado? ¿Lo pudieron chequear?
+
+15:00 - Brian Bohórquez
+Bueno, yo era el que en la clase pasada le dije que no lo tenía, pero sí, ya en este momento sí tengo Ah, buenísimo.
+
+15:12 - Formador Dos
+Perfecto. Genial. Buenísimo. Bueno. Si no, no va a funcionar. Bueno, si nos fijamos en la página oficial del Model Context Protocol, ¿no? Bueno, acá van a encontrar toda la documentación. Pueden chusmear un poquito más de qué se trata. Pero lo que me interesa mostrarles es que acá en la parte de Community Example Servers tienen varios ejemplos, ¿no? Vamos a elegir el que sí o sí tenemos que tener siempre, que es el de File System, para que el modelo de lenguaje tenga la capacidad de interactuar con el disco rígido, ya sea el directorio del proyecto u otro proyecto, otro directorio en mi computadora, fuera del proyecto, ¿está bien? Mira, cuando elijo File System, lo que hace me va a un repositorio de GitHub, y en realidad para configurar cualquier servidor MSP, lo que tenemos es un JSON, ¿no? O sea, en cualquiera vez acá tiene un JSON, ¿no? Que decía, perdón, que lo... Que lo... Que lo acá, este dice server, filesystem, npk, entonces, básicamente lo que hace es descargar este paquete de npx, ¿no? Y utilizar ¿no? Acá tenés un un ejemplo, no, no, el de Docker no. Este, ¿no? Acá tenemos un ejemplo de el que tenemos que usar para configurar. Por otro lado, cada servidor MSP es como si fuera una API, ¿no? Que expone ciertas funciones para entenderlo y le da la al modelo de lenguaje de usar esas funciones para cumplir esa tarea. Como estas funciones muchas veces requieren privilegios, es probable que el modelo de lenguaje las primeras veces nos esté preguntando si le damos permisos para usar tal y cual función. Por ejemplo, la de File System, ¿no? Tiene la herramienta para leer un archivo, para listar un directorio, para borrar un archivo, ¿no? Tiene para mover un archivo, tiene todas estas funciones, ¿no? Cuando lo cargamos, el modelo de lenguaje, el asistente, el Copilot, va a poder acceder a estas funciones también. ¿Se entendió? ¿Hasta acá se entiende la parte de MSP? ¿Lo habían escuchado en algún momento? ¿Cree que es de utilidad? ¿Cree que le puede llegar a ser de utilidad? O sea, seguro que sí, pero se imaginan en ¿Cómo? Bien ahí, ahí, Pablo, bien, bien. Bien ahí, Miguel, genial. Bien ahí, Brian. A ver si puedo ver más. Que me lo dividió en varias, varias pantallas, a ver si lo puedo ver todos. Bien ahí, Ricardo. Bueno, eh quisiera a ver si quería verlo, verlos a todos, pero bueno, lo veo dividido en dos, como en dos páginas el Teams. Ahora, después lo investigo un poquito más. Bueno, vamos a instalar un servidor MSP para nuestro proyecto, ¿no? Que está vacío, básicamente, ¿no? Bueno, hay dos maneras de instalarlos, hay la manera para toda la computadora que no es recomendada y para el proyecto que está bueno porque se puede subir al repo, ¿no?
+
+19:02 - Formador Dos#+#Javier Torres
+Para que todos usen el mismo...
+
+19:05 - Formador Dos
+Ah, perdón, hice algo, apreté algo de inmersivo, quería ver si los veía a todos y me parece que dejé de compartir. Más, no sé Sí, me ven. Ahora desapareció. ¿Ahora sí? Ahí volvió, ¿no?
+
+19:22 - Unidentified Speaker
+Ahí sí. Ahí sí.
+
+19:24 - Formador Dos#+#Javier Torres
+Ah, bien, bien, bien.
+
+19:26 - Formador Dos
+Bueno, estoy con el Visual Studio Code abierto en la carpeta de mi proyecto. Y voy a crear un archivo que se llame, perdón, voy a crear una carpeta que se llame .bscode, ¿no? De la carpeta VS Code, voy a crear un archivo que se llama msp.json. Los servidores MSP no solo se pueden usar desde Visual Studio Code y Cursor, sino también las puedes usar desde, por ejemplo, Cloud Desktop, ¿no? Si querés usarlo directamente con un modelo de lenguaje, ¿conocen Cloud Desktop? Este de Cloud, ¿no? Bueno, si usan Cloud, ¿no? Creo que ChackPT también lo tiene, pero nunca lo probé con Cloud ChackPT. Entras a Cloud y te lo descargas. O sea, te lo puedes descargar como aplicación. Obviamente, uno dice, ¿qué sentido tendría descargarse como aplicación si lo puedo usar online. Bueno, necesita sí o sí para acceso a internet, igual para funcionar. Pero bueno, una de las ventajas de tenerlo, creo que la... Uh, no estoy logado. Creo que una no, la única ventaja de tenerlo en el escritorio es justamente poder configurarle servidores MSP, ¿no? Herramientas de desarrollo que tengan acceso a mi máquina. Ahí está.
+
+21:12 - Formador Dos
+Entonces, el Cloud Desktop, esto se lo muestro. Tiene acá la parte de Settings, ¿no? Tiene una parte de Developer. Y acá en la parte de Developer, vos le puedes configurar los servidores MSP. Y, por ejemplo, con este servidor voy a tener acceso a mi disco, ¿no? Créame un archivo que haga tal o cual cosa, me lo, me lo puede crear. ¿Se entiende? Otro, otro que, que uso mucho para usar servidores MSP localmente. O sea, con acceso a internet sí, pero localmente sobre todo, este lo uso para poder utilizarlo con mi cuenta de Azure. Es el N y sin el LLMs. O sea, hay varias herramientas locales que yo puedo instalar. El cloud desktop, el Nithing LLMs y el Visual Studio Code que me permite al modelo de lenguaje agregarle la posibilidad de utilizar servidores MSP. Bien, bueno, continuando, ¿no? Esto lo hicieron, perdón si me fuise un caca un paréntesis. Este lo hicieron, crearon la carpeta VS Code y el archivo ¿MSP.json? Sí, sí. Bien, perfecto. Voy a crear ahora, ahora lo creo, un archivo aparte que en la, en la, en la raíz, ¿no? Rhythmi.md, pero para que tenga para, ahora les muestro para qué, para sacar el PA del proyecto. Bueno, voy a, voy a, ir acá a el example servers y fui a filesystem, de filesystem me abrió el GitHub de este servidor MSP y acá voy a ir a copiarme este texto ¿no? Y lo voy a copiar acá en el msp.json así como está Acá me tira un error porque me dice MSP Servers, me lo marca con un error porque en Visual Studio Code se llama Servers, ¿sí? Y cuando ustedes le cambien el nombre y lo salven, van a ver que File System me pone acá como Start, como que puede iniciar, ¿sí? Hasta acá les voy a dar unos instantes, así lo prueban. ¿Sí? ¿Llegaron hasta acá?
+
+24:01 - Unidentified Speaker
+¿Quieren que le copie esto por chat? Bueno, ahora se lo copio.
+
+24:10 - Formador Dos
+Bueno, esto sí se lo puedo copiar. Si lo quieren, así no tienen que ir a la página de El Model Context Protocol. Lo pueden copiar directamente acá del chat del Zoom. Bueno, acá hay que cambiar algo, ¿no? A ver si se dan cuenta que esto está bien porque es el nombre del MSP server que está subido con este nombre al repositorio de NPM. O sea que ese paquete lo va a bajar con ese nombre, no. Pero acá abajo lo que tiene en realidad son las carpetas al cual este servidor MSP acceso, ¿se entiende? Si le pones dos puntos barra, va a tener acceso a todo tu disco. Pero lo que lo que yo voy a hacer, se me reveló, este lo voy a cerrar, el de Cloud, lo que voy a hacer es darle acceso al proyecto, ¿sí? Entonces, para eso me cree el archivo este Ritmi punto MD, para darle botón derecho y ponerle copy para entonces acá le voy a poner el pad este le voy a borrar el readme y le voy a poner doble barrita para que no me las tome como el carácter de escape el de abajo lo saco porque con este solo me alcanza bien ahora si quiero darles un par de minutos para que me sigan y a ver cómo venimos a ver esas reacciones. ¿Venimos bien?
+
+26:01 - Unidentified Speaker
+¿Venimos bien?
+
+26:02 - Formador Dos
+Sí, consultas. Con respecto a la MSP, voy a tener los argumentos para acceder a las distintas puertas.
+
+26:13 - Ricardo Garces
+Quería saber si también se puede manejar el tema No, no, no. Te escuché algo de los permisos que si se podían manejar los permisos.
+
+26:27 - Formador Dos
+No, no, no es solo lectura. Este File System también tiene métodos de crear archivos. Tiene métodos, si me fijo acá, Move File, Write File. O sea que, de hecho, el ejemplo que vamos a hacer ahora es pedirle justamente que me cree un archivo. ¿Se entiende?
+
+26:51 - Unidentified Speaker
+Sí.
+
+26:51 - Ricardo Garces
+Era esa la pregunta, ¿no?
+
+26:54 - Formador Dos
+Porque te escuché un poco, perdón, te escuché un poco entrecortado. Responde esa pregunta.
+
+27:01 - Unidentified Speaker
+Esa era mi consulta. Perfecto.
+
+27:03 - Formador Dos#+#Ricardo Garces
+Sí, sí.
+
+27:04 - Formador Dos
+No, no, no es solo, no son solo cosas de solo lectura, sino tienen la capacidad Llamar a APIs, ejecutar inserts, hacer un push en un repo. Así que no está limitado a solo consulta. Bien. ¿Venimos bien?
+
+27:28 - Unidentified Speaker
+¿Alguna otra consulta? ¿Estamos bien? Bien.
+
+27:33 - Formador Dos
+Le voy a dar acá. Start, ¿no? Y acá me dice running, me dice once tools, y eh significa que va todo bien. Si hubiera un error al cargarlo, te abre una una terminal, de hecho, acá en la en la misma terminal, a ver si cuál era que se veían los se veían las eh los los comandos que sacó por la consola eh los servidores MSP pero creo que era hasta de console pero bueno esto pasa cuando cuando hay errores si no hay errores malo anduvo todo todo bien bueno eh les funcionó si acá pongo mal el el pad me tiraría un error, por ejemplo, si pongo un pad inaccesible.
+
+28:38 - Unidentified Speaker
+¿Funcionó bien? ¿Vamos bien?
+
+28:40 - Formador Dos
+Bien, perfecto. Bueno, venimos bien, va funcionando. Una vez que hago acá el modo agente, ¿no? Vieron que el GitHub Copilot tiene tres modos para preguntarle cosas, para modificar el modo agente. En general los servidores MSP los usamos con el modo agente. Y acá, ¿vieron qué les comentaba? Tengo elegido el Cloud Sonnet, ¿no? Que me encanta como programa. Pero para probar este servidor MSP no voy a programar nada. Acá se lo voy a decir explícitamente, pero no hace falta, ¿no? Simplemente el modelo de lenguaje, sabiendo qué herramientas tiene cargadas, decides si usarla o no. Acá le voy a decir explícitamente, por ejemplo, créame un archivo países.json con una lista de países utilizando las herramientas MSP que tengas disponible.
+
+29:50 - Unidentified Speaker
+¿No?
+
+29:50 - Formador Dos
+Este es el prompt. Si a alguno se le ocurre algo más creativo, está bienvenido a probarlo conmigo. La cuestión es decirle que cree un archivo, ¿no? Utilizando el servidor MSP que acabamos de poner, el de File System. Ahora probamos otro servidor MSP, ¿no?
+
+30:17 - Unidentified Speaker
+Para.
+
+30:18 - Formador Dos
+Bueno, ya se lo puse. Bien.
+
+30:29 - Unidentified Speaker
+¿Ves?
+
+30:29 - Formador Dos
+Acá dice, dice, perfecto. Usted veo que tenés el servidor de MSP de File System disponible. Voy a usar las herramientas de MSP de File System para crear. ¿Ves? Y acá me dice, voy a usar el archivo Bright File, ¿no? Y le va a pasar esto, ¿no? Para escribir todo esto. Entonces, acá cada vez, le tengo que dar permiso. Acá lo que le voy a poner es, eh, I'll always allow, ¿no? Y no me lo va a preguntar más. Pero si no, tendría que darle permiso una vez por una vez cada vez que quiere usar el servidor MSP para que use ese. Bueno, listo. Listo, he creado el archivo países.json. Y acá, ¿no?
+
+31:25 - Formador Dos
+¿Qué tal?
+
+31:27 - Unidentified Speaker
+¿Lo encuentran?
+
+31:28 - Formador Dos
+¿Funcionó? A ver si lo pueden hacer ustedes. ¿Funcionó? ¿Les parece de utilidad?
+
+31:38 - Unidentified Speaker
+Sí.
+
+31:38 - Daniel Muñoz
+O sea, nosotros podemos utilizar el MSP de, en este caso de File System, para crear archivos como parametrización o guías. Estamos utilizando entendería el MSP de File System por el hecho de crear el archivo. Para acceder a una ruta y crear el archivo dentro de nuestro proyecto.
+
+32:05 - Daniel Muñoz#+#Formador Dos
+Sí, sí.
+
+32:06 - Formador Dos
+Acá le puedes poner otras carpetas y le puedes decir, no sé, fíjate cómo está configurado el, no sé, le pones la carpeta app settings, está el servidor y no sé, corregime mi código. Obviamente las posibilidades son son un montón, no es solamente esta que le mostré. Ahora creo que va a quedar más claro si además del servidor de File System probamos otro servidor MSP además de este, ¿vale? Pero para continuar quiero que me contesten a ver con alguna reacción si hasta acá les funcionó. ¿Funcionó bien? ¿Anduvo bien? ¿Alguno tuvo un error? Bien, Ricardo.
+
+32:49 - Unidentified Speaker
+Bien, Miguel. Genial.
+
+32:51 - Formador Dos
+Bueno, podemos probar cualquiera de estos ejemplos, ¿no?, de servidores MSP para probar. Hay uno que no figura acá, pero que creo que vamos a necesitar o por lo menos va a ser útil para la Bien ahí, Daniel. Acá Daniel me muestra que creó la lista de países. Perfecto, Daniel. Bien ahí. Vamos a probar algún otro. A ver. Vamos a probar el de... Ah, esto le decía. Acá tengo el de Postgre y el de SQLite, el Google. Drive. Hay uno que es de SQL Server, ¿no? Que yo todavía no lo probé, pero después lo vamos a probar, ¿no? Así que también puedes usarlo con la base de datos de SQL Server. Pero quería probar este que está bueno para ver que respectivamente sale de lo que es el Visual Studio Code. Y es el de Papetir. El de Papetir lo que hace es, no sé si usaron Selenium o Papetir, lo que hace es automatizar lo que sería las pruebas de navegador, ¿no? Puede decirle que vaya a una página y haga tal cosa, ¿no? Que use el navegador web. Bien. Principalmente el MSP de Papetir se usa, por ejemplo, para pruebas. Tu aplicación y le decís, anda a tal página y pruébame tal cosa, ¿no? Y te lo prueba directamente la inteligencia artificial. Acá tenemos el archivo de configuración. Yo solamente voy a copiar la parte de papetir, ¿no? Porque el resto es MSP servers, que ya lo tenemos, que se ponía server. Así que, luego de File System, voy a poner una coma y voy a poner apapetir.
+
+35:17 - Unidentified Speaker
+¿Sí?
+
+35:18 - Formador Dos
+Cuando lo salvo, si hice bien, acá le voy a poner Start.
+
+35:27 - Unidentified Speaker
+¿No?
+
+35:28 - Formador Dos
+A ver si le funciona.
+
+35:36 - Unidentified Speaker
+Ahí cargó siete herramientas.
+
+35:41 - Formador Dos
+A ver, avísame si Les voy a dar un minuto para que lo hagan. Bien ahí, Miguel.
+
+36:08 - Unidentified Speaker
+A ver el resto.
+
+36:16 - Formador Dos
+A ver si pudieron.
+
+36:18 - Unidentified Speaker
+Una sola reacción, la de Miguel.
+
+36:23 - Formador Dos
+Bien ahí, Ricardo. Bien. Algún otro, a ver si le funciona. ¿Alguno le tiró el error? Si puso mal el Jason, ¿no le apareció acá abajo la ¿La ventana con todo el error?
+
+36:49 - Unidentified Speaker
+No.
+
+36:50 - Formador Dos
+Bien. Bueno. A ver, un minuto más. Bueno, bien, continuamos entonces, ¿dale? ¿Sí? A ver esas reacciones.
+
+37:07 - Unidentified Speaker
+Bueno.
+
+37:08 - Formador Dos
+Voy a... Voy a abrir una ventana de chat nueva, ¿vale? Así me aseguro de que lo tenga cargado. Una vez que... Ah, miren, si acá ponen, acá ponen... Ah, esto no es cómo cargar, pero un detalle, ¿no? Si acá van a... Ya que lo vi a la ruedita, ponen MSP Servers, acá abajo, abajo de las extensiones, ay no me los cargó, te llevaba a la página de Microsoft, pero, a ver, acá, ves te dice MSP Server Installed, acá vos pones acá la ruedita MSP Server y acá te muestra los que están instalados, ¿no? Ah, esto era lo que quería. Si pones acá Show Output, acá tenía la... En Output tenías acá para elegir a la... Te muestra si cargó bien, porque vieron los MSP hacen Console Brightline por ahí y te sale toda la salida acá. Acá tengo MSP, el de File System. Esto es también para devaguear si algo no anda, etcétera. Bueno, nada, eso quería mostrarles, justo me acordé que pasaba por ahí. Pero bueno, esto es un detalle si lo quieren ver acá, la ruedita y ver la parte de los servidores MSP. Si lo haces en uno nuevo, te manda a la web de Microsoft donde está la lista de todos los que tienen. A ver, a ver, ahora te lo, te lo, te lo muestro. Pero bueno, vamos a usar este, no me voy a ir tanto de tema, vamos a usar el de Puppeteer. Usa el MSP de Puppeteer para buscar en Google sobre model context protocol. Le decís, búscame en Google tal cosa, ¿no? Y a ver, generalmente esto se usa más cuando tenés la aplicación corriendo y decirle, andá a tal sección de la aplicación y probá tal cosa. Y le decís las instrucciones, ¿no? Hasta le podés pasar el archivo de caso de prueba, ¿no? Y que lo ejecute. Bueno. Lo voy a ver. Voy a ir a Y una consulta, Esteban.
+
+39:57 - Daniel Muñoz
+Esta automatización para pruebas utilizando Puppeteer es sobre el browser. Es decir, a él no le importa la tecnología. Si algo se ve sobre un browser, el HTML, él ahí hace la prueba. Claro.
+
+40:12 - Formador Dos
+Él te va a abrir un browser como esto lo hizo solo, ¿no? Como lo está haciendo.
+
+40:19 - Daniel Muñoz#+#Formador Dos
+Como Selenium, ¿no? Es una alternativa a Selenium para pedir.
+
+40:25 - Formador Dos
+OK. Always allow le voy a dar.
+
+40:30 - Unidentified Speaker
+Perdón, jefe.
+
+40:31 - Formador Dos
+Va a buscar en Google Model Context Protocol. Bueno, acá Google justo me sospechó que era un robot. Ahí fue e hizo la búsqueda. ¿Se entiende? Obviamente, este ejemplo que hice de buscar algo en Google es un poco intrascendental, ¿no? Pero sirve para ver cómo es. Mira, acá me dice, Google requiere una verificación Caps antes de enviarlo. Bien. Bueno, a ver. A ver si lo pueden probar.
+
+41:17 - Daniel Muñoz
+¿Cómo fue el pron que puso? Ahí lo copié en el chat.
+
+41:22 - Formador Dos
+Puse, usa el MSP de Papetier para buscar en Google sobre Model Context Protocol. Les hago una aclaración. No hace falta, como estoy poniendo yo, usar el MSP de Papetier para hacer tal cosa, ¿no? Solito se da cuenta a veces que tiene que usar el Papetier, pero como en los ejemplos que hago, a veces se da cuenta, o a veces se lo tengo que especificar, decirle a Vivate, usa Pappetite, entonces como estoy en clase y no quiero que me falle, le puse a propósito usar MSP de Pappetite, pero no es necesario decírselo tan explícitamente, ¿no? Bien. Y a ver si le funcionó. Funcionó, a ver esas reacciones.
+
+42:33 - Formador Dos
+Bien, a ver, no sé si anduvo algo. A Miguel me hace la segunda. Qué grande, Miguel. El único drama que tengo es que, por ejemplo, a Cristhian, a Aldo, a Alex, a José y Zlaín me quedan en la otra, en otra ventana. Entonces no los puedo ver a todos. Pero bueno, bien, salió, ¿no?
+
+43:01 - Formador Dos
+Quería mostrarles esto. A ver si se lo puedo mostrar. Si abro un Visual Studio Code cualquiera. No, este no, que lo tiene. A ver. Espera, voy a abrirlo en cualquier carpeta, ¿no? Si abro el Visual Studio Code y no tengo en ningún MSP ahí configurado. Puedo poner acá MSP servers. Y acá me manda esta página, que no me acordaba el link. Ah, no era esta igual a la que quería ver. Pero, bueno, esta es justamente las instrucciones de cómo utilizar MSP en Visual Studio Code. Pero no era la página que creía que me iba a mandar. A ver. Acá, MSP, Microsoft MSP Official Server Repository, a ver si es esta, ah bueno no, este es el, este es el GitHub que, que estuvimos, del cual estuvimos sacando los MSP, pero hay una de, Hay una de Microsoft.
+
+44:21 - Unidentified Speaker
+No, esta no era. Bueno, ya me...
+
+44:27 - Formador Dos
+Ya me voy a... Me voy a... Me voy a acordar. Azules, MSP, Cerberaca, MSP de Antrópica. Ahí tenemos varios. Varios servidores de MSP está la comunidad de desarrollo está a full con todo este tema de de los MSP, ¿No? Entonces, hay una, mira, acá está el de Playwright, hay una hay un interés en estar chusmeando que servidores de MSP Cosa de que el día de mañana sale una, tienes que hacer una funcionalidad y ya la podés resolver con algún servidor MSP que ya existe. Bueno, nada, esto es el Marketplace de Visual Studio Code para que les quería mostrar que traía una lista de un montón de servidores MSP. Bueno. ¿Venimos bien hasta acá? ¿Sí?
+
+45:40 - Unidentified Speaker
+Bien ahí, Ricardo. Bueno, gracias. Bueno.
+
+45:43 - Formador Dos
+Vamos a, hay uno, hay uno que está bueno, que yo lo usaba, que es el de Shira, de poder conectarte a Shira, y le decías a la inteligencia artificial, decime qué tickets tengo hoy, y te, te, te los, te los no tenía que salir de... Bueno, vamos a ver cómo podemos utilizar la parte de los servidores MSP pero en Cursor. ¿Se instalaron Cursor? ¿Lo tienen instalado?
+
+46:25 - Unidentified Speaker
+¿Sí?
+
+46:25 - Formador Dos
+Creo que es una herramienta que viene ahí. Curso ideal para proyectos grandes, ¿eh? Cuando empiezas a notar que Visual Studio Code empieza a hacer agua por el tamaño del proyecto, Cursor es una buena inversión, diría yo, ¿no? Así que voy a crear una nueva carpeta. En este caso, le voy a llamar mCursor. ¿Sí? Y en vez de abrir el Visual Studio Code, voy a abrir el Cursor.
+
+47:07 - Unidentified Speaker
+¿Está bien?
+
+47:08 - Formador Dos
+Para proyectos pequeños.
+
+47:12 - Formador Dos
+No hay tanta diferencia en utilidad.
+
+47:25 - Unidentified Speaker
+Hola, hola. ¿Me escuchan? Sí, estoy cortado.
+
+47:41 - Formador Dos
+una mini y mi pantalla se ve? Sí, sí se ve. Perfecto. Entonces tuve como una mini o medianos o de cierto tamaño. Anda más o menos igual. La ventaja de utilizar Cursor se empiezan a ver para proyectos grandes. Creo que la clase pasada les conté un poquito sobre el funcionamiento de Cursor, sobre el árbol de Merkel que arma todo, todo eso. Y bueno, está pensado para proyectos grandes justamente, ¿no? Bueno, vamos a abrirlo Cursor. Y le voy a abrir la carpeta que acabo de crear. Bueno, le doy un minutito que abra la carpeta.
+
+48:56 - Formador Dos
+Acá voy a hacer lo mismo, voy a crear el archivo, readme, nada, para tener algo. Bueno, avísenme cuando lo hayan podido abrir, a ver esa reacción.
+
+49:41 - Formador Dos
+¿Sí?
+
+49:41 - Unidentified Speaker
+Bien, bien. A ver esas reacciones.
+
+49:45 - Formador Dos
+Bien, bien ahí, Javier. Bien. Bueno, en este caso, en lugar de crear una carpeta que se llame .bscode, voy a crear una carpeta que se llame .cursor. Esto es para hacerlo local para el proyecto. ¿no? Lo cual es lo más recomendable. Y dentro de la carpeta punto Cursor voy a hacer un archivo nuevo que se llame MSP punto Jason. Bien. Acá le voy a dar la la derecha Visual Studio que eh acá no te pone el botoncito Start entonces medio que no te enterás si están si los tomó bien tan como en el Visual Studio Code. Ahí le doy un punto para Visual Studio Code. Bueno. Genial. ¿Pudieron crear el archivo? Bueno. Acá vamos a buscar el de File System. Vamos a buscar el JSON, que ya conozco. Y así como está, lo vamos a copiar, ¿sí? Ahí se lo, se los paso en el chat. No me lo copió nada, ¿eh? A ver. Pique, ahí se lo pasé en el chat. En este caso, en Cursor no dice servers, tiene que decir MSP servers, ¿sí? Y acá le voy a hacer lo mismo que hice con la vez pasada voy a poner copy path y acá le voy a poner el path al al archivo ¿no? Bien y ahora que le pasa que me tiras un error a me faltó esta barra bien bueno le doy una un minutito para que ustedes también lo hagan conmigo A ver estas reacciones.
+
+52:24 - Formador Dos
+Si venimos bien, cuando lo hagan hecho. Bien ahí, Miguel. Bien ahí, Angelo.
+
+52:32 - Unidentified Speaker
+Bien ahí, Javier. Bien.
+
+52:34 - Formador Dos
+Ahora lo voy a salvar y cuando lo salve. No me dijo nada. Me tendría que decir que lo tomó. Pues no me dijo nada. No, a probar. Vamos a decirle al chat. Créame. Le voy a poner el mismo prompt que antes. Igual hay algo que no me dijo lo tomé. Cuando salvás en general te avisa que lo tomó. Dijo que estuvo bien a ver voy a probar a ver voy a poner el mismo prom el de los países a ver si lo dio cuenta que está ahí está ficándote Si está las herramientas MSP que tenía disponible. Bueno, ahí está generando el archivo. Ah, me dice, nota, estás en modo ask, me dice. Cambia el modo agente para hacerlo. Claro, yo. Y acá me dice no puedo crear archivos bueno voy a pasarlo acá al modo agente y le voy a poner lo mismo me llamó la atención que no me no me a ver a ver le voy a poner acá en a ver si veo eh Tulsan MSP acá ven acá está apagado perdón eh eh no lo no lo no lo prendió eh así que lo voy a prender manualmente no lo no lo estaba no estaba disponible a eso lo ahí Brian puso en el chat que detectó un nuevo servidor MSP eh File System y le pusiste Enable. Bueno, eso esperaba que a mí me me pusiera en el mío, ¿no? Pero no lo hizo. Así que me llamó la atención, así que voy a ir acá a los puntitos, voy a ir acá a Agents Settings, pongo Tools y MSP, ven, está está apagado. Así que le voy a dar eh le voy a dar que lo prenda capaz que tiene un error error ves ahí dice que tiene un error por eso no lo cargó ah ves es no es un directorio por eso yo acá cometí un error le dejé el nombre del archivo por eso no me lo levantó y me no me no me tiraba ese mensaje porque está Estaba mal lo que estaba haciendo. Le voy a borrar esto y le voy a poner el nombre de archivo. Y ahí salvo. ¿Ve? Ah, y ahora sí. Esta, la, la... La... El... El toast. Se le dice toast a esto que esperaba. Y ahora sí, le doy enable.
+
+56:14 - Unidentified Speaker
+Ahora sí.
+
+56:14 - Formador Dos
+Bueno. Pudieron todos habilitar el... Y si no, me vengo acá a... A... Asian Settings. A la parte de... Eh... De... MSP y ahora si aparece prendido y me muestra las herramientas que tiene, Rift File. Bueno, a ver, le doy un minutito, a ver así lo cargamos en Cursor.
+
+56:44 - Unidentified Speaker
+¿Sí?
+
+56:44 - Formador Dos
+Avíseme si...
+
+56:50 - Formador Dos
+Voy a borrar este chat que... Voy a arrancar de nuevo.
+
+56:56 - Unidentified Speaker
+Uh.
+
+56:57 - Formador Dos
+Control y lo había cerrado. Bueno. ¿Venimos bien? ¿Cómo venimos con la sesión del 1 al 10? A ver. Póngame en el chat cómo venimos. ¿Del 1 al 10? Bien, ahí bien ancho. Muy bien, venimos bien entonces. Bien, me vienen siguiendo bien, se va entendiendo bien. Perfecto, perfecto, Daniel. Buenísimo. Bueno, genial, vamos bien entonces. Me quedo tranquilo que se va entendiendo. Ahora sí, pasando en modo agente, voy a pedirle lo mismo.
+
+57:43 - Formador Dos
+¿Ves? Y acá me va a ir diciendo si le des permiso. Yo acá le voy a poner run everything, ¿no? Que no me vandes preguntando. En general, cuando es un MSP que uno descarga de algún lugar o que no conocen tanto, este file system es súper conocido, conviene ir que te vaya preguntando, ¿no? Por un tema de permisos tranquilamente. Los servidores MSP de una fuente no confiable pueden, no sé, incluir un riesgo de seguridad para tu computadora, ¿no? Pero ahí la dice, veme, me dice, ¿estás seguro?
+
+58:27 - Unidentified Speaker
+Sí, dale.
+
+58:28 - Formador Dos
+Vale, voy a dar. Plan. Bueno, aclaro, el Rano Weiss, la Nevis sin.
+
+58:47 - Unidentified Speaker
+Bueno. Ahí lo está ejecutando.
+
+59:14 - Formador Dos
+¿Cuánto que se está demorando?
+
+59:19 - Unidentified Speaker
+El otro me lo hizo, ahí está.
+
+59:38 - Formador Dos
+Me generó casi todos los países. Oh, me los puso casi todos. Hungría. Ah, mira, por orden alfabético veo que los va poniendo... Hasta la Z va a llegar. México.
+
+1:00:00 - Unidentified Speaker
+Nepal.
+
+1:00:01 - Formador Dos
+Qué manera de... Gastar tokens. ¿Vieron que ahora para el tema del JSON hay una nueva anotación para cuando le pedís a los modelos de lenguaje un JSON y quieres ahorrar tokens? Hay una nueva anotación que se llama TOM, Token Object Model, y que es como un un JSON más simplificado. ¿Lo sabían, lo de Tom?
+
+1:00:32 - Formador Dos#+#Miguel Angarita
+Esto lo descubrieron. Sí, es parecido.
+
+1:00:37 - Formador Dos
+Es para que, vieron que uno le pide un JSON a token object model, creo que se llamaba, TOOM, token oriented, ¿No? Y nada, le pedís así, eh... Es para que... En vez de tener este JSON... Es como un CSV, sí, parece... Un CSV anidado, ¿no? En vez de poner todo esto, te pone así, eh... Te lo pone así. Bueno, este es el, el... ¿Cómo se llama? El TUM. Nada, bueno, esto es nada que ver con lo que estamos viendo ahora, pero... Me acordé, no sé por qué. Porque es un JSON muy grande. Bien. ¿Se entendió hasta acá? ¿Probamos otro de estos? Vamos a probar alguno que no haya, no conozca tanto. Bien. ¿Le funcionó lo mismo con el ¿Sí?
+
+1:01:50 - Unidentified Speaker
+Le decime, Angelo. Bueno, ¿qué tal?
+
+1:01:53 - Angelo Valderrama1
+Yo tengo una pregunta más en respecto a restricciones, porque aparte de tener abierto el Cursor, dejé corriendo varios prompts en VSCode con el MSP de File System. Y me surgió esa pregunta porque veo que está teniendo bastante acceso al contexto del PATH que le di, pero me puse a pensar en uso malintencionado también.
+
+1:02:23 - Angelo Valderrama1#+#Formador Dos
+Claro, claro, sí, sí. Y hasta ahora está corriendo bastante bien, está generando bien todo.
+
+1:02:28 - Formador Dos
+Sí, el uso malintencionado es algo para tener en cuenta con los MSP, sobre todo ir viendo que te vaya diciendo qué es lo que va haciendo, porque pensá que es una moda que hay hoy en día el MSP, ¿no? Y vas a encontrar Yo por lo menos les pasé las páginas oficiales, que no creo que haya MSP mal intencionado. Pero hay un montón de MSPs en Internet, que vos incluso puedes programar tu propio MSP y en la función tienes acceso al disco, porque es código que ejecutas en la máquina del cliente, ¿no? Entonces sí, está bien la consideración de siempre tratar de usar MSP de una fuente fuente confiable o bien también vos podés programar tus propios servidores MSP, ¿no? No es algo que vamos a hacer hoy, no creo que nos dé el tiempo, pero cuando vos decís qué bueno estaría que el modelo de lenguaje pueda hacer tal cosa, ¿no? Es hecho. Y bueno, le generás un MSP y le cargas una lista de herramientas. Cada herramienta una descripción en lenguaje natural de qué hace y para qué usa y con eso el modelo del lenguaje se da cuenta si lo debe utilizar. Bien, ¿se entendió?
+
+1:03:55 - Unidentified Speaker
+Sí, por supuesto.
+
+1:03:56 - Angelo Valderrama
+Y también es bueno que haga este comentario porque incluso los frameworks ya están uniéndose a esta tendencia. Tengo entendido que más Microsoft hizo partner con Anthropic. Y he hecho unas pruebas en las que solo con un paquete Nougat para el framework de .NET se colocan unos decoradores y ya se tiene acceso a las funciones. Y bueno, se usa como MCP la función y solo se le pide todo en lenguaje natural.
+
+1:04:30 - Angelo Valderrama#+#Formador Dos
+Y nada más confirma que si hay algún tipo de antigüedad, que se ejecuta el correcto.
+
+1:04:37 - Formador Dos
+Perfecto, yo no lo no, no, no desarrollé nunca un MSP en punto net, no siempre los hice en script, pero si estaba al tanto eso que me comentaste que haces una clase, le pones unos decoradores y ya te la la puedes exportar como servidores de MSP de manera muy sencilla. Sí, sí, es súper. Accesible. Bien, ¿les parece si probamos el de Git? Bueno, el de Puppeteer ya lo probamos, ¿no? Así que probemos otro de Git. A ver, este está bueno, el de generar imágenes para cuando tenés que generar íconos, cosas así en tu proyecto, está bueno. Podríamos probarlo, eh.
+
+1:05:33 - Unidentified Speaker
+A ver.
+
+1:05:34 - Formador Dos
+A ver. Este, EverArt. Ah, no, tenés que necesitas una API key de esta... No dije nada. Vamos a probar el de git. Obviamente tenés que tener git instalado en tu computadora, ¿no? Tenés que tener el comando Loquit.
+
+1:06:00 - Unidentified Speaker
+Acá. Vamos a copiarle. Hay algo que...
+
+1:06:08 - Formador Dos
+Ah, este está hecho en...
+
+1:06:14 - Unidentified Speaker
+Este está hecho en Python.

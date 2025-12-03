@@ -1,0 +1,69 @@
+Capacitación Legacy a Microservicios Modernos con IA: GitHub Copilot, Cursor y LLMs en acción
+Mon, Nov 24, 2025
+
+Summary:
+
+Se llevó a cabo una capacitación enfocada en la migración de un sistema Legacy en PHP a una nueva arquitectura utilizando Angular y Java, con el objetivo de definir una estrategia de migración. Se establecieron siete sesiones de dos horas, donde se utilizarán herramientas de inteligencia artificial como GitHub Copilot y Cursor para facilitar el proceso. Los participantes, que son desarrolladores de diversas tecnologías, fueron alentados a compartir sus experiencias y a interactuar con las herramientas presentadas.
+
+Durante la capacitación, se identificaron a los expertos en Java que liderarán la migración y se discutió la estructura del proyecto, que se dividirá en frontend y backend. Se acordó que el primer paso sería crear el proyecto del frontend en Angular, seguido del backend en Spring Boot. Se enfatizó la importancia de sincronizar a todos los participantes con el plan de migración y se abordaron aspectos técnicos como la configuración del entorno de desarrollo y la elección de dependencias necesarias para el backend.
+
+La sesión también incluyó la discusión sobre la modernización de la aplicación SweetMounds y su migración a la nube de Google Cloud Platform. Se destacó la necesidad de establecer una estructura de carpetas adecuada y se acordó utilizar la última versión de Angular. Además, se mencionó la importancia de los endpoints en el backend y se sugirió comenzar la migración con la base de datos principal. La capacitación tiene como objetivo que los participantes se familiaricen con las herramientas y evalúen su utilidad en sus proyectos.
+
+
+Chapters & Topics:
+
+Introducción y Objetivos de la Capacitación
+Javier Torres y el Formador Dos iniciaron la sesión saludando a los asistentes, todos desarrolladores. Se planteó la tarea de migrar un sistema Legacy en PHP a Angular y Java, destacando la importancia de la colaboración entre los equipos. El taller se enfocará en definir una estrategia de migración y utilizar inteligencia artificial para optimizar el proceso.
+* Migración de un sistema Legacy en PHP a una arquitectura de Angular y Java.
+
+Capacitación sobre GitHub Copilot y herramientas de IA
+Formador Dos explicó que el curso se centrará en mejorar el uso de GitHub Copilot y presentó a Cursor como un asistente de código similar. Javier Torres mencionó que su equipo utiliza Copilot y otras IAs, y destacó la importancia de estas herramientas en su trabajo diario. 
+* Uso de herramientas de inteligencia artificial como GitHub Copilot y Cursor en el proceso de migración.
+* Confirmación de acceso a la base de datos y configuración de conexión a SQL Server.
+
+Discusión sobre el equipo y la planificación de la migración del proyecto
+Formador Dos presentó a los expertos en Java, destacando a Brian Bohórquez, Alex Fajardo y José Lainez como los principales responsables del proyecto. Se abordó la participación del resto del equipo en la migración y la importancia de planificar las sesiones de capacitación. Javier Torres mencionó que el conocimiento del equipo sobre la tecnología es más relevante que el conocimiento de la aplicación.
+* Planificación de sesiones y objetivos del taller de migración.
+
+Planificación de la Migración a Microservicios
+La migración se estructurará en frontend y backend, con Angular y Spring Boot como tecnologías principales. Se planea crear un proyecto inicial para cada parte y se discutió la importancia de migrar el modelo de datos a clases de Java. Javier Torres sugirió enfocarse en un módulo específico de SweetRAMS para facilitar el proceso.
+* Estructura y organización del proyecto de migración, incluyendo frontend y backend.
+
+Introducción a la Aplicación SweetMounds y sus Módulos
+Javier Torres pidió a Brian Bohórquez que presentara la aplicación SweetMounds, que permite a las tiendas de Corporación El Rosado gestionar cambios de precios y otros procesos. Brian explicó que la aplicación incluye varios módulos, como el de Precios y Flejes, que facilita la visualización y actualización de precios, y el módulo ALCE DEVS, que maneja devoluciones y notas de crédito.
+
+Creación del Proyecto Angular y Estructura de Estilos
+Formador Dos propuso crear un nuevo proyecto Angular y estableció la estructura de carpetas para el frontend y backend. Javier Torres indicó que su equipo utiliza versiones 18 y 19 de Angular, y se decidió trabajar con la última versión. Se discutió la necesidad de migrar librerías y se mencionó que la aplicación original carecía de estilos específicos, utilizando estilos propios en su lugar.
+
+Capacitación en Microservicios Modernos con IA
+Formador Dos explicó cómo se trabajará en la capacitación, enfocándose en la creación de un entorno de desarrollo para un proyecto en Angular. Brian Bohórquez indicó que su equipo no tenía el ambiente instalado, pero se comprometió a tenerlo listo para la próxima sesión. Formador Dos también destacó la importancia de tener instalada la extensión de GitHub Copilot en Visual Studio Code.
+
+Desarrollo de Proyecto Backend con Spring Boot
+Formador Dos lideró la creación de un proyecto backend con Spring Boot, utilizando Spring Initializer para configurar el entorno. Brian Bohórquez participó activamente, sugiriendo el uso de Java 21 y confirmando la apertura del proyecto en IntelliJ. Se discutieron las dependencias necesarias, como Lombok y JDBC para SQL Server.
+
+Capacitación sobre el uso de Cursor en Microservicios
+Brian Bohórquez introdujo el uso de Cursor en la capacitación sobre microservicios, destacando su aplicación en el backend y frontend. Javier Torres mencionó la necesidad de entender cómo integrar Cursor en los IDEs que ya utilizan los participantes. La intención es que los asistentes experimenten con Cursor para conocer mejor su funcionalidad.
+
+Configuración y Migración de Proyecto a Angular
+Se abordaron los requisitos de configuración para el proyecto, destacando la necesidad de establecer la conexión a SQL Server. Javier Torres confirmó que el equipo validó el acceso a la base de datos, mientras que José Lainez propuso iniciar la migración desde la base de datos principal. Se discutieron los componentes de Angular y la estructura de carpetas para facilitar la migración.
+
+
+Action Items:
+
+* Formador Dos creará un proyecto de Angular para la migración del frontend.
+* Formador Dos generará un proyecto de backend utilizando Spring Boot.
+* Brian Bohórquez instalará el entorno de Angular antes de la próxima clase.
+* Formador Dos revisará la configuración de conexión a SQL Server en el proyecto de backend.
+* Javier Torres confirmará el acceso a la base de datos del proyecto para todos los miembros del equipo.
+
+
+Key Questions:
+
+* ¿Cuál sería el objetivo de este taller?
+* ¿Qué módulos específicos del portal Sweet Arms son relevantes para la migración?
+* ¿Qué versión de Angular se utilizará en el nuevo proyecto?
+
+
+Notepad:
+
+* No notes

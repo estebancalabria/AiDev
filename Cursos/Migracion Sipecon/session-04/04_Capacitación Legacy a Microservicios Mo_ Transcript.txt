@@ -1,0 +1,332 @@
+Capacitación Legacy a Microservicios Modernos con IA: GitHub Copilot, Cursor y LLMs en acción
+Mon, Dec 1, 2025
+
+1:28 - Formador Dos
+¡Hola, hola! Buenas noches a todos, ¿cómo están? ¿Cómo anda Miguel Angelo? ¿Qué tal?
+
+1:36 - Javier Torres
+¿Cómo estamos?
+
+1:38 - Christian Mora#+#Formador Dos
+Miguel, perdón.
+
+1:39 - Unidentified Speaker
+Cualquiera.
+
+1:40 - Formador Dos
+Te dije Miguel Angarita. Perdóname, te cambié el apellido. Hola, Javier Torres. Hola, Christian. Hola, Pablo.
+
+1:50 - Pablo Piedrahita
+¿Cómo andan?
+
+1:51 - Formador Dos#+#Javier Torres
+Hola, buenas noches. Buenas noches.
+
+1:54 - Formador Dos
+Buenas noches a todos. Voy a compartir pantalla. ¿Ahí se ve mi pantalla? Perfecto, perfecto. Buenísimo. El otro día me habían pedido que yo apague la reunión, ¿no? Porque queda grabado. Pero, ah, yo ahora tengo para apagarla, sí. Ah, bien. Hoy sí puedo pagar la transcripción para que no quede grabando. Hoy sí puedo. El otro día no me daba la opción. Bueno, ¿cómo? ¿Cómo andan, chicos? ¿Todo bien? ¿Cómo venimos con el curso? Espero que les vaya aportando cosas útiles.
+
+2:39 - Unidentified Speaker
+No sé qué me dicen. Sí, todo bien.
+
+2:43 - Formador Dos#+#Javier Torres
+Todo bien. Bueno, genial.
+
+2:46 - Formador Dos
+Bueno, hoy quería aplicar lo que vimos ya relacionado con el tema de la migración. Y para ello, Voy a dividir la clase como en dos partes. La primera es empezar con algo de la migración, la parte del login, a ver cómo sale. Ustedes me van a ayudar, pero hacer eso no sería del todo correcto. Sería un poco tirarme a la pileta. Lo que hay que hacer cuando migramos es primero hacer todo un análisis, no una planilla para hacer un seguimiento de qué se migró, qué falta migrar, etcétera, ¿no? Y eso lo podemos hacer ayudándonos también un poco con la inteligencia artificial. ¿Cómo venimos de asistente? Todavía faltan algunos que ingresen. Mientras van ingresando esos compañeros, ¿alguno tiene alguna duda o pregunta?
+
+3:53 - Formador Dos#+#Javier Torres
+Por el momento, todo bien.
+
+3:57 - Formador Dos
+Bien ahí, Javier. Sí, todo bien. Perfecto. Bueno, yo voy a aquí. Como la virtual a la cual estoy conectado, vieron que arranca un poco tarde, ¿no? Tarda un poco en. Perdón, temprano se corta a veces, ¿no? Y a veces arranca un poco en, tarda un poco en arrancar. Me gustaría arrancar un poco con esta, con la parte de la de la virtual, ¿dale? Y y empezar a hacer un poco la parte de la de la migración luego, o sea, primero veámosla, podemos sacar alguna Bueno, si les parece, ¿cómo venimos? Vamos a comenzar en breve. Si ustedes hicieran la migración, ¿qué harían primero para hacer el análisis? A ver.
+
+5:05 - Unidentified Speaker
+La parte de Bakken.
+
+5:07 - Miguel Angarita
+Está bien, pero eso ya sería migrar.
+
+5:12 - Formador Dos
+Primero, armaríamos el proyecto que está todo así en PHP, ¿no? Que es este ARMS, ¿no? Tendríamos que llevar una lista de qué archivos PHP tiene, cuáles se van migrando, cuáles faltan. De cada archivo tener cierta información como para ir viendo qué migrar. O sea, antes de comenzar con la migración, conviene hacer un análisis previo. Si lo tuviéramos que desglosar esto en tres agentes, Podríamos decir que el primer agente sería el agente de análisis. El segundo agente sería el agente de migración del backend. Y el tercero, el agente de migración del frontend. O sea, la parte de angular. Vamos a hacer parte de lo que sería el agente de análisis, pero lo vamos a hacer, algunas cosas las vamos a ir haciendo manual, ¿no? Creo que ahí me cargué un drive. Después este documento lo podemos compartir. A ver. Acá un drive, ¿no? Y voy a hacer. Esto yo ya lo estoy haciendo, pero quería aprovechar de hacerlo ahora con la virtual. Como les dije, va un poco más lenta. Este documento, si quieren, después lo podemos No podemos compartir. Bueno, ahí está medio que se arrastra el Google Docs. Vamos a darle un minutito. Ahí está, ¿no? Este va a ser, le voy a cambiar el nombre, vamos a poner migración, ¿no? Siempre conviene planificar un poco la migración. Entonces, como parte del análisis, tendría yo, yo recomendaría hacer un archivito con todos los archivos del proyecto. Y también algún archivito con las dependencias del proyecto, ¿no? Como con un gráfico. Y acá quería ver algunas opciones para hacer ese gráfico. No sé si, bueno, mientras esto responde, no sé si conocen este lenguaje.
+
+7:32 - Unidentified Speaker
+¿Lo conocen?
+
+7:33 - Formador Dos
+No. Bueno, tanto Merma y como Dot son dos lenguajes que podría llegar a utilizar para generar un gráfico visual a partir de texto, ¿no? Claro, bien, ahí Angelo lo conoce. Bueno, el otro que podemos utilizar es este que se llama Dot. La idea que quiero, Lograr es un, para ir cubriendo parte de la, antes de ir de, como tenemos dos horas, vamos a dividir en dos. La primera parte, vamos a hacer un poquito del análisis y después vamos a migrar a ver si podemos empezar a migrar juntos en la parte del login, ¿no? Este es otro dot language que se usa bastante para migrar. No para migrar, perdón, para hacer gráficos. ¿Dónde está el? Pero este es el del lenguaje. A ver el de Visualizer.
+
+8:45 - Unidentified Speaker
+.visualizer.
+
+8:46 - Formador Dos
+A ver este. No, este no es. Era edotor.
+
+8:57 - Unidentified Speaker
+Este.
+
+8:57 - Formador Dos
+Bueno, este es otro tipo de graficador. ¿Ven qué? Sirve para estos gráficos. Después los podés exportar en PDF, en lo que sea, en una imagen. Y los podés ver así, una visualización. Va a ser un gráfico enorme, ¿no? De quién depende cada archivo del proyecto, ¿no? Y eso también me da una idea de qué migrar primero, ¿no? En qué orden. ¿Está bien? No, bravo Angelo Varder. Bueno, este lo conocías vos, este lo conocía Angelo. Este es especial para grafos, ¿no? El otro es para hacer diagramas, siempre que quiero generar diagramas de clase, secuencia, tipos de diagramas técnicos desde, desde ChargPT, le digo que me lo genere en Mermaid, ¿no? Entonces, bueno, vamos a ver cómo queda. Un diagrama de las dependencias de nuestro proyecto de PHP, así como también una lista de archivos, ¿no? En nuestro PHP. A ver si te acordás, si te acordás otro, Angelo, coméntamelo.
+
+10:17 - Formador Dos
+me interesa, yo suelo usar estos dos y si no los suelo generar pero bueno para esto era un overkill en php con con el lenguaje ese, la librería de gráficos de php también uso para que me haga me haga los gráficos hay como se llama esa librería pero bueno no importa no viene no viene al caso no me voy a ir pasando por las ramas bueno ahí está el proyecto Vamos a ver si le puedo cambiar el nombre y le puedo poner migración. Bueno, va un poco lento esta, ¿eh? Bueno, ahora lo continuamos ahí el proyecto. Bueno, primero de todo para generar los archivos del proyecto, bueno, lo puedo hacer con un comando. Estos comandos los generé así con chat GPT, ¿no? Ya los preparé para tenerlo. Por ejemplo, este es que me genera un archivo CSV con los archivos del proyecto, los .php, ¿no? Así los puedo poner en un archivo, ¿no? De Excel como para hacer un seguimiento de la migración, ¿no? ¿De qué migré? ¿No? Siempre hay que llevar un registro. Bueno, a ver si puedo cambiarle migración. A ver.
+
+11:48 - Unidentified Speaker
+Bueno.
+
+11:49 - Formador Dos
+Bueno, ahí le escribí migración, a ver si lo agarra. Vamos a ejecutar este comando en el proyecto de ARMS, que es el que queremos, el que queremos, migrar acá en PowerShell, ¿no? Bueno. A ver que limpie la pantalla. Hoy se estuvo portando bastante bien la la virtual, ¿eh? Vamos a pegar el comando que les pasé. Que, bueno, básicamente hace hundir y lo guarda en un archivo. Phplista.csv se llama el archivo. Bueno, ahí lo creo. Esto lo puedo meter a este documento. Bien, ahí le pude cambiar el nombre. Me parece que todo era que tarda mucho en levantar todo el JavaScript de Google Docs. Bueno, voy a importarlo acá. Estoy usando Google Sheets o un Excel, no importa, lo puedo importar acá.
+
+13:32 - Formador Dos
+Vamos a esperar a que abra el diálogo. Después la grabación la podemos poner en 2X, así este diálogo se arma más rápido. Y yo me lo copio al archivo y lo mando. Lo armo en mi compu, si veo que tarda mucho.
+
+14:08 - Unidentified Speaker
+Si se puede, perdonen. Acá Olse...
+
+14:16 - Formador Dos
+Acá generó este... RMS... Acá generó este archivo. A ver, ¿dónde está el archivo que generó? ¿Cómo se llamaba? A ver acá. Creen que me trata de abrir.
+
+14:51 - Formador Dos
+¿Cómo se llama? No la quiero sobresaturar a la virtual. PHP lista, acá está el archivo. A ver si lo puedo arrastrar acá del chat. No, no me deja. Bueno. Este archivo PHP lista lo quiero importar ahora en Google Drive, que todavía no terminó de abrir el diálogo. Acá está, bien. Voy a ir acá a upload. Después este archivo lo puedo abrir en mi compu, así va un poquito más rápido. Vamos a esperar que abra el diálogo de... Para importar los archivos. Bueno, va un poco... Como que va un poco lenta la virtual. A ver si lo puedo... Puedo hacer Control-C con un archivo y copiarlo acá al escritorio. A ver si lo copia. No, no me lo saca de la virtual a ver si me lo mando por mail porque va va media media lenta como para hoy se estuvo portando bastante bien la virtual lo pude la pude usar sin problema pero veo que en este horario va bastante lenta.
+
+16:57 - Unidentified Speaker
+A ver, a ver. No, va muy lenta.
+
+17:17 - Formador Dos
+¿Creen que me voy a ver si me copio? ¿Me lo puedo mandar así el archivito de alguna manera? Porque pareciera que la virtual no está, va muy, muy lento como para hacer. Si no, cada paso que demos vamos a estar un montón de tiempo. Acá, a ver si lo puedo arrastrar así. No, no me deja copiarlo.
+
+17:54 - Unidentified Speaker
+Algunos escritorios remotos me dejaban.
+
+17:59 - Formador Dos
+A ver. A ver ahí.
+
+18:10 - Unidentified Speaker
+Ahí está.
+
+18:11 - Formador Dos
+Bueno, lo copié el archivo, lo copié acá localmente. Así armamos el documento local. Perdón, pero si no se va a demorar un montón, si no. Yo que encima soy súper ansioso, voy a crear un nuevo archivo de Google Sheets, ¿no? Este le vamos a poner. Migración. Y vamos a importar el archivo import.
+
+18:40 - Unidentified Speaker
+Miren, ¿ves?
+
+18:42 - Formador Dos
+Enseguida lo puedo llegar a importar que la otra, hacer esto tardaba.
+
+18:56 - Formador Dos
+Y ahora se va a llamar phpLista. Y acá tenemos todos los archivos de nuestro PHP, de nuestro proyecto que tenemos que emigrar, ¿sí? De hecho, podemos ir marcándolos, ¿no? Se haya migrado. O sea que para ir midiendo un poco nuestro nuestro avance, tenemos aproximadamente que migrar el total de mil cuatrocientos archivos. Entre estos va a estar el el archivo principal, que es este índex, ¿no? Este yo lo suelo poner eh lo suelo poner acá lo suelo poner acá al principio y vamos a Vamos a arrancar a hacer, esto me van a ayudar a hacer a ustedes, ¿no? ¿Programaron? ¿Quiénes de los presentes programaron en PHP?
+
+20:12 - Unidentified Speaker
+A ver.
+
+20:14 - Formador Dos
+¿Quiénes de los presentes estuvieron programando en PHP. Así vamos a ir viendo qué vamos a ir cargando en esta tabla. Por ejemplo, vamos a calcular si está migrado. Esto sería sí o no. Pues, en principio, todos no. ¿Qué otra información vamos a tener de los archivos? Por ejemplo, si tiene sentencias SQL, si tiene vistas o es todo lógica, si es un GET, si es un POST, ¿se entiende? Todo eso vamos a ir cargando en estos archivos PHP. Bueno, a ver, ¿qué se les ocurre? A ver, por ejemplo, esta lista de ustedes acá, yo les voy a dar una sugerencia, ¿no? Pero esto todo lo van a tener que ustedes eh completar también, ¿No? Por ejemplo, si tiene vista, ¿No? Si tiene lógica, toda esta info, después, archivo por archivo, la vamos a pasar por la inteligencia artificial, y que nos vaya a completar todo esto, ¿Se entiende? Después veamos bien que se los dejo así como como una tarea, ¿Qué cosas quisiera observar de cada archivo que me sirven para para tiene vistas y tiene vista va a ser un componente de angular tiene lógica usa el sesión no sé después eh eh si tira de secueles y ¿se entiende? Toda esta tabla la vamos a tener que que nos interesan para la migración. Es una migración de 1.400 archivos, o sea, hay que hacerla por etapas, ¿no? Y elegir qué cosas se van a ir migrando. ¿Se entendió esta parte? Tener así tipo un archivo de ayuda así para la migración, Hay uno que ocupa un montón, que es el que hace que este archivo cache flow.
+
+22:53 - Unidentified Speaker
+Bien, ¿hasta acá me siguieron? ¿Sí?
+
+23:02 - Formador Dos
+Bueno, no me dice nada, chicos, a ver, por favor.
+
+23:06 - Unidentified Speaker
+Sí, sí, sí, así vamos, chéverísimo.
+
+23:09 - Miguel Angarita
+Hasta ahí clarísimo.
+
+23:11 - Formador Dos
+Bueno, después lo segundo que vamos a hacer como parte del análisis de la migración. Después piensen un poquito qué columnas le vamos a poner en cada en cada archivo. Por ejemplo, en el tema de de los archivos PHP me parece relevante, ¿no? Ir viendo, por ejemplo, vamos a arrancar con el índex. El índex tiene, no, este no, perdón, el otro. Hoy vamos a tratar de emigrar el índex y tener algo andando, ¿no? Como para empezar después a ir agregándole a ir agregándole. Bueno, vamos a migrar el índex. Y si vemos, por ejemplo, el índex, tenemos referencias a SQL. Acá hay algún SQL embebido. Bueno, voy a dejar que cargue. Después tenemos referencias al session, que eso va en el backend, ¿no? Lo podemos meter en el backend. Depende si lo usamos, alguna parte la podemos poner en el frontend. Tenemos este host. Admin que tiene variables de sesión, variables de globales, digamos. Esto va a ir en la parte del backend, en su mayoría, que va a ser el que se conecte a la base de datos. Bueno, acá tenemos, ves, el login que vamos a tratar de emigrar hoy. Y, bueno, acá vemos que hace una consulta SQL. Podemos, para cada documento, Les puedo pedir a la Inteligencia Artificial que me diga los SQL que utiliza, ¿no? Pues ahí ya sabemos las tablas que vamos a necesitar tener en cuenta para esa migración. Todo armado así en un archivo de Excel. Bueno, acá esto va a ser bastante, el índex creo que va a ser bastante sencillo de migrar. Después vamos a ver cómo queda. Bueno, otra cosa que quería tener era el, el diagrama de las dependencias, ¿no? Y en este caso, después de consultarlo bastante con la AI, como tenemos varias maneras de ver las dependencias, creo que sí, cualquier mención a otro archivo PHP lo vamos a tomar como una dependencia. Por ejemplo, este tiene este archivo que depende, después está el validar.php que está acá en el en el formulario, ¿no? Entonces, vamos a tratar de armar un archivo de dependencia. Va a quedar bastante extenso, pero después lo podemos depurar un poquito, ¿no? Pero esto es importante para empezar a ver cómo se migra, ¿no? Por partes. El que conoce el proyecto ya sabe que esto ya lo puede adelantar, ¿no? O sea, puede saber algunas cosas que, bueno, que yo no sé Bueno, para generar el AdWord de dependencias, lo que hice fue también, lo armé con la inteligencia artificial. Me dije que me lo arme con un comandito.
+
+26:29 - Unidentified Speaker
+¿No?
+
+26:29 - Formador Dos
+Y acá me las lista, ¿no? En un archivo que se llama dependencias. Acá está, dependencias.txt, que básicamente busca Cualquiera que archivo que sea .php lo manda a que este archivo depende de ese otro. Entonces, saca la lista de dependencias. Lo vamos a ejecutar este comando. Va a tardar un poquitito, pero ahí me va a generar el archivito dependencia. Ese archivito dependencias que ahí ya lo generó. No, este no.
+
+27:16 - Unidentified Speaker
+Este, perdón.
+
+27:17 - Formador Dos
+Este lo voy a cerrar que lo suelo abrir y me está confundiendo.
+
+27:26 - Unidentified Speaker
+Este.
+
+27:27 - Formador Dos
+Acá tenemos el PHP lista y acá tenemos el dependencias.txt que Ahí lo voy a abrir.
+
+27:41 - Unidentified Speaker
+Bueno.
+
+27:42 - Formador Dos
+Puede ser que algunos archivos me queden afuera, si no sé, si están en una variable, ¿no? Es decir, si son dependencias que se guardan primero en una variable, demás, puede ser que dinámicas, puede ser que no lo capture esto, ¿no? Pero, bueno, acá lo tengo, ¿ves?
+
+28:18 - Unidentified Speaker
+Ahí está. Está in, ¿ves?
+
+28:21 - Formador Dos
+Acá está todo el activar usuario, depende de este archivo. ¿Ves? Ahí te va diciendo cómo quedaron las dependencias entre los distintos archivos. Ya vamos a ir viendo archivos que se repiten un montón, ¿no? ¿Qué es eso? El host admin, este se repite. Entonces, vos vas viendo que ya hay archivos que, fíjate, el índex depende de este. ¿Ves? De estos 4. Entonces, ya sabemos que estos 4 los vamos a tener que emigrar medio juntitos. Vamos a hacer un un mermaid con este archivo de dependencias, ¿sí? ¿Cómo lo hago? Bueno, yo le dije, le pasé las dependencias a, ¿cómo se llama? A chat GPT, pero mejor hace esta, me pasó así un comando de PowerShell que me va generando el archivo mermaid, ¿no? Para hacerme un gráfico de dependencia.
+
+29:32 - Unidentified Speaker
+Así que lo vamos a probar.
+
+29:38 - Formador Dos
+Y ahí va a ser un archivo que se llame grafo.mmd. Se me cerró el... Se me cerró el, ¿cómo se llama? A ver si lo puedo copiar, así lo veo local. Control C, Windows D.
+
+30:21 - Formador Dos
+Ahí lo copia. Bueno, y acá tengo en el archivo este grafo que lo puedo ver de varias maneras. La primera, a ver si lo cargo bien, lo vamos a ver en este acá. Bueno, es bastante grande, ¿no? Se va a quedar un poco corto, así que lo voy a tener que exportar. A ver, lo voy a abrir primero con un blog de notas.
+
+30:56 - Formador Dos
+Bueno, acá lo copio y lo pego en la página esta de Mermaid Live.
+
+31:07 - Unidentified Speaker
+A ver si lo puedo.
+
+31:11 - Formador Dos
+A ver si lo copié todo. Espera, eh. Ahí lo copiamos.
+
+31:23 - Formador Dos
+Ahí me tiró MaximumTestSizingDiagram. Bueno, acá me generó bastante. Vamos a ir borrándole algún pedacito. Después lo vamos uniendo para ir viendo. Ahí no me lo, no me lo, a contar lo que me interesa. Mostrar aunque sea una partecita.
+
+31:49 - Unidentified Speaker
+A ver, ahí ripean.
+
+31:56 - Formador Dos
+A ver, le voy a poner esto. Le voy a poner acá, vamos a decir esto y me tira este error para que me lo corrija.
+
+32:22 - Unidentified Speaker
+Puede ser que me haya generado un error.
+
+32:29 - Formador Dos
+Bueno, ahí está. La versión corregida. A ver. Ahí me lo está. ¿Ven que ahí me generó una? Le corté un pedacito, ¿no? Para ir viendo cómo es. Esto lo voy a exportar, por ejemplo, con un SVG. Y acá tengo el diagrama. ¿no? ¿Cómo va la? Bueno, este sí lo veo, por ejemplo, lo hago en un archivo marrón. Puede ser que me quede más completo. ¿Se ve? Entonces, tengo el índex que depende de esto. ¿Ven? Me queda todo el gráfico de dependencia. Este gráfico lo puedo tener para visualizar cómo está la las dependencias de acá. El problema que tenía este texto que le pasé es que no le gustan mucho las comillas, ¿no? Es como que hay que sacarle las comillas, ¿no? De, a ver, edit, replace. Cambiar las comillas por nada.
+
+33:54 - Unidentified Speaker
+A ver ahí si lo toma. Ay, acá no le gustó el...
+
+34:14 - Formador Dos
+Bueno, hay que ir... Location, este que le puso Location, Location. No sé por qué le puso Location, este también se lo sacamos. Bueno, todo hay que... ¿Cómo se llama? Hay que modificarlo un poquito como para ir adaptándolo para que lo tome. A ver, hasta... Ahí. Bien, ahí va queriendo, ¿ven?
+
+34:48 - Unidentified Speaker
+Entonces lo va bajando.
+
+34:51 - Formador Dos
+Y ahí vas haciendo el gráfico de las dependencias del proyecto. ¿Sí? Si ubicamos el, me parece que me como PNG que lo hablo desde acá. Entonces, acá vos buscas el índice y te va diciendo, cuando son muchas, cuando son muchas de dependencias, la poder ir separando y haciendo por partes, ¿se ve? Ir haciendo, en vez de hacerlo todo, como es mucho, podés ir haciendo solo por partes. Por ejemplo, la primera parte sin los módulos, ¿ves? Sin los módulos. Después, cada uno de estos módulos lo pones en un archivo de, en un archivo aparte. Entonces, ahí vos vas teniendo un diagrama general, ¿no? De todas las dependencias del proyecto. O vas a trabajar con el índex, dejas solo las dependencias de índex, ¿sí? Puedes agarrar así. Y decirle a... A...
+
+36:30 - Formador Dos
+un tamaño y contexto de que es un libro, así que es para todos estos casos de uso es bastante, bastante bueno. Decime, generame el grafo Mermaid solo para las dependencias de índex, ¿no? Entonces vos lo vas, lo vas que aparezca en cualquier otro lado de la flecha. Entonces te vas armando tu tu grupo de de gráficos para ver las dependencias del proyecto e ir viendo cómo migrando. Vas haciendo un análisis. Incluso le puedes decir a a la inteligencia artificial ahora vamos a hacer que dado este gráfico de dependencias de un proyecto PHP que te genere etapas para ir a migrarlo ¿no? Ahí está ahí está haciendo el el gráfico Y ahí me tiró solo las dependencias de index.php. Es como para tener un gráfico mucho más...
+
+37:48 - Unidentified Speaker
+Bueno, ahí me tiró un error.
+
+37:52 - Formador Dos
+Ah, por los... De nuevo, por las... Me tiró el tema de las comillas. Pero, bueno, lo solucionamos ahora enseguida. ¿Se entiende esto de las dependencias? Sí.
+
+38:18 - Unidentified Speaker
+Acá sacamos el location.
+
+38:23 - Formador Dos
+Entonces, bueno, este sería nuestro de nuestra, ahí está. Bien, ahí. Acá tenemos un gráfico de dependencia.
+
+38:36 - Unidentified Speaker
+Entonces, sabemos, por ejemplo, esto para cada archivo, ¿no?
+
+38:41 - Formador Dos
+Podemos saber que estamos migrando el índex, que va a depender de este, va a depender de este, va a depender de este. ¿no? Y acá te tira, ¿no? Entonces, después puedes tirar este gráfico de dependencias. También te sirve para tenerlo como referencia para la inteligencia artificial para ir haciéndoles preguntas. Antes de seguir adelante, ¿qué les parece esta idea de tener, aunque en un archivo, ¿no? Para después ir haciéndole preguntas a la inteligencia artificial, el grafo de dependencias. ¿Qué les parece? ¿Qué es fundamental para una migración?
+
+39:25 - Brian Bohórquez
+PÚBLICO 1- O sea, sí, se lo veo interesante, ya que, por ejemplo, a pesar que nosotros trabajamos con este tipo de portal hace tiempo, pero muchas veces no conocemos todas las dependencias que usamos. Entonces, nos va a ayudar bastante a poder identificar la totalidad de sus dependencias en este portal.
+
+39:47 - Formador Dos
+PÚBLICO 2- Podés hacer otras preguntas, ¿no? Sirven bien para la migración, ¿no? Podés decirle, vamos a cargarle, bueno, ya se lo cargamos, ¿no? Pero graph, le podemos decir, grafo.md, le podemos decir, dada estas dependencias en archivos PHP, listame las que son las hojas de las cuales No depende nadie. ¿No? Y te va a tirar una lista. Siempre va a tener el proyecto de migración antes de tirarse a la pileta, a migrarlo, va a tener un una etapa que va a ser la de planificar la migración, ¿no? Que se migran, que orden, ¿no? Y más o menos parte de la esa etapa que sería la etapa del análisis de la migración, sí, sí la vamos a hacer con mucha ayuda ahora de la de la inteligencia artificial, ¿no? Podemos hacer preguntas como esta, después les voy a decir al al revés, que me que me calcule etapas, ¿no? De migración que me haga, que me analizando las dependencias, me calcule las distintas etapas del proyecto de migración. A ver. Ahí le puse en Gemini, que es uno de los que tiene mayor tamaño de contexto, le puse el modelo de thinking, ¿no? El que piensa. Entonces, por eso, mientras está haciendo Cada prompt que le pones te va a tirar más cosas. Ahora, yo hubiera empezado una conversación nueva. Ah, pero bueno, le volví a juntar el archivo. Está bien.
+
+41:58 - Formador Dos
+Por ejemplo, este hots admin.
+
+42:02 - Unidentified Speaker
+Ahí está. Bien.
+
+42:03 - Formador Dos
+Y acá me tira, ves, todos los activos que son de dependencia. Este tenés. Hots admin es la dependencia más citada, que es la de configuración o variable de entorno, ¿no? Entonces, este ya se puede migrar. De uno, de una. Este archivo, que ya lo había visto Hot Admin, se puede cargar en el backend, directamente en la parte de configuración. Che, qué bronca el, a ver, el Visual Studio Code que se me cerró. Vamos a abrirlo nuevamente, ¿no? Después me cita, menúgeneral.php. Este no tiene dependencias salientes, librería de seguridad, hoja terminal, conexión a base de datos. ¿Ves? Entonces estos son nodos, ¿no? Que podemos, podemos, librería utilizar. Esto de barco usa una dependencia externa. Ese sí va, hay que ver cómo lo migras. Ese puede ser una etapa para ¿no? Porque usa una dependencia. Bueno, perfecto. Después, otra cosa que le podemos migrar, le podemos preguntar, es lo siguiente. Podemos decir, dado el gráfico de dependencias adjunto, Generame etapas para migrarlo a otra app, a Angular y, ¿cómo se llama? Angular y Spring Boot. Generame etapas de migración. Acá le podemos preguntar etapas de migración. Y adecuadas. Acá incluso le podés decir, ¿no? Estoy utilizando toda la IA para hacer la planificación. Le podés decir, haceme las preguntas que consideres necesarias de a una para obtener un plan de migración. Óptimo por etapas. Esta pregunta primero no se la voy a poner, así me da una respuesta. Y después sí. No sé si ustedes usan mucho eso de agarrar a la inteligencia artificial y pedirle que te haga preguntas, ¿no? Cuando le pasas, para que darle más información de contexto. Bueno, fíjate, ahí le pasé el archivo y le digo, hacerme un plan de migración. Entonces, podemos citar como parte del análisis, a ponerlo como en algún lugar mientras esto trabaja como etapas, ¿no? Tareas, ¿no? Armar documentos, planilla con archivos de PHP para llevar cuenta de la migración. Agregar. Columnas para cada archivo de interés para la migración. Esto lo vamos a ver luego. Lo vamos a hacer, llenar esa tabla luego con la IA. Ahora después les muestro cómo. Después 3, generar. Gráfica, generar archivo con dependencias del proyecto, ¿no? Del proyecto a migrar. Esto puede ser acá ir, ¿no? Visualizar las dependencias con con merma y no vas armando total o parcialmente. Después, el archivo de dependencia, utilizar el archivo de dependencias para planificar las etapas de la migración. Con ayuda de la IA. Y esta parte, estas tareas, ¿no? Serían las tareas del agente de análisis. Eventualmente podemos hacer un agente de análisis que lo programamos y hace todos esos pasos, ¿no? Pero por ahora los vamos a ir haciendo algunos manualmente como para que nos ayude. Bien. Bueno, me dice, infraestructura de autenticación en el núcleo. Establecer la base tecnológica y replicar la seguridad y conexión a datos. Bien. Te dice que migres primero el index.php, el validar.php, el finsession, ¿no? El dbconnection, el hostadmin, ¿no? Y que migres primero. Después te dice que módulos maestros o cruz simples, ¿no? Migrar la tabla de configuración, ¿no? Y acá te dice, identificamos muchos archivos mantenimiento que dependen principalmente de este. Y se llaman a sí mismos en su versión tal. Archivos objetivos, ¿no? Entonces te dice que migres estos. ¿Se ve cómo me fue armando la planificación? Después, módulo de de reportes. Este es solo lectura. Migrar la carga y acá te dice, ¿tiene sentido?
+
+48:46 - Unidentified Speaker
+No sé la aplicación.
+
+48:47 - Formador Dos
+¿Tiene sentido toda esa propuesta que me está haciendo la AIA? Yo creo que sí, porque vi.
+
+49:01 - Formador Dos
+¿Qué me dicen?
+
+49:02 - José Lainez
+Yo creo que sí que está bien la parte de lo que le estoy diciendo a la guía, cómo repartirlos por etapas y todo para la migración. Bien. Etapa 3, módulo del reporte de solo lecturas.
+
+49:21 - Formador Dos
+Bien. Etapa 4, gestión de 20 horarios, etiqueta lógica. Etapa 5, clonúsculo transaccional. Ventas y cotizaciones. Etapa C, promoción y matriz, motor de reglas. Etapa C, limpieza y apagado, eliminar el coche o desdestinir todo el tráfico. Bueno, eso ya. Bueno, ahí me generó, me generó una, me generó una, las etapas y además me genera acá un documento de Google Sheets que me dice, hasta me recomienda, componente moderno de destino, mira, a utilizar. Bien ahí. Bueno, genial. Perfecto. Esto era lo que quería ir hablando un poquito del análisis de la migración. Cómo encararlo, ¿no? Y después, bueno, después le podemos hacer esta que hacerme las preguntas que consideres necesarias de una, ¿no? Y vas a ver que, te puede hacer un plan más preciso, ¿no? Si le pones así lo mismo que le pusiste antes. ¿No? Yo cuando es algo con mucho texto suelo usar Gemini, ¿no? Acá le voy a poner el de las preguntas, ¿no? Hacerme las preguntas que considere necesarias de a una. Por ejemplo, archivos puntuales de código que quieras ver. O preguntas del proyecto en general, ¿no? Entonces, si vos le vas diciendo a la IA que te haga preguntas de AUNA, él va, con esas preguntas te va a ayudar para completar con lo que le hace falta del contexto para migrar, ¿no? De esta forma te vas armando tu plan de migración, ¿no? Yo acá les muestro como ejemplo. Por ahora podemos quedarnos con el plan de migración original que me dio Pero esto de... De decirle que...
+
+52:07 - Formador Dos
+Tienes conexiones y se vuelve a conectar. Hola, hola, ¿me escuchan? Sí, ahí se escuchan. Sí, a esta hora... A esta hora me pasa mucho que...
+
+53:11 - Formador Dos
+No, che, qué bronca. Ahí está. Ahí está. Ahí está. Perdón. Mientras hablaba con ustedes, como tuve un microcorte, me puse acá a ver el Wi-Fi y le cambié la red de Wi-Fi y me conectó recién por eso. Perdón. La primera fue un microcorte, la segunda fui yo. Nada, me tiró un una una migración eh parecida eh no la verdad que no me hizo eh no me hizo eh no me hizo muchas preguntas todavía me tiró eh me tiró directamente unas etapas parecidas y después a pesar de eso me tiró me tiró así varias preguntas que bueno no lo voy a ¿Ves qué dice? Para asegurarme que el plan de migración sea lo más efectivo posible, debo abordar el punto más crítico de la migración del Bakken. Y te hacen pregunta. Bueno, si te tomas el tiempo de responderla, el análisis después lo va a ajustar y se va a hacer más cosas. Después, las etapas que me tiró, me las tiró bastante parecida. De hecho, me voy a quedar con las que me tiró la primera parte. Bueno, la primera sería la etapa de uno de migrar el índice PHP y todo lo central. Que acá tenemos el gráfico index.php, ¿no? Y vamos a migrarlo, ¿sí? Yo acá me copié el índice y vamos a migrar, por ejemplo, el componente de login en el proyecto de Angular, como para que lo tengamos, lo vaya teniendo. Bueno. Y vamos a inmigrar. Todos estos archivos, ¿no? Autoloa, Dindex, Master, Barco, bueno, todos estos después se irán migrando que son los que dependen de Index, ¿no? Bueno, vamos a comenzar con la migración, ¿qué les parece? Vamos a empezar a ver de migrar algo. Bueno, perfecto. Nosotros teníamos Teníamos acá el frontend, ¿no? Que era el que estábamos migrando. Y este lo voy a abrir con Visual Studio Code, perdón. Y es el proyecto de Angular, ¿no? Le voy a dar primero code para editarlo con Visual Studio Code. Acá tengo el. Proyecto de Angular, ¿sí? Y lo voy a ejecutar con NgSer. Bueno, hasta ahora esta primera mitad de la clase que habla sobre cómo hacer el análisis de la migración. ¿Quedó claro? No se lancen a migrar todos, ¿sí? Primero no hacen un par de días de planificar toda la migración. ¿Estamos de acuerdo con eso? Yo traté en una hora de dejar eso claro. Bien. ¿Venimos bien con la clase, chicos? ¿Cómo venimos? A ver algunas reacciones.
+
+56:37 - Formador Dos
+Bien, ninguna reacción, no vi ninguna. A ver, Angelo, Javier, ¿todo bien?
+
+56:49 - Unidentified Speaker
+¿Venimos a ver alguna observación, algo?
+
+56:55 - Formador Dos
+Bueno, continuemos entonces. Yo voy a ir, voy a ir, creando acá una carpeta que se llame original, ¿no? Proyecto. Y le voy a copiar. Yo esto sí me los copié porque me imaginé que iba a ir medio lento como para hacerlo en la compu. Acá me copié algunos archivos. Que yo vi que íbamos a necesitar, que son dependientes del index.php, ¿no? Y me los voy a copiar acá al proyecto de Angular. Me los voy a poner acá, proyecto original, ¿no? Los voy a tener ahí de prueba, ¿sí? Voy a correr el proyecto a ver si anda. Ah, y tenemos el de estilos. Ese también lo vamos a traer. A ver, lo voy a traer ya que... Ah, mira, ya se desconectó la virtual.
+
+58:20 - Formador Dos
+Ah, no.
+
+58:23 - Unidentified Speaker
+Ahí hay conecta. Bueno.
+
+58:28 - Formador Dos
+Bien, ahí está el proyecto de Angular Bien. Y lo que vamos a hacer a continuación es migrar el componente de login. Bueno, vamos a tratar de hacerlo así con ayuda de la IA, pero yo voy a preguntar lo siguiente.
+
+59:10 - Unidentified Speaker
+¿Qué en el directorio?
+
+59:13 - Formador Dos
+No sé si lo va a leer, si no le voy a tener que poner, le voy a tener que poner, tengo el mcp archivos php que quiero migrar solamente la parte de frontend con los servicios de Angular que es necesario que sean, por ahora, un mock. ¿Sí? Planificame la migración y decime qué pasos hay que hacer y qué archivos se van a generar, ¿sí? Yo esto lo puedo hacer con el modo agente o el modo ask, ¿no? Pero lo primero que se hace cuando vos haces esto es primero la planificación. Sin generar nada, ¿no? Esto cada vez que uso, uso Copilot, antes de que me genere código, primero que me analice y me genere un plan, ¿no? Y después en función de ese plan, que lo, lo analice los archivos y después ese, ahí está. Ahí va, voy a analizar los archivos y ahí les yo esto trae al index, validar, hostname, bien. Ahora voy a revisar esto Plan de migración.
+
+1:01:17 - Unidentified Speaker
+Bueno. Me va a generar.
+
+1:01:34 - Formador Dos
+Todos estos archivos de modelo. UserModel, OutResponseModel, no me esperaba que me hiciera tanto.
+
+1:01:49 - Unidentified Speaker
+Interfaces de StyleScript. Servicios, SessionService.
+
+1:01:55 - Formador Dos
+Interceptores, componentes, el componente Y el componente de selección de país. Y el componente de alerta. Componente de ruta. Mira, todo lo que ya me fue mi Bueno, a ver, todo este análisis me hizo varios componentes. No me esperaba que hicieran tanto. Le voy a preguntar, ¿necesito instalar algún A ver, pues me tiene que decir la de Sweet Alert.
+
+1:02:59 - Unidentified Speaker
+A ver.
+
+1:03:01 - Formador Dos
+A ver.
+
+1:03:05 - Formador Dos
+y suite alert.
+
+1:03:18 - Formador Dos
+Y si tal vez no usa el PHP, a ver, que ahí me...
+
+1:03:30 - Unidentified Speaker
+Bueno...
+
+1:03:31 - Formador Dos
+Ahí me dijo que sí, que la instale. Así que... Vamos a decirle... Modificame el plan... Original incluyendo todo la instalación de Suite Alert.
+
+1:04:22 - Formador Dos
+Bueno, ahí está los servicios que va a hacer.
+
+1:04:32 - Unidentified Speaker
+Bueno, perfecto.
+
+1:04:34 - Formador Dos
+Bueno, ahora le voy a decir ejecutar. ¿Lo vieron, chicos? ¿Vieron todo lo que? Plan como me lo hizo bueno la idea es ver el plan este como que ejecuta y le voy a decir ejecutar la migración creando los archivos necesarios y su contenido obviamente para que esto si esto lo estuviera haciendo en producción ya mismo hubiera creado un repositorio de git porque muchas veces que yo le diga va a hacer, va a hacer agua, ¿no? Y va a romper todo. Entonces voy a querer volver atrás. Entonces eso lo voy a hacer.

@@ -1,0 +1,56 @@
+Capacitación Legacy a Microservicios Modernos con IA: GitHub Copilot, Cursor y LLMs en acción
+Fri, Nov 28, 2025
+
+Summary:
+
+La capacitación se centró en el uso de GitHub Copilot y Cursor, donde se compartieron experiencias y se discutieron las particularidades de estas herramientas en el desarrollo de software. Se destacó que GitHub Copilot es más efectivo con código bien estructurado, y se presentó el patrón "High Level Goal" para guiar la generación de código mediante comentarios detallados. Durante una sesión práctica, se demostró cómo crear funciones en JavaScript y se enfatizó la importancia de proporcionar instrucciones claras para obtener resultados efectivos. También se abordaron las diferencias entre Copilot y Cursor, así como la necesidad de estandarizar el código en proyectos complejos.
+
+Además, se realizaron demostraciones prácticas de Cursor, donde se replicaron ejercicios previos y se discutieron problemas técnicos, como la reinstalación de la herramienta. Se enfatizó la creación de archivos de instrucciones con comentarios y validaciones de tipos, así como la importancia de realizar validaciones de entrada y nombrar funciones en inglés. Los participantes fueron alentados a interactuar y practicar la creación de archivos, aplicando las reglas discutidas para asegurar una comprensión adecuada del proceso. Se concluyó con la intención de resolver problemas técnicos en futuras sesiones.
+
+
+Chapters & Topics:
+
+Uso de GitHub Copilot y Cursor en el desarrollo de software
+Javier Torres y el Formador Dos abordaron el uso de GitHub Copilot y Cursor, solicitando a los asistentes que compartieran sus experiencias. Miguel Angarita destacó que Copilot tiende a "alucinar" con código Legacy, mientras que otros participantes, como Christian Mora, comentaron sobre su uso para estandarizar y traducir código.
+
+Capacitación en GitHub Copilot y patrones de programación
+Formador Dos mostró cómo utilizar GitHub Copilot para mejorar la programación mediante el patrón "High Level Goal", que permite guiar la generación de código a través de comentarios descriptivos. También se introdujeron las "Copilot Instructions" como una herramienta para estandarizar el código en proyectos, destacando su utilidad en tareas más complejas.
+* Ejemplos prácticos de programación con Copilot.
+* Creación y aplicación de instrucciones para Copilot.
+
+Capacitación en GitHub Copilot y Generación de Funciones
+Formador Dos demostró el uso de GitHub Copilot al solicitar la creación de una función que ordene números en un archivo de JavaScript. A lo largo de la demostración, destacó la necesidad de establecer instrucciones precisas para optimizar la generación de código. También mencionó la creación de un archivo de instrucciones para guiar a Copilot en el proceso.
+
+Aplicación de Instrucciones y Refactorización de Archivos
+Formador Dos abordó la aplicación de instrucciones a archivos, destacando la importancia de usar notación en inglés y la posibilidad de aplicar cambios a archivos existentes. Daniel Muñoz recomendó verificar que los archivos cumplan con los estándares del proyecto. Se discutió el uso de TRIM para actualizar proyectos antiguos y la creación de un nuevo archivo de instrucciones.
+
+Uso de GitHub Copilot y Comandos CLI
+Formador Dos presentó las instrucciones para utilizar GitHub Copilot desde la línea de comandos, pero enfrentó dificultades con la instalación del comando 'gh'. Christian Mora también experimentó problemas similares al intentar ejecutar el comando. A pesar de los errores, se mencionó la utilidad de GitHub Copilot para automatizar tareas en archivos.
+* Comparación entre GitHub Copilot y Cursor.
+* Uso de GitHub Copilot y sus características.
+
+Capacitación en Cursor y GitHub Copilot
+Formador Dos guió a los participantes en la creación de un proyecto con Cursor, destacando la importancia de las Cursor Rules. Se realizó un ejercicio donde se generó un archivo de instrucciones para una función que ordena números, enfatizando la personalización de las instrucciones y la validación de tipos.
+
+Capacitación en Reglas de Funciones y Archivos en IDE
+Formador Dos guió a los participantes en la creación de un archivo llamado "Funcion Rule" con la extensión MDC, sugiriendo que se incluyan reglas específicas para las funciones. Se destacó la necesidad de comentarios explicativos y validaciones de entrada. También se demostró cómo recargar la ventana del desarrollador para aplicar los cambios en la IDE.
+* Interacción y configuración de reglas en el entorno de desarrollo.
+
+
+Action Items:
+
+* Formador Dos mostrará ejemplos de uso de GitHub Copilot y Cursor durante la sesión.
+* Formador Dos creará un archivo de instrucciones para Copilot que guíe la generación de código.
+* Formador Dos aplicará las instrucciones del proyecto en el entorno de trabajo.
+* Formador Dos reiniciará la ventana del desarrollador para reflejar los cambios realizados en las reglas.
+
+
+Key Questions:
+
+* ¿Qué otros patrones de uso de GitHub Copilot se pueden explorar?
+* ¿Cómo se pueden aplicar las instrucciones a archivos existentes?
+
+
+Notepad:
+
+* No notes

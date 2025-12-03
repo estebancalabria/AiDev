@@ -1,0 +1,386 @@
+Capacitación Legacy a Microservicios Modernos con IA: GitHub Copilot, Cursor y LLMs en acción
+Fri, Nov 28, 2025
+
+1:08 - Unidentified Speaker
+en el futuro. Muchas gracias.
+
+1:30 - Javier Torres
+Subtítulos realizados por la comunidad de Amara.org Hola, hola, ¿cómo están todos?
+
+2:57 - Unidentified Speaker
+¿Se escuchan?
+
+2:58 - Formador Dos
+Buenas, sí, sí, se escuchan. Buenas, buenas, ¿cómo están todos?
+
+3:06 - Brian Bohórquez#+#Formador Dos
+¿Está Daniel?
+
+3:07 - Javier Torres
+No, no llegó.
+
+3:09 - Formador Dos
+Bueno, aguardenme un segundito que ahora ya mismo estoy con ustedes.
+
+4:11 - Unidentified Speaker
+Ahí estamos, ahí estamos. Terminando.
+
+4:17 - Formador Dos
+Hola. No me ven, ¿no? ¿Todo bien? Todo bien.
+
+4:45 - Formador Dos#+#Javier Torres
+Bueno, me alegro, me alegro.
+
+4:49 - Formador Dos
+Hoy voy a, vamos a hablar de Cursor, perdón, que ya la usaban, y Cursor que están, digamos, evaluando, digamos, por lo menos para la migración, a ver si se le puede sacar. Voy a mostrarla. Particularidades o las cosas características que pueden hacer en Gizka Copa y los que las vamos a ver ahora en un minuto. Creo yo que todavía faltan algunas personas que ingresen, ¿no? ¿Estoy equivocado? Faltan personas. Vale, bueno, vamos a...
+
+5:43 - Brian Bohórquez#+#Formador Dos
+Vamos a...
+
+5:45 - Formador Dos
+A compartir pantallas y vamos a ir aguardando unos instantes. ¡No, no, Daniel! Justo tenía algo para preguntarle. Por ahí... ¿Se ve mi pantalla ahí? Sí. La del repo... ¿Se ve un repo de GitHub? Sí, ahí lo veo, perfecto. Bueno, genial. Quiero que, mientras se van, que ustedes me cuenten a ver qué uso le dan a GitHub Copa y qué resultado le dan, si les ayuda o realmente he llegado a tener algún que lo usaban de tal manera que hasta decía que es el chat, el autocompletado inline, el control y para ahí ponerle la instrucción mientras se edita el código. ¿Cómo lo suelen usar? Bueno, personalmente yo lo utilizo bastante para ayudarme con las pruebas unitarias.
+
+7:02 - Miguel Angarita
+Más que todo, A veces alucino un poco, pero creo que es cuando uno se siente más cómodo. Los archivos tienen distintas formas de programar. O sea, le han metido mano a distintos programadores. Creo que me habló recién Miguel, ¿no?
+
+7:49 - Unidentified Speaker
+Sí.
+
+7:50 - Formador Dos
+Por lo general, Copilot funciona mejor cuando el código está como programado de una manera uniforme, si tiene así como muchos comentarios explicatorios, ahí funciona bien. Pero cuando es un código Legacy de mil cosas, la verdad que sí, tiende a alucinar bastante, como dice Miguel. Y a ver el resto de ¿Y el resto qué uso le dan? ¿Cómo trabajan con Capcom Copilot? Bueno, de mi parte, bastante parecido a lo que mencionó Miguel.
+
+8:44 - Javier Torres
+Y también cuando a veces quiero, tal vez, crear alguna funcióncita básica, ¿no? Quiero hacer, o sea, estoy haciendo algo y necesito, ah, mira, tengo aquí un objeto y necesito convertirlo a esto, a crearlo, o sea, hacer algo puntual ya para que el mismo me construya esa funcioncita y ya directamente incorporarla en mi código. ¿Y esto lo haces con el comentario, viste? Con el chat.
+
+9:23 - Formador Dos
+¿Qué es lo que pasa con el chat? El chat del costado, el grande digamos, el que mientras se está programando y otro es el chat del costado, que es un chat GPT incorporado.
+
+9:37 - Formador Dos#+#Javier Torres
+¿Cuál te gusta de los dos?
+
+9:40 - Formador Dos
+El del costado, el que se muere cuando escribes mucho.
+
+9:44 - Javier Torres
+Ah, o sea, el chat grande, digamos. De alguna manera. Viene ahí, Javier.
+
+9:50 - Formador Dos
+Y a ver el resto, yo puse el Teams y no sé si lo pongo, se ve Teams me parece. A ver ahí, bien. Bueno, a ver el resto. ¿Alguno tiene algo para acotar en cuanto al uso de GitHub Copilot? Yo lo he usado bastante en cuanto eh, estropeosillos de base de datos.
+
+10:19 - Christian Mora
+Para traducirlos al código, ¿no? Para traducirlos o, o si quiero tener este, como un estándar de cómo quiero el SCP. Ah, para que te los estandarice, bien ahí. Bueno, acá yo le voy a pasar un link, vamos a hacer hoy unos laboratorios de, de GeekHackOpa.
+
+10:41 - Formador Dos
+Lo que haces, le pegas el código al chat grande y ahí le decís que te lo estandarice, por ejemplo.
+
+10:52 - Christian Mora
+Sí, le paso como que mi plantilla, como normalmente tengo los GSP y lo único que hago es que ya los arregle y le ponga las transactions, le ponen cabezados.
+
+11:10 - Formador Dos
+Ok, ok. Buenísimo. Autocompletado inline utiliza? ¿No? ¿Saben cuál es el autocompletado inline? Bueno, ahora vamos a, esperen que voy a
+
+11:23 - Unidentified Speaker
+Bueno, me gustaría arrancar hoy.
+
+11:25 - Formador Dos
+¿Cómo venimos de integrantes? Hoy somos, ya somos 12.
+
+11:31 - Formador Dos#+#Miguel Angarita
+Me parece que se quedó, se quedó en este número.
+
+11:36 - Formador Dos
+Les voy a mostrar un par de cositas que tienen tanto en Copilot como en Cursor. En particular de Copilot les voy a mostrar algún patróncito de programación. Yo voy a asumir que lo básico de Copilot, del uso, ya lo saben. No voy a arrancar desde cero porque me comentó Daniel que ya estaban duchos con el uso de Copilot. Quería que veamos algunos de talles de uso para que le puedan sacar más provecho, ¿no? Después quería ver un patrón de uso de un patrón de prompting de GitHub Copilot que se llama High Level Goal, que no sé si lo utilizarían, que viene de la mano con esto de que Copilot es bueno cuando el código tiene bastantes comentarios. Les voy a mostrar el análogo a los cursos rules, aunque no tan potentes, de GitHub Copilot, que son las Copilot Instructions. ¿La conocían, el archivo Copilot Instructions, para que todo el código, por ejemplo, sea estandarizado, se mantenga uniforme? ¿Lo conocen? ¿Lo han usado? Yo no. Bueno, y después vamos a hacer un caso de uso de Copilot para el uso en tareas más complejas que no requieren solo completar un código que haga una planificación antes de ejecutar, ¿no? Que uno pueda planificar, usar como compañero de programación, ¿no? Para ayudarme a pensar una solución. Y, por último, quería ver si conocían el Copilot Click, que es utilizar el GitK Compiler desde la línea de comando. Esto último es especialmente útil para escribir algún script de automatización, ¿no? Que, por ejemplo, no sé, archivo por archivo ejecute un PROM en ese archivo. ¿Ese lo conocían? ¿No? ¿Tengo cosas nuevas para contarles? No, no lo he usado. Bueno, si les parece, entonces vamos a arrancar con algunos ejemplitos de GitHub Copilot, ¿vale? Yo voy a, tenía una carpeta acá que se llamaba Migración IA, donde estaba poniendo todo. Vamos a hacer una, subcarpeta. Esto de MSP lo vamos a poner lección 2. Esto lo usamos en el... Y hoy vamos a hacer una subcarpeta que se llame lección 3. Esto para organizarme, ¿no? Bueno, acá en esta subcarpeta vamos a probar Primero el patrón de prompting high level goal, ¿no? Para que entender cómo funciona, cómo podemos mediante un comentario de alto nivel, guiar la generación de código en nuestro, en un proyecto, ¿sí? Te voy a crear una nueva carpeta, para cada ejemplo lo voy a hacer en un proyecto aparte, ¿no? Bueno, si quieren, los invito a que lo hagan conmigo, dale, también. Así lo hacemos juntos, ¿te parece? Bueno, voy a poner. Bueno, va a ser un ejemplo. Esto lo voy a abrir con el Visual Studio Code. Va a ser un ejemplo. Pero como diríamos, bastante sencillo, ¿sí? Lo vamos a hacer, yo digo de hacerlo directamente una, ¿qué pasó acá? Ah, lo abrió, no me lo abrió en la carpeta. Me puse code, espacio, punto. ¿Qué es eso? Me imagino que todos, bueno, si van a trabajar en Angular en algo, trabajar con Javascript, ¿no? Así que voy a hacer un proyectito, un archivito en Javascript nada más, que le voy a llamar api.js. Bueno, ¿abrieron así la carpeta en un proyecto?
+
+16:46 - Unidentified Speaker
+¿Sí? Sí, a ver, cuéntenme si vienen siguiéndome.
+
+16:51 - Formador Dos
+Así lo hacemos a la par, ¿vale?
+
+16:56 - Unidentified Speaker
+Perfecto.
+
+16:57 - Formador Dos
+Bueno, este patrón high level goal es muy sencillo y está descrito en la documentación oficial de Microsoft y en el curso de GitHub Compiler de Microsoft Learn si alguno tuvo la oportunidad de hacerlo, ¿no? Vamos a crear un nuevo archivo que se llame api.js, ¿no? Y este archivo, antes de si me quedo parado, no va a saber GitHub Copilot qué hacer, ¿no? Así que le voy a dar un comentario de alto nivel. Este comentario se llama, High Level Goal, ¿no? Objetivo de alto nivel, ¿no? Objetivos de este archivo. Se define una API en Node.js y Express. Que escucha en un puerto en la variable port. Por defecto, 3,000. Después, le voy a escribir los entos. Y no sé, en lugar de empezar a programar, voy a escribir el oval to dos personas.
+
+18:37 - Unidentified Speaker
+que almacena una lista de personas.
+
+18:42 - Formador Dos
+ID, nombre, apellido. Después, tiene un método get, get personas, que devuelve la lista de personas. Tiene un método. ¿Ven cómo la estoy describiendo la app? Antes de programar, ¿no? Personas barra ID y medio que ya me, me, me entendió todo lo que, lo que sigue, ¿no? Así que esto todo me la, me lo completó la, la misma inteligencia, el mismo Copilot, me ayudó a completar el comentario del High Level Goal. Esto de poner un comentario al principio de cada archivo, indicando las responsabilidades y qué cosas tiene el archivo, lo ¿Lo habían hecho en algún momento? Yo no. Bueno, este es el famoso high level goal. Bueno, cuando, ahí les pasé por chat, bien ahí, Miguel sí lo hizo, él lo conoce, lo conocías también con este nombre, este patrón, level goal, Miguel? No, la verdad que lo aprendí manejándome con el Copilot, uno comienza colocando los comentarios y ya él directamente luego seleccionando el comentario, creo que control, control y él comienza a desarrollar lo que está en el comentario.
+
+20:17 - Miguel Angarita
+Bien, intuitivamente, bueno, yo acá ni siquiera voy a usar el control y todavía, mira, voy a parar acá y voy a, me va a ir a mi Ahora que voy, me voy escribiendo, ¿no?
+
+20:38 - Formador Dos
+Me va a ir completando, ¿ven? Y ahora todo tab, ¿no?
+
+20:51 - Unidentified Speaker
+con tab. Parece.
+
+20:55 - Formador Dos
+me parece magia. Bueno, ven como solito el código se va completando a partir de lo que le puse en el comentario de arriba. Bueno, genial. Y ahí la terminó. Bueno, ¿se entendió esto? ¿Pudieron reproducirlo en su entorno? A partir de, ¿y qué les parece esta forma de guiar el guiar la creación, ¿no? Puedo poner acá. Después, además, tengo el Control-I, ¿no? Este lo conocen, que selecciona un click y le va a modificarme.
+
+22:05 - Unidentified Speaker
+Quiero algunas.
+
+22:07 - Formador Dos
+Personas de ejemplo. Bueno, se está demorando. Verá que tampoco te pedí algo muy complicado.
+
+22:32 - Unidentified Speaker
+Ahí está. Bueno, perfecto. Ahí ya tenemos nuestro app.js.
+
+22:37 - Formador Dos
+Ahora he usado, ¿no? El ghost code, el comentario que va completando, ¿no? Y simplemente a partir del comentario de arriba se me fue completando el resto. Voy a, después el otro que tengo es el chat. De acá del costado. La verdad que no lo puedo abrir. Ahí está.
+
+23:14 - Unidentified Speaker
+Bien.
+
+23:15 - Formador Dos
+El chat del costado, ¿no? Es el clásico que también podemos usar. Acá tenemos el tema del contexto, ¿no? Usando como contexto tenemos un solo archivo. Generalmente, a diferencia de Cursor, que tiene un conocimiento más abarcativo del contexto, Cloud usa, perdón, Copilot usa los archivos que tenés abiertos, los archivos que están abiertos en la actual, los que están abiertos, y los que habiste recientemente, ¿no? Sería más o menos, si le pedís algo, un prong que está relacionado con algo que es transversal a todo el proyecto, Copilot ahí empieza a hacer agua. Esa sería la ventaja que tiene Cursor con respecto a Copilot, ¿no? Que te indexa todo a tu base de código. Bueno, a ver, le digo, analiza el proyecto y decime, que le falta para que lo pueda ejecutar. El chat este tiene tres modos, ¿no? El modo para preguntar, el modo para editar un archivo y el modo agente, ¿no? Que toma varios archivos al mismo tiempo. Y este era el que conocimos la clase pasada para usar toda la parte del MSP. Bueno, acá me dice que falta corregir el bug del current ID. Bueno, sí, podés hacer todo Bueno, hay que me lo... Ahí me creo el pacas.json.
+
+25:19 - Unidentified Speaker
+Ahí me corrigió lo del...
+
+25:27 - Formador Dos
+que había quedado mal. Y ahí me está instalando, me está haciendo un npm install y me está instalando todas las dependencias.
+
+25:41 - Unidentified Speaker
+Bueno, perfecto.
+
+25:42 - Formador Dos
+Esto es lo que yo quería hacer en este ejemplo. Eran dos cosas. Primero, mostrarles esto, lo del high level goal. Y ahí me creo el no de módulo, es todo, ¿no? Lo hice con el Copilot. Y segundo, mostrar las 3 formas de interacción que teníamos con Copilot, que seguramente ya las conocen, ¿no? Que es el comentario y el tab, el chat de acá y el control y que es para el chat inline, ¿no? Que te trabaja sobre el texto seleccionado. Este último es muy importante para lo que vamos a ver a a continuación. Bueno, quisiera saber si esto lo pudieron ejecutar y si le funcionó. ¿Qué les pareció este patrón de Bueno. ¿Pudieron ejecutarlo, chicos? Hola, Daniel, ¿cómo estás? No te había, justo había preguntado con vos, ¿cómo Aquí llegando ya. Integrándome. Bueno, bien, bien, bien. Bueno, llegaste para el segundo ejemplo que ahora vamos a dar con el GitHub Copilot.
+
+27:17 - Daniel Muñoz
+Esto que lo dimos es bastante básico.
+
+27:20 - Formador Dos
+Estamos para otro nuevo ejemplo de el GitHub Copilot ahora con esto que les conté que íbamos a ver que eran los cursos rules. Perdón, los cursos rules. Sería el análogo a curso rules, pero de GitHub Copilot. Serían los Copilot Instruction. Bueno, vamos a crear un proyecto nuevo, entonces. ¿Estamos, chicos? ¿Cómo venimos? A ver algunas reacciones, ahí como para darme cuenta que están en sintonía. A ver, bien ahí. Ahí sí, ahí empieza a crear una nueva carpeta. Acá le voy a poner instrucciones, que sería la parte de las instrucciones de Copilot. Bueno, un sitio donde se vea bien la herramienta, ¿no? Lo que les quiero mostrarnos. No me estoy complicando con los ejemplos. Bueno, voy a abrir otra carpeta y voy a abrir esta que se llama Instructions. ¿Sí? Bueno, voy a pedirle algo, algo, o sencillo, a un archivo que se llame test.js. ¿Apriendo en un proyecto nuevo o fue muy rápido? Sí. Sí, un proyecto nuevo. Perfecto. Venimos. Bueno, miren, una pausa. Controling.
+
+29:22 - Unidentified Speaker
+Hacerme una función que Ordene números.
+
+29:28 - Formador Dos
+Esto, ¿eh? Una función que ordene números. A ver. Ay, me la está haciendo con las instrucciones. Esperen que... Bueno, esto no se los hice ustedes, me parece. Está usando la... ...instrucciones anteriores que les dejé. Bueno, no importa. Esto, esto seguramente... Espera, eh. Vamos a ponerle... ...reload... ...copilot... A ver... Me generó la... Ahí está. Ahí, ahí... Que me las cargó y debería generarme algo más sencillo. Ustedes seguramente les hizo algo sencillo, ¿no? Le vamos a poner una generar una función que ordene números. A ver.
+
+30:50 - Formador Dos
+o me tiras con las instrucciones completo, como... Bueno, algo así quisiera que me genere. ¿Te generó algo así? No, también fue extenso lo que me generó. ¿Te generó algo extenso?
+
+31:10 - Unidentified Speaker
+Bueno, yo porque estuve trabajando con...
+
+31:14 - Brian Bohórquez
+Bueno, vamos a cambiar, no importa.
+
+31:18 - Formador Dos
+Vamos a poner, quedó ahí ordenar números, perfecto, no importa. Bueno, vamos a crearles unas instrucciones, ¿sí? A Copilot que guíe la generación. Por ejemplo, cuando le pido que genere una función, ¿sí? Voy a crear una nueva carpeta que se va a llamar .github. Y acá voy a crear un nuevo archivo. Se llame Copilot-instrucciones.md. ¿Sí? Y acá, en lenguaje natural, ¿quién ponemos las instrucciones? Le pongo instrucciones del repositorio.
+
+32:20 - Formador Dos
+En Copilot debes generar siempre funciones que comiencen con el prefijo FN. Con validación de entrada. Con comentarios arriba de la función. Con comentarios cada línea de la función. ¿Qué podemos poner? Usando notación que va para nombre de variable en inglés. Que sea en inglés. No, bueno, esto y todas las instrucciones las acabo de, bueno, acá le voy a poner Esto sí es propio de Coda. Apply to, le voy a poner a todos los archivos. Él le puede decir que sea solo a los archivos JS. Yo le dije a todos. Bueno, le dejo un minutito para que le agreguen el archivo dirja barra compiler instructions.
+
+34:12 - Formador Dos
+¿Eso podría refactorizar archivos existentes o para archivos nuevos?
+
+34:17 - Unidentified Speaker
+No, no.
+
+34:18 - Daniel Muñoz
+Si le tenés, ponés archivos existentes y verificar que cumplan las instrucciones o el estándar de proyectos, de los cambios.
+
+34:28 - Formador Dos
+Ah, los cambios. Y gradualmente el Apply To puedo hacerlo por los directorios, ¿no? Por ejemplo, si hablo de un proyecto antiguo y quiero que comience a cambiar ciertas cosas sobre el proyecto antiguo.
+
+34:46 - Daniel Muñoz
+Sí, podrías hacerlo por directorio. Igual tienes que ir manualmente a ir haciéndolo. Ahí está bueno usar el, ¿cómo se llama?
+
+34:56 - Formador Dos
+Usar el TRIM para ir abriendo archivo por archivo y pedirle que lo vaya actualizando, ¿no? Eso es una buena manera de actualizar un proyecto viejo. Bueno, ¿crearon las instrucciones? Sí. Bien.
+
+35:22 - Unidentified Speaker
+Voy a aplicarlo.
+
+35:27 - Formador Dos
+Acá hay dos temas, ¿no? Le doy así. Le doy aplicar instrucciones del proyecto. Le pongo acá en el chat. Y ahí va a ser todo. Fijate, yo tengo algunos archivos de instrucciones que vienen con algunas extensiones. ¿Ves? ¿Ves? Prefijo in. Acá me tiró todo ahí. Ah, mirá, me la quiere, me quiere modificar el archivo que tengo, ¿ves? Así que por ahora no. Por ahora yo estaba aplicando todo el... Eso en realidad no era la idea que tenía, sino que lo refresqué. Acá si voy a lo que es Settings. ¿Dónde está? Acá. Instructions. Acá, Tiki Instructions. Bueno, ¿dónde está esto? Generation Instruction. No, esto no es lo que quería. Bueno, quería ir a la parte de Que me abra el... Bueno, a ver, chat settings.
+
+37:05 - Formador Dos
+¿Dónde estaba la parte de instrucción? Esperen que...
+
+37:17 - Unidentified Speaker
+Y acá la dice, ves que te dice que...
+
+37:31 - Formador Dos
+Instruction Locations, y acá te dice que está este ítem encontrado, ¿ves? Ahí te lo encontró. Yo quería siempre con la parte del menú, a veces me pierdo. Pero nada, eso. Bueno, vamos a probar otra vez lo mismo. Voy a hacer ahora, para ver si la se está tomando. Voy a hacer un nuevo archivo y le voy a llamar test2.js. ¿Sí? ¿Pudieron crear el archivo de instrucciones? Le voy a poner, créame una función que ordene números.
+
+38:22 - Formador Dos
+Y ahora debería... Bueno, ahí me la creo bastante más elaborada porque está tomando las instrucciones.
+
+38:37 - Unidentified Speaker
+¿Se ve?
+
+38:39 - Formador Dos
+A ver si salió.
+
+38:50 - Formador Dos
+Mira, me lo quería modificar. Bueno, ¿ves la diferencia?
+
+39:18 - Formador Dos
+Puso una línea para cada vez que le dije, para cada línea la comente. Bien. ¿Lo conocían estos de las Copilot Instructions? No, de parte no. Bien. ¿Lo lograron? ¿Lograron implementarlo? A ver, coméntenme. Sí, bueno, de mi parte sí me hizo modificaciones, por ejemplo, en el primer test, en el archivo test.js, cuando terminó y me pidió que las modificaciones que había realizado.
+
+40:12 - Brian Bohórquez
+J.M.L.: Bien, buenísimo.
+
+40:15 - Formador Dos
+Bueno, no sé qué les pareció esta funcionalidad de Copilot que es similar a lo que sería el curso rules, ¿no? Bueno, vamos a ver otro ejemplo. Bueno, ustedes me dijeron que tienen el GitHub Copilot pago, ¿no? Lo vamos a hacer en este mismo, ¿sí? Voy a abrir una terminal. Vamos a ver si conocen el GitHub Copilot. A ver si me funciona. Tienen el comando, ah, no sé si hace falta instalar el comando gh, que es el, creo que lo pueden instalar desde Node.js. Déjenme buscar ahora un minutito el comando para ejecutarlo. Creo que acá lo tengo. Ahí se los copió en el chat. Si uno, si ejecutan acá en la consola de ¿El comando GH le dice comando no reconocido?
+
+41:50 - Unidentified Speaker
+¿Sí? Disculpe, no lo entendí bien.
+
+42:02 - Christian Mora
+Y si ejecutan el comando gh, si les dice que es un comando no reconocido, lo tienen instalado.
+
+42:11 - Formador Dos
+¿Qué les dice el comando gh? No reconocido me sale. OK, no reconocido. Bueno, lo voy a instalar con este, este comando creo que no instala, sino lo tienen que instalar con el MSI, el instalador. Creo que así ya lo tienen instalado y tienen...
+
+42:42 - Formador Dos
+Bueno, ahí lo estoy instalando con ustedes, ¿sí?
+
+42:56 - Unidentified Speaker
+Bien, bien.
+
+43:00 - Formador Dos
+Entonces, este se usa directamente pones gh-Copilot y se usa, puedes utilizar el gh-Copilot desde el CLI, ¿no? Especialmente se usa cuando usamos comandos del CLI, ¿no? Por ejemplo, no sé, me tengo que encontrar un comando, pones gh-Copilot explain Eh, dir barra ese. Se va a decir que es este, este comando. Generalmente... Ah, mira, me dice...
+
+43:46 - Unidentified Speaker
+Me tiró un error.
+
+43:49 - Formador Dos
+Le voy a... Me parece que me tengo que loguear. DH copilot... Login, le voy a poner.
+
+44:01 - Unidentified Speaker
+¿Le desapareció? ¿No?
+
+44:03 - Formador Dos
+¿Le desapareció? A ver, explain. A usted también le tiró este error. ¿400? A ver. Este está bueno para hacer una gente de qué es el proyecto.
+
+44:41 - Unidentified Speaker
+A ver si lo hace.
+
+44:44 - Formador Dos
+A ver, otro, otro. Me tiene un error. ¿A ustedes también? Bueno, a mí me sigue saliendo de que no reconoce el comando gh. A pesar de que lo instalaste con el el npm install? Si hice eso pero igual no me sigue saliendo bueno habría que instalar entonces aparte perdón el comando gh no que entonces el script que le instale no No instala el... ¿Cómo se llama? No instala el... Este comando es el comando de GitHub, ¿no? A ver si lo encontramos acá para instalar. Este es el GitHub Klee.
+
+45:58 - Unidentified Speaker
+Lo puede... Instalar de acá.
+
+46:05 - Formador Dos
+Igual me... Igual me tiró, no me estuvo funcionando. Clonar eh no te tiene que tirar a esperar gh eh Copilot a ver si agranda a ves ahí me anduvo ahí le digo que quiero un comando de No se está pudiendo conectar. No sé por qué está tirando este error. Hoy lo estuve probando y funcionó sin problemas. Así que, no sé, será un problema justo ahora de acceso.
+
+47:27 - Unidentified Speaker
+A ver, THAUS. Oye, a ver. GitHub.
+
+47:52 - Unidentified Speaker
+A ver, me tengo que loguear me parece. A ver.
+
+48:00 - Formador Dos
+Ahí me abrió el... Me lo abrió en mi browser. ¿Lo pueden instalar? Esperen que acá... Acá...
+
+48:15 - Unidentified Speaker
+Continuo.
+
+48:17 - Formador Dos
+Y acá le pego el número que me... A ver ahí si la autenticó.
+
+48:32 - Unidentified Speaker
+Me tuve que autenticar, ¿vieron? Ahí está. A ver ahora...
+
+48:45 - Formador Dos
+Y funciona git command. No, no, me está tirando este error que hoy no me tiraba. Se ve que algo me está rechazando el servidor de git. ¿A ustedes les funciona? ¿Pudieron utilizarlo el comando? ¿El comando compile desde el click?
+
+49:17 - Unidentified Speaker
+Cuénteme, a ver.
+
+49:18 - Formador Dos
+No, a mí no me funciona. Me sigue saliendo lo mismo de que no está el comando todavía disponible. ¿Lo instalaste de esta página? Ese de ahí todavía no lo coloco.
+
+49:32 - Christian Mora
+Puse el que había pasado hace un momento y yo puse otro, pero me sigue saliendo lo mismo. Bueno, primero habría que instalar lo del comando gh, ¿no?
+
+49:45 - Formador Dos
+después habría que instalarle al comando gh la extensión de GitHub Copilot kli que es con este npm install no y nada después no me no me a ver si lo no me no me funcionó pero no sé por qué hoy estuve probando y andaba lo más bien hay sentí que de vuelta y después igual me tiró, me tiró, eh, me tiró este error. Bueno, entonces, vamos a, vamos a, bueno, esto lo voy a cerrar. Vamos a seguir con, con otra, con otra, otra cosa, dale, después lo, de última, lo, lo, está bueno el comando de GitHub. Cuando querés hacer un script, que vaya iterando por archivo y a cada archivo le pasas un prompt distil, le pasas un prompt, por ejemplo, haceme tal cosa con este archivo. Bien, la hace. Haceme tal cosa con ese archivo y podes hacer como una automatización. Pero bueno, por alguna razón no está funcionando ahora, pero me devuelve un error el servidor, no sé que les tarea. A ver, ah, bueno, capaz que hice lío.
+
+51:18 - Unidentified Speaker
+Hice lío con instalar el DNPM.
+
+51:27 - Formador Dos
+Bueno, vamos a Vamos a ver alguna. ¿Quieren ver un poquito de Cursor? Entonces, me quedó de Copilot un caso de uso, pero prefiero ver un poquito de Cursor, ¿vale? ¿Quieren que lo tienen instalado, Cursor? ¿Sí? Sí. Bueno, vamos a Lo que hicimos con las instructions de Copilot. Bueno, el High Level Goal también funciona en Cursor, ¿no? Vamos con el, ¿cómo se llama? Un nuevo proyecto. Y le vamos a poner Cursor with Rules. Y vamos a hacer un ejemplo bastante similar al que hicimos. Pero utilizando Cursor. Acá voy a abrir un proyecto, pero esta vez en vez de abrirlo con el GitHub Copilot, que ya vimos, lo voy a abrir con Cursor. Creo que ya lo tenía bien.
+
+52:52 - Unidentified Speaker
+Lo voy a cerrar.
+
+52:54 - Formador Dos
+Y voy a esperar que Cursor abra de nuevo. Bueno. Mientras tanto, acá le pregunté justo a la IA que me fallaba y me dice que la vuelva a reinstalar. Mientras abre curso, por ahí, justo se lo pregunté a la IA.
+
+53:29 - Unidentified Speaker
+Bueno, no.
+
+53:31 - Formador Dos
+Ahí la está volviendo a reinstalar. Bueno, volví a abrirme el anterior Cursor, espacio, punto, para que me abra el nuevo proyecto. Bueno, ¿ya tiene Cursor abierto? Bueno, perfecto. Bueno, vamos a hacer un ejercicio similar al que hicimos antes con GitHub Copilot, pero ahora lo vamos a hacer con Cursor con el tema de lo que serían las Cursor Rules, ¿vale? Bueno, vamos a crear primero el archivo este.
+
+54:32 - Formador Dos
+test.js. Y le vamos a poner, en este caso, con Control-K. Quiero una función que ordene números. Perfecto. Acá me lo hizo más parecido a lo que yo me imaginaba.
+
+54:55 - Unidentified Speaker
+imaginaba. Bueno.
+
+54:57 - Formador Dos
+A ver si hasta acá me siguen y esto lo pudieron hacer.
+
+55:11 - Unidentified Speaker
+Avísenme.
+
+55:12 - Formador Dos
+Disculpe, ¿cómo hizo para dar la instrucción?
+
+55:22 - Brian Bohórquez
+Y DEEE DEEEEN de Visual Studio Code. O la cacería control K.
+
+55:54 - Unidentified Speaker
+Bueno, ¿la pudieron generar? Bien.
+
+56:00 - Formador Dos
+Ahora vamos a crear lo que sería el archivo de instrucciones para que sea como le dijimos antes. Que tenga, no me la crea así, sino con comentarios, que valide los tipos, todo lo que le quiera poner, que sea tenga un nombre distinto, etcétera. Bueno, vamos a crear un archivo, un directorio que se llame punto Cursor. ¿Sí? Y acá adentro otro directorio que se llame Trolls. Subtítulos realizados por la comunidad de Amara.org Ahí lo resolví.
+
+57:26 - Unidentified Speaker
+Bueno, ¿lo hicieron?
+
+57:28 - Formador Dos
+El archivo ahí, ahí resolví lo del click que me fallaba.
+
+57:37 - Unidentified Speaker
+Bueno, no importa, después lo vemos.
+
+57:41 - Formador Dos
+Voy a crear un nuevo archivo acá dentro de rules y le Puedo dar nombre que quiera. Le voy a poner Funcion Rule y la extensión tiene que ser MDC. Ahí me dice Apply. Mira, ya solito se dio cuenta y me tiró el Apply, Always Apply. ¿Hasta acá venimos bien? ¿Sí? Bien, ahí vi las reacciones. Justo estaba tapando el chat con el Bueno, luego acá vamos a poner reglas para las funciones de este repositorio. Bueno, es algo que se les ocurra, ¿no? No sé. Comienzan con el prefijo función. Re exagerado, ¿no? Con validaciones de entrada. Con explicación en comentario arriba de la función y por cada línea de código. Nombres de... La función en inglés. Voy a ponerle, en vez de Funcion hay Función-bajo. Bien exagerado. No sé qué más se me ocurre ponerle. Lo que ustedes, lo que quieran, ¿no? Yo lo hice así, que algo que nunca usaría en un proyecto real, quede bien exagerado, ¿no? Bien. ¿La agregaron? Bien. Siempre que hacen un cambio acá, yo lo que suelo hacer Control Shift P, ¿no? Y ponen reload, ¿no? Esto hace que carga las extensiones, ¿no? Control-Shift-P. Y esto hace que se refleje todo. Cuestión, Control-Shift-P. Y acá le digo reload, escribo. Entonces, developer reload window. De esa manera me aseguro que esto Cambios nuevos. Bien. Llegaron hasta acá.
+
+1:01:13 - Unidentified Speaker
+Bien, a ver estas reacciones. Bien, perfecto.
+
+1:01:28 - Formador Dos
+Ahora vamos a hacer lo siguiente. Voy a ir acá donde dice Asian Settings. ¿Dónde fui? Acá arriba a la derecha, donde dice Asian Settings. Y acá tienen una parte que dice Rules, ¿no? Y tienen que estar marcado el El archivo acá, function rule, ¿sí? Tiene que estar, aparecer acá. Acá también le puedes poner, estas reglas son lo que se llama reglas del proyecto, ¿no? Después puedes poner reglas del usuario, pero estas se ponen acá directamente en la IDE. ¿Sí? Bueno. Venimos bien. ¿Ya apareció la regla?
+
+1:02:28 - Unidentified Speaker
+Bien.
+
+1:02:29 - Formador Dos
+Bueno, vamos a crear el nuevo archivo.
+
+1:02:38 - Unidentified Speaker
+Es 2.js, ¿sí?
+
+1:02:42 - Formador Dos
+Y le doy un minutito para que hagan primero ustedes pídanle lo mismo a ver si lo crea igual o lo crea distinto el archivo a ver si le doy un minuto ¿lo hacen ustedes primero? Bueno, ¿qué me había preguntado hoy cómo era esto de las reglas a nivel anidado para una parte del proyecto. Y me había preguntado hoy. Bueno, lo voy a crear, ¿eh? Alguien me preguntaba, ¿cómo hacer para aplicarlo a distinta? Generarme una función que ordene Sort numbers en inglés. Un comentario en cada línea. Un comentario al principio. ¿Tomó o no tomó las reglas? Bien. ¿Le funcionó? Bien ahí.
+
+1:04:20 - Unidentified Speaker
+Bueno. ¿Quién era el que hoy me preguntó esto?
+
+1:04:26 - Formador Dos
+¿Cómo, por ejemplo, si quería que esto solo aplique a algunos directivos?

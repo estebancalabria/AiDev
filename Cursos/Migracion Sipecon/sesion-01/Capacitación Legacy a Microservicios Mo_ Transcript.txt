@@ -1,0 +1,572 @@
+Capacitación Legacy a Microservicios Modernos con IA: GitHub Copilot, Cursor y LLMs en acción
+Mon, Nov 24, 2025
+
+0:54 - Unidentified Speaker
+Hola chicos. Hola.
+
+1:20 - Miguel Angarita
+Hola Javier.
+
+1:21 - Javier Torres#+#Miguel Angarita
+Hola, hola.
+
+1:22 - Unidentified Speaker
+Buenas.
+
+1:22 - Formador Dos
+Buenas noches a todos. ¿Cómo están? Hola. Hola, Javier. Buenas noches.
+
+1:28 - Formador Dos#+#Javier Torres
+Buenas noches.
+
+1:29 - Brian Bohórquez#+#Formador Dos#+#Javier Torres
+¿Cómo andan?
+
+1:30 - Formador Dos
+Ahí voy a subir un poquito el volumen de mi ordenador. Así los escucho mejor. Creo que ahí los voy a escuchar mejor. Hola. Hola. Ah, bueno, Rida ahí justo está. Tomando notas de la sesión, bien ahí. Hola Javier, hola Jaime, hola Brian, ¿cómo andan? Javier, no te escuché yo, así ahí te escuché muy muy bajito, no sé el resto si lo...
+
+2:02 - Formador Dos#+#Javier Torres
+A ver...
+
+2:03 - Formador Dos
+Te escucho, te escucho bajito, digamos, no te escucho muy fuerte, pero no sé tus compañeros, ustedes Sí, sí, se escucha bien. Perfecto. Brian lo escuché mucho más fuerte, por ejemplo, que a Javier.
+
+2:29 - Formador Dos#+#Javier Torres
+Bueno, bienvenidos. ¿Cómo andan? No sé. Hola. ¿Alguna, alguna idea? Más o menos.
+
+2:47 - Formador Dos#+#Javier Torres
+Bueno, perdón, no lo escuché. Bueno, ¿cómo andan? Espero que se encuentren bien. Ustedes, ahora nos vamos a ir. Me imagino que ustedes van a tener la tarea en breve de reemplazar un sistema Legacy. Así que tengo en PHP, pasarlo a una arquitectura de Angular para el frontend. Hola, hola. Sí. ¿Me escuchas? Sí, te escucho, te escucho. Te escucho mejor. Chévere, ya. Sí, a ver. Más o menos, vamos a participar unas 12, 15 personas.
+
+3:35 - Javier Torres
+Así que creo que están juntando a los demás. Daniel se junta aquí, por cierto. Y media porque justo hoy empezó las lluvias acá y la ciudad se hizo un desastre. Entonces, está en camino. Tipo siete y media más o menos.
+
+3:53 - Formador Dos#+#Javier Torres
+JUAN MANUEL LUCERO. Perfecto.
+
+3:54 - Formador Dos
+Sí, Daniel me indicó que sí, que se iba a conectar unos minutos más tarde, pero que sí, que, bueno, lo esperamos, pero vamos a ir, vamos a ir comenzando. Perfecto. Hola, Angie. Todos son desarrolladores. Cuéntenme un poco, un poco de ustedes. ¿Se estuvieron adelantando algo del motivo del que nos estamos juntando? Cuéntenme.
+
+4:29 - Javier Torres
+Chicos, ¿podrían participar, por favor?
+
+4:38 - Formador Dos
+Hoy, Javier, vos querías ser parte del equipo. Son todos desarrolladores, por lo que tengo entendido, ¿no? Sí.
+
+4:46 - Javier Torres
+Todos exactamente somos desarrolladores realmente, ¿no? Perfecto. Algunos somos más del equipo.net. Aquí veo que está Brian, que es el equipo Java, que es realmente donde parte. Nos centraremos un poco porque es un poco, como Daniel te dio el feedback, vamos a ver unos temas ahí de una migración de un portal, o un poco por ahí va todo este tema, que está hecho en PHP y con servicios en Java. Entonces, por ejemplo, Ryan es el equipo de Java que un poco conoce más ese know-how de esa aplicación, ¿no? Pero el resto, obviamente, estamos prestos a, obviamente, ir conociendo las tecnologías, ¿no?
+
+5:30 - Formador Dos#+#Javier Torres
+Pero realmente todos somos desarrolladores. Perfecto.
+
+5:32 - Formador Dos
+Tengo, ven, les voy a ir, les voy a ir compartiendo un poquito mi pantalla, ¿vale? Así me van viendo. Bueno, o sea que tenemos un porcentaje de programadores en .NET, un porcentaje en Java. Por lo que me comentaron, todos utilizan el Visual Studio, no, perdón, todos utilizan el GitHub Copilot, ¿no? De la aplicación a migrar va a estar desarrollado en Angular. Y eso es indistinto del equipo con el que vayamos a trabajar. O sea, ambos equipos van a trabajar con Angular para la parte de frontend. Los, hola, Javier, no, no te escuchaba, Javier, recién. Los desarrolladores de, de Angular, perdón, la desarrollo del front-end va a estar todo hecho en Angular. El back-end va a estar hecho en Java con Spring Boot, que no sé si los programadores en .NET programaron en Java o Spring Boot, que es muy similar a una copia de la parte de MVC. O sea que la parte del back-end lo vamos a hacer en una arquitectura de Microservicios. ¿Todos conocen el sistema que vamos a estar yendo a migrar? Hoy me pasaron una computadora y me lo, no sé, me estuve conectando. A ver, cuénteme un poquito. No, no realmente.
+
+7:12 - Javier Torres
+Por su caso, realmente el equipo que es de alguna u otra forma experto en esa aplicación, Brian, confirmame, son alrededor de unos 3, 4 personas, ¿no?
+
+7:24 - Brian Bohórquez
+Sí, exactamente. Somos actualmente cuatro personas. Entonces, estos somos los que conocemos más lo que es el portal de la Sweet Arms.
+
+7:34 - Javier Torres
+Sí, exacto. Perfecto.
+
+7:35 - Formador Dos#+#Javier Torres
+Es un equipo, digamos, reducido a los que son expertos, por decir así, en el producto, ¿no?
+
+7:42 - Javier Torres
+Eso. OK.
+
+7:43 - Formador Dos
+Ellos son los que, por ejemplo, si hay que tocar algo en PHP, el equipo de Brian, que son Brian más cuatro, son los que más o menos lo sabría modificar, digamos, son los que hacen cambios a este proyecto en PHP, ¿no? Así es. Así es. Perfecto. Y estamos todos de acuerdo que el objetivo de este taller es definir una estrategia de migración, ¿no? De esta herramienta de PHP a Java utilizando Vamos a estar utilizando, bueno, inteligencia artificial. Vamos a estar 1, 2, 3, 4, 5, 6, 7, 7 sesiones. Vamos a tener 7 sesiones de 2 horas donde vamos a hacer un plan de migración utilizando lo que sería la inteligencia artificial para ayudarnos con todo este plan de migración, ¿no? Para poder hacerlo más eficientemente. Por lo que me contaron, y confirmenme si esto es así, yo voy repitiendo un poco lo que estuvimos hablando con Daniel. Tienen experiencia en el GitHub Copilot. De hecho, esta PC que están viendo es la que tiene el sistema a migrar, ¿no? Que lo estuve viendo un poco. Y hoy lo empecé a ver porque hoy me dieron el acceso. Que tiene una base de datos en SQL Server, que ya estamos acá ya conectados. Ustedes me van a explicar un poquito de qué se trata el sistema, lo que saben, cómo está organizado. Y me han contado que, por ejemplo, todos tienen una suscripción y trabajan con GitHub Copilot. Y uno de los objetivos del curso era un poco ver cómo mejorar el uso de Copilot también. ¿Es correcto? ¿Esto que todos utilizan el GitHub Copilot en el día a día?
+
+9:54 - Javier Torres
+Ahí te explico, yo propongo eso un poco. Sí, por favor. Efectivamente, de alguna u otra forma, nosotros como Cipecom hacemos uso, digamos, de Copilot. Hay un grupo específico que inclusive tiene una licencia corporativa por un proyecto bastante importante. Algunos manejábamos el Copilot gratuito. O sea, de forma general es Copilot, Pero, pero adicionalmente a esto, algunas personas tenemos otras IAs. Nos complementamos con Gemini, con ChaktiPT, etcétera. Pero digamos, así oficialmente, podemos decir que es Copilot. Perfecto.
+
+10:34 - Formador Dos
+Una de las cuestiones que vamos a estar también presentándoles y mostrándoles en el curso, También utilizándola un poco con este proyecto. Es que justo acá, no sé por qué, lo acabo de instalar en la máquina virtual que me acaban de pasar. Es el Cursor, ¿no? Que en líneas similares a GitHub Compilon es un asistente de código que el Compilon está un poco más orientado a hacer un per-programa. O sea, que uno va programando el Compilon. Va dando sugerencias. Y el Copilot, al tener un comportamiento más de entender todo el proyecto, está también un poco orientado a lo que es ByteCoding, ¿no? Un poco entender de mejor manera todo el contexto del proyecto. ¿Habían escuchado hablar de esta idea de Copilot?
+
+11:42 - Formador Dos
+A ver, perdón, ¿eh? Esto me la voy a llevar, esta ventanita. Y así los voy viendo que recién vi que me pusieron algunas reacciones y no las pude ver. Y entonces conocían Cursor, perdón, ¿eh? A ver si pueden ponerme unas reacciones. Perfecto, Angelo tenía idea. Bueno, vamos a ir viendo un poquito también está ahí de Cursor y cómo la podemos usar, ¿no? Para ayudarnos también en el proceso de migración. Yo les comento un poco. Recién lo que hice durante el día es conectarme un poco al abrir el proyecto, ¿no? Y justo le pregunté a GitHub Copilot que me lo explique. Ahí veo que está. No terminé de leer todo. Me hizo algunas explicaciones así en detalle. Y también me quedó un punto que está trabajando en él. Si no, lo voy a dar para concluir. Y recién había instalado una extensión que se llama CodeVis. Que no sé si la conocieron. Que sirve para hacer diagramas, ¿no? De de proyectos, ¿no? Que también lo lo quería usar para hacerme un un diagrama de de la la arquitectura. Entonces, este proyecto que por lo que pude que ver, tiene algo financiero. Además de Brian y los cuatro expertos, el resto que que no sé quiénes son. A ver, así, así me voy, voy armando un poco un me voy a dando una idea de todos. Expertos en en este proyecto y en Java sería.
+
+13:40 - Brian Bohórquez
+Bueno, tenemos ahí a Alex Fajardo, José Lainez.
+
+13:46 - Unidentified Speaker
+¿Alex está?
+
+13:47 - Formador Dos
+Sí, aquí estoy. Ahí está Alex, perfecto.
+
+13:52 - Unidentified Speaker
+¿Quién más? José Lainez.
+
+13:54 - Formador Dos
+José, a ver si lo veo.
+
+13:58 - Brian Bohórquez#+#Formador Dos
+Sí, aquí estoy, ingeniero.
+
+14:01 - Formador Dos#+#José Lainez
+Aquí, buenos días. Perfecto.
+
+14:03 - Formador Dos
+O sea, Brian, Alex, José y Ricardo serían los expertos en eh no solo en Java y sino en eh este proyecto que estamos viendo ahora en pantalla, ¿No? O sea que si hay que corregir algo del proyecto en el día a día, ustedes son los los que les les tocan los tickets de esto, ¿no?
+
+14:33 - Brian Bohórquez#+#Formador Dos
+¿Es así? Sí, correcto.
+
+14:35 - Formador Dos
+Ok, y con respecto al resto, ¿estos fuentes los manejan, saben que lo conocen el proyecto, lo han utilizado o es algo completamente desconocido? No sé, Christian, no sé, Jaime, todo el resto que no son parte del equipo de este proyecto Y lo que puedo decir es que muy poco realmente, no, tal vez algunos de forma muy superficial conozcan un poco para qué es, porque obviamente es uno de los productos principales de uno de nuestros clientes principales.
+
+15:19 - Javier Torres
+Sí, pero más allá de eso, de todo el de cosas que maneja. Tal vez solo el equipo que presentó hace un rato, Brian.
+
+15:32 - Formador Dos#+#Javier Torres
+Son realmente expertos.
+
+15:34 - Formador Dos
+Y el equipo, el resto de las personas, ¿estarían también participando en esta migración de alguna manera?
+
+15:43 - Javier Torres
+Posiblemente, porque al final parte de las tecnologías son la parte del frontend, que sería llevado a Angular. Realmente de casi todos los que están participando aquí conocemos, por ejemplo, genera esa tecnología o desarrollamos esa tecnología. Entonces, más hay un tema de conocimiento de la aplicación más que la tecnología, ¿no? Tal vez posiblemente sí, ¿no?
+
+16:14 - Unidentified Speaker
+Perfecto.
+
+16:14 - Formador Dos#+#Javier Torres
+Por eso es donde se apunta, ¿no?
+
+16:18 - Formador Dos
+Perfecto. Buenísimo. ¿El objetivo de, toda esta migración con la cual nos vamos a ayudar con Copilot, con ChatGPT y con algunos pipelines que vamos a hacer nosotros de programación. Lo vamos a planificar primero, ¿sí? Vamos a hacer una planificación y vamos a ver el diagrama. Programa del roadmap del curso. Me gustaría, luego de que veamos un poquito en líneas generales cómo tenemos armado el programa, que me cuenten un poquito de la aplicación, a ver que vayamos navegando un poquito en ella y me vayan explicando un poquito qué Acá yo armé recién un GitHub donde vamos a ir subiendo tal vez alguna documentación. Siempre por cada curso creo uno. Y quería comenzar con ustedes viendo un poquito cómo nos iríamos organizando y qué es lo que iríamos viendo en las diferentes sesiones. Algo de esto que estamos viendo, ¿les estuvieron adelantando? Obviamente, este es un taller general, así que ustedes también me van a ir ayudando a orientarme qué cuáles de estos temas que vamos viendo están bien, qué cosas entienden, qué cosas no, y lo vamos a ir ajustando entre todos, ¿está bien? En total, nosotros vamos a estar viéndonos aproximadamente 7 sesiones hasta el 1 de diciembre, ¿no? Vamos a hacer una planificación. Yo no es que voy a realizar la migración en vivo con ustedes, sino que vamos a ir viendo este, durante este periodo, mientras nosotros estamos haciendo el taller. Tengo entendido que ustedes a la par van a ir trabajando con la migración del producto, ¿no es correcto?
+
+18:52 - Javier Torres
+Aún no, pero veamos cómo salen las cosas, pero aún no, realmente.
+
+18:59 - Formador Dos#+#Javier Torres
+Pero lo importante es irnos preparando, ¿no?
+
+19:02 - Formador Dos
+Podemos ir, Javier, podemos ir, estaríamos de acuerdo con ir creando Cada uno, aunque sea en su entorno, después lo crean. Algunos proyectos, por ejemplo, podríamos ir creando un entorno de Angular como para el frontend, un entorno de Spring para el backend, ¿no? Ir viendo cómo. JUAN MANUEL LUCERO. Sí, esa es la idea, Esteban, justamente.
+
+19:29 - Formador Dos#+#Javier Torres
+Esa es la idea. ESTEBAN SALGUERO. Perfecto.
+
+19:33 - Unidentified Speaker
+Perfecto.
+
+19:33 - Formador Dos
+Buenísimo. Entonces, estamos sincronizados. Hoy mismo podemos ir creando un proyecto de Angular, por ejemplo, para ir, bueno. Hoy es, vamos a ir a ir un poco, hoy es la primera sesión, ¿no? Nos vamos a ir conociendo, ¿no? Vamos a ir viendo el producto. Y vamos a ir nivelando expectativas. La migración, esperen que en vez de anotar por sesiones, Primero, vamos a ir anotando un poco cómo sería la idea de la migración. Como herramientas que vamos a ir viendo en el curso, vamos a utilizar Copilot, vamos a utilizar LLMs, o sea, vamos a utilizar ChatGPT, KMini, vamos a ir utilizando Yo creo que en algún momento vamos a utilizar la API para hacer alguna programación, para hacer alguna migración automática. ¿Alguno programó algo con la API de cualquier http, Gemini? ¿La utilizó la API? Y no. No, bueno. Migraciones automáticas. Utilizando la API. Y cuando hablamos de Copilot dentro del Visual Studio, algo que Daniel me pidió es ver el tema de los model context protocol. ¿Qué los utilizaron? ¿Saben a qué hacen referencia o qué es que son el model context protocol? ¿Lo han utilizado desde dentro de? ¿Copilot? Váyame contando. Yo hace más o menos menos.
+
+21:30 - Unidentified Speaker
+Perfecto.
+
+21:31 - Formador Dos#+#Javier Torres
+Esto nos va a ayudar muchísimo.
+
+21:35 - Formador Dos
+Dentro de Copilot, me han comentado que ustedes tienen experiencia utilizando el GitHub Copilot, pero que les explique algunos patrones o algunas cuestiones de uso. En este caso, por ejemplo, algunos como high level goal. Es para poder utilizar, guiar un poco mejor al funcionamiento de Copilot. Como complemento a GitHub Copilot, vamos a ver la IDE Cursor, ¿no? Que es mejor para proyectos grandes y entender todo el contexto del proyecto. Que si no han utilizado la IDE Cursor, ¿no? Se la podemos ir descargando. ¿Quieren? JUAN MANUEL LUCERO.
+
+22:25 - Unidentified Speaker
+Debería todos deberíamos tener curso. CLAROS SÁNCHEZ. Sí, deberían.
+
+22:29 - Javier Torres
+Si no lo tienen, lo vayan instalando.
+
+22:33 - Formador Dos
+Así ya el miércoles lo podemos mostrar. Y en particular de curso, vamos a ir viendo cómo guiar un poco el proyecto, el armado del proyecto, con algo que se llama los cursos rules. Los cursos rules. Es un archivito que guía cómo se tiene que comportar Cursor a la hora de trabajar en ese proyecto. Como les comenté, Cursor es mucho para utilizar algo, no sé si escucharon hablar del término bytecoding, es mucho para programar a partir de lenguaje natural, ¿no? Y, bueno, lo voy a explicar, lo voy a mostrar y ustedes van van a evaluar no para los proyectos o para qué proyectos y para qué partes de la migración de este proyecto le puede llegar a servir. Estas serían las herramientas con las que vamos a estar trabajando. Yo, siempre que pueda, voy a estar comentándole alguna que otra herramienta de utilidad para desarrollo. Por ejemplo, yo les comenté que una herramienta que estaba usando de recién, que no, no, no pude terminar. Era una que se llamaba CodeViz, que quería generar un diagrama de todo el proyecto. Con respecto a la, esto serían las herramientas que vamos a estar trazando. Esto coincide con la expectativa, lo que les habían comentado y lo que pensábamos que íbamos a ver. Cuéntenme, a ver, pónganme algún un bien. Perfecto. Bueno, con respecto a la migración en sí, ¿no? Hay cuestiones de la migración, siempre ayudándonos con la inteligencia artificial. Hay cuestiones de la migración que las vamos a hacer de forma manual y hay cuestiones de la migración que las vamos a hacer de forma automática, tendiendo mucho a lo que es la parte automática. Todo el proyecto, esto sí se los voy a preguntar. Por lo que vi, en todo el proyecto están con las no usa casi programación de objetos. O sea, son consultas SQL que están ahí en el medio del código, ¿no? Entonces, vamos a tratar, de utilizar un modelo de datos muy similar al de la estructura de la base de datos para simplificar esto. Obviamente, después sí hacen una, en principio, para hacer la migración, ¿no? Y la migración la vamos a dividir en 3, ¿no? Bueno, en más partes. Primero vamos a dividirlo entre el frontend y el backend, ¿no? El frontend que ahora vamos a crear lo vamos a hacer en Angular, ¿no? Y el frontend, ¿no? En Angular lo vamos a dividir en componentes. ¿De los presentes ya han trabajado con Angular?
+
+25:54 - Unidentified Speaker
+TODOS LOS DÍAS. TODOS LOS DÍAS.
+
+25:57 - Formador Dos
+Perfecto. O sea, Angular lo maneja. ¿Qué, qué, perdón? ¿En qué versión de Angular? 19. 19. Perfecto. Hoy, antes de terminar, si les parece, vamos a crear un proyectito así para el frontend, ¿vale? Así vemos si ya lo tenemos armado, ¿sí? El backend lo vamos a desarrollar en Spring Boot, ¿no? Y todos estamos de acuerdo, ¿no? No sé si tienen alguna de versión. Y me dijeron que para desarrollarlo lo vamos a desarrollar usando el IntelliJ. Esta que tengo acá, ¿es correcto? Sí, esa es la que usamos.
+
+26:49 - Brian Bohórquez
+Perfecto, buenísimo.
+
+26:50 - Formador Dos
+Hoy podemos armar el proyecto de Backend. Entonces, el Backend lo vamos a dividir en tres. Vamos a migrar. Tenemos la arquitectura angular plana. La vamos a crear una capa de controladores. Una capa que sería sin vista, ¿no? Microservicios. Una capa de, bueno, una capa de servicios. Y una capa del modelo, ¿no? Que sería el impositorio, ¿no? Esto lo vamos a poner todo junto. ¿Qué sería la parte? Parte de la persistencia y los datos, ¿no? Que en lo que vamos a hacer en principio, o les pregunto si están de acuerdo, es agarrar el esquema de base de datos y migrarlo a clases de Java, ¿no? Para que sea en principio bastante similar a lo que ya está, ¿no? En principio tener una aplicación así, hacer un pasaje, del proyecto Legacy a un proyecto con esta arquitectura. En esto que estamos hablando, ¿estamos de acuerdo?
+
+28:10 - Unidentified Speaker
+¿Estamos sincronizados?
+
+28:12 - Javier Torres
+Sí.
+
+28:12 - Unidentified Speaker
+Perfecto.
+
+28:13 - Formador Dos
+Bueno. Primero, ¿no? Vamos a hacer una serie de pasos. Vamos a crear el proyecto del front. Vamos a crear el proyecto del backend.
+
+28:33 - Unidentified Speaker
+Esos serían los pasos.
+
+28:37 - Formador Dos
+Yo creo que podríamos arrancar con, para entender bien el negocio, con esta parte. ¿Qué migraríamos primero? El modelo de datos en Angular, ¿les parece? Sí, ahora sí me gustaría ver este.
+
+28:58 - Javier Torres
+Brian, no sé si tú consideras algún módulo en específico, algo por donde tú digas, bueno, ¿sabes qué? Vámonos por este pedacito que es bastante relevante.
+
+29:10 - Formador Dos#+#Javier Torres
+Ah, buena.
+
+29:11 - Javier Torres
+Porque al final SweetRAMS tiene un montón de cosas y obviamente no vamos a abarcar ni Pero tal vez si podemos enfocarnos en uno, ¿no? Ahora, mencionaste antes de esteban algo y no sé si sería bueno partir por ahí. Así que que Brian pueda dar una explicación muy a alto nivel de qué es la aplicación, ¿no? Para obviamente las personas que no lo conocen, este Andain vaya sabiendo.
+
+29:43 - Formador Dos#+#Javier Torres
+Sí, me parece.
+
+29:45 - Javier Torres
+Algo rápido realmente, no más de 5.
+
+29:48 - Formador Dos
+Es importante, así que me parece bien. Brian.
+
+29:52 - Unidentified Speaker
+OK.
+
+29:52 - Brian Bohórquez
+Está bien. OK. Bueno, en sí, el portal SweetMounds es lo que se usa de manera localmente en cada una de las tiendas de Corporación El Rosado, el cual les permite realizar, en este caso, por ejemplo, uno de los módulos, que es el de Precios y Flejes, Esto lo que hace es que permite visualizar lo que son los cambios de precio. Esto quiere decirte que cada día, por decirlo así, cada tienda cambia su de sus productos, cambia su precio, ¿no?
+
+30:28 - Brian Bohórquez#+#Formador Dos
+Entonces ellos, de acuerdo al flujo, van enviando sus archivos de cambio de precio.
+
+30:32 - Brian Bohórquez
+Entonces, de esta manera, en el portal es visible qué artículos son los que van a hacer ese cambio y de la misma manera de activarlo, puedo decirlo así, de manera manual. A pesar de que también por proceso de background también se actualizan, pero de manera manual se lo puede realizar desde el portal. Y también es usado para poder imprimir todo este tipo de etiquetas, como son los habladores, los flejes, que van en todo este tipo de perchas en cada uno de los micromisariatos. Ese es uno, por decirlo de manera general, uno de los módulos. Tenemos otros módulos que son...
+
+31:09 - Brian Bohórquez#+#Formador Dos
+¿Cuál sería de estos módulos?
+
+31:11 - Formador Dos
+¿Cuál sería el de qué carpeta?
+
+31:14 - Brian Bohórquez#+#Formador Dos
+Ya, el que dice ALCE FLEJES.
+
+31:16 - Brian Bohórquez
+ALCE FLEJES, este, perfecto.
+
+31:18 - Brian Bohórquez#+#Formador Dos
+Este es el módulo que hablamos recién, bien.
+
+31:21 - Brian Bohórquez
+Ya, tenemos otro de los módulos que es el ALCE DEVS, que tiene que ver con el que está más arriba, SDI.
+
+31:30 - Unidentified Speaker
+Bien.
+
+31:30 - Brian Bohórquez
+Ya, ese tiene que ver con las devoluciones que realizan, ya sean que en este caso realizan una factura, pero el cliente está que no necesita o sea en ese momento ya no quiere el artículo por decirlo así entonces se genera una nota de crédito entonces este módulo lo que hace es por medio de la búsqueda de la factura original y se realiza un archivo que le llaman devoluciones que luego viaja a estos tipos de de post que están en este caso en el para luego generar lo que es la nota de crédito.
+
+32:09 - Formador Dos
+OK.
+
+32:10 - Brian Bohórquez
+Otro, tenemos otros módulos de los importantes. El primero, aquí está el Cards. Este lo que hace prácticamente son reportes. Sí, este es correcto.
+
+32:21 - Javier Torres
+Y de forma general, Esteban, esta aplicación, como bien mencionó Brian, es una aplicación, este, vamos a decir que sí es como el de la tienda, por decir algo. Yo puedo hacer un sinnúmero de cosas como las ventas, actualizaciones de precios, impresiones, etcétera. Esta aplicación tiene mucha comunicación TCP. Mucha, mucha, mucha, mucha. Tiene un sinnúmero de servicios que están corriendo el background, aparte de este portal que estamos viendo, y hay mucha comunicación o por comunicación TCP para poder comunicarse entre uno y otro, ¿no? Sé que, bueno, esa parte, la verdad, la escucho siempre hablar, pero no conozco mucho el detalle. Sé que hay algo que le llaman un controlador en una tienda, que de alguna u otra forma este como que orquesta todas las transacciones que van llegando, y etcétera, ¿no? O sea, eso digamos en forma muy macro, como toda la aplicación y como bien mencionaba Brian, hay una serie de módulos que van llevando a cabo, utilizando para llevar a cabo toda la transacción que hay en la tienda. Esto corre, actualmente corre en la tienda, o sea hay una infraestructura que hay, la física, una infraestructura física que está en una y obviamente eso es parte de los desafíos porque digamos modernizarla ya no va a haber nada en la tienda no por decir o no lo que hoy por hoy hay no obviamente tal vez si hayan ciertas cosas pero parte de todo esto obviamente es la modernización y que vaya a una nube no tal vez específicamente no sé si Daniel igual te dio ese detalle la nube aunque de alguna otra forma interactuaríamos para este cliente sería la nube de GCP, ¿no? Entonces, este, eso, ¿no? Sí.
+
+34:29 - Formador Dos
+Creo que algo me había comentado de la nube de GCP, pero al final lo dejamos como aparte para dejarnos, para conectarnos especialmente en lo que sería el concentrarnos especialmente en lo que sería la parte de la migración, ¿no? Lo del cloud. Verlo para en principio. Lo de GCP, lo que tendríamos es este proyecto desplegado en la nube de Google, ¿no?
+
+35:03 - Formador Dos#+#Javier Torres
+Y las tiendas utilizando desde el navegador.
+
+35:07 - Formador Dos
+Bueno, quieren que vayamos para hacer algo práctico. Ahora me van a ir contando un poquito más para ir organizando esto. Quieren que vayamos. Creando el proyecto de Angular para tenerlo, vamos a ir creando toda esta estructura, la vamos a ir creando en una carpeta, ¿les parece?
+
+35:36 - Unidentified Speaker
+Sí, está bien.
+
+35:37 - Formador Dos
+Yo voy a crear así un nuevo.
+
+35:48 - Formador Dos
+Ah, creo que acá es esta. A ver si ya la tenía creada.
+
+35:56 - Unidentified Speaker
+Esperen, ¿eh?
+
+35:57 - Formador Dos
+Ahí está. Sí, sí. Esto era lo que yo ya tenía creado de antes. Bueno, lo voy a poner acá. Y voy a crear así dos carpetas, una para el frontend y atrás del backend, ¿vale?
+
+36:19 - Unidentified Speaker
+Bien. Hasta ahí estamos.
+
+36:23 - Formador Dos
+Y vamos a ir creando un proyecto de, vamos a ir creando el proyecto de Angular del frontend, ¿no? Donde vamos a ir migrando algunas cuestiones. Quieres quería preguntar, con respecto a esto, ¿qué versión de Angular utilizan o es indistinto?
+
+36:58 - Javier Torres
+En algunos proyectos usamos versión 19, hay otras que están en versión 18, pero básicamente estamos entre la las penúltimas, antepenúltimas versiones. No digo lamentablemente, sino que Angular cada dos años igual ya saca una versión.
+
+37:18 - Formador Dos#+#Javier Torres
+Entonces también es como que difícil seguirle 100% el ritmo, ¿no?
+
+37:22 - Formador Dos
+Vamos a suponer que trabajamos con lo último. Así que yo voy a actualizarme el Angular Cli. Así, nada, me voy a la última versión. Con tal, este es un proyecto nuevo. Así que, en principio, si usamos una versión, O anterior se puede hacer un downgrade, pero no creo que haya problemas si usamos la última.
+
+37:52 - Unidentified Speaker
+Bien.
+
+37:52 - Formador Dos
+con respecto a la creación del proyecto, ¿no? Ahí voy anotando, tenemos que migrar, ver qué librerías utilizamos, ¿no? Por ejemplo, ahora lo vamos a analizar. Ahí ya estamos viendo, por ejemplo, esta suite alert la podemos utilizar. JQuery no hace falta que la utilicemos. Ahora le voy a decir, acá justo me quedó trabado el compile, le voy a decir que me analice proyecto y me diga qué librerías me van a, voy a necesitar si lo instalo en, si lo trabajo en Angular. Bien, ya me actualicé el Angular Cli, así que voy a crear el proyecto. Voy a crear lo que sería el frontend. Estamos hablando de que el proyecto le vamos a poner arms, Así que le voy a poner el mismo nombre. Así que voy a crear ng new arms migration. Voy a poner arms migrated. Así, por ponerle un nombre. Esto que yo estoy haciendo, lo van haciendo Sí.
+
+39:26 - Javier Torres
+Perfecto.
+
+39:27 - Formador Dos
+Así vamos a ir armando cierta, cierta estructura. Les iba a comentar por lo que, y esto me lo van a, me lo van a confirmar ustedes, por lo que pude ver en cuanto a estilos, no tiene mucho, mucho estilo, ni vi alguna librería de estilos particular que, que use. De hecho, acá tengo una carpeta CSS, no?
+
+39:54 - Formador Dos
+que por lo que veo están todos los estilos son estilos propios que está hecho acá en la aplicación, ¿no? O sea que estos estilos ya los hicieron manuales en su momento, ¿no?
+
+40:09 - Formador Dos#+#Javier Torres
+No es que los...
+
+40:11 - Javier Torres
+Ahí mencionas un punto importante, Esteban. Efectivamente, posiblemente la aplicación habrá partido desde cero, pero la idea es que usamos una plantilla, ¿no? Que obviamente ya tendrá sus estilos y que obviamente la adaptaríamos para esta necesidad, ¿no? Miguel, ¿me recuerdas el nombre de la plantilla, por favor, o alguien del equipo de modernización? FUSE.
+
+40:38 - Miguel Angarita
+La plantilla se llama FUSE.
+
+40:40 - Javier Torres
+No. OK. Entonces ya digamos que partiríamos de una base parecida, ¿no?
+
+40:46 - Formador Dos
+O sea, cuando me hablas de plantilla, es como que me dijera bootstrap, es como la librería de estilos que van a usar.
+
+40:56 - Javier Torres
+Nosotros adquirimos una plantilla en Angular, me parece que cuando la adquirimos estaba en Angular 18, no estoy muy seguro y obviamente la fuimos actualizando a las versiones actuales, entonces él ya tiene sus plantillas por decir así. Creo que Fuse no usa Angular, no recuerdo ahorita bien, pero Ok, pero estamos hablando como un reemplazo de bootstrap, ¿no?
+
+41:22 - Formador Dos
+¿Es esta que estoy viendo acá? No. No.
+
+41:26 - Miguel Angarita
+Fuse como tal tiene que buscar Fuse Angular y básicamente una plantilla que utiliza Terwin. Ah, ok, bueno, esta plantilla es...
+
+41:36 - Formador Dos
+Atentos, ya entendí. Yo me refería a la librería de estilos, o sea, esta plantilla que van a a usar está construida sobre Tailwind, digamos, ¿no? Entonces acá a la hora de decir qué estilo, qué sistema de estilo vamos a elegir, vamos a poner Tailwind y a la vez esa plantilla va a funcionar porque va a estar sobre Tailwind, ¿no?
+
+42:07 - Unidentified Speaker
+¿Estamos en lo correcto?
+
+42:09 - Formador Dos
+Sí, ¿no?
+
+42:10 - Formador Dos#+#Javier Torres
+Sí, sí, correcto.
+
+42:12 - Formador Dos
+Bueno, vamos a quedar con tonteluin. Bueno, acá dice, ¿querés cesar server-side rendering? Bueno, con un tema de simpleza para hacerlo lo más parecido a cómo está ahora en PHP, en principio le vamos a poner que no, que no sea. Y esto es para las mejores prácticas de Angular. Bueno. Acá hay que ver cuál es el que usan ustedes. Yo pensaba ponerle acá el GitHub Copilot o dejarle que no. Le voy a poner acá el GitHub Copilot.
+
+42:54 - Formador Dos
+Bueno, y acá va a crear el...
+
+43:16 - Formador Dos
+Bueno, perfecto. ¿Están creando el proyecto conmigo?
+
+43:21 - Brian Bohórquez
+Bueno, de mi parte, la verdad que no tenemos instalado todavía lo que es el ambiente parangular. Porque lo que es el equipo Java casi no trabajamos con tecnología, entonces no tenemos todavía la instalación de esta parte. No hay problema y les hago una pregunta.
+
+43:46 - Formador Dos
+Esta es la primera clase, o sea que un poco la idea es ver cómo vamos a trabajar. ¿Habría algún inconveniente ya para el miércoles o incluso la semana que viene poder tener así un, nada, en principio un proyecto de Angular armado desde cero?
+
+44:07 - Brian Bohórquez
+Claro, claro, ya nosotros ahí nos ponemos al día y al día de mañana podremos ya tener el ambiente instalado para la próxima clase, continuarla con usted.
+
+44:19 - Formador Dos
+No hay ningún problema. Un poco la idea de esta clase es esta, ¿no? Ver un poquito cómo armar un entorno bien. Bueno, este backend, ¿no? Yo lo voy a estar instalando, lo voy a estar editando con el Visual Studio Code, ¿no? Y a veces con el Visual Studio Code y a veces con el Cursor. Un poco para ir mostrándole ambas herramientas. Visual Studio Code tienen todos instalados, ¿no? Hasta ahí sí, ¿no? Me imagino. Perfecto. Bien. Por otro lado, dentro de lo que sería extensión para instalar dentro del Visual Studio Code, con la que vamos a estar trabajando, tener instalada la extensión del Copilot, ¿no?
+
+45:21 - Unidentified Speaker
+Del GitHub Copilot, ¿no?
+
+45:24 - Formador Dos
+¿Esta la tienen todos instalada?
+
+45:41 - Formador Dos
+Bien, perfecto. Bueno, acá ya tendríamos el frontend para empezar a trabajar, ¿no? Si yo le doy ng set, me voy a poder iniciar el proyecto. Vamos a Vamos a probar acá.
+
+46:12 - Unidentified Speaker
+Genial.
+
+46:13 - Formador Dos
+Bueno, esto todo vamos a ir reemplazándolo por algo o algún módulo de lo que sería el proyecto este de, de, de Coso. La parte de los estilos no nos vamos a preocupar tanto porque la van a modernizar, por lo que me dijeron, ¿no? De última, ahí vemos. Yo hubiera, hubiera recomendado, ¿no? En cómo está, ¿no? Para hacerlo más fácil. Y después, de última, modernizarla. Lo que implicaría, ¿no? Tal vez hasta copiarle todas estas carpetas de estilos, así como está al nuevo proyecto, ¿sí? Bien. Esto arranca, ¿no? Acá por el índex, ¿no? Todo esto que está en en archivos planos, después lo vamos a lo vamos a ir convirtiendo en componentes, está bien. Bueno, ahí está abriendo el index. Acá el GitHub, el GitHub Compiler me quedó, me quedó, me quedó, ¿cómo se llama? Me quedó Hildado, sí, así que voy a hacer uno nuevo que justo estaba detectando patrones arquitecturales y tú... Bueno, ahora vamos a esperar que... Bueno, perfecto. Otra cuestión. Vamos a generar entonces también una parte de un baquet, ¿no? Con Spring Boot para todo lo que es la parte de... ¿Cómo se llama? La parte del resto del proyecto, ¿sí? En el caso de ustedes, como van a tener el entorno preparado para la parte de Angular, la parte de Java, ¿lo tienen instalado la parte del backend o no? Sí, esa parte sí la tenemos. Perfecto. Bueno, quieren que, ya que estamos, el proyecto del backend y acá me van a ir guiando un poquito. Yo para crearlo lo suelo hacer acá con el Spring Initializer, ¿no?
+
+48:40 - Brian Bohórquez
+Sí, sí, también lo hacemos de esa manera y luego lo abrimos desde el IntelliJ.
+
+48:48 - Formador Dos
+Perfecto, vamos a hacer eso mismo. Yo suelo usar Eclipse, ¿no? Así que ustedes me van a dar una mano cómo cargarlo con el IntelliJ. Bueno, esto Maven, ¿no? Java, esto supongo que será así, no usan ni Gradle ni Gruby. Vamos a usar, ¿qué versión de Spring Boot? ¿Está bien la 4 o tienen otra versión?
+
+49:17 - Brian Bohórquez
+Sí, podríamos usar la 4.
+
+49:19 - Formador Dos
+Bueno, perfecto. Y como el mismo proyecto acá se llamaba ARM, Vamos a ponerle esto. Obviamente esto es una guía, ¿no? Después ustedes lo pueden agregar. Yo generalmente uso nombres de artefactos más. Bueno, Java 17, ¿qué versión de Java utilizan?
+
+49:48 - Brian Bohórquez
+Bueno, para esta migración, se quedó en que se va a usar el 21.
+
+49:56 - Formador Dos
+Bueno, Java 21, perfecto. Tengo Java 21 instalado en mi computadora, no sé. Si no, yo también me voy a actualizarlo. Y acá, como en la parte de dependencias, vamos a elegir qué vamos a utilizar. Lombok, me parece que sí. En las DevTools, me parece que también vamos a elegir. ¿Esto es la primera vez que crearon un proyecto de Spring Boot o ya lo hicieron antes alguno? Los que son de .NET, eso les pregunto principalmente.
+
+50:37 - Angelo Valderrama#+#Formador Dos
+Primera vez viendo la página.
+
+50:40 - Formador Dos
+¿Cómo?
+
+50:40 - Angelo Valderrama
+De mi lado sí soy del equipo .NET, pero sí he hecho proyectos en Spring Boot.
+
+50:49 - Formador Dos
+Bueno, no sé si como referente del equipo .NET, coincidís conmigo que Spring Boot es una copia de .NET MVC, ¿no? Es casi la misma estructura de directorio, es casi lo mismo. Muy parecido, ¿no?
+
+51:08 - Angelo Valderrama#+#Formador Dos
+¿Coincidimos? Sí, por supuesto.
+
+51:10 - Formador Dos
+Claro. Bueno, a ver acá.
+
+51:16 - Formador Dos
+¿Qué otro? Vamos a ir poniendo todo lo que... No sé cómo, no me acuerdo, en Spring para conectarnos a un SQL Server. Ahora lo vamos a ver. Bueno, el HTTP Client.
+
+51:37 - Unidentified Speaker
+REST Repository.
+
+51:38 - Formador Dos
+Después igual lo que falta lo podemos agregar, pero, ¿cómo se llama? Bueno, mejor si lo ponemos ahora. No vamos a usar ni la parte de templating ninguno porque vamos a usar, bueno, con la parte de logueo y seguridad, el otro sistema está hecho todo a mano, así que no vamos a elegir ninguno Sí, vamos a conectarnos con SQL Server, así que vamos a necesitar JDBC. La parte de... A ver. Si quieren, entren a... Denme una mano. Entren a la parte de Spring Initializer. Ahí les pasé el link. Vamos a ir armando el proyecto. Y vamos a, ayúdeme a cuál es lo que tenemos que elegir. Acá el de SQL Server, lo vamos a elegir. La de Security, nada.
+
+53:04 - Brian Bohórquez
+El Spring JTA también.
+
+53:07 - Brian Bohórquez#+#Formador Dos
+Ese sí.
+
+53:09 - Formador Dos
+Así hacemos. Ese sí porque vamos a usar, vamos a crear directamente los DTO que haga un repositorio.
+
+53:22 - Unidentified Speaker
+Bueno, esto no es SQL, no va a nada.
+
+53:29 - Formador Dos
+Messaging no vamos. O sea, nada.
+
+53:34 - Unidentified Speaker
+Observability, nada. Nada de estas.
+
+53:38 - Formador Dos
+Bueno, creo que ahí estamos más o menos, ¿no? A ver, acá coloque. Lombok, las DevTools, Spring Web, HTTP Client, JDBC API, SQL Server y Spring Data y JPA.
+
+54:00 - Brian Bohórquez#+#Formador Dos
+Sí, sí, ahí está.
+
+54:03 - Unidentified Speaker
+Ahí.
+
+54:03 - Formador Dos
+Ahí estamos, ¿no? Así que, bueno, lo vamos a generar. Y este, así como está, lo voy a, lo voy a, así como está, lo voy a, a ver. Así como está, lo voy a descomprimir en la carpeta back-end, a ver. Ya que estoy.
+
+54:32 - Unidentified Speaker
+O creo que estamos.
+
+54:56 - Formador Dos
+Y ahora lo voy a abrir con el IntelliJ. ¿El IntelliJ lo tienen todos instalados?
+
+55:07 - Christian Mora#+#Javier Torres
+El Cursor y el code.
+
+55:11 - Javier Torres
+Bien.
+
+55:12 - Unidentified Speaker
+Bueno.
+
+55:13 - Formador Dos
+Perfecto.
+
+55:14 - Formador Dos#+#Javier Torres
+Bueno, a ver, vamos a abrir el...
+
+55:19 - Formador Dos
+Vamos a abrir el... El carpeta. A ver si abre bien.
+
+55:57 - Formador Dos
+Bien, ahí está. Vamos a esperar que lo cargue. Bueno, ¿esta parte la pudieron hacer conmigo?
+
+56:23 - Formador Dos
+Bueno, perfecto. Bueno, yo estoy esperando ahí que cargue las dependencias. Bueno, ¿cómo venimos ahora con, hasta ahora dado que es la primer clase? Recién comenzamos. ¿Cómo venimos en lo que va del curso? ¿Le parece que vamos sincronizado con lo que usted las que tenían? Este, solo hay un punto, Esteban.
+
+56:51 - Javier Torres
+Este, bueno, ahorita estamos usando un poco los IDEs que de alguna u otra forma estamos familiarizados. Pero ahí es donde viene el cómo vamos a usar Cursor, ¿no? Dónde lo metemos y qué no más reemplazamos y qué no más podemos explotar, ¿no?
+
+57:14 - Unidentified Speaker
+OK.
+
+57:15 - Formador Dos
+Cursor, era esa pregunta que me estaba haciendo yo mismo, me la hice antes de comenzar el proyecto. Cursor lo vamos a usar en ambos lugares, para el backend y para el frontend. En principio, la idea con Cursor es mostrarles la herramienta, cómo funciona, y que ustedes tengan alguna, o sea, no sé si van a utilizar Cursor en definitiva. Por lo que me comentaron, no era una herramienta que usen constantemente y la conozcan. Así que la idea de Cursor es mostrarles tanto, usarlo para hacer alguna cosita en el back-end y en el front-end. En algún momento, no sé, en vez de usar Visual Studio Code, usamos Cursor y probamos hacer algunas cositas. Y lo mismo para el back-end. En vez de utilizar IntelliJ, vamos usar cursos y vamos a probar algunas cosas. Esta tenía un poco la idea, ¿no? Es intercalar el uso de estas herramientas con cursos para que ustedes conozcan la herramienta, ¿sí?
+
+58:26 - Formador Dos#+#Javier Torres
+Y ver si le sirve.
+
+58:29 - Formador Dos
+Estamos de acuerdo. Bueno, creo que ahí estamos, ¿no? Y ya si, a ver si anda, si ya arranca. Vamos a, esperen que voy principal.
+
+58:46 - Formador Dos#+#José Lainez
+Ahí seleccioné el archivo application que es el principal.
+
+59:13 - Formador Dos
+Ahí está iniciando. Me parece que puede ser que falta alguna configuración. Acá tiró un error, pero por el tema del SQL Server, falta Falta configurarle, como yo le dije, que íbamos a usar SQL Server. Bueno, ahora después lo vemos. Hay que cargar acá en el Application Properties, ¿cómo se llama? La URL de la conexión a SQL Server. Ahora lo hacemos. Pero, bueno, en principio el proyecto ya venimos bien. Otra cuestión que sale que vamos necesitar es acá, aparte de la parte del backend, es la base de datos, ¿no? Y acá quería confirmar que todos tuvieran SQL Server instalado, ¿no?
+
+1:00:23 - Unidentified Speaker
+¿Tienen?
+
+1:00:24 - Angelo Valderrama
+Sí.
+
+1:00:25 - Unidentified Speaker
+Sí. Perfecto.
+
+1:00:28 - Formador Dos
+Yo ahí lo voy a...
+
+1:00:35 - Unidentified Speaker
+Bien. Y una pregunta adicional.
+
+1:00:42 - Formador Dos
+Hablando de SQL Server instalado, ¿esta base de datos que tengo yo acá, que es la del proyecto. ¿La tienen todos instalados y todos acceso a esa base de datos?
+
+1:01:08 - Javier Torres
+Sí, justamente se pidió al equipo que valide ese acceso y confirmaron que sí tenía.
+
+1:01:17 - Formador Dos#+#Javier Torres
+Ok, perfecto.
+
+1:01:22 - Formador Dos
+Bueno, después voy a ver yo cómo hago acá, cómo hago para cosas. Bueno, yo voy a ir para ir, ¿cómo se llama? Mostrando un poquito una parte de la migración y del uso de cosas. ¿Ves? Se lee gasterisco, ¿ves? Acá tiene, se lee gasterisco from tienda, ¿no? Acá ya tenemos algunos endpoints que vamos a tener que migrar, ¿no? Yo acá lo que pretendía hacer, ¿no? No sé si esto es para ir dándoles un pantallazo general, ¿no? Darle, ¿no? Dado. El index.php para migrar a un proyecto angular. Decime, ¿cuáles son los, uno, los componentes angular que ¿Qué observas? Y dos, ¿cuáles son los? Podríamos para, ¿cómo se llama? Hacer una migración un poco más, como es un proyecto muy grande, podríamos mantener una estructura de carpetas en algún punto similar. ¿no? Que reflejen este sistema de módulos, ¿no? Y segundo, ¿cuáles son los endpoints que vamos a tener en el backend? Cuando hago esto, por ejemplo, esta base, esta tabla n, tienda, supongo que serán todas las tiendas que van a estar utilizando esta herramienta, ¿no? Y debe haber por acá alguna...
+
+1:03:54 - Brian Bohórquez#+#Formador Dos
+Sí, hay la base de datos que dice SAT Admin.
+
+1:04:01 - Brian Bohórquez#+#José Lainez
+Esta sería la principal, ¿no?
+
+1:04:04 - Formador Dos#+#José Lainez
+Donde están todos los usuarios.
+
+1:04:08 - Unidentified Speaker
+los perfiles todavía configurados.
+
+1:04:10 - Formador Dos
+Perfecto. Entonces, tal vez una buena idea sea empezar por todas estas bases de datos, las vamos a tomar, no es que las vamos a migrar, ¿no? Vamos a levantar, las va a levantar la aplicación de Angular. Entonces, esta base de datos saadmin sería la principal que podríamos, por donde podríamos empezar la migración. ¿Qué les parece?
+
+1:04:44 - Unidentified Speaker
+Sí, sí, está bien. ¿Entiende?
+
+1:04:46 - Formador Dos
+Bueno, esta, yo no sé cómo hacer porque después voy a hablar con Daniel. No quiero, no quiero acceder a esta base localmente. Tal vez yo lo que, lo que podría hacer ahora, luego de terminar a la clase es conectarme e instalarme todo el Angular y todo lo que hice directamente en esta computadora que me dieron acceso, ¿no? Pero acá ven que ya tenemos algunas ideas que me fue dando Copilot. A ver, esperen que no está scrolleando. Pero esto porque está medio tildado el Visual Studio Code, vamos a darle un minutito. Ahí está, está un poco Bueno, vamos a darle un... Está súper tildado, no responde el Visual Studio Code.
+
+1:06:06 - Unidentified Speaker
+Le voy a dar un ratito. Bueno, esta base de...

@@ -42,6 +42,7 @@ Este archivo tiene formato poco legible, nombres pobres y lógica simple: ideal 
 
 # Refactor Code
 
+```
 Refactor the selected JavaScript code according to clean code principles:
 
 * Improve naming, formatting and readability
@@ -49,7 +50,8 @@ Refactor the selected JavaScript code according to clean code principles:
 * Use best practices (clear indentation, semicolons if desired, consistent spacing)
 
 **Input:** selected code block
-**Output:** improved/refactored code block only (without explanations) </code>
+**Output:** improved/refactored code block only (without explanations)
+```
 
 Este Markdown será el prompt que Cursor usará para refactorizar el código seleccionado.
 

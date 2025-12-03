@@ -1,0 +1,58 @@
+Capacitación Legacy a Microservicios Modernos con IA: GitHub Copilot, Cursor y LLMs en acción
+Mon, Dec 1, 2025
+
+Summary:
+
+Se presentó un enfoque estructurado para la migración de un proyecto en PHP a microservicios modernos, dividiendo el proceso en tres agentes: análisis, migración del backend y migración del frontend. Se discutió la creación de un archivo que contenga todos los archivos del proyecto y sus dependencias, utilizando herramientas como Mermaid y Dot para generar gráficos visuales. Se enfatizó la importancia de un análisis previo y la documentación de características de cada archivo, así como el uso de inteligencia artificial para facilitar la migración y la identificación de dependencias.
+
+Durante la sesión, se abordaron problemas técnicos relacionados con la importación de datos a Google Sheets y se presentó un método para generar gráficos de dependencias. Se sugirió dividir las dependencias en archivos separados y se discutió la migración del índice PHP al proyecto de Angular, destacando la importancia de un plan detallado y la creación de un repositorio de git para gestionar cambios. La interacción con la inteligencia artificial se consideró clave para mejorar la planificación y ejecución del proceso de migración.
+
+
+Chapters & Topics:
+
+**Título de la sección de reunión:** Capacitación sobre Migración a Microservicios Modernos
+**Resumen conciso en 2-4 oraciones:** Formador Dos enfatizó la necesidad de un análisis exhaustivo antes de la migración, sugiriendo la creación de un registro de archivos y dependencias del proyecto. Miguel Angarita participó en la discusión, destacando que el primer paso sería armar el proyecto en PHP y llevar un seguimiento de los archivos migrados.
+* Análisis previo a la migración de archivos PHP.
+* Generación de un archivo CSV para seguimiento de archivos.
+
+Capacitación en Microservicios Modernos con IA
+Formador Dos explicó cómo crear y guardar un archivo "Phplista.csv" utilizando un comando específico. A pesar de la lentitud de la plataforma virtual, logró copiar el archivo a su computadora local y comenzó a importar los datos en Google Sheets, creando un nuevo archivo titulado "Migración".
+
+Migración de Archivos PHP a Microservicios Modernos
+Formador Dos explicó que la migración de los archivos PHP se realizará en etapas, comenzando con el índex. Se enfatizó la necesidad de recopilar información relevante sobre cada archivo, como si contiene vistas o lógica, y se sugirió el uso de inteligencia artificial para completar esta información. Miguel Angarita confirmó que la explicación fue clara hasta ese punto.
+
+ Diagrama de Dependencias en PHP
+ Formador Dos explicó cómo generar un archivo de dependencias en PHP, mencionando que cualquier referencia a otro archivo PHP se considerará una dependencia. Utilizó un comando de inteligencia artificial para listar estas dependencias en un archivo llamado dependencias.txt, que se generará tras ejecutar el comando. Se advirtió que algunas dependencias podrían no ser capturadas si están almacenadas en variables.
+* Creación de un archivo de dependencias utilizando inteligencia artificial.
+
+Generación de Gráficos de Dependencias con Mermaid
+Formador Dos demostró la creación de un gráfico de dependencias con Mermaid, comenzando por un archivo de dependencias y utilizando comandos de PowerShell. A lo largo de la explicación, se hicieron correcciones en el texto para eliminar comillas y otros elementos que causaban errores. Finalmente, se exportó el diagrama en formato SVG para su visualización.
+* Visualización de dependencias mediante gráficos.
+
+Análisis de Migración y Dependencias del Proyecto
+Formador Dos presentó un método para generar un gráfico de dependencias que facilite la migración de proyectos, sugiriendo el uso de inteligencia artificial para analizar y planificar etapas de migración. Brian Bohórquez destacó la utilidad de esta técnica para identificar dependencias en su trabajo. Formador Dos también mencionó la posibilidad de hacer preguntas a la inteligencia artificial para optimizar el proceso de migración.
+* Planificación de la migración de componentes en Angular.
+
+Migración de Proyectos y Uso de IA en Angular
+Formador Dos detalló el proceso de migración del índice PHP al proyecto de Angular, comenzando por la planificación y la creación de una carpeta original para los archivos. Se utilizó IA para generar un plan de migración y determinar los archivos necesarios, incluyendo componentes y servicios. Además, se mencionó la importancia de tener un repositorio de git para poder revertir cambios si es necesario.
+
+
+Action Items:
+
+* Formador Dos compartirá el documento de migración con todos los participantes.
+* Formador Dos generará un archivo CSV con los archivos del proyecto PHP para hacer un seguimiento de la migración.
+* Formador Dos migrará el archivo index.php y otros archivos dependientes en el proyecto de Angular.
+* Formador Dos creará un archivo de dependencias del proyecto a migrar utilizando inteligencia artificial.
+* Formador Dos pedirá a la inteligencia artificial que genere un plan de migración basado en las dependencias.
+
+
+Key Questions:
+
+* ¿Qué información se debe incluir en la tabla de seguimiento de la migración?
+* ¿Qué les parece esta idea de tener un archivo de dependencias?
+* ¿Qué archivos son necesarios para la migración del proyecto?
+
+
+Notepad:
+
+* No notes
