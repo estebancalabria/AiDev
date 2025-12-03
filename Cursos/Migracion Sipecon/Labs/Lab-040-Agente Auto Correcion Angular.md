@@ -466,7 +466,7 @@ using System.Threading.Tasks;
 class Program
 {
     static readonly string AngularProjectPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ".."));
-    static readonly string GroqApiKey = "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";
+    static readonly string GroqApiKey = "....";
     static readonly string LlmModel = "openai/gpt-oss-20b";
     static readonly int MaxIterations = 200;
 
