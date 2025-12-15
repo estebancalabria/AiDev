@@ -58,9 +58,32 @@ Me lo podes hacer como web component sin react
 - ## Qwen
 
 * El ChatGPT chino Open Source
+* Nunca le encontre el limite de uso
 
 > https://chat.qwen.ai/
 
-'''
+```
 Me podes generar un html/javascript unico que sea el flappy birds
-'''
+```
+
+# Herramientas
+
+- ## Ya que estamos con los juegos : WebSim
+
+> websim.ai
+
+* Ideal para hacer cosas web interactivas
+* Ejemplo
+  * https://websim.com/@datboodiebreadham/count-runner
+    
+ 
+* Vamos a probar con 
+
+```
+Quiero hacer un simulador de base datos que use el almacemiento local de Javascript y tenga una interfaz similar al managgemet Studio
+```
+
+* Con eso Generamos
+
+> https://websim.com/@silentmist45126041/db-studio/1
+
