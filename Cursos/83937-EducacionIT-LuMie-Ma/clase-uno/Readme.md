@@ -66,6 +66,8 @@ Me lo podes hacer como web component sin react
 Me podes generar un html/javascript unico que sea el flappy birds
 ```
 
+* Puntaje : 
+
 # Herramientas
 
 - ## Ya que estamos con los juegos : WebSim
@@ -87,3 +89,4 @@ Quiero hacer un simulador de base datos que use el almacemiento local de Javascr
 
 > https://websim.com/@silentmist45126041/db-studio/1
 
+* Puntaje : 10 / 10
