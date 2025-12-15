@@ -90,3 +90,182 @@ Quiero hacer un simulador de base datos que use el almacemiento local de Javascr
 > https://websim.com/@silentmist45126041/db-studio/1
 
 * Puntaje : 10 / 10
+
+# Programando con API Key
+
+- ## Entorno para desarrollar en Python
+
+* Entorno para desarrollar en python sin tener que instalar nada
+> https://colab.google/
+
+- ## Acceso como programador
+
+* Todos los modelos de lenguaje tienen 2 portales:
+  * El portal web para el usuario final : https://chatgpt.com/
+  * El portal para el desarrollador :  https://platform.openai.com/docs/overview
+  * Lamentablemente el uso de la api de ChatGPT (sin es economico) es pago
+
+* **Como Chatgpt es pago vamos a utilizar una alternativa Open Source**
+
+* Qroq
+   * Motor de Inferencia para ejecutar modelos de lenguaje Open Source
+      * Portal web para el usuario final : https://chat.groq.com/
+      * El portal para el desarrollador es : https://console.groq.com/
+
+- ## Usp de API key con Groq
+
+* Ir a la pagina de desarrollador de Groq :  https://console.groq.com/
+* Sacar una api Key
+* Crear un google colab nuevo :  https://colab.google/
+* Copiar el codigo de la invocacion modificado en una celda de codigo nueva
+
+```python
+
+from openai import OpenAI
+import os
+
+api_key = input("Ingrese su api key")
+prompt = input("Ingrese su prompt")
+
+client = OpenAI(
+    api_key=api_key,
+    base_url="https://api.groq.com/openai/v1",
+)
+
+response = client.responses.create(
+    input=prompt,
+    model="openai/gpt-oss-20b",
+)
+print(response.output_text)
+```
+
+> NOTA: Si estoy en un entorno local y no en Google Colab Debo instalar la libreria de OpenAI
+
+```bash
+pip install OpenAI
+```
+
+- ## Ejemplo Black Mirror : La computadora que se programa a si misma
+
+```python
+from openai import OpenAI
+import os
+
+api_key = input("Ingrese su api key")
+prompt = "Dame un codigo en python que muestre los primeros 10 numeros pares. Devolver el codigo para ejecutar directamente sin acotar nada mas. Sin markdown ni triple backtick"
+
+client = OpenAI(
+    api_key=api_key,
+    base_url="https://api.groq.com/openai/v1",
+)
+
+response = client.responses.create(
+    input=prompt,
+    model="openai/gpt-oss-20b",
+)
+
+codigo = response.output_text
+
+exec(codigo)
+```
+
+- ## Interfaz Interactiva con Gradio
+
+```python
+import gradio as gr
+from openai import OpenAI
+import os
+
+# --- Lógica de la API ---
+def generar_respuesta(api_key: str, prompt: str) -> str:
+    """
+    Función que interactúa con la API de OpenAI (vía Groq en este caso)
+    y devuelve la respuesta del modelo.
+    """
+    if not api_key:
+        return "Error: Por favor, ingrese su API Key."
+    if not prompt:
+        return "Error: Por favor, ingrese un prompt."
+
+    try:
+        # Inicialización del cliente con la API Key y la URL base de Groq
+        client = OpenAI(
+            api_key=api_key,
+            base_url="https://api.groq.com/openai/v1",
+        )
+
+        # Realizar la llamada a la API
+        # NOTA: En la biblioteca 'openai' el método para completions es 'completions.create'
+        # y el parámetro del prompt es 'prompt', pero en tu código original usaste 'responses.create'
+        # y 'input'. Para compatibilidad con la estructura más común de OpenAI/Groq,
+        # usaré 'completions.create' con el formato 'messages' para mejor rendimiento.
+        
+        # Si quieres usar el modelo Groq para un completion más simple:
+        # response = client.completions.create(
+        #     model="mixtral-8x7b-32768",  # Usando un modelo real de Groq, ya que "openai/gpt-oss-20b"
+        #                                  # no es un modelo estándar de Groq y probablemente cause un error.
+        #     prompt=prompt,
+        #     max_tokens=1024
+        # )
+        # return response.choices[0].text
+        
+        # O el formato de chat más común:
+        response = client.chat.completions.create(
+            model="openai/gpt-oss-20b",  # Modelo de Groq altamente recomendado
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+            max_tokens=2048,
+        )
+        return response.choices[0].message.content
+
+    except Exception as e:
+        # Captura cualquier error de la API (clave inválida, problema de conexión, etc.)
+        return f"Ocurrió un error: {e}"
+
+# --- Interfaz de Gradio ---
+
+# 1. Definir los componentes de entrada
+api_key_input = gr.Textbox(
+    label="🔒 API Key (Clave secreta)",
+    type="password",  # Oculta la entrada para mayor seguridad
+    placeholder="Ingrese su clave de Groq/OpenAI aquí",
+)
+
+prompt_input = gr.Textbox(
+    label="💬 Prompt",
+    lines=5,
+    placeholder="Escriba su consulta o la instrucción para el modelo...",
+)
+
+# 2. Definir el componente de salida
+output_text = gr.Textbox(
+    label="🤖 Respuesta del Modelo",
+    lines=10,
+    interactive=False,
+)
+
+# 3. Crear la interfaz
+iface = gr.Interface(
+    fn=generar_respuesta,  # La función de Python a ejecutar
+    inputs=[api_key_input, prompt_input],  # Los componentes de entrada
+    outputs=output_text,  # El componente de salida
+    title="Interfaz Interactiva con Groq (vía OpenAI SDK)",
+    description="Ingrese su API Key (de Groq) y un Prompt para obtener una respuesta del modelo Mixtral-8x7B. Su clave no se guardará."
+)
+
+# 4. Iniciar la aplicación
+iface.launch()
+```
+
+---
+
+# Bonus Track : Hugging Face
+
+> https://huggingface.co/
+
+* Es como el github pero de modelo de Inteligencia Artificial Open Source
+* Ver la parte de Spaces
+* Muy bueno
+* Puntake : 10/10
+
