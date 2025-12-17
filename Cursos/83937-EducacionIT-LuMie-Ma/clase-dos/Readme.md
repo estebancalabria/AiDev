@@ -21,6 +21,8 @@
     * WebSim
         * Para generar cosas interactivas
         * Es sus prompts internos usa librerias para graficos en en 3d como threejs
+                    * https://threejs.org/  
+* Hugging Face 
 
 # Large Language Models
 
@@ -87,7 +89,141 @@ Voy a generar un componente con la herramienta v0. Tengo este prompt : "Generame
 
 * Puntaje : 9.5 / 10
 
+# Novedades
+
+> https://pyscript.com/
+
+* Hubo una idea de reemplazar javascript por python en el navegador
+
 # Coddign Assistantas (Parte 1)
 
+* Hay varios codding asssitants para elegir
+   * Lista :  https://www.instagram.com/p/C5q36wmRpMP/?img_index=1
+   * Se instalan como extensiones de VScode (u otras IDE)
+   * Esta medio estandarizado hoy el uso del Github Copilot porque MS lo hizo gratuito
+
+- ## Github Copilot
+
+* Instalar extension desde el Market Place
+* Las 4 maneras para utilizar la extension son
+   * Autocompletado mientras voy escribiendo
+   * Completar comentario
+         * Pongo un comentario, me va sugiriendo el codigo (ghost code) y lo voy aceptando con el tab
+         * Ejemplo : "# Funcion que calcula el promedio de valores de un array"
+   * Chat Iniline (ctrl+i)
+         * Selecciono el codigo y pongo " Agregarme type hint al codigo anteior y checkea que sean todos numeros"
+  * Ventana de Chat tipo ChatGPT (Ctrl+shift+i)
+     * Modo preguntar
+     * Modo Editar
+     * Modo Planificar
+     * Modo Agente para trabajar con toda tu base de codigo  << Generalmente se usa
+        * Ejemplo : "Generame una api que reciba en un endpoint una lista de numeros separados por coma por GET y devuelva un json con el promedio usando la funcion calcular_promedio que existe."
+    
+* Primero generamos esta funcion con el comentario y el chat Inline
+```python
+from typing import Union
+
+# Funcion que calcula el promedio de valores de un array
+def calcular_promedio(valores: list[Union[int, float]]) -> float:
+    if not valores:
+        return 0
+    
+    # Verificar que todos los elementos sean números
+    if not all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in valores):
+        raise TypeError("Todos los elementos deben ser números (int o float)")
+    
+    return sum(valores) / len(valores)
+```
+
+* Luego con el chat en modo agente pusimos "Generame una api que reciba en un endpoint una lista de numeros separados por coma por GET y devuelva un json con el promedio usando la funcion calcular_promedio que existe." y me devolvio
+
+```python
+from typing import Union
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Funcion que calcula el promedio de valores de un array
+def calcular_promedio(valores: list[Union[int, float]]) -> float:
+    if not valores:
+        return 0
+    
+    # Verificar que todos los elementos sean números
+    if not all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in valores):
+        raise TypeError("Todos los elementos deben ser números (int o float)")
+    
+    return sum(valores) / len(valores)
+
+@app.route('/promedio', methods=['GET'])
+def obtener_promedio():
+    """
+    Endpoint que recibe una lista de números separados por coma
+    y devuelve el promedio en formato JSON.
+    Ejemplo: /promedio?numeros=1,2,3,4,5
+    """
+    try:
+        # Obtener el parámetro 'numeros' de la query string
+        numeros_str = request.args.get('numeros', '')
+        
+        if not numeros_str:
+            return jsonify({
+                'error': 'Debe proporcionar el parámetro "numeros"'
+            }), 400
+        
+        # Convertir el string de números separados por coma a lista de floats
+        numeros = [float(num.strip()) for num in numeros_str.split(',')]
+        
+        # Calcular el promedio usando la función existente
+        promedio = calcular_promedio(numeros)
+        
+        # Retornar el resultado en formato JSON
+        return jsonify({
+            'numeros': numeros,
+            'promedio': promedio
+        }), 200
+        
+    except ValueError:
+        return jsonify({
+            'error': 'Todos los valores deben ser números válidos'
+        }), 400
+    except TypeError as e:
+        return jsonify({
+            'error': str(e)
+        }), 400
+    except Exception as e:
+        return jsonify({
+            'error': f'Error inesperado: {str(e)}'
+        }), 500
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
+```
+
+* Lo ejecute con :
+
+```
+python server.py
+```
+
+* Accedi en el navegador a:
+
+```
+http://127.0.0.1:5000/promedio?numeros=1,2,3,4,5
+```
+
+* Me devolvio
+
+```json
+{
+  "numeros": [
+    1.0,
+    2.0,
+    3.0,
+    4.0,
+    5.0
+  ],
+  "promedio": 3.0
+}
+```
 
 # Model Context Protocol
