@@ -30,6 +30,18 @@
 
 > https://lmarena.ai/
 
+- ## Claude Desktop
+
+> https://claude.com/download
+
+- ## Anything LLM
+
+> https://anythingllm.com/
+
+- ## Modelo de Lenguaje pequenio para ejecutar localmente
+
+> https://www.microsoft.com/en-us/research/blog/fara-7b-an-efficient-agentic-model-for-computer-use/ (Gracias Fede)
+
 # Herramienta
 
 - ## Para el desarrollo de Interfaces : V0.chat
@@ -226,4 +238,66 @@ http://127.0.0.1:5000/promedio?numeros=1,2,3,4,5
 }
 ```
 
-# Model Context Protocol
+# Model Context Protocol (MCO)
+
+> https://modelcontextprotocol.io/
+
+* Entendiendo la gracia de MCP
+   * Tanto Claude Desktop, AnythingLLM, GithubCopilot se ejecutan en una computadora local
+   * El LLM que utilizan tiene muy poca capacidad para interacturar con los recursode la maquina local y con apis externas
+   * MCP le da la capacidad a un LLM de interactuar con tu PC o de hacer llamada a servicios externos
+   * Tradicionalmente esto se podia lograr con el tool-use pero eso era exlcusivo para el uso mediante api
+   * El MCP permite que los clientes de LLM hagan uso de herramientas sin tener que llegar a la programacion por API
+
+> Ejemplos de Servidores MCP se pueden ver en :
+>    https://modelcontextprotocol.io/examples  
+>    https://github.com/modelcontextprotocol/servers-archived
+
+* Como Instalar un MCP en VScode para usarlo con Github Copilot
+   * Requerimiento : Tener NODEJS instalado
+      * Confirmar instalacion con comando : node --version
+      * Sino instalarlo de: https://nodejs.org/en
+   * Crear la carpeta .vscode en el proyecto
+   * Crearmos el archivo mcp.json
+   * Vamos a instalar el mcp que todos los devs tienen que tener, fylesystem : https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem
+
+* El mcp.json ueda
+```json
+{
+    "servers": {
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "/Users/username/Desktop", <<< Esta parte de aca cambiarla por el diretorio del proyecto
+            ]
+        }
+    }
+}
+```
+
+* Vamos a instalar otro MCP. El de pupeteer : https://github.com/modelcontextprotocol/servers-archived/tree/main/src/puppeteer
+* Ahora el MCP.json me quedaria...
+
+```json
+{
+    "servers": {
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "C:\\Cursos\\AiDev\\Cursos\\83937-EducacionIT-LuMie-Ma\\clase-dos\\proyecto-vscode"
+            ]
+        },
+        "puppeteer": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-puppeteer"
+            ]
+        }
+    }
+}
+```
