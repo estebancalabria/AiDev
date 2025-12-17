@@ -41,7 +41,7 @@
 * El codigo generado
     * Se puede descargar como ZIP
     * Se puede subir a Github
-    * Se puede desplegar en excel
+    * Se puede desplegar en Vercel
 
 * Prompt Utilizado (mejorado con ChatGPT)
 ```
@@ -85,6 +85,7 @@ Apariencia lista para producción, sin estilos experimentales ni elementos decor
 Voy a generar un componente con la herramienta v0. Tengo este prompt : "Generame un componente de login en el estiloque incluya botones para login con google, facebook y microsoft. Que tenga un link a la pagina de registro. Quesea estandar. Responsive. Que este centrado tanto vertical como horizontalmente." te pido que me lo mejores para que sea mas preciso. Devolveme el prompt mejorado sin acotar nada mas. No hace falta definir tecnologias.
 ```
 
+* Puntaje : 9.5 / 10
 
 # Coddign Assistantas (Parte 1)
 
