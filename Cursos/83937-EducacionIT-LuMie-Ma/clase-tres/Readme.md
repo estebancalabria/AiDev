@@ -141,7 +141,53 @@ Crearme el archivo paises.json con los paises de latam utilizando el mcp de file
 ### Cursor Rules
 
 * Reglas Personalizadas para definir como debe programar un equipo en un proyecto
+   * https://cursor.com/docs/context/rules
+* Crear la carepta .cursor
+* Crear la subcarpeta rules
+* Crear un archivo .mdc con la reglas en lenguaje natural
 
+```
+---
+alwaysApply: true
+---
+
+# Reglas para las funciones de este repositorio
+
+Cursor debe generar funciones con las siguientes caracteristicas
+- Los nombres de las funciones comienzan con el prefijo fn
+- Deben validar los tipos de datos de entrada
+- Sin modificar los arrays originales
+- Todas las funciones deben tener comentarios explitativos arriba de la funcion
+
+```
+
+* Le pedimos con crl+K generar una funcion en un archivo nuevo
+   * Generar una funcion que reciba un array lo devuelva ordenado
+* Me debe generar el siguietnte codigo respetando las reglas definidas anteriormente
+
+```javascript
+
+
+/**
+ * fnSortArray
+ * Recibe un array y devuelve una nueva copia del array ordenada.
+ * Valida que la entrada sea un array.
+ * No modifica el array original.
+ * @param {Array} arr - El array a ordenar.
+ * @returns {Array} - Una nueva copia del array ordenada.
+ */
+function fnSortArray(arr) {
+    if (!Array.isArray(arr)) {
+        throw new TypeError('La entrada debe ser un array');
+    }
+    // Retornar una copia ordenada (orden lexicográfico para elementos mixtos)
+    return [...arr].sort();
+}
+
+```
+
+* Aqui tenemos un repositorio de Reglas ya para tomar como punto de partida segun la tecnologia:
+    * https://github.com/PatrickJS/awesome-cursorrules
 # Patrone de Prompting
 
 - ## High Level Goal
