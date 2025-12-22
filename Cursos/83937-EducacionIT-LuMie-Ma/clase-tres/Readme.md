@@ -188,6 +188,27 @@ function fnSortArray(arr) {
 
 * Aqui tenemos un repositorio de Reglas ya para tomar como punto de partida segun la tecnologia:
     * https://github.com/PatrickJS/awesome-cursorrules
+
+### Cursor Custom commands
+
+* https://cursor.com/docs/agent/chat/commands
+* Crear dentro de .cursor la carpeta commands
+* Crear el archivo refactor-code.md
+
+```
+Refactor the selected JavaScript code according to clean code principles:
+
+* Improve naming, formatting and readability
+* Preserve functionality (do not change logic)
+* Use best practices (clear indentation, semicolons if desired, consistent spacing)
+
+**Input:** selected code block
+**Output:** improved/refactored code block only (without explanations)
+```
+
+* Poner un codigo feo que se entiende poco
+* Con Ctrl+k mejorarlo con el comando
+
 # Patrone de Prompting
 
 - ## High Level Goal
