@@ -303,3 +303,7 @@ classDiagram
     * https://githubnext.com/projects/copilot-workspace
     * Integrado con la subscripcion de Github copilot
 * Herramientas para programar agentes (Pagas)
+   * https://claude.com/product/claude-code
+   * https://codeassist.google/?hl=es
+      * Ideal si trabajas con el Cloud de Google
+    * https://aider.chat/
