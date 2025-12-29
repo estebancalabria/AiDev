@@ -287,7 +287,19 @@ classDiagram
 * Tomar esas entrevistas
 * Hacer el analisis
 * La idea seria generar un chatbot con todos los documentos de analisis
-* Reemplazar las preguntas al analista con este Chatbot
-  
+* Reemplazar las preguntas al analista con este Chatbot  
 
 # Ingenierons de Software con IA
+
+* Divultativa : Todavia no se ha logrado el "Estado del arte" en los Ingenieros de Software por IA
+* Agentes que desarrollan solo las aplicaciones a partir de los requerimientos, sin intervencion humana
+* En su momento se hablaba de :
+  * https://devin.ai/
+  * https://devikaai.org/ (Version Open Source De Devin)
+    * https://github.com/stitionai/devika
+* Github Copilot Workspace
+  * Trabaja directo integrado con Github
+    * Haces un pull request a un proyecto y lo programa la IA
+    * https://githubnext.com/projects/copilot-workspace
+    * Integrado con la subscripcion de Github copilot
+* Herramientas para programar agentes (Pagas)
