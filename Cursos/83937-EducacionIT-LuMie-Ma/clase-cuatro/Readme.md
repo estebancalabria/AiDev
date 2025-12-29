@@ -1,4 +1,6 @@
-# Clase Cuatro - 29 de Diciembre del 2025 - Ultima Clase
+# Clase Cuatro 
+# 29 de Diciembre del 2025 
+# Ultima Clase
 
 # Repaso
 
@@ -268,5 +270,24 @@ classDiagram
 * Puntaje : 10 / 10
 
 # IA en Analisis 
+
+- ## Relevamiento
+
+* Hablar con el cliente
+* Entrevistas
+* Resumen Varias herramientas: https://www.instagram.com/p/DBzb-kHxqae/?img_index=1
+* El profe usa : https://tactiq.io/
+* Supongan que hacemos un relevamiento y tenemos varias entrevistas transcriptas
+
+- ## Analisis
+
+> https://notebooklm.google.com/
+
+* NotebookLM es la herramienta del momento
+* Tomar esas entrevistas
+* Hacer el analisis
+* La idea seria generar un chatbot con todos los documentos de analisis
+* Reemplazar las preguntas al analista con este Chatbot
+  
 
 # Ingenierons de Software con IA
