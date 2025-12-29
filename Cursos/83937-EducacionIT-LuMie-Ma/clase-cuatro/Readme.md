@@ -257,6 +257,16 @@ classDiagram
     Jugador "1" --> "*" Gol
 ```
 
+- ## Diagram GPT
+
+> https://www.eraser.io/diagramgpt
+
+* Para generar diagramas enteros de la arquitectura del sistema a partir de un prompt
+* Parte de la herramienta Eraser.IO que es parecido a draw.io para editar diagramas
+* Se puede exportar a png
+* El png se puede convertir a mermaid con Claude
+* Puntaje : 10 / 10
+
 # IA en Analisis 
 
 # Ingenierons de Software con IA
