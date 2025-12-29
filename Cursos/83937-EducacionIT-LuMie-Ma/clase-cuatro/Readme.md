@@ -307,3 +307,149 @@ classDiagram
    * https://codeassist.google/?hl=es
       * Ideal si trabajas con el Cloud de Google
     * https://aider.chat/
+
+- ## Demo Sencilla con AIDER
+
+* Primero abrimos la terminal en una carpeta de nuestra eleccion
+* Verificamos tener python : pip --version
+* Instalamos aider :  pip install aider-chat
+* Sacar una api key de groq : https://console.groq.com/keys
+* Setear la api key como variable de entorno : SET GROQ_API_KEY =tu_clave_api_aquí
+* Verificar si funciona usando modelos : aider --list-models groq/
+* Ejecutar aider dede el CLI con este comando : aider --model groq/openai/gpt-oss-20b
+* Le ejecuto el siguiente promp
+
+```
+Creame una aplicacion web simple usando html, css y javascript que muestre un contador. La aplicacion tiene que tener un boton para incrementar y decrementar el contador. Que se vea profesional, super elegante, responsive y todas las buenas practicas de disenio de intefaces
+```
+
+* Le pido cambios
+
+```
+Agrega un boton de reset que vuelva el contador a 0
+```
+
+# Bases De Datos con IA : Postgres.new
+
+> https://database.build/
+
+* Con chatgpts podemos generar SQL
+* Esta herramienta permite utilizar nuestra base de datos o generar una base de datos por detras
+* Pruebo este prompt
+```
+Creame la estructura de tablas para este diagrama mermaid : "classDiagram
+    class Sede {
+        -int idSede
+        -string nombre
+        -string ciudad
+        -string pais
+        -int capacidad
+        -string superficie
+        +getSede() Sede
+        +actualizarSede()
+    }
+
+    class Estadio {
+        -int idEstadio
+        -string nombre
+        -int capacidad
+        -string ciudad
+        -string pais
+        +getEstadio() Estadio
+        +registrarEstadio()
+    }
+
+    class Equipo {
+        -int idEquipo
+        -string nombre
+        -string pais
+        -int ranking
+        -int golesAFavor
+        -int golesEnContra
+        +getEquipo() Equipo
+        +registrarEquipo()
+        +actualizarRanking()
+    }
+
+    class Jugador {
+        -int idJugador
+        -string nombre
+        -int numero
+        -string posicion
+        -int edad
+        -string nacionalidad
+        +getJugador() Jugador
+        +registrarJugador()
+    }
+
+    class Partido {
+        -int idPartido
+        -datetime fecha
+        -datetime hora
+        -int golesLocal
+        -int golesVisitante
+        -string estado
+        +crearPartido()
+        +actualizarResultado()
+        +obtenerResultado()
+        +finalizarPartido()
+    }
+
+    class Grupo {
+        -int idGrupo
+        -string nombre
+        -int numeroEquipos
+        +crearGrupo()
+        +agregarEquipo()
+        +obtenerClasificacion()
+    }
+
+    class Arbitro {
+        -int idArbitro
+        -string nombre
+        -string nacionalidad
+        -int experiencia
+        +asignarArbitro()
+        +obtenerArbitro()
+    }
+
+    class Tarjeta {
+        -int idTarjeta
+        -string tipo
+        -int minuto
+        -string razon
+        +registrarTarjeta()
+    }
+
+    class Gol {
+        -int idGol
+        -int minuto
+        -string tipo
+        +registrarGol()
+    }
+
+    class Estadistica {
+        -int idEstadistica
+        -int posesion
+        -int disparos
+        -int faltas
+        -int saques
+        +calcularEstadistica()
+        +obtenerEstadistica()
+    }
+
+    Sede "1" --> "*" Estadio
+    Partido "1" --> "1" Sede
+    Partido "1" --> "1" Estadio
+    Partido "1" --> "2" Equipo
+    Equipo "1" --> "*" Jugador
+    Equipo "1" --> "*" Grupo
+    Partido "1" --> "*" Tarjeta
+    Partido "1" --> "*" Gol
+    Partido "1" --> "1" Arbitro
+    Partido "1" --> "1" Estadistica
+    Jugador "1" --> "*" Tarjeta
+    Jugador "1" --> "*" Gol"
+```
+
+ * Puntaje : 10 / 10
