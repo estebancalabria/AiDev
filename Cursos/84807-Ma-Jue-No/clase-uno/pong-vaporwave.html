@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAPORPONG</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+  :root {
+    --pink:    #ff2d78;
+    --cyan:    #00f5ff;
+    --purple:  #b44aff;
+    --yellow:  #ffe74c;
+    --bg:      #0a0010;
+    --grid:    rgba(180,74,255,0.12);
+    --glow-pink:  0 0 8px #ff2d78, 0 0 20px #ff2d78aa;
+    --glow-cyan:  0 0 8px #00f5ff, 0 0 20px #00f5ffaa;
+    --glow-pur:   0 0 10px #b44aff, 0 0 30px #b44affaa;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Orbitron', sans-serif;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  /* CRT scanlines overlay */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,0,0,0.18) 2px,
+      rgba(0,0,0,0.18) 4px
+    );
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  /* Retro grid background */
+  #bg-grid {
+    position: fixed; inset: 0;
+    background:
+      linear-gradient(to bottom, #0a0010 0%, #0a0010 40%, #1a003a 70%, #0a0010 100%),
+      repeating-linear-gradient(90deg, var(--grid) 0px, var(--grid) 1px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(0deg,  var(--grid) 0px, var(--grid) 1px, transparent 1px, transparent 60px);
+    z-index: 0;
+  }
+
+  /* Horizon glow */
+  #horizon {
+    position: fixed;
+    bottom: 20%;
+    left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--cyan), var(--purple), var(--pink), var(--cyan), transparent);
+    box-shadow: var(--glow-cyan);
+    z-index: 1;
+    opacity: 0.6;
+  }
+
+  #wrapper {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Title */
+  #title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    background: linear-gradient(90deg, var(--cyan), var(--pink), var(--purple), var(--cyan));
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: titleShimmer 4s linear infinite;
+    filter: drop-shadow(0 0 10px rgba(180,74,255,0.6));
+  }
+  @keyframes titleShimmer {
+    0%   { background-position: 0% }
+    100% { background-position: 300% }
+  }
+
+  /* Scoreboard */
+  #scoreboard {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(32px, 5vw, 56px);
+  }
+  .score-left  { color: var(--cyan);   text-shadow: var(--glow-cyan); }
+  .score-right { color: var(--pink);   text-shadow: var(--glow-pink); }
+  .score-sep   { color: var(--purple); opacity: 0.5; font-size: 0.7em; }
+
+  /* Canvas container */
+  #canvas-wrap {
+    position: relative;
+    border: 1px solid rgba(180,74,255,0.4);
+    box-shadow:
+      0 0 0 1px rgba(0,245,255,0.15),
+      inset 0 0 60px rgba(10,0,16,0.8),
+      var(--glow-pur);
+    border-radius: 4px;
+  }
+
+  canvas {
+    display: block;
+    border-radius: 4px;
+  }
+
+  /* Overlay (start / pause) */
+  #overlay {
+    position: absolute; inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10,0,16,0.82);
+    border-radius: 4px;
+    gap: 20px;
+    backdrop-filter: blur(2px);
+  }
+  #overlay.hidden { display: none; }
+
+  .ov-title {
+    font-size: clamp(22px, 4vw, 38px);
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    color: var(--yellow);
+    text-shadow: 0 0 12px var(--yellow), 0 0 30px rgba(255,231,76,0.5);
+    animation: blink 1.2s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0.2; } }
+
+  .ov-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(11px, 1.6vw, 15px);
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  .ov-btn {
+    padding: 10px 28px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  .ov-btn:active { transform: scale(0.96); }
+  .btn-continue {
+    background: var(--cyan);
+    color: #000;
+    box-shadow: var(--glow-cyan);
+  }
+  .btn-restart {
+    background: transparent;
+    color: var(--pink);
+    border: 1px solid var(--pink);
+    box-shadow: var(--glow-pink);
+  }
+  .btn-continue:hover { box-shadow: 0 0 14px var(--cyan), 0 0 40px var(--cyan); }
+  .btn-restart:hover  { box-shadow: 0 0 14px var(--pink), 0 0 40px var(--pink); }
+
+  /* Win message */
+  .ov-winner {
+    font-size: clamp(14px, 2.5vw, 22px);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--purple);
+    text-shadow: var(--glow-pur);
+  }
+
+  /* Controls hint */
+  #controls-hint {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(9px, 1.2vw, 12px);
+    color: rgba(180,74,255,0.5);
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div id="bg-grid"></div>
+<div id="horizon"></div>
+
+<div id="wrapper">
+  <div id="title">VAPOR PONG</div>
+
+  <div id="scoreboard">
+    <span class="score-left"  id="sl">0</span>
+    <span class="score-sep">VS</span>
+    <span class="score-right" id="sr">0</span>
+  </div>
+
+  <div id="canvas-wrap">
+    <canvas id="c"></canvas>
+    <div id="overlay">
+      <div class="ov-title" id="ov-title">PRESIONA ESPACIO</div>
+      <div class="ov-winner" id="ov-winner" style="display:none"></div>
+      <div class="ov-sub" id="ov-sub">
+        IZQ: A / Z &nbsp;·&nbsp; DER: ↑ / ↓<br>
+        PAUSA: BARRA ESPACIADORA
+      </div>
+      <div id="ov-btns" style="display:none; gap:14px; flex-direction:row;">
+        <button class="ov-btn btn-continue" id="btn-continue">CONTINUAR</button>
+        <button class="ov-btn btn-restart"  id="btn-restart">REINICIAR</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="controls-hint">
+    JUGADOR IZQ · A ↑ · Z ↓ &nbsp;&nbsp;|&nbsp;&nbsp; JUGADOR DER · ↑ · ↓
+  </div>
+</div>
+
+<script>
+(() => {
+  /* ── CANVAS SETUP ───────────────────────────────────────────────── */
+  const canvas = document.getElementById('c');
+  const ctx    = canvas.getContext('2d');
+
+  const W = Math.min(window.innerWidth  * 0.92, 860);
+  const H = Math.round(W * 0.55);
+  canvas.width  = W;
+  canvas.height = H;
+
+  /* ── AUDIO (Web Audio API) ─────────────────────────────────────── */
+  let AC;
+  function getAC() {
+    if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)();
+    if (AC.state === 'suspended') AC.resume();
+    return AC;
+  }
+
+  function beep(freq, dur, vol = 0.25, type = 'square') {
+    try {
+      const ac  = getAC();
+      const osc = ac.createOscillator();
+      const gain = ac.createGain();
+      osc.connect(gain); gain.connect(ac.destination);
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, ac.currentTime);
+      gain.gain.setValueAtTime(vol, ac.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + dur);
+      osc.start(); osc.stop(ac.currentTime + dur);
+    } catch(e) {}
+  }
+
+  function synthHit(side) {
+    const freq = side === 'l' ? 320 : 420;
+    beep(freq, 0.08, 0.3, 'square');
+    beep(freq * 1.5, 0.04, 0.1, 'sawtooth');
+  }
+  function synthWall()  { beep(200, 0.06, 0.2, 'square'); }
+  function synthScore() {
+    [440, 330, 550, 660].forEach((f, i) =>
+      setTimeout(() => beep(f, 0.12, 0.3, 'sawtooth'), i * 80));
+  }
+
+  /* ── PARTICLES ─────────────────────────────────────────────────── */
+  const COLORS = ['#ff2d78','#00f5ff','#b44aff','#ffe74c'];
+  let particles = [];
+
+  function spawnParticles(x, y, count = 16) {
+    for (let i = 0; i < count; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 1.5 + Math.random() * 4;
+      particles.push({
+        x, y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 1,
+        decay: 0.025 + Math.random() * 0.03,
+        size: 2 + Math.random() * 3,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      });
+    }
+  }
+
+  function updateParticles() {
+    particles = particles.filter(p => p.life > 0);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      p.vx *= 0.94; p.vy *= 0.94;
+      p.life -= p.decay;
+    });
+  }
+
+  function drawParticles() {
+    particles.forEach(p => {
+      ctx.save();
+      ctx.globalAlpha = p.life;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur  = 10;
+      ctx.fillStyle   = p.color;
+      const pr = Math.max(0, p.size * p.life);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, pr, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  /* ── TRAIL (ball) ──────────────────────────────────────────────── */
+  let trail = [];
+  function updateTrail(x, y) {
+    trail.push({ x, y, life: 1 });
+    if (trail.length > 18) trail.shift();
+    trail.forEach(t => t.life -= 0.06);
+    trail = trail.filter(t => t.life > 0);
+  }
+  function drawTrail() {
+    trail.forEach((t, i) => {
+      ctx.save();
+      ctx.globalAlpha = t.life * 0.5;
+      ctx.shadowColor = '#b44aff';
+      ctx.shadowBlur  = 12;
+      ctx.fillStyle   = '#b44aff';
+      const r = Math.max(0, BALL_R * t.life * 0.7);
+      if (r <= 0) { ctx.restore(); return; }
+      ctx.beginPath();
+      ctx.arc(t.x, t.y, r, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  /* ── CONSTANTS ─────────────────────────────────────────────────── */
+  const BALL_R   = Math.round(W * 0.014);
+  const PAD_W    = Math.round(W * 0.014);
+  const PAD_H    = Math.round(H * 0.18);
+  const PAD_OFF  = Math.round(W * 0.03);
+  const PAD_SPEED = H * 0.011;
+  const WIN_SCORE = 7;
+
+  /* ── GAME STATE ────────────────────────────────────────────────── */
+  let state = 'start'; // 'start' | 'running' | 'paused' | 'win'
+  let scoreL = 0, scoreR = 0;
+
+  let padL = { y: H/2 - PAD_H/2 };
+  let padR = { y: H/2 - PAD_H/2 };
+  let ball  = { x: W/2, y: H/2, vx: 0, vy: 0 };
+
+  function resetBall(toRight = Math.random() < 0.5) {
+    ball.x  = W / 2;
+    ball.y  = H / 2;
+    const spd = W * 0.006;
+    const ang = (Math.random() * 0.6 - 0.3);
+    ball.vx = (toRight ? 1 : -1) * spd * Math.cos(ang);
+    ball.vy = spd * Math.sin(ang);
+  }
+
+  function resetGame() {
+    scoreL = scoreR = 0;
+    padL.y = padR.y = H/2 - PAD_H/2;
+    updateScore();
+    resetBall();
+  }
+
+  /* ── KEYS ──────────────────────────────────────────────────────── */
+  const keys = {};
+  window.addEventListener('keydown', e => {
+    keys[e.code] = true;
+    if (e.code === 'Space') {
+      e.preventDefault();
+      handleSpace();
+    }
+  });
+  window.addEventListener('keyup', e => { keys[e.code] = false; });
+
+  function handleSpace() {
+    if (state === 'start') {
+      startGame();
+    } else if (state === 'running') {
+      pauseGame();
+    } else if (state === 'paused') {
+      // Handled by buttons only (or re-pressing space = continue)
+      continueGame();
+    }
+    // 'win' state handled by buttons
+  }
+
+  function startGame() {
+    resetGame();
+    state = 'running';
+    hideOverlay();
+    getAC(); // unlock audio
+    requestAnimationFrame(loop);
+  }
+
+  function pauseGame() {
+    state = 'paused';
+    showOverlay('PAUSADO', false, true);
+  }
+
+  function continueGame() {
+    state = 'running';
+    hideOverlay();
+    requestAnimationFrame(loop);
+  }
+
+  function triggerWin(side) {
+    state = 'win';
+    const winner = side === 'l' ? 'JUGADOR IZQ' : 'JUGADOR DER';
+    const col     = side === 'l' ? '#00f5ff' : '#ff2d78';
+    showOverlay('GAME OVER', true, true, winner, col);
+    synthScore();
+  }
+
+  /* ── OVERLAY ───────────────────────────────────────────────────── */
+  const overlay   = document.getElementById('overlay');
+  const ovTitle   = document.getElementById('ov-title');
+  const ovWinner  = document.getElementById('ov-winner');
+  const ovSub     = document.getElementById('ov-sub');
+  const ovBtns    = document.getElementById('ov-btns');
+
+  document.getElementById('btn-continue').addEventListener('click', () => {
+    if (state === 'paused') continueGame();
+  });
+  document.getElementById('btn-restart').addEventListener('click', () => {
+    state = 'running';
+    hideOverlay();
+    resetGame();
+    requestAnimationFrame(loop);
+  });
+
+  function showOverlay(title, showWinner = false, showBtns = false, winnerName = '', winnerColor = '#b44aff') {
+    overlay.classList.remove('hidden');
+    ovTitle.textContent = title;
+    if (showWinner && winnerName) {
+      ovWinner.style.display = 'block';
+      ovWinner.textContent   = `★ ${winnerName} GANA ★`;
+      ovWinner.style.color   = winnerColor;
+    } else {
+      ovWinner.style.display = 'none';
+    }
+    if (state === 'paused') {
+      ovSub.innerHTML = 'ESPACIO = CONTINUAR';
+      document.getElementById('btn-continue').style.display = 'inline-block';
+    } else if (state === 'win') {
+      ovSub.innerHTML = 'ELIGE UNA OPCIÓN';
+      document.getElementById('btn-continue').style.display = 'none';
+    } else {
+      ovSub.innerHTML = 'IZQ: A / Z &nbsp;·&nbsp; DER: ↑ / ↓<br>PAUSA: BARRA ESPACIADORA';
+    }
+    if (showBtns) { ovBtns.style.display = 'flex'; }
+    else          { ovBtns.style.display = 'none'; }
+  }
+
+  function hideOverlay() { overlay.classList.add('hidden'); }
+
+  /* ── SCORE ─────────────────────────────────────────────────────── */
+  function updateScore() {
+    document.getElementById('sl').textContent = scoreL;
+    document.getElementById('sr').textContent = scoreR;
+  }
+
+  /* ── GRID DRAWING ──────────────────────────────────────────────── */
+  function drawBg() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Deep background
+    const bgGrad = ctx.createLinearGradient(0,0,0,H);
+    bgGrad.addColorStop(0,   '#0a0010');
+    bgGrad.addColorStop(0.5, '#110025');
+    bgGrad.addColorStop(1,   '#0a0010');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0,0,W,H);
+
+    // Perspective grid floor
+    ctx.save();
+    ctx.globalAlpha = 0.18;
+    ctx.strokeStyle = '#b44aff';
+    ctx.lineWidth   = 0.5;
+    const horizon = H * 0.55;
+    // vertical lines converging
+    for (let i = -10; i <= 10; i++) {
+      const xBottom = W/2 + i * (W * 0.09);
+      const xTop    = W/2 + i * (W * 0.012);
+      ctx.beginPath();
+      ctx.moveTo(xTop, horizon);
+      ctx.lineTo(xBottom, H);
+      ctx.stroke();
+    }
+    // horizontal lines
+    for (let j = 0; j <= 7; j++) {
+      const t = j / 7;
+      const y = horizon + (H - horizon) * (t * t);
+      ctx.beginPath();
+      ctx.moveTo(0, y); ctx.lineTo(W, y);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Center dashed line
+    ctx.save();
+    ctx.setLineDash([H*0.03, H*0.025]);
+    ctx.strokeStyle = 'rgba(180,74,255,0.3)';
+    ctx.lineWidth   = 2;
+    ctx.shadowColor = '#b44aff';
+    ctx.shadowBlur  = 8;
+    ctx.beginPath();
+    ctx.moveTo(W/2, 0); ctx.lineTo(W/2, H);
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  /* ── PADDLE DRAW ───────────────────────────────────────────────── */
+  function drawPaddle(x, y, color, glowColor) {
+    ctx.save();
+    ctx.shadowColor = glowColor;
+    ctx.shadowBlur  = 18;
+
+    // Main body
+    const grad = ctx.createLinearGradient(x, y, x + PAD_W, y + PAD_H);
+    grad.addColorStop(0, color);
+    grad.addColorStop(1, glowColor);
+    ctx.fillStyle = grad;
+    roundRect(ctx, x, y, PAD_W, PAD_H, 3);
+    ctx.fill();
+
+    // Highlight stripe
+    ctx.globalAlpha = 0.4;
+    ctx.fillStyle = '#fff';
+    roundRect(ctx, x + 2, y + 4, PAD_W - 4, PAD_H * 0.25, 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.arcTo(x+w, y,   x+w, y+r,   r);
+    ctx.lineTo(x+w, y+h-r);
+    ctx.arcTo(x+w, y+h, x+w-r, y+h, r);
+    ctx.lineTo(x+r,  y+h);
+    ctx.arcTo(x,  y+h, x,  y+h-r, r);
+    ctx.lineTo(x,  y+r);
+    ctx.arcTo(x,  y,  x+r,  y,  r);
+    ctx.closePath();
+  }
+
+  /* ── BALL DRAW ─────────────────────────────────────────────────── */
+  function drawBall() {
+    // Outer glow
+    ctx.save();
+    ctx.shadowColor = '#b44aff';
+    ctx.shadowBlur  = 30;
+
+    const grad = ctx.createRadialGradient(ball.x, ball.y, 0, ball.x, ball.y, BALL_R);
+    grad.addColorStop(0, '#ffffff');
+    grad.addColorStop(0.4, '#b44aff');
+    grad.addColorStop(1, '#ff2d78');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, BALL_R, 0, Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  /* ── PHYSICS ───────────────────────────────────────────────────── */
+  let lastTime = null;
+  let animId   = null;
+
+  function loop(ts) {
+    if (state !== 'running') return;
+    if (!lastTime) lastTime = ts;
+    const dt = Math.min((ts - lastTime) / 16.67, 2);
+    lastTime = ts;
+
+    // Move paddles
+    const lUp   = keys['KeyA'],   lDown = keys['KeyZ'];
+    const rUp   = keys['ArrowUp'], rDown = keys['ArrowDown'];
+
+    if (lUp)   padL.y -= PAD_SPEED * dt;
+    if (lDown) padL.y += PAD_SPEED * dt;
+    if (rUp)   padR.y -= PAD_SPEED * dt;
+    if (rDown) padR.y += PAD_SPEED * dt;
+
+    padL.y = Math.max(0, Math.min(H - PAD_H, padL.y));
+    padR.y = Math.max(0, Math.min(H - PAD_H, padR.y));
+
+    // Move ball
+    ball.x += ball.vx * dt;
+    ball.y += ball.vy * dt;
+
+    updateTrail(ball.x, ball.y);
+
+    // Wall bounce (top / bottom)
+    if (ball.y - BALL_R < 0) {
+      ball.y  = BALL_R;
+      ball.vy = Math.abs(ball.vy);
+      synthWall();
+      spawnParticles(ball.x, 0, 8);
+    }
+    if (ball.y + BALL_R > H) {
+      ball.y  = H - BALL_R;
+      ball.vy = -Math.abs(ball.vy);
+      synthWall();
+      spawnParticles(ball.x, H, 8);
+    }
+
+    // Paddle collisions
+    const lx = PAD_OFF, rx = W - PAD_OFF - PAD_W;
+    const MAX_SPEED = W * 0.014;
+
+    // Left paddle
+    if (ball.vx < 0 &&
+        ball.x - BALL_R < lx + PAD_W &&
+        ball.x - BALL_R > lx &&
+        ball.y > padL.y && ball.y < padL.y + PAD_H) {
+      ball.vx  = Math.abs(ball.vx) * 1.05;
+      const rel = (ball.y - (padL.y + PAD_H/2)) / (PAD_H/2);
+      ball.vy   = rel * Math.abs(ball.vx) * 0.9;
+      const spd = Math.hypot(ball.vx, ball.vy);
+      if (spd > MAX_SPEED) { ball.vx *= MAX_SPEED/spd; ball.vy *= MAX_SPEED/spd; }
+      ball.x = lx + PAD_W + BALL_R + 1;
+      synthHit('l');
+      spawnParticles(ball.x, ball.y, 20);
+    }
+
+    // Right paddle
+    if (ball.vx > 0 &&
+        ball.x + BALL_R > rx &&
+        ball.x + BALL_R < rx + PAD_W &&
+        ball.y > padR.y && ball.y < padR.y + PAD_H) {
+      ball.vx  = -Math.abs(ball.vx) * 1.05;
+      const rel = (ball.y - (padR.y + PAD_H/2)) / (PAD_H/2);
+      ball.vy   = rel * Math.abs(ball.vx) * 0.9;
+      const spd = Math.hypot(ball.vx, ball.vy);
+      if (spd > MAX_SPEED) { ball.vx *= MAX_SPEED/spd; ball.vy *= MAX_SPEED/spd; }
+      ball.x = rx - BALL_R - 1;
+      synthHit('r');
+      spawnParticles(ball.x, ball.y, 20);
+    }
+
+    // Scoring
+    if (ball.x < 0) {
+      scoreR++;
+      updateScore();
+      spawnParticles(0, ball.y, 30);
+      if (scoreR >= WIN_SCORE) { triggerWin('r'); return; }
+      resetBall(true);
+    }
+    if (ball.x > W) {
+      scoreL++;
+      updateScore();
+      spawnParticles(W, ball.y, 30);
+      if (scoreL >= WIN_SCORE) { triggerWin('l'); return; }
+      resetBall(false);
+    }
+
+    updateParticles();
+
+    // Draw
+    drawBg();
+    drawTrail();
+    drawParticles();
+    drawPaddle(PAD_OFF,                padL.y, '#00f5ff', '#00f5ff');
+    drawPaddle(W - PAD_OFF - PAD_W,    padR.y, '#ff2d78', '#ff2d78');
+    drawBall();
+
+    animId = requestAnimationFrame(loop);
+  }
+
+  /* ── INIT ──────────────────────────────────────────────────────── */
+  // Static initial frame
+  drawBg();
+  drawPaddle(PAD_OFF,             padL.y, '#00f5ff', '#00f5ff');
+  drawPaddle(W - PAD_OFF - PAD_W, padR.y, '#ff2d78', '#ff2d78');
+  drawBall();
+
+})();
+</script>
+</body>
+</html>
