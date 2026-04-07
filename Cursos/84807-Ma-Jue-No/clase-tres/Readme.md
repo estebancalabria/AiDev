@@ -211,7 +211,7 @@ Decime cómo lo querés encarar.
 ```
 ---
 
-> ![NOTE]
+> [!NOTE]
 > En este caso tome el prompt como viene pero en un caso practico iteraria sobre el mismo
 
 3. Vamos a usar la parte del prompt para pasarla a Replit
