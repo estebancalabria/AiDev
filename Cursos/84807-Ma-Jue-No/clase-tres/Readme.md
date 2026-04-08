@@ -12,15 +12,29 @@
 # Novedades
 
 * Ver el post del profe para el curso
-  * https://www.instagram.com/p/DWzXGrulSNF/?img_index=1
+     * https://www.instagram.com/p/DWzXGrulSNF/?img_index=1
+* El coding Agent numero 1 para tareas complejas, claude code se filtro su codigo fuente
+      * https://www.youtube.com/watch?v=9r2DwV5KwTc
   
 # Herramienta
 
 * Herramienta para el scaffolding de proyecto
   * https://replit.com/
+* Puntaje
+   * 9 / 10
+
+> [!Note]
+> A Experiencia personal el profe desarollo 3 webs con Replit
 
 # Codding Assistants
 
+* Hay varios Codding Assistants de todos los colores
+   * https://www.instagram.com/p/C5q36wmRpMP/?img_index=1
+* Hoy en dia esta bastante estandarizado el uso de Github Copilot desde que se hizo "gratuito"
+* Formar de utilizar (son todos igual)
+   * Guiando la generacion de codigo por comentarios
+   * Usar el chat Inline
+   * Usar la ventana de chat a la derecha
 
 # Laboratorio
 
@@ -214,5 +228,58 @@ Decime cómo lo querés encarar.
 > [!NOTE]
 > En este caso tome el prompt como viene pero en un caso practico iteraria sobre el mismo
 
+
+
 3. Vamos a usar la parte del prompt para pasarla a Replit
-4. 
+4. Generar la app con Replit
+   * Esto es lo que genere : https://attached-assets--emotionalwellne.replit.app/
+
+5. Iterar sobre la app pidiendole los cambios obvios
+
+> [!NOTE]
+> Ver el archivo repllit.md que habla de la arquitectura de la app
+
+
+6. Loguearnos en Github si no esta logueados
+7. Configurar Integracion con Github
+8. Subir proyecto a Github
+   
+> Lo subio en https://github.com/estebancalabria/84807-replit-demo/
+> Ojo que tal vez lo borre
+
+9. Bajar localmente y abrir proyecto
+
+> [!WARN]
+> En este momento tengo un proyecto que genero la IA y no entiendo de todo. Tengo Deuda Cognitiva
+
+```cmd
+git clone https://github.com/estebancalabria/84807-replit-demo/
+cd 84807-replit-demo
+code .
+```
+10. Instalar la extension de GithubCopilot en VSCode
+11. Entender el proyecto con la IA
+
+```
+De que es el proyecto? Tiene los scripts de creacion de la base de datos? Por donde arranca? En que tecnologia esta? Cual es el componente principal?
+```
+
+12. Ejecutarlo localmente
+
+```
+Esto esta en el Replit.MD sino se lo puedo preguntar a la IA
+```
+
+14. Ajustar el proyecto con el codding assistant (cambios puntuales)
+
+
+* Antes
+   * Soy Programador/ Dev
+* Ahora
+   * Disenio sistemas y orquesto IA 
+
+# Proxima Clase
+
+* MAs de codding assistants
+* IDes potenciadas con IA
+* Otra herramienta
