@@ -145,7 +145,8 @@ Al usar este prompt, el agente podrá considerar aspectos específicos de las fu
 
 * Diagram GPT Me genero esto :
 
-<img width="1875" height="1271" alt="image" src="https://github.com/user-attachments/assets/8d0ea14f-eabb-46bd-8587-f4c2a656b872" />
+<img width="2238" height="2058" alt="image" src="https://github.com/user-attachments/assets/652d1cda-675f-4a49-a368-a7d21d84ff3e" />
+
 
 * Si en lugar de usar DiagramGPT quiero trabajar con ChatGPT para diagramas de diseño utilizo Mermaid
   * https://mermaid.live/
