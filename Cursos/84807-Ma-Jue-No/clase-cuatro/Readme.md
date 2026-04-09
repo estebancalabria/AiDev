@@ -237,3 +237,173 @@ graph TB
     style Monitoring fill:#ffd700,stroke:#ff8c00,stroke-width:2px,color:#000
 ```
 
+## Caso de uso Extra
+
+* Consulta : Me genera el mermaid diagrama de clases?
+ * Le voy a pedir directamente a notebooklm los diagramas en mermaid
+
+* Clases
+```mermaid
+classDiagram
+    class Usuario {
+        +int id
+        +string nombre
+        +string email
+        +string password
+        +string rol
+        +iniciarSesion()
+    }
+
+    class Paciente {
+        +string datosContacto
+        +int turnosActivosCount
+        +registrarse()
+        +buscarMedico(especialidad)
+        +reservarTurno()
+        +cancelarTurno()
+    }
+
+    class Medico {
+        +int especialidadId
+        +gestionarAgenda()
+        +bloquearHorario()
+    }
+
+    class Administrador {
+        +generarReportes()
+    }
+
+    class Turno {
+        +int id
+        +dateTime fechaHora
+        +int duracionMinutos
+        +string estado
+        +validarAnticipacion()
+        +notificarConfirmacion()
+    }
+
+    class Especialidad {
+        +int id
+        +string nombre
+    }
+
+    class AgendaMedica {
+        +int id
+        +string diaSemana
+        +time horaInicio
+        +time horaFin
+        +bool esLaborable
+    }
+
+    class Notificacion {
+        +int id
+        +string tipo
+        +dateTime fechaEnvio
+        +enviarRecordatorio()
+    }
+
+    Usuario <|-- Paciente
+    Usuario <|-- Medico
+    Usuario <|-- Administrador
+
+    Paciente "1" -- "0..3" Turno : reserva
+    Medico "1" -- "*" Turno : atiende
+    Medico "*" -- "1" Especialidad : posee
+    Medico "1" -- "*" AgendaMedica : configura
+    Turno "1" -- "1" Notificacion : genera
+```
+
+* Y el DER
+
+```mermaid
+erDiagram
+    USUARIO ||--|| ROL : "tiene un"
+    USUARIO ||--o| PACIENTE : "es"
+    USUARIO ||--o| MEDICO : "es"
+    USUARIO ||--o| ADMINISTRADOR : "es"
+    
+    PACIENTE ||--o{ TURNO : "reserva"
+    MEDICO ||--o{ TURNO : "atiende"
+    MEDICO ||--o{ AGENDA_MEDICA : "define"
+    MEDICO ||--o{ BLOQUEO_AGENDA : "registra"
+    MEDICO }o--|| ESPECIALIDAD : "pertenece a"
+    
+    TURNO }o--|| SUCURSAL : "ocurre en"
+    TURNO ||--o{ NOTIFICACION : "genera"
+
+    USUARIO {
+        int id_usuario PK
+        string email
+        string password_hash
+        int id_rol FK
+        datetime fecha_registro
+    }
+
+    ROL {
+        int id_rol PK
+        string nombre_rol
+    }
+
+    PACIENTE {
+        int id_usuario PK, FK
+        string nombre
+        string apellido
+        string telefono
+        string dni
+    }
+
+    MEDICO {
+        int id_usuario PK, FK
+        string nombre
+        string apellido
+        int id_especialidad FK
+        string matricula
+    }
+
+    ESPECIALIDAD {
+        int id_especialidad PK
+        string nombre
+        int duracion_estandar_minutos
+    }
+
+    AGENDA_MEDICA {
+        int id_agenda PK
+        int id_medico FK
+        int dia_semana
+        time hora_inicio
+        time hora_fin
+    }
+
+    BLOQUEO_AGENDA {
+        int id_bloqueo PK
+        int id_medico FK
+        datetime fecha_inicio
+        datetime fecha_fin
+        string motivo
+    }
+
+    TURNO {
+        int id_turno PK
+        int id_paciente FK
+        int id_medico FK
+        int id_sucursal FK
+        datetime fecha_hora
+        string estado
+        datetime fecha_creacion
+    }
+
+    SUCURSAL {
+        int id_sucursal PK
+        string nombre
+        string direccion
+    }
+
+    NOTIFICACION {
+        int id_notificacion PK
+        int id_turno FK
+        string tipo_notificacion
+        datetime fecha_envio
+        string estado_entrega
+    }
+```
+
