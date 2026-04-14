@@ -85,8 +85,6 @@ El resultado **DESPUÉS** debería cumplir:
 En algunos casos, el autocompletado pasivo de Copilot no aplica las instrucciones.  
 El método más confiable es usar **Ctrl+I** o **Copilot Chat** para que el archivo `copilot-instructions.md` se aplique realmente.
 
-Perfecto, Esteban. Acá tenés una **sección lista para pegar en tu laboratorio**, escrita en tono **práctico**, clara y orientada a que cualquiera entienda rápidamente qué son estos nuevos tipos de instrucciones y cuándo usarlos.
-
 # Nuevos tipos de instrucciones (2025–2026)
 
 Desde 2025–2026 GitHub Copilot incorporó **tres niveles de instrucciones**, lo que te permite controlar con mucha más precisión cómo debe comportarse Copilot dentro de un repositorio.  
