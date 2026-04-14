@@ -84,3 +84,60 @@ El resultado **DESPUÉS** debería cumplir:
 ## Aclaración importante
 En algunos casos, el autocompletado pasivo de Copilot no aplica las instrucciones.  
 El método más confiable es usar **Ctrl+I** o **Copilot Chat** para que el archivo `copilot-instructions.md` se aplique realmente.
+
+Perfecto, Esteban. Acá tenés una **sección lista para pegar en tu laboratorio**, escrita en tono **práctico**, clara y orientada a que cualquiera entienda rápidamente qué son estos nuevos tipos de instrucciones y cuándo usarlos.
+
+# Nuevos tipos de instrucciones (2025–2026)
+
+Desde 2025–2026 GitHub Copilot incorporó **tres niveles de instrucciones**, lo que te permite controlar con mucha más precisión cómo debe comportarse Copilot dentro de un repositorio.  
+Tu laboratorio usa solo el nivel principal (repository‑wide), pero si querés dejarlo “2026‑ready”, podés sumar esta sección.
+
+### 1) Instrucciones a nivel repositorio  
+**Archivo:** `.github/copilot-instructions.md`  
+**Para qué sirve:**  
+Define reglas globales que aplican a **todo el repo**.  
+Es ideal para estándares generales: estilo de funciones, convenciones de nombres, prácticas de seguridad, etc.
+
+**Cuándo usarlo:**  
+Cuando querés que Copilot siga las mismas reglas en cualquier archivo del proyecto.
+
+---
+
+### 2) Instrucciones por ruta (path‑specific)  
+**Archivo:** `.instructions.md` dentro de una carpeta específica  
+**Para qué sirve:**  
+Permite definir reglas **solo para una parte del repo**, por ejemplo:
+
+- `/infra/.instructions.md` → reglas solo para IaC  
+- `/frontend/.instructions.md` → reglas solo para React  
+- `/scripts/.instructions.md` → reglas solo para automatizaciones
+
+**Ejemplo práctico:**  
+En `/infra/.instructions.md` podés pedir:  
+- “Usar siempre Bicep en lugar de ARM”  
+- “Nombrar recursos con el prefijo `ec-`”  
+
+**Cuándo usarlo:**  
+Cuando distintas áreas del repo necesitan **estándares distintos**.
+
+---
+
+### 3) Instrucciones para agentes (Agent Instructions)  
+**Archivos típicos:**  
+- `AGENTS.md`  
+- `CLAUDE.md`  
+- `GEMINI.md`  
+- `OPENAI.md`  
+
+**Para qué sirve:**  
+Define cómo debe comportarse **cada agente** dentro de Copilot Chat.  
+Esto es útil cuando trabajás con múltiples modelos y querés que cada uno tenga un rol o estilo específico.
+
+**Ejemplos prácticos:**  
+- `CLAUDE.md`: “Especializate en documentación y resúmenes.”  
+- `GEMINI.md`: “Optimizá para análisis de datos y tablas.”  
+- `OPENAI.md`: “Generá código con foco en buenas prácticas y seguridad.”
+
+**Cuándo usarlo:**  
+Cuando querés que cada agente tenga una personalidad o función clara dentro del flujo de trabajo.
+
