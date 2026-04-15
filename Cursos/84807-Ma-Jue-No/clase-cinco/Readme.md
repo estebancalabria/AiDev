@@ -192,14 +192,20 @@ module.exports = Usuario;
 ```
 
 ```
-# Instrucciones para generar codigo
+---
+applyTo: 'backend/models/**/*.js'
+description: "Usar cuando se pida crear una clase de modelo (ej: Usuario, entidad, modelo) o cuando el usuario mencione getters, setters, encapsulamiento o POO."
+---
 
-* El codigo generado debe cumplir con las buenas practicas de la POO
+# Instrucciones para generar código
+
+* El código generado debe cumplir con las buenas prácticas de la POO
   * Los atributos de una clase deben ser privados
-  * Los atributos deben tener getters y seeters
+  * Los atributos deben tener getters y setters
+  * Es obligatorio que tengan getters y setters para cada atributo, incluso si no se usan actualmente
   * Los setters y el constructor deben asegurar la consistencia del objeto y validar los datos
-  * El codigo debe ser modular y reutilizable
-  * Se pretende tener un Consturtor vaicio adicional para compatibilidad con ORMs
+  * El código debe ser modular y reutilizable
+  * Se pretende tener un constructor vacío adicional para compatibilidad con ORMs
 
 ```
 
