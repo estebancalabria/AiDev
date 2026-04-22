@@ -128,7 +128,11 @@ Cada tarea debe tener:
 
 * Vamos a probarla con el mismo prompt que Base44
 * Trabaja casi exclusivamente con los modelos de Antrhopic
+ * Es un poco lento porque los modelos de claude de por si ya son un poco mas lentos, pero tambien son muy potentes
+ * Hicmos este ejemplo
+   * https://frontend-kanban-boar-d86h.bolt.host
 
+> Puntaje : 9 / 10
 ---
   
 # Hugging Face
