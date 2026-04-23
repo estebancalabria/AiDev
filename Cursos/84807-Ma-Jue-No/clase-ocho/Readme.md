@@ -74,3 +74,63 @@
 * Installa ollama
   * Ir a https://ollama.com/
   * Ejecutar comando en powershell : irm https://ollama.com/install.ps1 | iex
+
+```
+Bienvenido a Powershell
+Loading personal and system profiles took 1010ms.
+(base) PS C:\Users\esteb> irm https://ollama.com/install.ps1 | iex
+>>> Downloading Ollama for Windows...
+######################################## 100.0%
+>>> Installing Ollama...
+>>> Install complete. Run 'ollama' from the command line.
+(base) PS C:\Users\esteb>
+```
+* En una terminal nueva aparte
+
+```cmd
+> ollama --version
+> ollama --serve
+```
+
+* Instalar claude code
+
+```
+irm https://claude.ai/install.ps1 | iex
+```
+
+* En otra terminal
+```
+> ollama lauch claude
+```
+
+* Elegimos el modelo minimax-m2.7:cloud que va rapido
+
+<img width="1338" height="623" alt="image" src="https://github.com/user-attachments/assets/d8733dae-9a5e-4397-81ad-ab5674259624" />
+
+* Generar 5 archivos
+
+```
+Generame 5 archivos html que utilicen la api fecth para recuperar informacion de apis publicas conocidas que no requieran api key como la de rick and morty o la de pokemon (elegi vos las otras tres). Cada archivo es autocontenido y tiene todo el javascript  necesario. Improtante usar fetch.    
+```
+
+* Me genero los 5 archivos...
+* Luego inicie otra sesion y puse
+
+
+```
+Refactorizame todos los archivos html del directorio para que en vez de usar fetch usen axios
+```
+
+* Veo como en todos los archivos cambio de
+
+```
+const { data } = await axios.get(`https://rickandmortyapi.com/api/character?page=${currentPage}`);
+```
+
+* a
+
+```
+  const { data } = await axios.get(`https://rickandmortyapi.com/api/character?page=${currentPage}`);
+```
+
+
